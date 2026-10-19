@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node scripts/vite.js",
-    "build": "node scripts/vite.js build",
-    "preview": "node scripts/vite.js preview"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "clsx": "^2.1.1",
