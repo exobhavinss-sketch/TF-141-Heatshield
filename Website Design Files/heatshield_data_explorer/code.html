@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;family=Manrope:wght@600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-fixed": "#ffdbcf", "primary-fixed": "#b9eedb", "tertiary": "#581900", "surface-dim": "#d6dbd7", "surface-container": "#eaefeb", "inverse-surface": "#2c312f", "on-secondary-fixed": "#00201c", "on-primary": "#ffffff", "on-error": "#ffffff", "outline-variant": "#c0c8c4", "primary-container": "#194d40", "on-secondary": "#ffffff", "on-surface": "#181d1b", "on-tertiary-container": "#ff9770", "on-primary-fixed-variant": "#1b4f42", "error-container": "#ffdad6", "on-error-container": "#93000a", "surface": "#f6faf7", "on-secondary-fixed-variant": "#005048", "tertiary-container": "#7d2800", "surface-variant": "#dfe4e0", "error": "#ba1a1a", "on-background": "#181d1b", "on-primary-container": "#89bdac", "inverse-primary": "#9dd1c0", "inverse-on-surface": "#edf2ee", "secondary-fixed-dim": "#84d5c8", "secondary": "#016a60", "surface-container-lowest": "#ffffff", "on-secondary-container": "#117166", "secondary-container": "#9ff2e4", "surface-container-highest": "#dfe4e0", "primary": "#00362a", "surface-bright": "#f6faf7", "on-tertiary": "#ffffff", "on-tertiary-fixed": "#380d00", "tertiary-fixed-dim": "#ffb59b", "background": "#f6faf7", "outline": "#707975", "on-primary-fixed": "#002019", "primary-fixed-dim": "#9dd1c0", "surface-tint": "#366759", "surface-container-low": "#f0f5f1", "on-surface-variant": "#404945", "on-tertiary-fixed-variant": "#812900", "secondary-fixed": "#9ff2e4", "surface-container-high": "#e5e9e5" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "gutter-mobile": "0.75rem", "space-sm": "0.5rem", "margin-mobile": "1rem", "space-xs": "0.25rem", "gutter": "1.25rem", "space-lg": "1.5rem", "space-xl": "2.5rem", "space-md": "1rem", "margin": "2rem" }, "fontFamily": { "headline-lg": [ "Manrope" ], "label-code": [ "JetBrains Mono" ], "caption-caps": [ "Inter" ], "headline-xl-mobile": [ "Manrope" ], "headline-md": [ "Manrope" ], "body-sm": [ "Inter" ], "body-md": [ "Inter" ], "headline-lg-mobile": [ "Manrope" ], "body-lg": [ "Inter" ], "headline-xl": [ "Manrope" ], "label-metric": [ "JetBrains Mono" ] }, "fontSize": { "headline-lg": [ "26px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" } ], "label-code": [ "11px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" } ], "caption-caps": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "600" } ], "headline-xl-mobile": [ "28px", { "lineHeight": "34px", "letterSpacing": "-0.025em", "fontWeight": "600" } ], "headline-md": [ "18px", { "lineHeight": "24px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "18px", "fontWeight": "400" } ], "body-md": [ "13px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-lg-mobile": [ "22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "body-lg": [ "15px", { "lineHeight": "24px", "fontWeight": "400" } ], "headline-xl": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "600" } ], "label-metric": [ "13px", { "lineHeight": "18px", "letterSpacing": "-0.01em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/40"><div class="h-[76px] max-w-[1400px] mx-auto px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-md"><img alt="HeatShield Emblem" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XWJ4qbCUSYLnD1Z6TmO_vemqF6U3qe-WRrr0ikQiuFHOKmX_aSoq5H39etJL4IXE4GSgYb2I0-1s3Oya1-QUTmyQV7tV05SnfXfUMy8POdHV4NMQ4lSIGi3Yd5xfrrk0EEDr49ewjs6mYQz6eeDygLU_6VDPY04zP-4Ppp5uHg49wiTSV2Hy2F-ebhrNshCPJagYUK8z4dJsju-YeprrCv3JWQCclB-xFRyi0IHQVFNTqhcGaP5TcfmgM"/><div class="flex flex-col"><span class="font-headline-md text-headline-md text-primary tracking-tight">HeatShield</span><span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">TF-141 / MIT Vishwaprayag University</span></div></div><nav class="hidden lg:flex items-center gap-space-lg h-full" data-active-classes="text-primary border-b-2 border-primary-container font-medium"><a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" data-path="overview" href="#">Overview</a><a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" data-path="dashboard" href="#">Dashboard</a><a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" data-path="heat-map" href="#">Heat Map</a><a aria-current="page" class="h-full flex items-center transition-colors text-primary border-b-2 border-primary-container font-medium" data-path="explore-data" href="#">Explore Data</a><a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" data-path="methodology" href="#">Methodology</a></nav><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 rounded-DEFAULT bg-surface-container border border-outline-variant/50 text-on-surface"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span><span class="font-label-code text-label-code text-on-surface uppercase">ACADEMIC SIMULATION • 2021-2025</span></div><a class="inline-flex items-center justify-center px-space-md h-9 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md hover:bg-primary transition-colors" data-path="submit-reading" href="#">Submit Reading</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-[76px] min-h-screen bg-background"><div class="flex flex-col w-full">
+<!-- Top Academic Context Ribbon -->
+<div class="w-full bg-surface-container-low py-space-sm px-margin">
+<div class="max-w-[1400px] mx-auto flex flex-col md:flex-row md:items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code text-label-code text-on-surface-variant uppercase tracking-wider">CORPUS: SYNTH-SOLAPUR-150K</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-label-code text-label-code text-secondary font-medium">INDEXED HIERARCHY v2.4</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-label-code text-label-code text-on-surface-variant">SEED: 0x9AF41B8</span>
+</div>
+<div class="flex items-center gap-space-md">
+<span class="font-caption-caps text-caption-caps text-on-surface-variant uppercase">SYNCHRONIZATION: COMPLIANT WITH ERA5-LAND INTERPOLATION</span>
+</div>
+</div>
+</div>
+<!-- Header & Executive Stats Strip -->
+<section class="w-full bg-surface px-margin pt-space-lg pb-space-md">
+<div class="max-w-[1400px] mx-auto flex flex-col lg:flex-row lg:items-end justify-between gap-space-lg">
+<div class="space-y-space-xs max-w-2xl">
+<div class="flex items-center gap-space-xs">
+<span class="font-caption-caps text-caption-caps uppercase text-secondary font-semibold tracking-wider">Repository Ledger</span>
+<span class="text-outline-variant">/</span>
+<span class="font-label-code text-label-code text-on-surface-variant">TEL-150K-QUERY</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-primary font-semibold tracking-tight">Data Explorer</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          Search, filter, inspect, and export the 150,000 environmental simulation records behind HeatShield.
+        </p>
+</div>
+<!-- Quick Metrics Strip -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex flex-col min-w-[130px]">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Filtered Subset</span>
+<span class="font-label-metric text-label-metric text-primary font-bold text-base mt-0.5" id="filtered-counter">1,240</span>
+<span class="font-label-code text-[10px] text-secondary">0.82% of corpus</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex flex-col min-w-[130px]">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Mean LST (Filtered)</span>
+<span class="font-label-metric text-label-metric text-tertiary-container font-bold text-base mt-0.5">42.8°C</span>
+<span class="font-label-code text-[10px] text-on-surface-variant">σ = ±2.3°C</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex flex-col min-w-[130px]">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">High-Risk Canopy</span>
+<span class="font-label-metric text-label-metric text-error font-bold text-base mt-0.5">64.2%</span>
+<span class="font-label-code text-[10px] text-error">Critical threshold</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Controls & Search Surface -->
+<section class="w-full bg-surface px-margin pb-space-lg">
+<div class="max-w-[1400px] mx-auto bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-md items-end">
+<!-- Search Keyword Input -->
+<div class="lg:col-span-4 space-y-1">
+<label class="font-caption-caps text-caption-caps uppercase text-on-surface-variant flex items-center justify-between">
+<span>Query Parameter</span>
+<span class="font-label-code text-on-surface-variant">STN / WARD / COORD</span>
+</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full pl-9 pr-3 py-2 bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-container" id="search-input" placeholder="Search by station ID, ward name, or coordinate..." type="text" value="Solapur"/>
+</div>
+</div>
+<!-- Zone Multi-Filter -->
+<div class="lg:col-span-2 space-y-1">
+<label class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Urban Zone</label>
+<div class="relative">
+<select class="w-full py-2 pl-3 pr-8 bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-container appearance-none cursor-pointer">
+<option>All Zones (9 categories)</option>
+<option>Commercial Dense</option>
+<option>Industrial Core</option>
+<option>Residential Moderate</option>
+<option>Canopy Park &amp; Buffer</option>
+<option>Transit Corridor</option>
+<option>Informal Settlement</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 pointer-events-none text-on-surface-variant text-[18px]">expand_more</span>
+</div>
+</div>
+<!-- Heat Risk Filter -->
+<div class="lg:col-span-2 space-y-1">
+<label class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Heat-Risk Tier</label>
+<div class="relative">
+<select class="w-full py-2 pl-3 pr-8 bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-container appearance-none cursor-pointer">
+<option>All Risk Tiers (All)</option>
+<option>Normal (&lt; 34°C)</option>
+<option>Moderate (34–38°C)</option>
+<option>High (39–43°C)</option>
+<option>Extreme (&gt; 43°C)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 pointer-events-none text-on-surface-variant text-[18px]">expand_more</span>
+</div>
+</div>
+<!-- Date Range Slider / Date Selector -->
+<div class="lg:col-span-2 space-y-1">
+<label class="font-caption-caps text-caption-caps uppercase text-on-surface-variant flex items-center justify-between">
+<span>Temporal Envelope</span>
+<span class="font-label-code text-secondary font-medium">SIM-EPOCH</span>
+</label>
+<div class="flex items-center gap-1.5 py-1.5 px-2 bg-surface-container-low rounded-lg text-on-surface font-label-code text-label-code">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">calendar_today</span>
+<span>2021-01-01</span>
+<span class="text-outline-variant">→</span>
+<span>2025-05-31</span>
+</div>
+</div>
+<!-- Export Action CTA -->
+<div class="lg:col-span-2 flex items-center justify-end">
+<button class="w-full inline-flex items-center justify-center gap-space-xs py-2 px-space-md rounded-lg bg-primary-container text-on-primary font-body-md text-body-md hover:bg-primary transition-all duration-150 shadow-sm" onclick="triggerExportToast()" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span class="font-medium whitespace-nowrap">Export CSV (1,240)</span>
+</button>
+</div>
+</div>
+<!-- Advanced Metric Range & Tag Sliders Row -->
+<div class="mt-space-md pt-space-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md bg-surface-container-low/60 p-space-sm rounded-lg">
+<div class="flex flex-wrap items-center gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Thermal Envelope:</span>
+<div class="flex items-center gap-2">
+<span class="font-label-code text-label-code text-on-surface bg-surface-container px-2 py-0.5 rounded">30.0°C</span>
+<div class="w-32 h-1.5 bg-surface-container-highest rounded-full relative flex items-center">
+<div class="absolute left-1/4 right-1/6 h-full bg-primary-container rounded-full"></div>
+<div class="w-3 h-3 rounded-full bg-primary absolute left-1/4 shadow-sm cursor-pointer"></div>
+<div class="w-3 h-3 rounded-full bg-primary absolute right-1/6 shadow-sm cursor-pointer"></div>
+</div>
+<span class="font-label-code text-label-code text-on-surface bg-surface-container px-2 py-0.5 rounded">48.0°C</span>
+</div>
+</div>
+<div class="hidden sm:flex items-center gap-space-xs">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Preserve Bounds:</span>
+<span class="px-2 py-0.5 rounded bg-surface text-secondary font-label-code text-label-code">Diurnal Peak (12:00-16:00 IST)</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="font-caption-caps text-caption-caps uppercase text-on-surface-variant hover:text-on-surface transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">restart_alt</span>
+<span>Reset Constraints</span>
+</button>
+<span class="text-outline-variant">|</span>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-code text-label-code">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Live Index Cache (12ms)</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Workspace: Data Ledger + Active Detail Drawer Preview -->
+<section class="w-full px-margin pb-space-xl">
+<div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Primary Data Ledger (8 Columns on desktop, or full width if inspecting) -->
+<div class="lg:col-span-8 flex flex-col space-y-space-md">
+<!-- Table Frame Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<!-- Table Toolbar Header -->
+<div class="p-space-md flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm bg-surface-container-lowest">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-md text-headline-md text-on-surface">Spatial Telemetry Stream</span>
+<span class="font-label-code text-label-code bg-surface-container px-2 py-0.5 rounded text-on-surface-variant">BATCH #091-B</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-2.5 py-1 text-on-surface-variant hover:text-on-surface bg-surface-container-low hover:bg-surface-container rounded font-label-code text-label-code flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[15px]">filter_list</span>
+<span>Column Projection</span>
+</button>
+<button class="px-2.5 py-1 text-on-surface-variant hover:text-on-surface bg-surface-container-low hover:bg-surface-container rounded font-label-code text-label-code flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[15px]">view_column</span>
+<span>Density: Compact</span>
+</button>
+</div>
+</div>
+<!-- High-Density Scientific Data Table -->
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left font-body-md text-body-md border-collapse min-w-[760px]">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-caption-caps text-caption-caps uppercase tracking-wider select-none">
+<th class="py-3 px-3 font-semibold">
+<div class="flex items-center gap-1 cursor-pointer hover:text-on-surface">
+<span>Station ID</span>
+<span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+</div>
+</th>
+<th class="py-3 px-3 font-semibold">
+<div class="flex items-center gap-1 cursor-pointer hover:text-on-surface">
+<span>Location / Ward</span>
+</div>
+</th>
+<th class="py-3 px-3 font-semibold">Zone Classification</th>
+<th class="py-3 px-3 font-semibold text-right">
+<div class="flex items-center justify-end gap-1 cursor-pointer hover:text-on-surface">
+<span>Air Temp</span>
+</div>
+</th>
+<th class="py-3 px-3 font-semibold text-right">Surface (LST)</th>
+<th class="py-3 px-3 font-semibold text-right">RH (%)</th>
+<th class="py-3 px-3 font-semibold text-center">Risk Tier</th>
+<th class="py-3 px-3 font-semibold">Sim Timestamp</th>
+<th class="py-3 px-3 font-semibold text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<!-- Row 1 (Active/Inspected) -->
+<tr class="bg-primary-fixed/20 hover:bg-primary-fixed/30 transition-colors cursor-pointer" onclick="selectRow('SLP-014', 'Bhavani Peth Core', 'Commercial Dense', '42.4°C', '49.8°C', '28%', 'Extreme', '2024-05-18 14:00 IST')">
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="font-label-code text-label-code bg-surface-container-highest text-primary px-2 py-0.5 rounded font-semibold inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                      SLP-014
+                    </span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-medium text-on-surface">
+                    Bhavani Peth
+                    <span class="block font-caption-caps text-caption-caps text-on-surface-variant">Ward 14 (Old City Core)</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="font-caption-caps text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">Commercial Dense</span>
+</td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap">
+<div class="inline-flex items-center justify-end gap-1.5">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-label-metric text-label-metric font-semibold text-tertiary">42.4°C</span>
+</div>
+</td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap font-label-metric text-label-metric font-bold text-tertiary-container">
+                    49.8°C
+                  </td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap font-label-metric text-label-metric text-on-surface-variant">
+                    28%
+                  </td>
+<td class="py-2.5 px-3 text-center whitespace-nowrap">
+<span class="px-2 py-0.5 rounded font-caption-caps text-caption-caps uppercase tracking-wide bg-error-container text-on-error-container font-semibold">
+                      Extreme
+                    </span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-label-code text-label-code text-on-surface-variant">
+                    2024-05-18 14:00
+                  </td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap">
+<button class="px-2 py-1 bg-primary text-on-primary font-caption-caps text-caption-caps uppercase rounded hover:bg-primary-container transition-colors inline-flex items-center gap-0.5">
+<span>Inspect</span>
+<span class="material-symbols-outlined text-[13px]">chevron_right</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors cursor-pointer" onclick="selectRow('SLP-028', 'Ashok Chowk Terminal', 'Transit Corridor', '39.8°C', '45.1°C', '31%', 'High', '2024-05-18 14:00 IST')">
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="font-label-code text-label-code bg-surface-container text-on-surface px-2 py-0.5 rounded font-medium inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container"></span>
+                      SLP-028
+                    </span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-medium text-on-surface">
+                    Ashok Chowk
+                    <span class="block font-caption-caps text-caption-caps text-on-surface-variant">Junction Corridor North</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="font-caption-caps text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">Transit Corridor</span>
+</td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap">
+<div class="inline-flex items-center justify-end gap-1.5">
+<span class="w-2 h-2 rounded-full bg-on-tertiary-container"></span>
+<span class="font-label-metric text-label-metric font-semibold text-tertiary">39.8°C</span>
+</div>
+</td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap font-label-metric text-label-metric font-semibold text-tertiary">
+                    45.1°C
+                  </td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap font-label-metric text-label-metric text-on-surface-variant">
+                    31%
+                  </td>
+<td class="py-2.5 px-3 text-center whitespace-nowrap">
+<span class="px-2 py-0.5 rounded font-caption-caps text-caption-caps uppercase tracking-wide bg-tertiary-fixed text-on-tertiary-fixed-variant font-semibold">
+                      High
+                    </span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-label-code text-label-code text-on-surface-variant">
+                    2024-05-18 14:00
+                  </td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap">
+<button class="px-2 py-1 bg-surface-container text-on-surface font-caption-caps text-caption-caps uppercase rounded hover:bg-surface-variant transition-colors">
+                      Inspect
+                    </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors cursor-pointer" onclick="selectRow('SLP-089', 'MIDC Phase II Industrial', 'Industrial Core', '44.1°C', '53.2°C', '22%', 'Extreme', '2024-05-18 14:00 IST')">
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="font-label-code text-label-code bg-surface-container text-on-surface px-2 py-0.5 rounded font-medium inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                      SLP-089
+                    </span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-medium text-on-surface">
+                    MIDC Phase II
+                    <span class="block font-caption-caps text-caption-caps text-on-surface-variant">Fabrication Quad 4</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="font-caption-caps text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">Industrial Core</span>
+</td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap">
+<div class="inline-flex items-center justify-end gap-1.5">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-label-metric text-label-metric font-semibold text-tertiary">44.1°C</span>
+</div>
+</td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap font-label-metric text-label-metric font-bold text-tertiary-container">
+                    53.2°C
+                  </td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap font-label-metric text-label-metric text-on-surface-variant">
+                    22%
+                  </td>
+<td class="py-2.5 px-3 text-center whitespace-nowrap">
+<span class="px-2 py-0.5 rounded font-caption-caps text-caption-caps uppercase tracking-wide bg-error-container text-on-error-container font-semibold">
+                      Extreme
+                    </span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-label-code text-label-code text-on-surface-variant">
+                    2024-05-18 14:00
+                  </td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap">
+<button class="px-2 py-1 bg-surface-container text-on-surface font-caption-caps text-caption-caps uppercase rounded hover:bg-surface-variant transition-colors">
+                      Inspect
+                    </button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors cursor-pointer" onclick="selectRow('SLP-042', 'Saat Rasta Circle', 'Commercial Mixed', '38.6°C', '43.7°C', '34%', 'Moderate', '2024-05-18 14:00 IST')">
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="font-label-code text-label-code bg-surface-container text-on-surface px-2 py-0.5 rounded font-medium inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                      SLP-042
+                    </span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-medium text-on-surface">
+                    Saat Rasta
+                    <span class="block font-caption-caps text-caption-caps text-on-surface-variant">Radial Hub Sector B</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="font-caption-caps text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">Commercial Mixed</span>
+</td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap">
+<div class="inline-flex items-center justify-end gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-metric text-label-metric font-semibold text-primary">38.6°C</span>
+</div>
+</td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap font-label-metric text-label-metric font-medium text-on-surface">
+                    43.7°C
+                  </td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap font-label-metric text-label-metric text-on-surface-variant">
+                    34%
+                  </td>
+<td class="py-2.5 px-3 text-center whitespace-nowrap">
+<span class="px-2 py-0.5 rounded font-caption-caps text-caption-caps uppercase tracking-wide bg-surface-container-high text-on-surface-variant font-semibold">
+                      Moderate
+                    </span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-label-code text-label-code text-on-surface-variant">
+                    2024-05-18 14:00
+                  </td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap">
+<button class="px-2 py-1 bg-surface-container text-on-surface font-caption-caps text-caption-caps uppercase rounded hover:bg-surface-variant transition-colors">
+                      Inspect
+                    </button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors cursor-pointer" onclick="selectRow('SLP-105', 'Kegaon University Campus', 'Canopy Park &amp; Buffer', '33.9°C', '36.2°C', '46%', 'Low', '2024-05-18 14:00 IST')">
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="font-label-code text-label-code bg-surface-container text-on-surface px-2 py-0.5 rounded font-medium inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                      SLP-105
+                    </span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-medium text-on-surface">
+                    Kegaon
+                    <span class="block font-caption-caps text-caption-caps text-on-surface-variant">MIT Vishwaprayag Arb Net</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="font-caption-caps text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">Canopy Park</span>
+</td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap">
+<div class="inline-flex items-center justify-end gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-metric text-label-metric font-semibold text-secondary">33.9°C</span>
+</div>
+</td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap font-label-metric text-label-metric font-medium text-secondary">
+                    36.2°C
+                  </td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap font-label-metric text-label-metric text-on-surface-variant">
+                    46%
+                  </td>
+<td class="py-2.5 px-3 text-center whitespace-nowrap">
+<span class="px-2 py-0.5 rounded font-caption-caps text-caption-caps uppercase tracking-wide bg-primary-fixed text-on-primary-fixed-variant font-semibold">
+                      Mitigated
+                    </span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-label-code text-label-code text-on-surface-variant">
+                    2024-05-18 14:00
+                  </td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap">
+<button class="px-2 py-1 bg-surface-container text-on-surface font-caption-caps text-caption-caps uppercase rounded hover:bg-surface-variant transition-colors">
+                      Inspect
+                    </button>
+</td>
+</tr>
+<!-- Row 6 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors cursor-pointer" onclick="selectRow('SLP-063', 'Navi Peth Bazar', 'Commercial Dense', '41.8°C', '48.9°C', '29%', 'Extreme', '2024-05-18 14:00 IST')">
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="font-label-code text-label-code bg-surface-container text-on-surface px-2 py-0.5 rounded font-medium inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                      SLP-063
+                    </span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-medium text-on-surface">
+                    Navi Peth
+                    <span class="block font-caption-caps text-caption-caps text-on-surface-variant">Market Spine East</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="font-caption-caps text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">Commercial Dense</span>
+</td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap">
+<div class="inline-flex items-center justify-end gap-1.5">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-label-metric text-label-metric font-semibold text-tertiary">41.8°C</span>
+</div>
+</td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap font-label-metric text-label-metric font-bold text-tertiary-container">
+                    48.9°C
+                  </td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap font-label-metric text-label-metric text-on-surface-variant">
+                    29%
+                  </td>
+<td class="py-2.5 px-3 text-center whitespace-nowrap">
+<span class="px-2 py-0.5 rounded font-caption-caps text-caption-caps uppercase tracking-wide bg-error-container text-on-error-container font-semibold">
+                      Extreme
+                    </span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-label-code text-label-code text-on-surface-variant">
+                    2024-05-18 14:00
+                  </td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap">
+<button class="px-2 py-1 bg-surface-container text-on-surface font-caption-caps text-caption-caps uppercase rounded hover:bg-surface-variant transition-colors">
+                      Inspect
+                    </button>
+</td>
+</tr>
+<!-- Row 7 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors cursor-pointer" onclick="selectRow('SLP-077', 'Jule Solapur Colony', 'Residential Moderate', '36.7°C', '40.4°C', '38%', 'Moderate', '2024-05-18 14:00 IST')">
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="font-label-code text-label-code bg-surface-container text-on-surface px-2 py-0.5 rounded font-medium inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                      SLP-077
+                    </span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-medium text-on-surface">
+                    Jule Solapur
+                    <span class="block font-caption-caps text-caption-caps text-on-surface-variant">Block C Suburban</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="font-caption-caps text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">Residential Moderate</span>
+</td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap">
+<div class="inline-flex items-center justify-end gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-metric text-label-metric font-semibold text-primary">36.7°C</span>
+</div>
+</td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap font-label-metric text-label-metric font-medium text-on-surface">
+                    40.4°C
+                  </td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap font-label-metric text-label-metric text-on-surface-variant">
+                    38%
+                  </td>
+<td class="py-2.5 px-3 text-center whitespace-nowrap">
+<span class="px-2 py-0.5 rounded font-caption-caps text-caption-caps uppercase tracking-wide bg-surface-container-high text-on-surface-variant font-semibold">
+                      Moderate
+                    </span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-label-code text-label-code text-on-surface-variant">
+                    2024-05-18 14:00
+                  </td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap">
+<button class="px-2 py-1 bg-surface-container text-on-surface font-caption-caps text-caption-caps uppercase rounded hover:bg-surface-variant transition-colors">
+                      Inspect
+                    </button>
+</td>
+</tr>
+<!-- Row 8 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors cursor-pointer" onclick="selectRow('SLP-112', 'Sambhaji Lake Perimeter', 'Canopy Park &amp; Buffer', '32.5°C', '34.8°C', '58%', 'Low', '2024-05-18 14:00 IST')">
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="font-label-code text-label-code bg-surface-container text-on-surface px-2 py-0.5 rounded font-medium inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                      SLP-112
+                    </span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-medium text-on-surface">
+                    Sambhaji Lake
+                    <span class="block font-caption-caps text-caption-caps text-on-surface-variant">Riparian Heat Sink</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="font-caption-caps text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">Riparian / Park</span>
+</td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap">
+<div class="inline-flex items-center justify-end gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-metric text-label-metric font-semibold text-secondary">32.5°C</span>
+</div>
+</td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap font-label-metric text-label-metric font-medium text-secondary">
+                    34.8°C
+                  </td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap font-label-metric text-label-metric text-on-surface-variant">
+                    58%
+                  </td>
+<td class="py-2.5 px-3 text-center whitespace-nowrap">
+<span class="px-2 py-0.5 rounded font-caption-caps text-caption-caps uppercase tracking-wide bg-primary-fixed text-on-primary-fixed-variant font-semibold">
+                      Mitigated
+                    </span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-label-code text-label-code text-on-surface-variant">
+                    2024-05-18 14:00
+                  </td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap">
+<button class="px-2 py-1 bg-surface-container text-on-surface font-caption-caps text-caption-caps uppercase rounded hover:bg-surface-variant transition-colors">
+                      Inspect
+                    </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Bottom Table Pagination Bar -->
+<div class="p-space-md bg-surface-container-lowest flex flex-col sm:flex-row sm:items-center justify-between gap-space-md">
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+              Showing <span class="font-semibold text-on-surface">1–10</span> of <span class="font-semibold text-on-surface">1,240</span> matching simulation observations (150,000 total in repository)
+            </span>
+<div class="flex items-center gap-1">
+<button class="p-1 rounded bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container disabled:opacity-40 transition-colors" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="px-2.5 py-1 rounded bg-primary-container text-on-primary font-label-code text-label-code font-semibold">1</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-low text-on-surface font-label-code text-label-code hover:bg-surface-container transition-colors">2</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-low text-on-surface font-label-code text-label-code hover:bg-surface-container transition-colors">3</button>
+<span class="px-1 text-on-surface-variant font-label-code text-label-code">...</span>
+<button class="px-2.5 py-1 rounded bg-surface-container-low text-on-surface font-label-code text-label-code hover:bg-surface-container transition-colors">124</button>
+<button class="p-1 rounded bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Analytical Sparkline / Micro Distribution Card -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="space-y-1">
+<div class="flex items-center gap-space-xs">
+<span class="font-caption-caps text-caption-caps uppercase text-secondary font-semibold">Distribution Analysis</span>
+<span class="text-outline-variant">•</span>
+<span class="font-label-code text-label-code text-on-surface-variant">Solapur Urban Heat Islands (UHI)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Thermal clustering peaks at 14:30 IST along high albedo asphalt corridors with building height-to-street aspect ratios &lt; 0.6.
+            </p>
+</div>
+<!-- Micro Sparkline SVG -->
+<div class="flex items-center gap-space-md shrink-0">
+<div class="flex flex-col items-end">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Peak Gradient</span>
+<span class="font-label-metric text-label-metric text-tertiary-container font-semibold">+8.4°C vs Rural</span>
+</div>
+<svg class="w-32 h-10 text-primary-container" fill="none" viewbox="0 0 120 40">
+<path d="M0 35 C20 33, 30 28, 45 22 C60 16, 75 4, 90 6 C105 8, 115 18, 120 20" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+<path d="M0 35 C20 33, 30 28, 45 22 C60 16, 75 4, 90 6 C105 8, 115 18, 120 20 L120 40 L0 40 Z" fill="currentColor" fill-opacity="0.08"></path>
+<circle class="fill-error" cx="90" cy="6" r="3"></circle>
+</svg>
+</div>
+</div>
+</div>
+<!-- Detail Inspection Drawer (Active Preview State: 4 Columns) -->
+<aside class="lg:col-span-4 flex flex-col space-y-space-md sticky top-[92px]">
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-md">
+<!-- Drawer Header -->
+<div class="flex items-start justify-between gap-space-sm pb-space-sm">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-caption-caps text-caption-caps uppercase text-secondary font-semibold">Active Inspector</span>
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary font-semibold mt-0.5" id="drawer-station-id">SLP-014</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="drawer-ward-name">Bhavani Peth Core • Ward 14</p>
+</div>
+<span class="px-2 py-0.5 rounded font-caption-caps text-caption-caps uppercase tracking-wide bg-error-container text-on-error-container font-semibold" id="drawer-risk-tag">
+              Extreme Risk
+            </span>
+</div>
+<!-- Spatial Mini-Map Tile -->
+<div class="space-y-1">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Geo-Spatial Footprint</span>
+<div class="w-full h-36 bg-cover bg-center rounded-lg shadow-sm relative overflow-hidden" data-location="Solapur, Maharashtra, India" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDZ6C6vqv6zjyEn3foAAisTPnwOiLEK8VteUezMVwi8XRpunY1JoXCnBK8XTSClxGFdf6iMGi2c3NZARNbBedi4f6uI99TZbTiJ5h4bH9i6bqAujGhe_RQZ511jTCPdU_OeYf7vLduV9K6YQ6pUcZF4a9TFX17oTpFC0DRuds7QgadtpEmetYLy8Qip3SuqpMeGspEsu9EmQ41k_kJHuU_6Vxs6jA4V0WN5g_yjRDZAjHBV5qOV7ej6')">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent flex items-end p-space-sm">
+<div class="flex items-center justify-between w-full">
+<span class="font-label-code text-[10px] text-surface font-medium">17.6599° N, 75.9064° E</span>
+<span class="font-caption-caps text-[9px] uppercase px-1.5 py-0.5 rounded bg-surface/90 text-primary font-semibold">Grid 0.25km²</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Microclimate Telemetry Spec Ledger -->
+<div class="space-y-space-xs">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant block">Radiative &amp; Flux Metrics</span>
+<div class="grid grid-cols-2 gap-space-xs">
+<div class="bg-surface-container-low p-2 rounded">
+<span class="font-caption-caps text-caption-caps text-on-surface-variant uppercase block">Air Temp</span>
+<span class="font-label-metric text-label-metric font-bold text-tertiary" id="drawer-air-temp">42.4°C</span>
+</div>
+<div class="bg-surface-container-low p-2 rounded">
+<span class="font-caption-caps text-caption-caps text-on-surface-variant uppercase block">Surface (LST)</span>
+<span class="font-label-metric text-label-metric font-bold text-tertiary-container" id="drawer-lst-temp">49.8°C</span>
+</div>
+<div class="bg-surface-container-low p-2 rounded">
+<span class="font-caption-caps text-caption-caps text-on-surface-variant uppercase block">Solar Irradiance</span>
+<span class="font-label-metric text-label-metric font-medium text-on-surface">912 W/m²</span>
+</div>
+<div class="bg-surface-container-low p-2 rounded">
+<span class="font-caption-caps text-caption-caps text-on-surface-variant uppercase block">Wind Vector</span>
+<span class="font-label-metric text-label-metric font-medium text-on-surface">2.1 m/s NW</span>
+</div>
+<div class="bg-surface-container-low p-2 rounded">
+<span class="font-caption-caps text-caption-caps text-on-surface-variant uppercase block">Surface Emissivity</span>
+<span class="font-label-metric text-label-metric font-medium text-on-surface">0.912 ε</span>
+</div>
+<div class="bg-surface-container-low p-2 rounded">
+<span class="font-caption-caps text-caption-caps text-on-surface-variant uppercase block">Canopy Cover</span>
+<span class="font-label-metric text-label-metric font-medium text-error">4.2% (Deficit)</span>
+</div>
+</div>
+</div>
+<!-- Scientific Provenance & Run Metadata -->
+<div class="space-y-space-xs pt-space-xs">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant block">Simulation Run Metadata</span>
+<div class="p-space-sm bg-surface-container-low rounded font-label-code text-[11px] space-y-1 text-on-surface-variant">
+<div class="flex items-center justify-between">
+<span>Model Engine:</span>
+<span class="text-on-surface font-medium">WRF-UCM v4.3</span>
+</div>
+<div class="flex items-center justify-between">
+<span>Boundary Layer:</span>
+<span class="text-on-surface font-medium">ERA5-Land 0.1°</span>
+</div>
+<div class="flex items-center justify-between">
+<span>Citation SHA:</span>
+<span class="text-primary font-medium hover:underline cursor-pointer">e7f9a2b8...c14</span>
+</div>
+<div class="flex items-center justify-between">
+<span>Run Timestamp:</span>
+<span class="text-on-surface font-medium">2024-05-18 14:00 IST</span>
+</div>
+</div>
+</div>
+<!-- Drawer Action Options -->
+<div class="flex items-center gap-space-xs pt-space-xs">
+<button class="flex-1 py-2 px-space-sm rounded bg-surface-container-high hover:bg-surface-variant text-on-surface font-body-sm text-body-sm transition-colors text-center font-medium">
+              Raw NetCDF Point
+            </button>
+<button class="flex-1 py-2 px-space-sm rounded bg-primary-container text-on-primary hover:bg-primary font-body-sm text-body-sm transition-colors text-center font-medium">
+              Simulation Lineage
+            </button>
+</div>
+</div>
+<!-- Academic Provenance Info Card -->
+<div class="p-space-md bg-surface-container-low rounded-xl text-on-surface-variant space-y-space-xs">
+<div class="flex items-center gap-space-xs text-primary font-medium">
+<span class="material-symbols-outlined text-[16px]">school</span>
+<span class="font-caption-caps text-caption-caps uppercase">TF-141 Research Notice</span>
+</div>
+<p class="font-body-sm text-body-sm">
+            All coordinates correspond to synthetic grid centroids calibrated against historical IMD Solapur meteorological observations (1990–2020) for spatial heat resilience evaluation.
+          </p>
+</div>
+</aside>
+</div>
+</section>
+<!-- Interactive Script for Micro-Interactions -->
+<script>
+    function selectRow(id, ward, zone, airTemp, lstTemp, rh, risk, timestamp) {
+      document.getElementById('drawer-station-id').innerText = id;
+      document.getElementById('drawer-ward-name').innerText = ward + ' • ' + zone;
+      document.getElementById('drawer-air-temp').innerText = airTemp;
+      document.getElementById('drawer-lst-temp').innerText = lstTemp;
+      
+      const riskTag = document.getElementById('drawer-risk-tag');
+      riskTag.innerText = risk + ' Risk';
+      
+      if (risk.toLowerCase().includes('extreme') || risk.toLowerCase().includes('high')) {
+        riskTag.className = "px-2 py-0.5 rounded font-caption-caps text-caption-caps uppercase tracking-wide bg-error-container text-on-error-container font-semibold";
+      } else if (risk.toLowerCase().includes('moderate')) {
+        riskTag.className = "px-2 py-0.5 rounded font-caption-caps text-caption-caps uppercase tracking-wide bg-surface-container-high text-on-surface-variant font-semibold";
+      } else {
+        riskTag.className = "px-2 py-0.5 rounded font-caption-caps text-caption-caps uppercase tracking-wide bg-primary-fixed text-on-primary-fixed-variant font-semibold";
+      }
+    }
+
+    function triggerExportToast() {
+      const btn = event.currentTarget;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span> Generating CSV...';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.innerHTML = '<span class="material-symbols-outlined text-[18px]">check</span> Archive Ready';
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        }, 2000);
+      }, 1200);
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-low border-t border-outline-variant/40 pt-space-xl pb-space-lg"><div class="max-w-[1400px] mx-auto px-margin"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-space-xl"><div class="space-y-space-sm"><div class="flex items-center gap-space-sm"><img alt="HeatShield Emblem" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XWJ4qbCUSYLnD1Z6TmO_vemqF6U3qe-WRrr0ikQiuFHOKmX_aSoq5H39etJL4IXE4GSgYb2I0-1s3Oya1-QUTmyQV7tV05SnfXfUMy8POdHV4NMQ4lSIGi3Yd5xfrrk0EEDr49ewjs6mYQz6eeDygLU_6VDPY04zP-4Ppp5uHg49wiTSV2Hy2F-ebhrNshCPJagYUK8z4dJsju-YeprrCv3JWQCclB-xFRyi0IHQVFNTqhcGaP5TcfmgM"/><span class="font-headline-md text-headline-md text-primary">HeatShield</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">Urban microclimate heat risk analysis, spatial thermal sensing models, and cooling intervention planning engine for climate resilience.</p><p class="font-caption-caps text-caption-caps text-outline uppercase">MIT Vishwaprayag University • Solapur, Maharashtra</p></div><div class="space-y-space-sm"><span class="font-caption-caps text-caption-caps uppercase text-on-surface tracking-wider block">Platform Navigation</span><ul class="space-y-space-xs font-body-sm text-body-sm"><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="overview" href="#">Overview</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="dashboard" href="#">Analytics Dashboard</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="heat-map" href="#">India Heat Map</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="explore-data" href="#">Data Explorer</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="methodology" href="#">Methodology</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="submit-reading" href="#">Submit Reading</a></li></ul></div><div class="space-y-space-sm"><span class="font-caption-caps text-caption-caps uppercase text-on-surface tracking-wider block">Research &amp; Provenance</span><ul class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant"><li>Solapur Synthetic Dataset (150k pts)</li><li>100 Sim Sensory Grid Nodes</li><li>Microclimate Thermal Indices</li><li>Urban Tree Canopy Mitigation Models</li><li>Vector GIS Boundary Layers</li></ul></div><div class="space-y-space-sm"><span class="font-caption-caps text-caption-caps uppercase text-on-surface tracking-wider block">Project &amp; Repository</span><div class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant"><p>Academic Research Initiative TF-141</p><a class="inline-flex items-center gap-space-xs text-primary font-label-code text-label-code hover:underline" href="https://github.com/exobhavinss-sketch/TF-141-Heatshield" rel="noopener noreferrer" target="_blank"><span>GitHub / TF-141-Heatshield</span><span class="material-symbols-outlined text-[14px]">open_in_new</span></a><p>Permissive Open Science License</p><p class="font-body-sm text-body-sm text-outline">Peer-review draft v2.4</p></div></div></div><div class="pt-space-md border-t border-outline-variant/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md"><p class="font-body-sm text-body-sm text-on-surface-variant max-w-4xl">Notice: Solapur microclimate dataset consists of synthetic academic simulation models (2021–2025) for research and urban planning methodologies, not live sensor networks.</p><span class="font-caption-caps text-caption-caps text-outline uppercase whitespace-nowrap">© 2021–2025 MIT Vishwaprayag University</span></div></div></footer></body></html>

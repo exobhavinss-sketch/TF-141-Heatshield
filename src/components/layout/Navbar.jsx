@@ -1,109 +1,101 @@
-import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
-import { Menu, Bell, MapPin, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { useLocation, Link, NavLink } from 'react-router-dom';
 import IndianFlag from '../branding/IndianFlag';
 
-const PAGE_NAMES = {
-  '/': 'Overview',
-  '/dashboard': 'Dashboard',
-  '/submit-reading': 'Submit a Reading',
-  '/heat-map': 'India Heat Map',
-  '/explore-data': 'Explore Data',
-  '/methodology': 'Methodology & About',
-};
+const NAV_LINKS = [
+  { path: '/', label: 'Overview' },
+  { path: '/dashboard', label: 'Dashboard' },
+  { path: '/heat-map', label: 'Heat Map' },
+  { path: '/explore-data', label: 'Explore Data' },
+  { path: '/methodology', label: 'Methodology' },
+  { path: '/team', label: 'Team & Project' },
+];
 
-export default function Navbar({ onOpenSidebar }) {
+export default function Navbar({ onOpenMobileMenu }) {
   const location = useLocation();
-  const currentTitle = PAGE_NAMES[location.pathname] || 'Telemetry Node';
 
   return (
-    <header className="fixed top-0 left-0 lg:left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur border-b border-outline-variant/30 z-40 px-space-md lg:px-space-lg flex items-center justify-between">
-      {/* Left: Mobile Toggle & Breadcrumb */}
-      <div className="flex items-center gap-space-md">
-        <button
-          onClick={onOpenSidebar}
-          className="lg:hidden p-2 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container"
-          aria-label="Open navigation menu"
-        >
-          <Menu size={20} />
-        </button>
+    <header className="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/40">
+      <div className="h-[76px] max-w-[1400px] mx-auto px-margin flex items-center justify-between gap-gutter">
+        {/* Left: Brand Emblem & Title */}
+        <Link to="/" className="flex items-center gap-space-md group">
+          <img
+            alt="HeatShield Emblem"
+            className="h-8 w-auto object-contain transition-transform group-hover:scale-105"
+            src="/branding/heatshield-icon.svg"
+          />
+          <div className="flex flex-col">
+            <span className="font-headline-md text-headline-md text-primary tracking-tight">
+              HeatShield
+            </span>
+            <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant">
+              TF-141 / MIT Vishwaprayag University
+            </span>
+          </div>
+        </Link>
 
-        {/* Breadcrumb */}
-        <div className="flex items-center gap-space-xs font-medium text-xs lg:text-sm text-on-surface-variant">
-          <Link
-            to="/"
-            className="hover:text-primary transition-colors hidden sm:inline font-semibold"
+        {/* Center: Desktop Navigation */}
+        <nav className="hidden lg:flex items-center gap-space-lg h-full">
+          {NAV_LINKS.map((item) => (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              end={item.path === '/'}
+              className={({ isActive }) =>
+                isActive
+                  ? 'h-full flex items-center transition-colors text-primary border-b-2 border-primary-container font-medium'
+                  : 'h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors'
+              }
+            >
+              {item.label}
+            </NavLink>
+          ))}
+        </nav>
+
+        {/* Right: Academic Simulation Badge, Flag & CTAs */}
+        <div className="flex items-center gap-space-sm sm:gap-space-md">
+          {/* Academic Simulation Pill */}
+          <div className="hidden md:flex items-center gap-space-xs px-space-sm py-1 rounded-DEFAULT bg-surface-container border border-outline-variant/50 text-on-surface">
+            <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            <span className="font-label-code text-label-code text-on-surface uppercase">
+              ACADEMIC SIMULATION • 2021-2025
+            </span>
+          </div>
+
+          {/* Indian Identity Pill */}
+          <div
+            className="hidden xl:flex items-center gap-1.5 px-2 py-1 rounded-DEFAULT bg-surface-container-high/60 border border-outline-variant/30 text-[10px] font-label-code text-primary cursor-default"
+            title="Made For Indians - Made By Indians"
           >
-            HeatShield
+            <IndianFlag size="xs" />
+            <span className="font-semibold">Made For Indians</span>
+          </div>
+
+          {/* Submit Reading CTA Button */}
+          <Link
+            to="/submit-reading"
+            className="inline-flex items-center justify-center px-space-md h-9 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md hover:bg-primary transition-colors shadow-sm"
+          >
+            Submit Reading
           </Link>
-          <span className="text-outline hidden sm:inline">/</span>
-          <span className="text-on-surface font-semibold truncate">
-            {currentTitle}
-          </span>
-        </div>
 
-        <div className="h-4 w-px bg-outline-variant/40 hidden md:block" />
+          {/* User Avatar */}
+          <Link
+            to="/team"
+            className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-label-code text-xs font-semibold shrink-0 hover:ring-2 hover:ring-primary-container transition-all"
+            title="TF-141 Team: Furqan B., Aman S., Bhavin S."
+          >
+            <span className="material-symbols-outlined text-[18px]">person</span>
+          </Link>
 
-        {/* Study Area Badge */}
-        <div className="hidden md:flex items-center gap-1.5 bg-surface-container px-space-sm py-1 rounded border border-outline-variant/40 text-xs">
-          <MapPin size={13} className="text-secondary" />
-          <span className="text-on-surface font-medium truncate">
-            Study Area: Solapur (SMC) & India Grid
-          </span>
-        </div>
-      </div>
-
-      {/* Right: Sensor Sync, Badge & Profile */}
-      <div className="flex items-center gap-space-sm lg:gap-space-md">
-        {/* Sensor Sync Badge */}
-        <div className="hidden xl:flex items-center gap-1.5 bg-surface-container-low px-space-sm py-1 rounded border border-outline-variant/30 text-xs text-on-surface-variant">
-          <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-          <span>Telemetry Ingest: Active (AWS-04)</span>
-        </div>
-
-        {/* Indian Flag with "Made For Indians" tooltip */}
-        <div
-          className="hidden sm:flex items-center gap-1.5 bg-surface-container-high/60 px-2.5 py-1 rounded border border-outline-variant/30 text-[10px] font-mono text-primary cursor-default"
-          title="Made For Indians - Made By Indians"
-        >
-          <IndianFlag size="sm" />
-          <span className="hidden md:inline font-semibold">Made For Indians</span>
-        </div>
-
-        {/* Academic / Data Type Pill */}
-        <div 
-          className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-tertiary-container/15 border border-tertiary-container/40 text-[11px] font-medium text-tertiary"
-          title="HeatShield uses a calibrated academic simulation dataset & NASA POWER reanalysis"
-        >
-          <Sparkles size={12} />
-          <span className="hidden sm:inline">Academic Prototype</span>
-        </div>
-
-        {/* Notification Bell */}
-        <button 
-          aria-label="System Notifications" 
-          className="p-1.5 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors relative"
-          type="button"
-        >
-          <Bell size={18} />
-          <span className="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full" />
-        </button>
-
-        <div className="h-5 w-px bg-outline-variant/40 hidden sm:block" />
-
-        {/* User / Student Identity Card */}
-        <div className="flex items-center gap-2 pl-1 cursor-default">
-          <div className="w-7 h-7 rounded-full bg-surface-container-highest border border-primary/40 flex items-center justify-center font-bold text-xs text-primary shadow-sm">
-            FB
-          </div>
-          <div className="hidden sm:flex flex-col text-left">
-            <span className="text-xs font-semibold text-on-surface leading-none">
-              Furqan Bagwan
-            </span>
-            <span className="text-[10px] text-outline mt-0.5 leading-none">
-              Frontend Lead (TF-141)
-            </span>
-          </div>
+          {/* Mobile Menu Trigger */}
+          <button
+            onClick={onOpenMobileMenu}
+            className="lg:hidden p-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
+            aria-label="Open Navigation Menu"
+          >
+            <span className="material-symbols-outlined text-[24px]">menu</span>
+          </button>
         </div>
       </div>
     </header>

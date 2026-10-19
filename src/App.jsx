@@ -8,6 +8,7 @@ import IndiaHeatMap from './pages/IndiaHeatMap';
 import ExploreData from './pages/ExploreData';
 import Methodology from './pages/Methodology';
 import SubmitReading from './pages/SubmitReading';
+import Team from './pages/Team';
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
             <Route path="/heat-map" element={<IndiaHeatMap />} />
             <Route path="/explore-data" element={<ExploreData />} />
             <Route path="/methodology" element={<Methodology />} />
+            <Route path="/team" element={<Team />} />
             <Route path="/submit-reading" element={<SubmitReading />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

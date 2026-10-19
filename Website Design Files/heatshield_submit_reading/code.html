@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;family=Manrope:wght@600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-fixed": "#ffdbcf", "primary-fixed": "#b9eedb", "tertiary": "#581900", "surface-dim": "#d6dbd7", "surface-container": "#eaefeb", "inverse-surface": "#2c312f", "on-secondary-fixed": "#00201c", "on-primary": "#ffffff", "on-error": "#ffffff", "outline-variant": "#c0c8c4", "primary-container": "#194d40", "on-secondary": "#ffffff", "on-surface": "#181d1b", "on-tertiary-container": "#ff9770", "on-primary-fixed-variant": "#1b4f42", "error-container": "#ffdad6", "on-error-container": "#93000a", "surface": "#f6faf7", "on-secondary-fixed-variant": "#005048", "tertiary-container": "#7d2800", "surface-variant": "#dfe4e0", "error": "#ba1a1a", "on-background": "#181d1b", "on-primary-container": "#89bdac", "inverse-primary": "#9dd1c0", "inverse-on-surface": "#edf2ee", "secondary-fixed-dim": "#84d5c8", "secondary": "#016a60", "surface-container-lowest": "#ffffff", "on-secondary-container": "#117166", "secondary-container": "#9ff2e4", "surface-container-highest": "#dfe4e0", "primary": "#00362a", "surface-bright": "#f6faf7", "on-tertiary": "#ffffff", "on-tertiary-fixed": "#380d00", "tertiary-fixed-dim": "#ffb59b", "background": "#f6faf7", "outline": "#707975", "on-primary-fixed": "#002019", "primary-fixed-dim": "#9dd1c0", "surface-tint": "#366759", "surface-container-low": "#f0f5f1", "on-surface-variant": "#404945", "on-tertiary-fixed-variant": "#812900", "secondary-fixed": "#9ff2e4", "surface-container-high": "#e5e9e5" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "gutter-mobile": "0.75rem", "space-sm": "0.5rem", "margin-mobile": "1rem", "space-xs": "0.25rem", "gutter": "1.25rem", "space-lg": "1.5rem", "space-xl": "2.5rem", "space-md": "1rem", "margin": "2rem" }, "fontFamily": { "headline-lg": [ "Manrope" ], "label-code": [ "JetBrains Mono" ], "caption-caps": [ "Inter" ], "headline-xl-mobile": [ "Manrope" ], "headline-md": [ "Manrope" ], "body-sm": [ "Inter" ], "body-md": [ "Inter" ], "headline-lg-mobile": [ "Manrope" ], "body-lg": [ "Inter" ], "headline-xl": [ "Manrope" ], "label-metric": [ "JetBrains Mono" ] }, "fontSize": { "headline-lg": [ "26px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" } ], "label-code": [ "11px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" } ], "caption-caps": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "600" } ], "headline-xl-mobile": [ "28px", { "lineHeight": "34px", "letterSpacing": "-0.025em", "fontWeight": "600" } ], "headline-md": [ "18px", { "lineHeight": "24px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "18px", "fontWeight": "400" } ], "body-md": [ "13px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-lg-mobile": [ "22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "body-lg": [ "15px", { "lineHeight": "24px", "fontWeight": "400" } ], "headline-xl": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "600" } ], "label-metric": [ "13px", { "lineHeight": "18px", "letterSpacing": "-0.01em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/40"><div class="h-[76px] max-w-[1400px] mx-auto px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-md"><img alt="HeatShield Emblem" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XWJ4qbCUSYLnD1Z6TmO_vemqF6U3qe-WRrr0ikQiuFHOKmX_aSoq5H39etJL4IXE4GSgYb2I0-1s3Oya1-QUTmyQV7tV05SnfXfUMy8POdHV4NMQ4lSIGi3Yd5xfrrk0EEDr49ewjs6mYQz6eeDygLU_6VDPY04zP-4Ppp5uHg49wiTSV2Hy2F-ebhrNshCPJagYUK8z4dJsju-YeprrCv3JWQCclB-xFRyi0IHQVFNTqhcGaP5TcfmgM"/><div class="flex flex-col"><span class="font-headline-md text-headline-md text-primary tracking-tight">HeatShield</span><span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">TF-141 / MIT Vishwaprayag University</span></div></div><nav class="hidden lg:flex items-center gap-space-lg h-full" data-active-classes="text-primary border-b-2 border-primary-container font-medium"><a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" data-path="overview" href="#">Overview</a><a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" data-path="dashboard" href="#">Dashboard</a><a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" data-path="heat-map" href="#">Heat Map</a><a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" data-path="explore-data" href="#">Explore Data</a><a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" data-path="methodology" href="#">Methodology</a></nav><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 rounded-DEFAULT bg-surface-container border border-outline-variant/50 text-on-surface"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span><span class="font-label-code text-label-code text-on-surface uppercase">ACADEMIC SIMULATION • 2021-2025</span></div><a class="inline-flex items-center justify-center px-space-md h-9 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md hover:bg-primary transition-colors" data-path="submit-reading" href="#">Submit Reading</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-[76px] min-h-screen bg-background"><div class="flex flex-col w-full">
+<!-- Top Atmospheric Scrim Gradient Container -->
+<div class="relative w-full overflow-hidden bg-surface-container-low/60 pb-space-xl">
+<div class="absolute -top-32 right-12 w-96 h-96 rounded-full bg-secondary-container/20 blur-3xl pointer-events-none"></div>
+<div class="absolute top-20 left-1/4 w-72 h-72 rounded-full bg-tertiary-fixed/30 blur-2xl pointer-events-none"></div>
+<div class="max-w-[1400px] mx-auto px-margin pt-space-lg">
+<!-- Overline & Breadcrumb Metadata -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-xs">
+<div class="flex items-center gap-space-xs font-label-code text-label-code text-on-surface-variant">
+<span class="text-primary font-semibold tracking-wider uppercase">TF-141</span>
+<span>/</span>
+<span>FIELD-TELEMETRY</span>
+<span>/</span>
+<span class="text-on-surface">SYNTHETIC INGESTION PIPELINE</span>
+</div>
+<div class="inline-flex items-center gap-space-xs px-space-sm py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-code text-label-code">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span>BUFFER: LOCAL CLIENT MEMORY</span>
+</div>
+</div>
+<!-- Page Heading Section with Editorial Contrast -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md mb-space-lg">
+<div class="space-y-space-xs max-w-3xl">
+<span class="font-caption-caps text-caption-caps uppercase tracking-wider text-secondary">Spatial Climatology • Node Entry</span>
+<h1 class="font-headline-xl text-headline-xl text-primary tracking-tight">Submit a Temperature Reading</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Contribute ground-level microclimate observations or compute hypothetical urban cooling scenarios across Solapur's synthetic research grid.</p>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="hidden md:flex flex-col text-right font-label-code text-label-code text-on-surface-variant">
+<span>GRID SYSTEM: EPSG:4326</span>
+<span class="text-secondary font-semibold">100 SIMULATED ACTIVE NODES</span>
+</div>
+</div>
+</div>
+<!-- Academic Transparency Notice Banner -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-highest/80 backdrop-blur-sm p-space-md shadow-sm mb-space-lg">
+<div class="flex items-start gap-space-md">
+<div class="flex-shrink-0 w-9 h-9 rounded-lg bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">science</span>
+</div>
+<div class="space-y-1 pr-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-md text-headline-md text-primary">Academic Sandbox &amp; Calibration Mode</span>
+<span class="px-space-xs py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-code text-[10px] uppercase font-bold tracking-wider">Research Preview</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Submissions are parsed and preserved in transient client-side memory for spatial validation, real-time microclimate anomaly calculations, and scenario simulation. Records are not committed to official municipal meteorological telemetry nodes or external production databases.
+            </p>
+</div>
+</div>
+</div>
+<!-- 2-Column Split Architecture: 65% Interactive Form / 35% Live Observer Panel -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Left Column: Scientific Telemetry Form (7 Cols on LG / ~65% equivalent) -->
+<div class="lg:col-span-7 xl:col-span-8 space-y-space-md">
+<form class="space-y-space-md" id="readingForm" onsubmit="event.preventDefault(); handleFormSubmit();">
+<!-- SECTION 1: Atmospheric Metrics -->
+<div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-sm space-y-space-md transition-all">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code text-label-code text-primary font-bold px-2 py-0.5 rounded bg-primary-fixed-dim/30">01</span>
+<h2 class="font-headline-md text-headline-md text-primary">Atmospheric &amp; Thermal Metrics</h2>
+</div>
+<span class="font-caption-caps text-caption-caps text-outline uppercase tracking-wider">Required Parameters</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Air Temp -->
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface" for="airTempInput">Ambient Air Temperature</label>
+<span class="font-label-code text-label-code text-secondary font-medium" id="unitBadge">UNIT: °C</span>
+</div>
+<div class="relative flex rounded-lg bg-surface-container-low shadow-inner">
+<input class="w-full bg-transparent px-space-md py-2.5 font-label-metric text-label-metric text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container rounded-lg" id="airTempInput" max="55.0" min="15.0" placeholder="e.g. 38.5" required="" step="0.1" type="number" value="38.5"/>
+<div class="flex items-center pr-space-sm">
+<button class="px-2 py-1 rounded bg-surface text-on-surface font-label-code text-label-code hover:bg-surface-container-highest transition-colors shadow-sm" id="tempUnitToggle" onclick="toggleTempUnit()" title="Toggle °C / °F" type="button">
+                        °C
+                      </button>
+</div>
+</div>
+<span class="font-caption-caps text-caption-caps text-outline block">Calibrated sensor dry-bulb reading at 1.5m height</span>
+</div>
+<!-- Relative Humidity -->
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface" for="humiditySlider">Relative Humidity (%)</label>
+<span class="font-label-metric text-label-metric text-primary font-semibold" id="humidityDisplay">34%</span>
+</div>
+<div class="flex items-center gap-space-sm pt-2">
+<input class="w-full accent-primary-container cursor-pointer bg-surface-container h-2 rounded" id="humiditySlider" max="100" min="10" type="range" value="34"/>
+</div>
+<span class="font-caption-caps text-caption-caps text-outline block">Hygrometric boundary vapor saturation</span>
+</div>
+<!-- Surface Temp -->
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface" for="surfaceTempInput">Surface Skin Temperature (Optional)</label>
+<span class="font-label-code text-label-code text-on-surface-variant">INFRARED / °C</span>
+</div>
+<div class="relative flex rounded-lg bg-surface-container-low">
+<input class="w-full bg-transparent px-space-md py-2.5 font-label-metric text-label-metric text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container rounded-lg" id="surfaceTempInput" max="75.0" min="15.0" placeholder="e.g. 44.2" step="0.1" type="number" value="44.2"/>
+</div>
+<span class="font-caption-caps text-caption-caps text-outline block">Direct pyrometer contact or calibrated 8-14μm radiometer</span>
+</div>
+<!-- Solar Exposure Index -->
+<div class="space-y-space-xs">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface" for="solarIrradiance">Solar Irradiance Flux</label>
+<select class="w-full bg-surface-container-low px-space-md py-2.5 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container" id="solarIrradiance">
+<option selected="" value="direct_peak">Direct Peak Solar Zenith (800 - 1050 W/m²)</option>
+<option value="diffuse_cloud">Partial Cloud Obscuration (400 - 650 W/m²)</option>
+<option value="canopy_shaded">Understory Forest Canopy (120 - 250 W/m²)</option>
+<option value="crepuscular">Crepuscular / Twilight (&lt; 50 W/m²)</option>
+<option value="nocturnal">Nocturnal Cooling Cycle (0 W/m²)</option>
+</select>
+<span class="font-caption-caps text-caption-caps text-outline block">Global horizontal irradiance weighting tier</span>
+</div>
+</div>
+</div>
+<!-- SECTION 2: Spatial & Temporal Anchor -->
+<div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code text-label-code text-primary font-bold px-2 py-0.5 rounded bg-primary-fixed-dim/30">02</span>
+<h2 class="font-headline-md text-headline-md text-primary">Temporal &amp; Spatial Anchor</h2>
+</div>
+<span class="font-caption-caps text-caption-caps text-outline uppercase tracking-wider">Solapur Spatial Mesh</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Datetime Picker -->
+<div class="space-y-space-xs">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface" for="timestampInput">Observation Timestamp (IST)</label>
+<input class="w-full bg-surface-container-low px-space-md py-2.5 rounded-lg font-label-code text-label-code text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container" id="timestampInput" type="datetime-local"/>
+<span class="font-caption-caps text-caption-caps text-outline block">Defaults to synchronous local research epoch</span>
+</div>
+<!-- Geographic Grid Node -->
+<div class="space-y-space-xs">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface" for="stationSelect">Geographic Simulation Station / Ward</label>
+<select class="w-full bg-surface-container-low px-space-md py-2.5 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container" id="stationSelect" onchange="handleStationChange()">
+<option data-baseline="35.4" data-lat="17.6599" data-lon="75.9064" data-zone="Commercial Dense" selected="" value="ST-014">Ward 04 • Saat Rasta Central Crossing (ST-014)</option>
+<option data-baseline="36.1" data-lat="17.6834" data-lon="75.9211" data-zone="Industrial Asphalt Dense" value="ST-027">Ward 02 • MIDC Phase I Industrial Core (ST-027)</option>
+<option data-baseline="33.2" data-lat="17.6412" data-lon="75.8943" data-zone="Urban Canopy Park" value="ST-052">Ward 07 • Siddheshwar Lake Green Belt (ST-052)</option>
+<option data-baseline="34.8" data-lat="17.6710" data-lon="75.9150" data-zone="High-Density Residential" value="ST-068">Ward 05 • Old Pune Naka Settlement (ST-068)</option>
+<option data-baseline="32.9" data-lat="17.6201" data-lon="75.8672" data-zone="Agricultural Fringe" value="ST-081">Ward 09 • South Degaon Eco-Fringe (ST-081)</option>
+<option data-baseline="34.5" data-lat="17.6600" data-lon="75.9000" data-zone="Unclassified Spatial Point" value="CUSTOM">+ Enter Custom Coordinates (Free Ingestion)</option>
+</select>
+<span class="font-caption-caps text-caption-caps text-outline block">Indexed against 100 Solapur GIS sensor stations</span>
+</div>
+<!-- Latitude / Longitude Dual Fields -->
+<div class="space-y-space-xs">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface" for="latitudeInput">Latitude (°N)</label>
+<input class="w-full bg-surface-container-low px-space-md py-2.5 rounded-lg font-label-metric text-label-metric text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container" id="latitudeInput" step="0.0001" type="number" value="17.6599"/>
+</div>
+<div class="space-y-space-xs">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface" for="longitudeInput">Longitude (°E)</label>
+<input class="w-full bg-surface-container-low px-space-md py-2.5 rounded-lg font-label-metric text-label-metric text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container" id="longitudeInput" step="0.0001" type="number" value="75.9064"/>
+</div>
+</div>
+<!-- Auto-detected Urban Zone Ribbon -->
+<div class="mt-space-sm p-space-sm rounded-lg bg-surface-container flex flex-wrap items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-secondary">domain</span>
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant font-bold">Inferred Urban Topology:</span>
+<span class="font-label-code text-label-code text-primary font-bold px-2 py-0.5 rounded bg-surface-container-lowest" id="zoneClassificationBadge">Commercial Dense</span>
+</div>
+<div class="font-label-code text-label-code text-on-surface-variant">
+<span>SEASONAL BASELINE: </span>
+<span class="font-semibold text-on-surface" id="baselineTempDisplay">35.4°C</span>
+</div>
+</div>
+</div>
+<!-- SECTION 3: Measurement Source & Equipment Calibration -->
+<div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code text-label-code text-primary font-bold px-2 py-0.5 rounded bg-primary-fixed-dim/30">03</span>
+<h2 class="font-headline-md text-headline-md text-primary">Measurement Source &amp; Instrumentation</h2>
+</div>
+<span class="font-caption-caps text-caption-caps text-outline uppercase tracking-wider">Provenance Tier</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Source Type Dropdown -->
+<div class="space-y-space-xs">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface" for="sourceType">Telemetry Source Category</label>
+<select class="w-full bg-surface-container-low px-space-md py-2.5 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container" id="sourceType">
+<option value="calibrated_thermistor">Calibrated Field Thermistor (±0.15°C)</option>
+<option value="ir_pyrometer">Handheld IR Surface Pyrometer (±0.5°C)</option>
+<option value="weather_station">Automatic Weather Station (AWS Tier 2)</option>
+<option selected="" value="hypothetical_sim">Hypothetical Scenario Simulation (TF-141 Model)</option>
+<option value="crowd_in situ">Citizen Science Handheld Probe</option>
+</select>
+<span class="font-caption-caps text-caption-caps text-outline block">Determines uncertainty confidence weighting (σ)</span>
+</div>
+<!-- Instrument Model & Precision -->
+<div class="space-y-space-xs">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface" for="instrumentSpec">Instrument Specification / Model</label>
+<input class="w-full bg-surface-container-low px-space-md py-2.5 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container" id="instrumentSpec" placeholder="e.g. Testo 610 or Simulation Synthetic Spec" type="text" value="Campbell Scientific CS215-L / Fluke 62 Max+"/>
+<span class="font-caption-caps text-caption-caps text-outline block">Serial / Calibration certificate or model algorithm revision</span>
+</div>
+</div>
+</div>
+<!-- SECTION 4: Urban Micro-Environment Context & Notes -->
+<div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code text-label-code text-primary font-bold px-2 py-0.5 rounded bg-primary-fixed-dim/30">04</span>
+<h2 class="font-headline-md text-headline-md text-primary">Urban Surface Context &amp; Field Notes</h2>
+</div>
+<span class="font-caption-caps text-caption-caps text-outline uppercase tracking-wider">Albedo &amp; Morphology</span>
+</div>
+<!-- Surface Material Selector Radio / Chips -->
+<div class="space-y-space-xs">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface block mb-1">Ground Substrate Albedo Group</label>
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-space-xs" id="surfaceButtonGroup">
+<button class="surface-btn p-space-sm text-left rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-colors flex flex-col justify-between" onclick="selectSurfaceMaterial(this, 'Asphalt / Bitumen', 0.08)" type="button">
+<span class="font-body-sm text-body-sm font-semibold">Asphalt</span>
+<span class="font-label-code text-[10px] text-on-surface-variant">α ≈ 0.08</span>
+</button>
+<button class="surface-btn p-space-sm text-left rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container-highest transition-colors flex flex-col justify-between" onclick="selectSurfaceMaterial(this, 'Concrete Pavers', 0.32)" type="button">
+<span class="font-body-sm text-body-sm font-semibold">Concrete</span>
+<span class="font-label-code text-[10px] text-on-surface-variant">α ≈ 0.32</span>
+</button>
+<button class="surface-btn p-space-sm text-left rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container-highest transition-colors flex flex-col justify-between" onclick="selectSurfaceMaterial(this, 'Bare Soil / Clay', 0.20)" type="button">
+<span class="font-body-sm text-body-sm font-semibold">Bare Soil</span>
+<span class="font-label-code text-[10px] text-on-surface-variant">α ≈ 0.20</span>
+</button>
+<button class="surface-btn p-space-sm text-left rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container-highest transition-colors flex flex-col justify-between" onclick="selectSurfaceMaterial(this, 'Vegetated Turf', 0.25)" type="button">
+<span class="font-body-sm text-body-sm font-semibold">Vegetated</span>
+<span class="font-label-code text-[10px] text-on-surface-variant">α ≈ 0.25</span>
+</button>
+<button class="surface-btn p-space-sm text-left rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container-highest transition-colors flex flex-col justify-between" onclick="selectSurfaceMaterial(this, 'Shaded Canopy', 0.18)" type="button">
+<span class="font-body-sm text-body-sm font-semibold">Canopy</span>
+<span class="font-label-code text-[10px] text-on-surface-variant">α ≈ 0.18</span>
+</button>
+</div>
+<input id="selectedSurfaceMaterial" type="hidden" value="Asphalt / Bitumen"/>
+<input id="selectedAlbedo" type="hidden" value="0.08"/>
+</div>
+<!-- Qualitative Field Observation Notes -->
+<div class="space-y-space-xs">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface" for="fieldNotes">Field Microclimate Observations &amp; Mitigation Notes</label>
+<textarea class="w-full bg-surface-container-low px-space-md py-space-sm rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container resize-y" id="fieldNotes" placeholder="Record micro-canopy shading, traffic congestion pulses, localized evaporative mists, or building aspect ratio effects..." rows="3">Observed cooling deficit under mature neem canopy along Saat Rasta corridor; surface asphalt radiates intense convective heat plume during peak 14:00 solar transit.</textarea>
+<span class="font-caption-caps text-caption-caps text-outline block">Qualitative evidentiary text parsed into natural-language anomaly records</span>
+</div>
+</div>
+<!-- Submission CTA Actions Strip -->
+<div class="flex flex-wrap items-center justify-between gap-space-md pt-space-xs">
+<div class="flex items-center gap-space-sm">
+<button class="inline-flex items-center gap-space-xs px-space-xl py-3 rounded-lg bg-primary-container text-on-primary font-headline-md text-headline-md hover:bg-primary transition-all shadow-md active:scale-[0.98]" id="submitBtn" type="submit">
+<span class="material-symbols-outlined text-[20px]">send_time_extension</span>
+<span>Validate &amp; Record Reading (Demo)</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-3 rounded-lg bg-surface-container hover:bg-surface-container-highest text-on-surface font-body-md text-body-md transition-colors" onclick="resetTelemetryForm()" type="button">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+<span>Reset Form</span>
+</button>
+</div>
+<div class="font-caption-caps text-caption-caps text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock_clock</span>
+<span>SHA-256 BUFFERED TRANSIENT STATE</span>
+</div>
+</div>
+<!-- Dynamic Feedback Notification Toast (Initially hidden) -->
+<div class="hidden rounded-xl bg-primary text-on-primary p-space-md shadow-xl transition-all duration-300" id="submissionToast">
+<div class="flex items-start justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-bold">✓</div>
+<div>
+<h4 class="font-headline-md text-headline-md font-semibold text-on-primary">Telemetry Observation Buffered in Research Sandbox</h4>
+<p class="font-body-sm text-body-sm text-on-primary-container" id="toastMessage">Reading ST-014 (38.5°C) compiled into local telemetry store for Solapur Ward 04.</p>
+</div>
+</div>
+<button class="text-on-primary hover:text-primary-fixed-dim" onclick="document.getElementById('submissionToast').classList.add('hidden')" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</div>
+</form>
+</div>
+<!-- Right Column: Live Dynamic Observation Preview Card (5 Cols on LG / ~35% equivalent) -->
+<div class="lg:col-span-5 xl:col-span-4 sticky top-[96px] space-y-space-md">
+<!-- Master Preview Card -->
+<div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-md space-y-space-md relative overflow-hidden">
+<!-- Dynamic Thermal Accent Bar on top of card -->
+<div class="absolute top-0 left-0 right-0 h-1.5 bg-tertiary-container transition-all duration-300" id="riskAccentBar"></div>
+<!-- Card Header -->
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">insights</span>
+<span class="font-caption-caps text-caption-caps uppercase tracking-wider text-on-surface font-bold">Simulated Reading Preview</span>
+</div>
+<span class="font-label-code text-label-code text-on-surface-variant bg-surface-container px-2 py-0.5 rounded" id="readingIdBadge">ID: HS-9281-SIM</span>
+</div>
+<!-- Dynamic Thermal Risk Tier Pill -->
+<div class="p-space-md rounded-xl bg-tertiary-fixed text-on-tertiary-fixed transition-colors duration-300" id="riskTierContainer">
+<div class="flex items-center justify-between mb-1">
+<span class="font-caption-caps text-caption-caps uppercase font-bold tracking-wider" id="riskTierTitle">High Heat Stress Zone</span>
+<span class="font-label-code text-label-code font-bold" id="heatIndexComputed">HI: 43.8°C</span>
+</div>
+<div class="font-headline-md text-headline-md font-bold" id="riskSummaryHeadline">38.5°C at 34% RH</div>
+<p class="font-body-sm text-body-sm text-on-tertiary-fixed/80 mt-1" id="riskGuidanceText">
+                Metabolic fatigue and microclimatic discomfort accelerated on unshaded impermeable surfaces.
+              </p>
+</div>
+<!-- Real-Time Anomaly Computation vs Solapur Baseline -->
+<div class="rounded-lg bg-surface-container-low p-space-md space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Solapur Ward Seasonal Baseline</span>
+<span class="font-label-metric text-label-metric text-on-surface font-semibold" id="previewBaseline">35.4°C</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Observed Thermal Anomaly</span>
+<span class="font-label-metric text-label-metric text-tertiary font-bold" id="anomalyDelta">+3.1°C</span>
+</div>
+<!-- Anomaly visual range gauge bar -->
+<div class="pt-2">
+<div class="h-2 w-full rounded-full bg-surface-container-highest overflow-hidden relative">
+<div class="h-full bg-tertiary-container transition-all duration-300" id="anomalyBarIndicator" style="width: 72%;"></div>
+</div>
+<div class="flex justify-between font-label-code text-[10px] text-outline mt-1">
+<span>-2.0°C (Cool Sink)</span>
+<span>Baseline (0)</span>
+<span>+5.0°C (Extreme Island)</span>
+</div>
+</div>
+</div>
+<!-- Spatial Pin Context Mini-Card with static map trigger -->
+<div class="rounded-lg bg-surface-container-low p-space-md space-y-space-xs">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-caption-caps text-caption-caps uppercase text-secondary font-bold block">Target Microclimate Cell</span>
+<div class="font-headline-md text-headline-md text-primary" id="previewStationTitle">Saat Rasta Crossing</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant" id="previewZoneTitle">Commercial Dense Urban Core</div>
+</div>
+<span class="material-symbols-outlined text-primary text-[24px]">location_on</span>
+</div>
+<div class="pt-space-xs font-label-code text-label-code text-on-surface bg-surface-container-lowest p-2 rounded flex items-center justify-between">
+<span id="previewCoords">17.6599° N, 75.9064° E</span>
+<span class="text-secondary font-bold">WARD 04</span>
+</div>
+<!-- Static Map Visualization for Solapur Location -->
+<div class="w-full h-32 bg-cover bg-center rounded-lg relative overflow-hidden mt-2 shadow-inner" data-location="Solapur, Maharashtra, India" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDZ6C6vqv6zjyEn3foAAisTPnwOiLEK8VteUezMVwi8XRpunY1JoXCnBK8XTSClxGFdf6iMGi2c3NZARNbBedi4f6uI99TZbTiJ5h4bH9i6bqAujGhe_RQZ511jTCPdU_OeYf7vLduV9K6YQ6pUcZF4a9TFX17oTpFC0DRuds7QgadtpEmetYLy8Qip3SuqpMeGspEsu9EmQ41k_kJHuU_6Vxs6jA4V0WN5g_yjRDZAjHBV5qOV7ej6')">
+<div class="absolute inset-0 bg-primary/20 backdrop-blur-[0.5px]"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="px-space-sm py-1 rounded bg-surface/90 backdrop-blur-md shadow-sm font-label-code text-label-code text-primary flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
+<span id="mapPinLabel">Node ST-014 Active</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Sensor & Substrate Metadata Chips -->
+<div class="grid grid-cols-2 gap-space-xs">
+<div class="p-space-xs px-space-sm rounded bg-surface-container">
+<span class="font-caption-caps text-[9px] uppercase text-outline block">Substrate Albedo</span>
+<span class="font-label-code text-label-code text-on-surface font-semibold" id="previewSubstrate">Asphalt (α=0.08)</span>
+</div>
+<div class="p-space-xs px-space-sm rounded bg-surface-container">
+<span class="font-caption-caps text-[9px] uppercase text-outline block">Surface Thermal</span>
+<span class="font-label-code text-label-code text-on-surface font-semibold" id="previewSurfaceTemp">44.2°C IR</span>
+</div>
+</div>
+<!-- Integrity Checksum & JSON Payload Inspector for Scientific Developers -->
+<div class="pt-space-xs space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-caption-caps text-caption-caps uppercase text-outline">Telemetry Schema Payload</span>
+<button class="font-label-code text-[11px] text-secondary hover:text-primary transition-colors flex items-center gap-1" onclick="copyJsonPayload()" type="button">
+<span class="material-symbols-outlined text-[13px]">content_copy</span>
+<span id="copyFeedback">Copy JSON</span>
+</button>
+</div>
+<!-- Monospace Code Box -->
+<pre class="w-full rounded-lg bg-surface-container-highest p-space-sm font-label-code text-[11px] leading-relaxed text-on-surface overflow-x-auto max-h-40 whitespace-pre" id="jsonPreviewBox">{
+  "node_id": "ST-014",
+  "air_temp_c": 38.5,
+  "rel_humidity": 34,
+  "surface_temp_c": 44.2,
+  "heat_risk_tier": "HIGH_HEAT_STRESS",
+  "anomaly_delta_c": 3.1,
+  "coords": [17.6599, 75.9064],
+  "checksum": "sha256-d41d8cd98f00"
+}
+              </pre>
+</div>
+</div>
+<!-- Research Sandbox Guidelines Mini-Panel -->
+<div class="rounded-xl bg-surface-container p-space-md space-y-space-xs">
+<div class="flex items-center gap-space-xs text-primary font-semibold">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="font-caption-caps text-caption-caps uppercase">Quality Assurance Validation</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Readings exceeding 3.5σ of ward baselines are automatically flagged with experimental weights to prevent synthetic grid skew.
+            </p>
+</div>
+</div>
+</div>
+<!-- Historical Ingestion Ledger / Client Buffer Session Log -->
+<div class="mt-space-xl rounded-xl bg-surface-container-lowest p-space-lg shadow-sm space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-xs">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-md text-headline-md text-primary">Local Research Buffer Ledger</span>
+<span class="font-label-code text-label-code text-primary font-bold px-2 py-0.5 rounded bg-primary-fixed" id="bufferCountBadge">3 RECENT SESSIONS</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Real-time memory logs generated during this interactive research session.</p>
+</div>
+<button class="inline-flex items-center gap-1 font-label-code text-label-code text-error hover:underline self-start sm:self-auto" onclick="clearBufferLog()" type="button">
+<span class="material-symbols-outlined text-[15px]">delete_sweep</span>
+<span>Clear Buffer</span>
+</button>
+</div>
+<!-- Tabular Ledger -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container font-caption-caps text-caption-caps uppercase text-on-surface-variant tracking-wider">
+<th class="py-2.5 px-space-md rounded-l">Session Hash</th>
+<th class="py-2.5 px-space-md">Station / Zone</th>
+<th class="py-2.5 px-space-md">Air Temp</th>
+<th class="py-2.5 px-space-md">Humidity</th>
+<th class="py-2.5 px-space-md">Anomaly</th>
+<th class="py-2.5 px-space-md">Substrate</th>
+<th class="py-2.5 px-space-md rounded-r text-right">Verification Status</th>
+</tr>
+</thead>
+<tbody class="divide-y-0" id="ledgerTableBody">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-md font-label-code text-label-code text-on-surface font-semibold">#HS-9280-SIM</td>
+<td class="py-3 px-space-md">Ward 02 • MIDC Industrial Core</td>
+<td class="py-3 px-space-md font-label-metric text-label-metric text-tertiary font-bold">41.2°C</td>
+<td class="py-3 px-space-md font-label-metric text-label-metric">28%</td>
+<td class="py-3 px-space-md font-label-metric text-label-metric text-tertiary font-semibold">+5.1°C</td>
+<td class="py-3 px-space-md text-on-surface-variant">Asphalt / Bitumen</td>
+<td class="py-3 px-space-md text-right"><span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-caption-caps text-caption-caps font-bold uppercase">Extr. Thermal</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-md font-label-code text-label-code text-on-surface font-semibold">#HS-9279-SIM</td>
+<td class="py-3 px-space-md">Ward 07 • Siddheshwar Lake Green Belt</td>
+<td class="py-3 px-space-md font-label-metric text-label-metric text-secondary font-bold">32.8°C</td>
+<td class="py-3 px-space-md font-label-metric text-label-metric">48%</td>
+<td class="py-3 px-space-md font-label-metric text-label-metric text-secondary font-semibold">-0.4°C</td>
+<td class="py-3 px-space-md text-on-surface-variant">Shaded Canopy</td>
+<td class="py-3 px-space-md text-right"><span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-caption-caps text-caption-caps font-bold uppercase">Mitigated / Sink</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-md font-label-code text-label-code text-on-surface font-semibold">#HS-9278-SIM</td>
+<td class="py-3 px-space-md">Ward 05 • Old Pune Naka Settlement</td>
+<td class="py-3 px-space-md font-label-metric text-label-metric text-on-surface font-bold">36.9°C</td>
+<td class="py-3 px-space-md font-label-metric text-label-metric">35%</td>
+<td class="py-3 px-space-md font-label-metric text-label-metric text-tertiary font-semibold">+2.1°C</td>
+<td class="py-3 px-space-md text-on-surface-variant">Concrete Pavers</td>
+<td class="py-3 px-space-md text-right"><span class="px-2 py-0.5 rounded bg-tertiary-fixed-dim/40 text-tertiary font-caption-caps text-caption-caps font-bold uppercase">Moderate Stress</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Scientific Calculation & Reactive Form Script -->
+<script>
+  let isCelsius = true;
+  let currentBaseline = 35.4;
+  let memoryLedger = [
+    { hash: "#HS-9280-SIM", station: "Ward 02 • MIDC Industrial Core", temp: "41.2°C", humidity: "28%", anomaly: "+5.1°C", substrate: "Asphalt / Bitumen", tier: "Extr. Thermal", badgeClass: "bg-tertiary-fixed text-on-tertiary-fixed" },
+    { hash: "#HS-9279-SIM", station: "Ward 07 • Siddheshwar Lake Green Belt", temp: "32.8°C", humidity: "48%", anomaly: "-0.4°C", substrate: "Shaded Canopy", tier: "Mitigated / Sink", badgeClass: "bg-primary-fixed text-on-primary-fixed" },
+    { hash: "#HS-9278-SIM", station: "Ward 05 • Old Pune Naka Settlement", temp: "36.9°C", humidity: "35%", anomaly: "+2.1°C", substrate: "Concrete Pavers", tier: "Moderate Stress", badgeClass: "bg-tertiary-fixed-dim/40 text-tertiary" }
+  ];
+
+  function initPage() {
+    // Populate current local time ISO
+    const now = new Date();
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+    const isoStr = now.toISOString().slice(0, 16);
+    const tsInput = document.getElementById('timestampInput');
+    if (tsInput) tsInput.value = isoStr;
+
+    // Attach reactive input listeners
+    document.getElementById('airTempInput').addEventListener('input', updateLivePreview);
+    document.getElementById('humiditySlider').addEventListener('input', function(e) {
+      document.getElementById('humidityDisplay').innerText = e.target.value + '%';
+      updateLivePreview();
+    });
+    document.getElementById('surfaceTempInput').addEventListener('input', updateLivePreview);
+    document.getElementById('latitudeInput').addEventListener('input', updateLivePreview);
+    document.getElementById('longitudeInput').addEventListener('input', updateLivePreview);
+
+    updateLivePreview();
+  }
+
+  function toggleTempUnit() {
+    const input = document.getElementById('airTempInput');
+    const surfInput = document.getElementById('surfaceTempInput');
+    const toggleBtn = document.getElementById('tempUnitToggle');
+    const badge = document.getElementById('unitBadge');
+    let val = parseFloat(input.value) || 38.5;
+    let sVal = parseFloat(surfInput.value) || 44.2;
+
+    if (isCelsius) {
+      // to Fahrenheit
+      input.value = ((val * 9/5) + 32).toFixed(1);
+      surfInput.value = ((sVal * 9/5) + 32).toFixed(1);
+      toggleBtn.innerText = '°F';
+      badge.innerText = 'UNIT: °F';
+      isCelsius = false;
+    } else {
+      // to Celsius
+      input.value = (((val - 32) * 5/9)).toFixed(1);
+      surfInput.value = (((sVal - 32) * 5/9)).toFixed(1);
+      toggleBtn.innerText = '°C';
+      badge.innerText = 'UNIT: °C';
+      isCelsius = true;
+    }
+    updateLivePreview();
+  }
+
+  function handleStationChange() {
+    const sel = document.getElementById('stationSelect');
+    const opt = sel.options[sel.selectedIndex];
+    const zone = opt.getAttribute('data-zone');
+    const lat = opt.getAttribute('data-lat');
+    const lon = opt.getAttribute('data-lon');
+    const baseline = parseFloat(opt.getAttribute('data-baseline')) || 35.4;
+
+    currentBaseline = baseline;
+    document.getElementById('zoneClassificationBadge').innerText = zone;
+    document.getElementById('baselineTempDisplay').innerText = baseline.toFixed(1) + '°C';
+    document.getElementById('previewBaseline').innerText = baseline.toFixed(1) + '°C';
+    document.getElementById('latitudeInput').value = lat;
+    document.getElementById('longitudeInput').value = lon;
+
+    updateLivePreview();
+  }
+
+  function selectSurfaceMaterial(btn, materialName, albedoVal) {
+    document.querySelectorAll('.surface-btn').forEach(b => {
+      b.classList.remove('bg-surface-container-high', 'ring-2', 'ring-primary-container');
+      b.classList.add('bg-surface-container-low');
+    });
+    btn.classList.remove('bg-surface-container-low');
+    btn.classList.add('bg-surface-container-high', 'ring-2', 'ring-primary-container');
+
+    document.getElementById('selectedSurfaceMaterial').value = materialName;
+    document.getElementById('selectedAlbedo').value = albedoVal;
+    document.getElementById('previewSubstrate').innerText = `${materialName.split(' ')[0]} (α=${albedoVal})`;
+    updateLivePreview();
+  }
+
+  function computeHeatIndexC(tC, rh) {
+    // Rothfusz regression Heat Index approximation adapted for metric
+    const tF = (tC * 9/5) + 32;
+    const hiF = -42.379 + (2.04901523 * tF) + (10.14333127 * rh) - (0.22475541 * tF * rh) - 
+                (0.00683783 * tF * tF) - (0.05481717 * rh * rh) + (0.00122874 * tF * tF * rh) + 
+                (0.00085282 * tF * rh * rh) - (0.00000199 * tF * tF * rh * rh);
+    return ((hiF - 32) * 5/9);
+  }
+
+  function updateLivePreview() {
+    let airTemp = parseFloat(document.getElementById('airTempInput').value) || 38.5;
+    if (!isCelsius) {
+      airTemp = (airTemp - 32) * 5/9; // standardize to C for math
+    }
+    const rh = parseInt(document.getElementById('humiditySlider').value) || 34;
+    const surfTemp = parseFloat(document.getElementById('surfaceTempInput').value) || 44.2;
+    const lat = parseFloat(document.getElementById('latitudeInput').value) || 17.6599;
+    const lon = parseFloat(document.getElementById('longitudeInput').value) || 75.9064;
+    const sel = document.getElementById('stationSelect');
+    const opt = sel.options[sel.selectedIndex];
+    const stationText = opt.text.split('•')[1] ? opt.text.split('•')[1].trim() : opt.text;
+    const zoneName = opt.getAttribute('data-zone') || 'Commercial Dense';
+    const substrate = document.getElementById('selectedSurfaceMaterial').value;
+    const albedo = document.getElementById('selectedAlbedo').value;
+
+    // Calculations
+    const heatIndex = computeHeatIndexC(airTemp, rh);
+    const anomaly = airTemp - currentBaseline;
+
+    // Tier Classification
+    let tierTitle = "Moderate Thermal Comfort";
+    let tierGuidance = "Standard urban temperature regime within normal physiological buffers.";
+    let tierBg = "bg-surface-container text-on-surface";
+    let accentBar = "bg-secondary";
+
+    if (airTemp >= 41 || heatIndex >= 48) {
+      tierTitle = "Extreme Thermal Danger";
+      tierGuidance = "Severe heat stress; hyperthermia risk under prolonged direct solar exposure.";
+      tierBg = "bg-error-container text-on-error-container";
+      accentBar = "bg-error";
+    } else if (airTemp >= 37 || heatIndex >= 40) {
+      tierTitle = "High Heat Stress Zone";
+      tierGuidance = "Metabolic fatigue and microclimatic discomfort accelerated on unshaded impermeable surfaces.";
+      tierBg = "bg-tertiary-fixed text-on-tertiary-fixed";
+      accentBar = "bg-tertiary-container";
+    } else if (airTemp < 32) {
+      tierTitle = "Mitigated Cooling Enclave";
+      tierGuidance = "Microclimate canopy effect actively buffering convective thermal accumulation.";
+      tierBg = "bg-primary-fixed text-on-primary-fixed";
+      accentBar = "bg-primary-container";
+    }
+
+    // Update DOM Preview Elements
+    const riskContainer = document.getElementById('riskTierContainer');
+    riskContainer.className = `p-space-md rounded-xl transition-colors duration-300 ${tierBg}`;
+    document.getElementById('riskTierTitle').innerText = tierTitle;
+    document.getElementById('heatIndexComputed').innerText = `HI: ${heatIndex.toFixed(1)}°C`;
+    document.getElementById('riskSummaryHeadline').innerText = `${airTemp.toFixed(1)}°C at ${rh}% RH`;
+    document.getElementById('riskGuidanceText').innerText = tierGuidance;
+    document.getElementById('riskAccentBar').className = `absolute top-0 left-0 right-0 h-1.5 transition-all duration-300 ${accentBar}`;
+
+    // Anomaly Elements
+    const sign = anomaly >= 0 ? '+' : '';
+    const anomalyDeltaEl = document.getElementById('anomalyDelta');
+    anomalyDeltaEl.innerText = `${sign}${anomaly.toFixed(1)}°C`;
+    if (anomaly >= 2) {
+      anomalyDeltaEl.className = "font-label-metric text-label-metric text-tertiary font-bold";
+    } else if (anomaly <= 0) {
+      anomalyDeltaEl.className = "font-label-metric text-label-metric text-secondary font-bold";
+    } else {
+      anomalyDeltaEl.className = "font-label-metric text-label-metric text-on-surface font-semibold";
+    }
+
+    // Bar position calculation (-2C to +5C mapped to 0% - 100%)
+    let pct = ((anomaly - (-2)) / (5 - (-2))) * 100;
+    pct = Math.max(5, Math.min(95, pct));
+    document.getElementById('anomalyBarIndicator').style.width = pct + '%';
+
+    // Location previews
+    document.getElementById('previewStationTitle').innerText = stationText;
+    document.getElementById('previewZoneTitle').innerText = zoneName;
+    document.getElementById('previewCoords').innerText = `${lat.toFixed(4)}° N, ${lon.toFixed(4)}° E`;
+    document.getElementById('previewSurfaceTemp').innerText = `${surfTemp.toFixed(1)}°C IR`;
+    document.getElementById('mapPinLabel').innerText = `${opt.value !== 'CUSTOM' ? opt.value : 'CUSTOM PIN'}: ${airTemp.toFixed(1)}°C`;
+
+    // JSON Payload Generation
+    const payload = {
+      simulation_session: document.getElementById('readingIdBadge').innerText.replace('ID: ', ''),
+      station_id: opt.value,
+      urban_zone: zoneName,
+      ambient_temp_c: parseFloat(airTemp.toFixed(1)),
+      relative_humidity_pct: rh,
+      surface_temp_c: parseFloat(surfTemp.toFixed(1)),
+      heat_index_c: parseFloat(heatIndex.toFixed(1)),
+      anomaly_delta_c: parseFloat(anomaly.toFixed(1)),
+      substrate_material: substrate,
+      substrate_albedo: parseFloat(albedo),
+      coordinates: [lat, lon],
+      timestamp_epoch: document.getElementById('timestampInput').value,
+      checksum_digest: "sha256-" + Math.random().toString(16).substring(2, 14)
+    };
+
+    document.getElementById('jsonPreviewBox').innerText = JSON.stringify(payload, null, 2);
+  }
+
+  function handleFormSubmit() {
+    const airVal = parseFloat(document.getElementById('airTempInput').value) || 38.5;
+    const rhVal = document.getElementById('humiditySlider').value;
+    const sel = document.getElementById('stationSelect');
+    const opt = sel.options[sel.selectedIndex];
+    const stationLabel = opt.text.split('•')[0].trim() + ' • ' + (opt.text.split('•')[1] ? opt.text.split('•')[1].trim() : '');
+    const substrate = document.getElementById('selectedSurfaceMaterial').value;
+    const anomalyText = document.getElementById('anomalyDelta').innerText;
+    const tier = document.getElementById('riskTierTitle').innerText;
+
+    let badgeClass = "bg-tertiary-fixed text-on-tertiary-fixed";
+    if (airVal < 33) badgeClass = "bg-primary-fixed text-on-primary-fixed";
+    else if (airVal >= 41) badgeClass = "bg-error-container text-on-error-container";
+
+    const newHash = `#HS-${Math.floor(9282 + Math.random() * 800)}-SIM`;
+
+    // Add to table
+    const tableBody = document.getElementById('ledgerTableBody');
+    const row = document.createElement('tr');
+    row.className = "hover:bg-surface-container-low transition-colors animate-pulse";
+    row.innerHTML = `
+      <td class="py-3 px-space-md font-label-code text-label-code text-on-surface font-semibold">${newHash}</td>
+      <td class="py-3 px-space-md">${stationLabel}</td>
+      <td class="py-3 px-space-md font-label-metric text-label-metric font-bold text-tertiary">${airVal.toFixed(1)}°C</td>
+      <td class="py-3 px-space-md font-label-metric text-label-metric">${rhVal}%</td>
+      <td class="py-3 px-space-md font-label-metric text-label-metric font-semibold text-tertiary">${anomalyText}</td>
+      <td class="py-3 px-space-md text-on-surface-variant">${substrate}</td>
+      <td class="py-3 px-space-md text-right"><span class="px-2 py-0.5 rounded ${badgeClass} font-caption-caps text-caption-caps font-bold uppercase">${tier.split(' ')[0]} Stress</span></td>
+    `;
+    tableBody.insertBefore(row, tableBody.firstChild);
+
+    // Show feedback toast
+    const toast = document.getElementById('submissionToast');
+    document.getElementById('toastMessage').innerText = `Observation ${newHash} (${airVal.toFixed(1)}°C) successfully buffered into memory. Station ${opt.value} recalculated.`;
+    toast.classList.remove('hidden');
+
+    // Update count badge
+    const rowsCount = tableBody.children.length;
+    document.getElementById('bufferCountBadge').innerText = `${rowsCount} RECENT SESSIONS`;
+
+    // Generate new Preview ID
+    document.getElementById('readingIdBadge').innerText = `ID: HS-${Math.floor(9285 + Math.random() * 500)}-SIM`;
+    updateLivePreview();
+  }
+
+  function resetTelemetryForm() {
+    document.getElementById('airTempInput').value = '38.5';
+    document.getElementById('humiditySlider').value = '34';
+    document.getElementById('humidityDisplay').innerText = '34%';
+    document.getElementById('surfaceTempInput').value = '44.2';
+    document.getElementById('stationSelect').selectedIndex = 0;
+    handleStationChange();
+    selectSurfaceMaterial(document.querySelector('.surface-btn'), 'Asphalt / Bitumen', 0.08);
+    document.getElementById('fieldNotes').value = '';
+    document.getElementById('submissionToast').classList.add('hidden');
+    updateLivePreview();
+  }
+
+  function clearBufferLog() {
+    const tableBody = document.getElementById('ledgerTableBody');
+    tableBody.innerHTML = `<tr><td colspan="7" class="py-4 text-center text-on-surface-variant font-label-code text-label-code">Buffer cleared. No client-side records active.</td></tr>`;
+    document.getElementById('bufferCountBadge').innerText = "0 RECENT SESSIONS";
+  }
+
+  function copyJsonPayload() {
+    const text = document.getElementById('jsonPreviewBox').innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const fb = document.getElementById('copyFeedback');
+      fb.innerText = 'Copied!';
+      setTimeout(() => { fb.innerText = 'Copy JSON'; }, 2000);
+    });
+  }
+
+  // Trigger init on DOM load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPage);
+  } else {
+    initPage();
+  }
+</script></main><footer class="w-full bg-surface-container-low border-t border-outline-variant/40 pt-space-xl pb-space-lg"><div class="max-w-[1400px] mx-auto px-margin"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-space-xl"><div class="space-y-space-sm"><div class="flex items-center gap-space-sm"><img alt="HeatShield Emblem" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XWJ4qbCUSYLnD1Z6TmO_vemqF6U3qe-WRrr0ikQiuFHOKmX_aSoq5H39etJL4IXE4GSgYb2I0-1s3Oya1-QUTmyQV7tV05SnfXfUMy8POdHV4NMQ4lSIGi3Yd5xfrrk0EEDr49ewjs6mYQz6eeDygLU_6VDPY04zP-4Ppp5uHg49wiTSV2Hy2F-ebhrNshCPJagYUK8z4dJsju-YeprrCv3JWQCclB-xFRyi0IHQVFNTqhcGaP5TcfmgM"/><span class="font-headline-md text-headline-md text-primary">HeatShield</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">Urban microclimate heat risk analysis, spatial thermal sensing models, and cooling intervention planning engine for climate resilience.</p><p class="font-caption-caps text-caption-caps text-outline uppercase">MIT Vishwaprayag University • Solapur, Maharashtra</p></div><div class="space-y-space-sm"><span class="font-caption-caps text-caption-caps uppercase text-on-surface tracking-wider block">Platform Navigation</span><ul class="space-y-space-xs font-body-sm text-body-sm"><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="overview" href="#">Overview</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="dashboard" href="#">Analytics Dashboard</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="heat-map" href="#">India Heat Map</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="explore-data" href="#">Data Explorer</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="methodology" href="#">Methodology</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="submit-reading" href="#">Submit Reading</a></li></ul></div><div class="space-y-space-sm"><span class="font-caption-caps text-caption-caps uppercase text-on-surface tracking-wider block">Research &amp; Provenance</span><ul class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant"><li>Solapur Synthetic Dataset (150k pts)</li><li>100 Sim Sensory Grid Nodes</li><li>Microclimate Thermal Indices</li><li>Urban Tree Canopy Mitigation Models</li><li>Vector GIS Boundary Layers</li></ul></div><div class="space-y-space-sm"><span class="font-caption-caps text-caption-caps uppercase text-on-surface tracking-wider block">Project &amp; Repository</span><div class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant"><p>Academic Research Initiative TF-141</p><a class="inline-flex items-center gap-space-xs text-primary font-label-code text-label-code hover:underline" href="https://github.com/exobhavinss-sketch/TF-141-Heatshield" rel="noopener noreferrer" target="_blank"><span>GitHub / TF-141-Heatshield</span><span class="material-symbols-outlined text-[14px]">open_in_new</span></a><p>Permissive Open Science License</p><p class="font-body-sm text-body-sm text-outline">Peer-review draft v2.4</p></div></div></div><div class="pt-space-md border-t border-outline-variant/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md"><p class="font-body-sm text-body-sm text-on-surface-variant max-w-4xl">Notice: Solapur microclimate dataset consists of synthetic academic simulation models (2021–2025) for research and urban planning methodologies, not live sensor networks.</p><span class="font-caption-caps text-caption-caps text-outline uppercase whitespace-nowrap">© 2021–2025 MIT Vishwaprayag University</span></div></div></footer></body></html>

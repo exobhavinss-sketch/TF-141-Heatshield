@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;family=Manrope:wght@600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-fixed": "#ffdbcf", "primary-fixed": "#b9eedb", "tertiary": "#581900", "surface-dim": "#d6dbd7", "surface-container": "#eaefeb", "inverse-surface": "#2c312f", "on-secondary-fixed": "#00201c", "on-primary": "#ffffff", "on-error": "#ffffff", "outline-variant": "#c0c8c4", "primary-container": "#194d40", "on-secondary": "#ffffff", "on-surface": "#181d1b", "on-tertiary-container": "#ff9770", "on-primary-fixed-variant": "#1b4f42", "error-container": "#ffdad6", "on-error-container": "#93000a", "surface": "#f6faf7", "on-secondary-fixed-variant": "#005048", "tertiary-container": "#7d2800", "surface-variant": "#dfe4e0", "error": "#ba1a1a", "on-background": "#181d1b", "on-primary-container": "#89bdac", "inverse-primary": "#9dd1c0", "inverse-on-surface": "#edf2ee", "secondary-fixed-dim": "#84d5c8", "secondary": "#016a60", "surface-container-lowest": "#ffffff", "on-secondary-container": "#117166", "secondary-container": "#9ff2e4", "surface-container-highest": "#dfe4e0", "primary": "#00362a", "surface-bright": "#f6faf7", "on-tertiary": "#ffffff", "on-tertiary-fixed": "#380d00", "tertiary-fixed-dim": "#ffb59b", "background": "#f6faf7", "outline": "#707975", "on-primary-fixed": "#002019", "primary-fixed-dim": "#9dd1c0", "surface-tint": "#366759", "surface-container-low": "#f0f5f1", "on-surface-variant": "#404945", "on-tertiary-fixed-variant": "#812900", "secondary-fixed": "#9ff2e4", "surface-container-high": "#e5e9e5" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "gutter-mobile": "0.75rem", "space-sm": "0.5rem", "margin-mobile": "1rem", "space-xs": "0.25rem", "gutter": "1.25rem", "space-lg": "1.5rem", "space-xl": "2.5rem", "space-md": "1rem", "margin": "2rem" }, "fontFamily": { "headline-lg": [ "Manrope" ], "label-code": [ "JetBrains Mono" ], "caption-caps": [ "Inter" ], "headline-xl-mobile": [ "Manrope" ], "headline-md": [ "Manrope" ], "body-sm": [ "Inter" ], "body-md": [ "Inter" ], "headline-lg-mobile": [ "Manrope" ], "body-lg": [ "Inter" ], "headline-xl": [ "Manrope" ], "label-metric": [ "JetBrains Mono" ] }, "fontSize": { "headline-lg": [ "26px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" } ], "label-code": [ "11px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" } ], "caption-caps": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "600" } ], "headline-xl-mobile": [ "28px", { "lineHeight": "34px", "letterSpacing": "-0.025em", "fontWeight": "600" } ], "headline-md": [ "18px", { "lineHeight": "24px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "18px", "fontWeight": "400" } ], "body-md": [ "13px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-lg-mobile": [ "22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "body-lg": [ "15px", { "lineHeight": "24px", "fontWeight": "400" } ], "headline-xl": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "600" } ], "label-metric": [ "13px", { "lineHeight": "18px", "letterSpacing": "-0.01em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/40"><div class="h-[76px] max-w-[1400px] mx-auto px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-md"><img alt="HeatShield Emblem" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XWJ4qbCUSYLnD1Z6TmO_vemqF6U3qe-WRrr0ikQiuFHOKmX_aSoq5H39etJL4IXE4GSgYb2I0-1s3Oya1-QUTmyQV7tV05SnfXfUMy8POdHV4NMQ4lSIGi3Yd5xfrrk0EEDr49ewjs6mYQz6eeDygLU_6VDPY04zP-4Ppp5uHg49wiTSV2Hy2F-ebhrNshCPJagYUK8z4dJsju-YeprrCv3JWQCclB-xFRyi0IHQVFNTqhcGaP5TcfmgM"/><div class="flex flex-col"><span class="font-headline-md text-headline-md text-primary tracking-tight">HeatShield</span><span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">TF-141 / MIT Vishwaprayag University</span></div></div><nav class="hidden lg:flex items-center gap-space-lg h-full" data-active-classes="text-primary border-b-2 border-primary-container font-medium"><a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" data-path="overview" href="#">Overview</a><a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" data-path="dashboard" href="#">Dashboard</a><a aria-current="page" class="h-full flex items-center transition-colors text-primary border-b-2 border-primary-container font-medium" data-path="heat-map" href="#">Heat Map</a><a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" data-path="explore-data" href="#">Explore Data</a><a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" data-path="methodology" href="#">Methodology</a></nav><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 rounded-DEFAULT bg-surface-container border border-outline-variant/50 text-on-surface"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span><span class="font-label-code text-label-code text-on-surface uppercase">ACADEMIC SIMULATION • 2021-2025</span></div><a class="inline-flex items-center justify-center px-space-md h-9 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md hover:bg-primary transition-colors" data-path="submit-reading" href="#">Submit Reading</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-[76px] min-h-screen bg-background"><div class="flex flex-col w-full relative">
+<!-- Interactive GIS Control Deck & Map Canvas Container -->
+<div class="relative w-full h-[calc(100vh-76px)] min-h-[640px] overflow-hidden flex flex-col bg-surface-container-low select-none">
+<!-- Top Floating GIS HUD Bar -->
+<div class="absolute top-space-md left-space-md right-space-md z-30 pointer-events-none flex flex-col gap-space-xs">
+<div class="flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-lowest/95 backdrop-blur-md p-space-sm rounded-xl shadow-md pointer-events-auto">
+<!-- Left: Territory Switcher -->
+<div class="flex items-center gap-space-xs bg-surface-container-low p-1 rounded-lg">
+<button class="px-space-sm py-1.5 rounded-DEFAULT text-on-primary bg-primary-container font-label-code text-label-code transition-all shadow-sm flex items-center gap-1.5" id="viewSolapurBtn" onclick="switchDomain('solapur')">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed"></span>
+<span>Solapur High-Res (100 Nodes)</span>
+</button>
+<button class="px-space-sm py-1.5 rounded-DEFAULT text-on-surface-variant hover:text-on-surface font-label-code text-label-code transition-all flex items-center gap-1.5" id="viewIndiaBtn" onclick="switchDomain('india')">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>
+<span>Pan-India Reanalysis</span>
+</button>
+</div>
+<!-- Center: Layer Toggles -->
+<div class="hidden xl:flex items-center gap-space-xs bg-surface-container-low p-1 rounded-lg">
+<button class="layer-pill active px- space-sm py-1 rounded-DEFAULT text-on-primary bg-primary font-caption-caps text-caption-caps uppercase tracking-wider transition-colors" onclick="setLayer('lst', this)">
+            Surface Temp (LST)
+          </button>
+<button class="layer-pill px-space-sm py-1 rounded-DEFAULT text-on-surface-variant hover:text-on-surface font-caption-caps text-caption-caps uppercase tracking-wider transition-colors" onclick="setLayer('air', this)">
+            Air 2m Temp
+          </button>
+<button class="layer-pill px-space-sm py-1 rounded-DEFAULT text-on-surface-variant hover:text-on-surface font-caption-caps text-caption-caps uppercase tracking-wider transition-colors" onclick="setLayer('ndvi', this)">
+            Canopy (NDVI)
+          </button>
+<button class="layer-pill px-space-sm py-1 rounded-DEFAULT text-on-surface-variant hover:text-on-surface font-caption-caps text-caption-caps uppercase tracking-wider transition-colors" onclick="setLayer('hvi', this)">
+            Vulnerability (HVI)
+          </button>
+</div>
+<!-- Center-Right: Temporal Control Scrub -->
+<div class="flex items-center gap-space-sm px-space-sm py-1 bg-surface-container rounded-lg">
+<span class="material-symbols-outlined text-secondary text-[18px]">schedule</span>
+<div class="flex flex-col">
+<div class="flex items-center justify-between gap-space-sm">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Temporal Step</span>
+<span class="font-label-code text-label-code text-primary font-semibold" id="timeLabel">14:30 IST (Diurnal Peak)</span>
+</div>
+<input class="w-44 h-1 bg-surface-variant rounded-lg appearance-none cursor-pointer accent-secondary" id="timeScrubber" max="23" min="0" oninput="updateTimeStep(this.value)" type="range" value="14"/>
+</div>
+</div>
+<!-- Right: Actions & Coords Locator -->
+<div class="flex items-center gap-space-xs">
+<div class="hidden md:flex items-center gap-space-xs px-space-sm py-1 bg-surface-container rounded-DEFAULT">
+<span class="material-symbols-outlined text-outline text-[16px]">explore</span>
+<span class="font-label-code text-label-code text-on-surface" id="cursorCoords">17.6715° N, 75.9104° E</span>
+</div>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-variant text-on-surface transition-colors flex items-center justify-center" onclick="resetMapView()" title="Reset Camera View">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-variant text-on-surface transition-colors flex items-center justify-center xl:hidden" onclick="toggleTelemetryPanel()" title="Toggle Inspector">
+<span class="material-symbols-outlined text-[18px]">view_sidebar</span>
+</button>
+</div>
+</div>
+<!-- Provenance Micro-Banner Floating -->
+<div class="self-start inline-flex items-center gap-space-xs px-space-sm py-1 rounded-DEFAULT bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface-variant shadow-sm pointer-events-auto">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-code text-label-code uppercase tracking-tight text-on-surface">Model Domain: WRF-Chem Urban Canopy Microscale • Sim. Grid Seed: 2024.05.18-IST</span>
+</div>
+</div>
+<!-- Main Dynamic GIS Cartographic Surface -->
+<div class="relative w-full h-full flex-1 overflow-hidden cursor-grab active:cursor-grabbing bg-surface-container-high" id="mapViewport" onmousemove="updateCoordinateHUD(event)">
+<!-- Static Location Canvas Layer (Fallback & Geo-context) -->
+<div class="absolute inset-0 w-full h-full opacity-20 filter contrast-125 saturate-50 pointer-events-none" data-location="Solapur, Maharashtra, India" style=""></div>
+<!-- Simulated SVG Cartographic Vector Engine -->
+<svg class="absolute inset-0 w-full h-full transition-transform duration-500 ease-out" id="cartoCanvas" preserveaspectratio="xMidYMid slice" viewbox="0 0 1600 950">
+<defs>
+<!-- Thermal Heat Plume Gradients -->
+<radialgradient cx="50%" cy="50%" id="heatCoreBhavani" r="50%">
+<stop offset="0%" stop-color="#ba1a1a" stop-opacity="0.75"></stop>
+<stop offset="35%" stop-color="#ff9770" stop-opacity="0.55"></stop>
+<stop offset="70%" stop-color="#ffdbcf" stop-opacity="0.30"></stop>
+<stop offset="100%" stop-color="#ffdad6" stop-opacity="0"></stop>
+</radialgradient>
+<radialgradient cx="45%" cy="45%" id="heatCoreOldCity" r="55%">
+<stop offset="0%" stop-color="#7d2800" stop-opacity="0.8"></stop>
+<stop offset="40%" stop-color="#ba1a1a" stop-opacity="0.5"></stop>
+<stop offset="75%" stop-color="#ffb59b" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#f6faf7" stop-opacity="0"></stop>
+</radialgradient>
+<radialgradient cx="50%" cy="50%" id="heatCoreMIDC" r="50%">
+<stop offset="0%" stop-color="#ba1a1a" stop-opacity="0.85"></stop>
+<stop offset="30%" stop-color="#ff9770" stop-opacity="0.6"></stop>
+<stop offset="70%" stop-color="#f0f5f1" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#f6faf7" stop-opacity="0"></stop>
+</radialgradient>
+<!-- Water Cooling Gradient -->
+<radialgradient cx="50%" cy="50%" id="lakeCooling" r="50%">
+<stop offset="0%" stop-color="#9ff2e4" stop-opacity="0.85"></stop>
+<stop offset="50%" stop-color="#016a60" stop-opacity="0.45"></stop>
+<stop offset="100%" stop-color="#00362a" stop-opacity="0"></stop>
+</radialgradient>
+<pattern height="40" id="urbanGridPattern" patternunits="userSpaceOnUse" width="40">
+<path d="M 40 0 L 0 0 0 40" fill="none" stroke="#c0c8c4" stroke-opacity="0.4" stroke-width="0.5"></path>
+</pattern>
+</defs>
+<!-- Base GIS Coordinate Grid Mesh -->
+<rect fill="url(#urbanGridPattern)" height="100%" width="100%"></rect>
+<!-- Topographic / Zonal Contours (Solapur Municipality Outline) -->
+<path d="M 380,180 Q 580,120 840,160 T 1240,240 Q 1380,420 1310,640 T 1080,820 Q 820,890 540,780 T 320,560 Q 260,340 380,180 Z" fill="#eaefeb" fill-opacity="0.6" stroke="#c0c8c4" stroke-dasharray="4,4" stroke-width="1.5"></path>
+<!-- Major Highway Corridors -->
+<!-- NH 65 Pune-Solapur-Hyderabad -->
+<path d="M 120,410 C 450,430 750,470 1480,510" fill="none" opacity="0.9" stroke="#ffffff" stroke-linecap="round" stroke-width="8"></path>
+<path d="M 120,410 C 450,430 750,470 1480,510" fill="none" opacity="0.6" stroke="#707975" stroke-linecap="round" stroke-width="3"></path>
+<!-- NH 52 Bijapur-Solapur Bypass -->
+<path d="M 720,110 C 760,390 810,680 890,920" fill="none" opacity="0.9" stroke="#ffffff" stroke-linecap="round" stroke-width="7"></path>
+<path d="M 720,110 C 760,390 810,680 890,920" fill="none" opacity="0.6" stroke="#707975" stroke-linecap="round" stroke-width="2.5"></path>
+<!-- Siddheshwar Lake & Water Bodies -->
+<g id="waterBodyGroup">
+<path d="M 740,430 C 770,410 820,430 835,465 C 840,490 810,530 770,520 C 735,510 720,460 740,430 Z" fill="#84d5c8" stroke="#016a60" stroke-width="1.5"></path>
+<ellipse cx="780" cy="470" fill="url(#lakeCooling)" rx="130" ry="110"></ellipse>
+<text class="font-caption-caps text-[11px] fill-on-secondary-fixed tracking-wider font-semibold pointer-events-none" x="745" y="475">SIDDHESHWAR LAKE (27.4°C)</text>
+</g>
+<!-- Thermal Plumes / UHI Heat Pockets -->
+<g class="transition-opacity duration-300" id="thermalIslands">
+<!-- Bhavani Peth Dense Market Core (Extreme Heat 42.1°C) -->
+<circle cx="820" cy="510" fill="url(#heatCoreBhavani)" r="190"></circle>
+<!-- Old Solapur Historic Quarter -->
+<circle cx="710" cy="410" fill="url(#heatCoreOldCity)" r="160"></circle>
+<!-- Chhattrapati Sambhaji MIDC Industrial Belt -->
+<circle cx="1120" cy="580" fill="url(#heatCoreMIDC)" r="230"></circle>
+<!-- Hotspot: Bale / Kegaon Transport Hub -->
+<circle cx="480" cy="380" fill="url(#heatCoreBhavani)" opacity="0.75" r="140"></circle>
+</g>
+<!-- Heat Contour Isotherms -->
+<path d="M 640,320 C 760,310 930,360 980,480 C 1020,570 940,680 820,690 C 710,700 620,580 610,470 Z" fill="none" opacity="0.6" stroke="#ba1a1a" stroke-dasharray="2,3" stroke-width="1.5"></path>
+<path d="M 580,260 C 780,240 1020,310 1070,490 C 1110,630 990,750 790,750 C 630,750 520,600 510,440 Z" fill="none" opacity="0.4" stroke="#7d2800" stroke-width="1"></path>
+<!-- Sensor Station Markers (Interactive Nodes) -->
+<g id="stationNodes">
+<!-- Station 014 - Bhavani Peth (Selected by default) -->
+<g class="cursor-pointer group" onclick="selectStation(14)" transform="translate(820, 510)">
+<circle class="fill-error/20 animate-ping" r="22"></circle>
+<circle class="fill-surface-container-lowest stroke-error" r="12" stroke-width="3"></circle>
+<circle class="fill-error" r="5"></circle>
+<!-- Pill Label -->
+<rect class="fill-surface-container-lowest/95 shadow-sm stroke-outline-variant/40" height="28" rx="4" stroke-width="1" width="138" x="18" y="-14"></rect>
+<text class="font-label-code text-[11px] fill-on-surface font-semibold" x="26" y="4">#014 Bhavani Peth</text>
+<text class="font-label-code text-[11px] fill-error font-bold" x="122" y="4">41.8°</text>
+</g>
+<!-- Station 028 - Old Solapur -->
+<g class="cursor-pointer group" onclick="selectStation(28)" transform="translate(680, 430)">
+<circle class="fill-surface-container-lowest stroke-tertiary-container hover:scale-125 transition-transform" r="9" stroke-width="2.5"></circle>
+<circle class="fill-tertiary-container" r="4"></circle>
+<rect class="fill-surface-container-lowest/90 stroke-outline-variant/30" height="24" rx="4" stroke-width="1" width="124" x="14" y="-12"></rect>
+<text class="font-label-code text-[10px] fill-on-surface" x="20" y="4">#028 Old Solapur</text>
+<text class="font-label-code text-[10px] fill-tertiary font-bold" x="108" y="4">39.4°</text>
+</g>
+<!-- Station 073 - Kegaon Rural Boundary -->
+<g class="cursor-pointer group" onclick="selectStation(73)" transform="translate(430, 360)">
+<circle class="fill-surface-container-lowest stroke-secondary hover:scale-125 transition-transform" r="9" stroke-width="2.5"></circle>
+<circle class="fill-secondary" r="4"></circle>
+<rect class="fill-surface-container-lowest/90 stroke-outline-variant/30" height="24" rx="4" stroke-width="1" width="105" x="14" y="-12"></rect>
+<text class="font-label-code text-[10px] fill-on-surface" x="20" y="4">#073 Kegaon</text>
+<text class="font-label-code text-[10px] fill-secondary font-bold" x="90" y="4">33.2°</text>
+</g>
+<!-- Station 089 - Chhattrapati Sambhaji MIDC -->
+<g class="cursor-pointer group" onclick="selectStation(89)" transform="translate(1120, 560)">
+<circle class="fill-surface-container-lowest stroke-error hover:scale-125 transition-transform" r="9" stroke-width="2.5"></circle>
+<circle class="fill-error" r="4"></circle>
+<rect class="fill-surface-container-lowest/90 stroke-outline-variant/30" height="24" rx="4" stroke-width="1" width="118" x="14" y="-12"></rect>
+<text class="font-label-code text-[10px] fill-on-surface" x="20" y="4">#089 MIDC Ind.</text>
+<text class="font-label-code text-[10px] fill-error font-bold" x="102" y="4">42.6°</text>
+</g>
+<!-- Station 052 - Solapur University Campus (Cool Island) -->
+<g class="cursor-pointer group" onclick="selectStation(52)" transform="translate(360, 520)">
+<circle class="fill-surface-container-lowest stroke-primary hover:scale-125 transition-transform" r="9" stroke-width="2.5"></circle>
+<circle class="fill-primary" r="4"></circle>
+<rect class="fill-surface-container-lowest/90 stroke-outline-variant/30" height="24" rx="4" stroke-width="1" width="132" x="14" y="-12"></rect>
+<text class="font-label-code text-[10px] fill-on-surface" x="20" y="4">#052 PAH Solapur Uni</text>
+<text class="font-label-code text-[10px] fill-primary font-bold" x="118" y="4">31.7°</text>
+</g>
+</g>
+</svg>
+<!-- Cartographic Floating Map Tools (Zoom/Compass) -->
+<div class="absolute bottom-space-lg right-space-md xl:right-[410px] z-20 flex flex-col gap-1.5 shadow-md rounded-lg overflow-hidden bg-surface-container-lowest">
+<button class="p-2.5 hover:bg-surface-container transition-colors text-on-surface flex items-center justify-center" onclick="zoomMap(1.15)">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+<div class="h-[1px] w-full bg-outline-variant/30"></div>
+<button class="p-2.5 hover:bg-surface-container transition-colors text-on-surface flex items-center justify-center" onclick="zoomMap(0.85)">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<div class="h-[1px] w-full bg-outline-variant/30"></div>
+<button class="p-2.5 hover:bg-surface-container transition-colors text-on-surface flex items-center justify-center" onclick="resetMapView()" title="Re-center Solapur">
+<span class="material-symbols-outlined text-[18px]">near_me</span>
+</button>
+</div>
+<!-- Bottom-Left: Sequential Thermal Scale / Scientific Color Ramp Legend -->
+<div class="absolute bottom-space-md left-space-md z-20 max-w-sm w-full bg-surface-container-lowest/95 backdrop-blur-md p-space-md rounded-xl shadow-md border-0">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant font-semibold">Microclimate Thermal Scale (2m Air Temp)</span>
+<span class="font-label-code text-label-code text-primary font-bold">Unit: °C</span>
+</div>
+<!-- Multi-stop Continuous Color Bar -->
+<div class="w-full h-3 rounded-DEFAULT overflow-hidden relative" style="background: linear-gradient(to right, #016a60 0%, #366759 20%, #9dd1c0 38%, #ffb59b 55%, #ff9770 70%, #ba1a1a 85%, #581900 100%);">
+<div class="absolute top-0 bottom-0 w-1 bg-surface-container-lowest shadow-sm" id="legendThumb" style="left: 78%;"></div>
+</div>
+<!-- Scale Numerical Markings -->
+<div class="flex justify-between items-center mt-1.5 font-label-code text-label-code text-on-surface-variant">
+<span>&lt;28°</span>
+<span>30°</span>
+<span>34°</span>
+<span>38°</span>
+<span>41°</span>
+<span class="text-error font-semibold">44°C+</span>
+</div>
+<div class="grid grid-cols-3 gap-space-xs pt-space-xs mt-space-xs text-[10px] text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Canopy Cool &lt;30°</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
+<span>UHI Stress 34-38°</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span>Severe Peak &gt;41°</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right-Hand Station Telemetry Inspector (380px Desktop Slide-in) -->
+<aside class="absolute top-0 right-0 bottom-0 w-full sm:w-[380px] bg-surface-container-lowest/95 backdrop-blur-md z-30 shadow-xl flex flex-col transition-transform duration-300 transform translate-x-0 overflow-y-auto" id="telemetryPanel">
+<!-- Panel Header -->
+<div class="p-space-md bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-error animate-pulse"></span>
+<span class="font-label-code text-label-code uppercase tracking-wider text-error font-semibold" id="panelStationCode">STATION #014</span>
+<span class="px-1.5 py-0.5 rounded-DEFAULT bg-surface-container text-on-surface-variant font-caption-caps text-caption-caps uppercase">Sim Node</span>
+</div>
+<button class="p-1 rounded-DEFAULT hover:bg-surface-variant text-on-surface-variant hover:text-on-surface transition-colors" onclick="toggleTelemetryPanel()" title="Close Panel">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Core Station Telemetry -->
+<div class="p-space-md flex flex-col gap-space-md flex-1">
+<!-- Identity & Geographic Classification -->
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-0.5" id="stationTitle">Bhavani Peth</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="stationSubtype">Dense Commercial Wholesale Corridor • Core Urban Heat Island</p>
+<div class="mt-space-xs flex items-center gap-space-sm font-label-code text-label-code text-on-surface-variant">
+<span id="stationCoords">17.6715° N, 75.9104° E</span>
+<span>•</span>
+<span id="stationElev">Elev: 458m</span>
+</div>
+</div>
+<!-- Big Metric Callout -->
+<div class="p-space-md rounded-xl bg-error-container/30 flex items-center justify-between">
+<div>
+<span class="font-caption-caps text-caption-caps uppercase tracking-wider text-on-surface-variant block mb-1">Modeled 2m Air Temperature</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl font-bold text-on-surface" id="stationTemp">41.8</span>
+<span class="font-headline-md text-headline-md text-on-surface">°C</span>
+</div>
+<div class="inline-flex items-center gap-1 mt-1 font-label-code text-label-code text-error font-medium">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+<span id="stationAnomaly">+3.9°C anomaly vs. rural baseline</span>
+</div>
+</div>
+<div class="w-14 h-14 rounded-full bg-surface-container-lowest flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-error text-[28px]">local_fire_department</span>
+</div>
+</div>
+<!-- Microclimate Spatial Surface Indicators -->
+<div class="space-y-space-xs">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant tracking-wider font-semibold">Morphological Surface Drivers</span>
+<div class="grid grid-cols-3 gap-space-xs">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-caption-caps text-caption-caps text-on-surface-variant">Canopy</span>
+<span class="font-label-metric text-label-metric text-on-surface font-semibold mt-1" id="stationCanopy">6.2%</span>
+<span class="font-caption-caps text-[9px] text-error font-medium">Deficit</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-caption-caps text-caption-caps text-on-surface-variant">Impervious</span>
+<span class="font-label-metric text-label-metric text-on-surface font-semibold mt-1" id="stationImpervious">88.4%</span>
+<span class="font-caption-caps text-[9px] text-error font-medium">Critical</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-caption-caps text-caption-caps text-on-surface-variant">Albedo</span>
+<span class="font-label-metric text-label-metric text-on-surface font-semibold mt-1" id="stationAlbedo">0.12</span>
+<span class="font-caption-caps text-[9px] text-on-surface-variant">Asphalt</span>
+</div>
+</div>
+</div>
+<!-- 24-Hour Diurnal Sparkline Visualization -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant font-semibold">24h Diurnal Heat Profile (IST)</span>
+<span class="font-label-code text-label-code text-primary">Peak: 14:00 (42.1°)</span>
+</div>
+<!-- Inline SVG Diurnal Sparkline -->
+<div class="w-full h-24 pt-2">
+<svg class="w-full h-full overflow-visible" viewbox="0 0 320 80">
+<defs>
+<lineargradient id="sparkGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#ba1a1a" stop-opacity="0.35"></stop>
+<stop offset="100%" stop-color="#ba1a1a" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<!-- Threshold guideline 35°C -->
+<line stroke="#c0c8c4" stroke-dasharray="3,3" stroke-width="1" x1="0" x2="320" y1="45" y2="45"></line>
+<text class="font-caption-caps text-[9px] fill-outline" x="5" y="42">35°C HEAT THRESHOLD</text>
+<!-- Filled curve -->
+<path d="M 0,65 Q 40,68 80,60 T 160,35 Q 200,10 220,15 T 280,45 L 320,58 L 320,80 L 0,80 Z" fill="url(#sparkGradient)" id="sparklineFill"></path>
+<!-- Stroke curve -->
+<path d="M 0,65 Q 40,68 80,60 T 160,35 Q 200,10 220,15 T 280,45 L 320,58" fill="none" id="sparklineStroke" stroke="#ba1a1a" stroke-linecap="round" stroke-width="2.5"></path>
+<!-- Peak indicator point -->
+<circle cx="210" cy="12" fill="#ba1a1a" r="4" stroke="#ffffff" stroke-width="2"></circle>
+</svg>
+</div>
+<div class="flex justify-between items-center font-label-code text-[10px] text-on-surface-variant pt-1">
+<span>00:00 (28.4°)</span>
+<span>06:00 (26.9°)</span>
+<span>12:00 (39.5°)</span>
+<span class="text-error font-semibold">15:00 (41.8°)</span>
+<span>21:00 (34.2°)</span>
+</div>
+</div>
+<!-- Intervention Recommendations Based on Model -->
+<div class="space-y-space-xs">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant tracking-wider font-semibold">Engine Recommended Intervention</span>
+<div class="p-space-sm rounded-lg bg-surface-container flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">park</span>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface font-semibold">Pocket Micro-Forestry &amp; Cool Roofs</p>
+<p class="font-body-sm text-[11px] text-on-surface-variant leading-relaxed">Increasing albedo from 0.12 to 0.40 on warehouse corrugated iron sheets models an estimated 1.8°C reduction in local air temp.</p>
+</div>
+</div>
+</div>
+<!-- Provenance Footer -->
+<div class="mt-auto pt-space-sm border-t-0 bg-surface-container-low p-space-sm rounded-lg text-on-surface-variant">
+<div class="flex items-center justify-between font-label-code text-[10px]">
+<span>WRF DOMAIN: D03_SOLAPUR</span>
+<span>SEED: wrf-v2.4-2024</span>
+</div>
+<p class="font-caption-caps text-[9px] text-outline mt-1 leading-normal">Simulated synthetic telemetry generated for urban planning research. Peer-review release TF-141 / MIT Vishwaprayag University.</p>
+</div>
+</div>
+</aside>
+</div>
+<!-- Bottom Informational Analytical Strip (Non-intrusive) -->
+<div class="w-full bg-surface-container-low p-space-md flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant font-bold tracking-wider">Cartographic Sources:</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Solapur Municipal Boundary (SMC GIS 2023) • NASA Landsat-8/9 OLI/TIRS Synthetic Calibrations • Solapur 100-Grid Academic WRF Simulation (2021–2025)</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<a class="font-label-code text-label-code text-primary hover:underline flex items-center gap-1" data-path="explore-data" href="#">
+<span>Open Raw CSV Datasets</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Vanilla Interactive Orchestrator -->
+<script>
+  // Dynamic Station Mock Database
+  const STATIONS = {
+    14: {
+      code: "STATION #014",
+      title: "Bhavani Peth",
+      subtype: "Dense Commercial Wholesale Corridor • Core Urban Heat Island",
+      coords: "17.6715° N, 75.9104° E",
+      elev: "Elev: 458m",
+      temp: "41.8",
+      anomaly: "+3.9°C anomaly vs. rural baseline",
+      canopy: "6.2%",
+      impervious: "88.4%",
+      albedo: "0.12",
+      thumbPos: "78%"
+    },
+    28: {
+      code: "STATION #028",
+      title: "Old Solapur City",
+      subtype: "High-density Residential Heritage Precinct • Narrow Street Canyons",
+      coords: "17.6620° N, 75.9010° E",
+      elev: "Elev: 462m",
+      temp: "39.4",
+      anomaly: "+2.7°C anomaly vs. rural baseline",
+      canopy: "9.4%",
+      impervious: "81.2%",
+      albedo: "0.15",
+      thumbPos: "62%"
+    },
+    73: {
+      code: "STATION #073",
+      title: "Kegaon Boundary",
+      subtype: "Peri-urban Agro-corridor & Transitional Open Plain",
+      coords: "17.7012° N, 75.8611° E",
+      elev: "Elev: 471m",
+      temp: "33.2",
+      anomaly: "-0.8°C anomaly vs. urban core",
+      canopy: "24.8%",
+      impervious: "29.1%",
+      albedo: "0.24",
+      thumbPos: "32%"
+    },
+    89: {
+      code: "STATION #089",
+      title: "Chhattrapati Sambhaji MIDC",
+      subtype: "Heavy Fabrications & Metal Warehousing Industrial Belt",
+      coords: "17.6840° N, 75.9490° E",
+      elev: "Elev: 452m",
+      temp: "42.6",
+      anomaly: "+4.4°C anomaly vs. rural baseline",
+      canopy: "4.1%",
+      impervious: "92.0%",
+      albedo: "0.09",
+      thumbPos: "86%"
+    },
+    52: {
+      code: "STATION #052",
+      title: "PAH Solapur University Campus",
+      subtype: "Institutional Vegetative Oasis & Green Buffer",
+      coords: "17.6432° N, 75.8340° E",
+      elev: "Elev: 466m",
+      temp: "31.7",
+      anomaly: "-2.3°C mitigated cool-island anomaly",
+      canopy: "38.6%",
+      impervious: "22.5%",
+      albedo: "0.26",
+      thumbPos: "22%"
+    }
+  };
+
+  let currentZoom = 1;
+
+  function selectStation(id) {
+    const data = STATIONS[id];
+    if (!data) return;
+
+    document.getElementById('panelStationCode').innerText = data.code;
+    document.getElementById('stationTitle').innerText = data.title;
+    document.getElementById('stationSubtype').innerText = data.subtype;
+    document.getElementById('stationCoords').innerText = data.coords;
+    document.getElementById('stationElev').innerText = data.elev;
+    document.getElementById('stationTemp').innerText = data.temp;
+    document.getElementById('stationAnomaly').innerText = data.anomaly;
+    document.getElementById('stationCanopy').innerText = data.canopy;
+    document.getElementById('stationImpervious').innerText = data.impervious;
+    document.getElementById('stationAlbedo').innerText = data.albedo;
+    document.getElementById('legendThumb').style.left = data.thumbPos;
+
+    // Ensure panel is opened on mobile/tablet
+    const panel = document.getElementById('telemetryPanel');
+    panel.classList.remove('translate-x-full');
+    panel.classList.add('translate-x-0');
+  }
+
+  function toggleTelemetryPanel() {
+    const panel = document.getElementById('telemetryPanel');
+    if (panel.classList.contains('translate-x-0')) {
+      panel.classList.remove('translate-x-0');
+      panel.classList.add('translate-x-full');
+    } else {
+      panel.classList.remove('translate-x-full');
+      panel.classList.add('translate-x-0');
+    }
+  }
+
+  function zoomMap(factor) {
+    currentZoom = Math.min(Math.max(0.7, currentZoom * factor), 2.2);
+    const canvas = document.getElementById('cartoCanvas');
+    canvas.style.transform = `scale(${currentZoom})`;
+  }
+
+  function resetMapView() {
+    currentZoom = 1;
+    const canvas = document.getElementById('cartoCanvas');
+    canvas.style.transform = 'scale(1)';
+    document.getElementById('cursorCoords').innerText = '17.6715° N, 75.9104° E';
+  }
+
+  function updateTimeStep(hour) {
+    const padded = hour.toString().padStart(2, '0');
+    document.getElementById('timeLabel').innerText = `${padded}:00 IST ${hour >= 11 && hour <= 16 ? '(Diurnal Peak)' : '(Night Dissipation)'}`;
+    
+    // Modulate thermal plume opacity based on time of day
+    const thermalPlumes = document.getElementById('thermalIslands');
+    if (hour >= 11 && hour <= 16) {
+      thermalPlumes.style.opacity = '1.0';
+    } else if (hour >= 18 || hour <= 6) {
+      thermalPlumes.style.opacity = '0.35';
+    } else {
+      thermalPlumes.style.opacity = '0.65';
+    }
+  }
+
+  function setLayer(layerKey, btn) {
+    document.querySelectorAll('.layer-pill').forEach(el => {
+      el.classList.remove('bg-primary', 'text-on-primary');
+      el.classList.add('text-on-surface-variant');
+    });
+    btn.classList.add('bg-primary', 'text-on-primary');
+    btn.classList.remove('text-on-surface-variant');
+
+    const water = document.getElementById('waterBodyGroup');
+    const thermal = document.getElementById('thermalIslands');
+    if (layerKey === 'ndvi') {
+      water.style.opacity = '1';
+      thermal.style.opacity = '0.15';
+    } else if (layerKey === 'lst') {
+      thermal.style.opacity = '1';
+    } else {
+      thermal.style.opacity = '0.7';
+    }
+  }
+
+  function switchDomain(domain) {
+    const solBtn = document.getElementById('viewSolapurBtn');
+    const indBtn = document.getElementById('viewIndiaBtn');
+    if (domain === 'solapur') {
+      solBtn.className = "px-space-sm py-1.5 rounded-DEFAULT text-on-primary bg-primary-container font-label-code text-label-code transition-all shadow-sm flex items-center gap-1.5";
+      indBtn.className = "px-space-sm py-1.5 rounded-DEFAULT text-on-surface-variant hover:text-on-surface font-label-code text-label-code transition-all flex items-center gap-1.5";
+      resetMapView();
+    } else {
+      indBtn.className = "px-space-sm py-1.5 rounded-DEFAULT text-on-primary bg-primary-container font-label-code text-label-code transition-all shadow-sm flex items-center gap-1.5";
+      solBtn.className = "px-space-sm py-1.5 rounded-DEFAULT text-on-surface-variant hover:text-on-surface font-label-code text-label-code transition-all flex items-center gap-1.5";
+      zoomMap(0.7);
+    }
+  }
+
+  function updateCoordinateHUD(event) {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    
+    // Approximate pseudo-latitude/longitude translation for Solapur bounding box
+    const lat = (17.75 - (y / rect.height) * 0.18).toFixed(4);
+    const lng = (75.82 + (x / rect.width) * 0.18).toFixed(4);
+    
+    document.getElementById('cursorCoords').innerText = `${lat}° N, ${lng}° E`;
+  }
+</script></main><footer class="w-full bg-surface-container-low border-t border-outline-variant/40 pt-space-xl pb-space-lg"><div class="max-w-[1400px] mx-auto px-margin"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-space-xl"><div class="space-y-space-sm"><div class="flex items-center gap-space-sm"><img alt="HeatShield Emblem" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XWJ4qbCUSYLnD1Z6TmO_vemqF6U3qe-WRrr0ikQiuFHOKmX_aSoq5H39etJL4IXE4GSgYb2I0-1s3Oya1-QUTmyQV7tV05SnfXfUMy8POdHV4NMQ4lSIGi3Yd5xfrrk0EEDr49ewjs6mYQz6eeDygLU_6VDPY04zP-4Ppp5uHg49wiTSV2Hy2F-ebhrNshCPJagYUK8z4dJsju-YeprrCv3JWQCclB-xFRyi0IHQVFNTqhcGaP5TcfmgM"/><span class="font-headline-md text-headline-md text-primary">HeatShield</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">Urban microclimate heat risk analysis, spatial thermal sensing models, and cooling intervention planning engine for climate resilience.</p><p class="font-caption-caps text-caption-caps text-outline uppercase">MIT Vishwaprayag University • Solapur, Maharashtra</p></div><div class="space-y-space-sm"><span class="font-caption-caps text-caption-caps uppercase text-on-surface tracking-wider block">Platform Navigation</span><ul class="space-y-space-xs font-body-sm text-body-sm"><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="overview" href="#">Overview</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="dashboard" href="#">Analytics Dashboard</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="heat-map" href="#">India Heat Map</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="explore-data" href="#">Data Explorer</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="methodology" href="#">Methodology</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="submit-reading" href="#">Submit Reading</a></li></ul></div><div class="space-y-space-sm"><span class="font-caption-caps text-caption-caps uppercase text-on-surface tracking-wider block">Research &amp; Provenance</span><ul class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant"><li>Solapur Synthetic Dataset (150k pts)</li><li>100 Sim Sensory Grid Nodes</li><li>Microclimate Thermal Indices</li><li>Urban Tree Canopy Mitigation Models</li><li>Vector GIS Boundary Layers</li></ul></div><div class="space-y-space-sm"><span class="font-caption-caps text-caption-caps uppercase text-on-surface tracking-wider block">Project &amp; Repository</span><div class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant"><p>Academic Research Initiative TF-141</p><a class="inline-flex items-center gap-space-xs text-primary font-label-code text-label-code hover:underline" href="https://github.com/exobhavinss-sketch/TF-141-Heatshield" rel="noopener noreferrer" target="_blank"><span>GitHub / TF-141-Heatshield</span><span class="material-symbols-outlined text-[14px]">open_in_new</span></a><p>Permissive Open Science License</p><p class="font-body-sm text-body-sm text-outline">Peer-review draft v2.4</p></div></div></div><div class="pt-space-md border-t border-outline-variant/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md"><p class="font-body-sm text-body-sm text-on-surface-variant max-w-4xl">Notice: Solapur microclimate dataset consists of synthetic academic simulation models (2021–2025) for research and urban planning methodologies, not live sensor networks.</p><span class="font-caption-caps text-caption-caps text-outline uppercase whitespace-nowrap">© 2021–2025 MIT Vishwaprayag University</span></div></div></footer></body></html>

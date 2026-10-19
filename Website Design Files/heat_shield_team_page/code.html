@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;family=Manrope:wght@600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-fixed": "#ffdbcf", "primary-fixed": "#b9eedb", "tertiary": "#581900", "surface-dim": "#d6dbd7", "surface-container": "#eaefeb", "inverse-surface": "#2c312f", "on-secondary-fixed": "#00201c", "on-primary": "#ffffff", "on-error": "#ffffff", "outline-variant": "#c0c8c4", "primary-container": "#194d40", "on-secondary": "#ffffff", "on-surface": "#181d1b", "on-tertiary-container": "#ff9770", "on-primary-fixed-variant": "#1b4f42", "error-container": "#ffdad6", "on-error-container": "#93000a", "surface": "#f6faf7", "on-secondary-fixed-variant": "#005048", "tertiary-container": "#7d2800", "surface-variant": "#dfe4e0", "error": "#ba1a1a", "on-background": "#181d1b", "on-primary-container": "#89bdac", "inverse-primary": "#9dd1c0", "inverse-on-surface": "#edf2ee", "secondary-fixed-dim": "#84d5c8", "secondary": "#016a60", "surface-container-lowest": "#ffffff", "on-secondary-container": "#117166", "secondary-container": "#9ff2e4", "surface-container-highest": "#dfe4e0", "primary": "#00362a", "surface-bright": "#f6faf7", "on-tertiary": "#ffffff", "on-tertiary-fixed": "#380d00", "tertiary-fixed-dim": "#ffb59b", "background": "#f6faf7", "outline": "#707975", "on-primary-fixed": "#002019", "primary-fixed-dim": "#9dd1c0", "surface-tint": "#366759", "surface-container-low": "#f0f5f1", "on-surface-variant": "#404945", "on-tertiary-fixed-variant": "#812900", "secondary-fixed": "#9ff2e4", "surface-container-high": "#e5e9e5" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "gutter-mobile": "0.75rem", "space-sm": "0.5rem", "margin-mobile": "1rem", "space-xs": "0.25rem", "gutter": "1.25rem", "space-lg": "1.5rem", "space-xl": "2.5rem", "space-md": "1rem", "margin": "2rem" }, "fontFamily": { "headline-lg": [ "Manrope" ], "label-code": [ "JetBrains Mono" ], "caption-caps": [ "Inter" ], "headline-xl-mobile": [ "Manrope" ], "headline-md": [ "Manrope" ], "body-sm": [ "Inter" ], "body-md": [ "Inter" ], "headline-lg-mobile": [ "Manrope" ], "body-lg": [ "Inter" ], "headline-xl": [ "Manrope" ], "label-metric": [ "JetBrains Mono" ] }, "fontSize": { "headline-lg": [ "26px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" } ], "label-code": [ "11px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" } ], "caption-caps": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "600" } ], "headline-xl-mobile": [ "28px", { "lineHeight": "34px", "letterSpacing": "-0.025em", "fontWeight": "600" } ], "headline-md": [ "18px", { "lineHeight": "24px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "18px", "fontWeight": "400" } ], "body-md": [ "13px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-lg-mobile": [ "22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "body-lg": [ "15px", { "lineHeight": "24px", "fontWeight": "400" } ], "headline-xl": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "600" } ], "label-metric": [ "13px", { "lineHeight": "18px", "letterSpacing": "-0.01em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/40"><div class="h-[76px] max-w-[1400px] mx-auto px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-md"><img alt="HeatShield Emblem" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XWJ4qbCUSYLnD1Z6TmO_vemqF6U3qe-WRrr0ikQiuFHOKmX_aSoq5H39etJL4IXE4GSgYb2I0-1s3Oya1-QUTmyQV7tV05SnfXfUMy8POdHV4NMQ4lSIGi3Yd5xfrrk0EEDr49ewjs6mYQz6eeDygLU_6VDPY04zP-4Ppp5uHg49wiTSV2Hy2F-ebhrNshCPJagYUK8z4dJsju-YeprrCv3JWQCclB-xFRyi0IHQVFNTqhcGaP5TcfmgM"/><div class="flex flex-col"><span class="font-headline-md text-headline-md text-primary tracking-tight">HeatShield</span><span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">TF-141 / MIT Vishwaprayag University</span></div></div><nav class="hidden lg:flex items-center gap-space-lg h-full" data-active-classes="text-primary border-b-2 border-primary-container font-medium"><a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" data-path="overview" href="#">Overview</a><a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" data-path="dashboard" href="#">Dashboard</a><a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" data-path="heat-map" href="#">Heat Map</a><a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" data-path="explore-data" href="#">Explore Data</a><a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" data-path="methodology" href="#">Methodology</a><a aria-current="page" class="h-full flex items-center transition-colors text-primary border-b-2 border-primary-container font-medium" data-path="team-project" href="#">Team &amp; Project</a></nav><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 rounded-DEFAULT bg-surface-container border border-outline-variant/50 text-on-surface"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span><span class="font-label-code text-label-code text-on-surface uppercase">ACADEMIC SIMULATION • 2021-2025</span></div><a class="inline-flex items-center justify-center px-space-md h-9 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md hover:bg-primary transition-colors" data-path="submit-reading" href="#">Submit Reading</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-[76px] min-h-screen bg-background"><div class="flex flex-col w-full">
+<!-- SECTION B: HERO -->
+<section class="w-full bg-surface py-space-xl">
+<div class="max-w-[1400px] mx-auto px-margin">
+<!-- Top Eyebrow & Coordinate Metadata Pill Bar -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-DEFAULT bg-primary-container text-on-primary font-label-code text-label-code uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed"></span>
+            TF-141 | INTEGRATED SEMESTER PROJECT
+          </span>
+<span class="hidden sm:inline-flex items-center px-space-sm py-1 rounded-DEFAULT bg-surface-container font-label-code text-label-code text-on-surface-variant">
+            ACADEMIC YEAR 2024–2025
+          </span>
+</div>
+<div class="flex items-center gap-space-xs px-space-sm py-1 rounded-DEFAULT bg-surface-container-high font-label-code text-label-code text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[14px]">grid_4x4</span>
+<span>17.6599° N, 75.9064° E</span>
+<span class="text-outline">·</span>
+<span class="text-on-surface-variant">EPSG:4326 (WGS 84)</span>
+</div>
+</div>
+<!-- Main Headline & Subtitle -->
+<div class="max-w-4xl space-y-space-md mb-space-lg">
+<h1 class="font-headline-xl text-headline-xl text-primary tracking-tight">
+          Meet the Team Behind HeatShield
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          An interdisciplinary academic project combining full-stack development, database management, and data analytics to explore urban heat exposure and support informed cooling strategies for Solapur, Maharashtra.
+        </p>
+</div>
+<!-- Metadata Pill Strip -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter pt-space-md bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="flex flex-col">
+<span class="font-caption-caps text-caption-caps uppercase text-outline mb-1">Project Identifier</span>
+<span class="font-headline-md text-headline-md text-primary">HeatShield</span>
+<span class="font-label-code text-label-code text-on-surface-variant">v2.4 Synthetic Model</span>
+</div>
+<div class="flex flex-col">
+<span class="font-caption-caps text-caption-caps uppercase text-outline mb-1">Task Force Allocation</span>
+<span class="font-headline-md text-headline-md text-primary">TF-141</span>
+<span class="font-label-code text-label-code text-on-surface-variant">3 Investigators</span>
+</div>
+<div class="flex flex-col">
+<span class="font-caption-caps text-caption-caps uppercase text-outline mb-1">Target Study Domain</span>
+<span class="font-headline-md text-headline-md text-primary">Solapur, MH</span>
+<span class="font-label-code text-label-code text-on-surface-variant">Semi-Arid Urban Canopy</span>
+</div>
+<div class="flex flex-col">
+<span class="font-caption-caps text-caption-caps uppercase text-outline mb-1">Disciplines Synthesized</span>
+<span class="font-headline-md text-headline-md text-primary">FSD · DBMS · EDA</span>
+<span class="font-label-code text-label-code text-secondary">Cross-Disciplinary Integration</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION C: TEAM INFORMATION -->
+<section class="w-full bg-surface-container-low py-space-xl">
+<div class="max-w-[1400px] mx-auto px-margin">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm">
+<div>
+<span class="font-caption-caps text-caption-caps uppercase text-secondary font-semibold tracking-wider block mb-space-xs">Contributors &amp; Engineering Roles</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">The People Behind the Project</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+          Three contributors. Three complementary responsibilities. One integrated platform for computational thermal resilience.
+        </p>
+</div>
+<!-- 3 Members Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Member 1: Furqan Bagwan -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg flex flex-col justify-between shadow-sm transition-transform duration-200 hover:-translate-y-1">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="w-14 h-14 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-headline-md text-headline-md shadow-sm">
+                FB
+              </div>
+<span class="px-space-sm py-1 rounded-DEFAULT bg-primary-fixed text-on-primary-fixed font-label-code text-label-code font-semibold uppercase">
+                SCFU425004
+              </span>
+</div>
+<div class="mb-space-sm">
+<span class="font-caption-caps text-caption-caps uppercase text-secondary tracking-widest block mb-0.5">Frontend Development</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Furqan Bagwan</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-space-md">
+              Responsible for building the user interface, page layouts, reusable components, and navigation that make HeatShield's analytical capabilities accessible.
+            </p>
+</div>
+<div class="pt-space-md mt-space-sm bg-surface-container-low -mx-space-lg -mb-space-lg p-space-md rounded-b-xl flex flex-col gap-1.5">
+<span class="font-caption-caps text-caption-caps uppercase text-outline">Core Competencies</span>
+<span class="font-label-code text-label-code text-primary font-medium">UI Architecture · Reusable Components · Responsive Views</span>
+</div>
+</div>
+<!-- Member 2: Aman Shaikh -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg flex flex-col justify-between shadow-sm transition-transform duration-200 hover:-translate-y-1">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="w-14 h-14 rounded-full bg-tertiary-container text-on-tertiary flex items-center justify-center font-headline-md text-headline-md shadow-sm">
+                AS
+              </div>
+<span class="px-space-sm py-1 rounded-DEFAULT bg-tertiary-fixed text-on-tertiary-fixed font-label-code text-label-code font-semibold uppercase">
+                SCFU425013
+              </span>
+</div>
+<div class="mb-space-sm">
+<span class="font-caption-caps text-caption-caps uppercase text-tertiary-container tracking-widest block mb-0.5">EDA &amp; Data Visualization</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Aman Shaikh</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-space-md">
+              Responsible for exploring the dataset, conducting analytical investigations, developing visualizations, and communicating patterns found in the simulated data.
+            </p>
+</div>
+<div class="pt-space-md mt-space-sm bg-surface-container-low -mx-space-lg -mb-space-lg p-space-md rounded-b-xl flex flex-col gap-1.5">
+<span class="font-caption-caps text-caption-caps uppercase text-outline">Core Competencies</span>
+<span class="font-label-code text-label-code text-tertiary font-medium">Statistical EDA · Thermal Correlation · Interactive Charts</span>
+</div>
+</div>
+<!-- Member 3: Bhavin Shankur -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg flex flex-col justify-between shadow-sm transition-transform duration-200 hover:-translate-y-1">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="w-14 h-14 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-headline-md text-headline-md shadow-sm">
+                BS
+              </div>
+<span class="px-space-sm py-1 rounded-DEFAULT bg-secondary-fixed text-on-secondary-fixed font-label-code text-label-code font-semibold uppercase">
+                SCFU425014
+              </span>
+</div>
+<div class="mb-space-sm">
+<span class="font-caption-caps text-caption-caps uppercase text-secondary tracking-widest block mb-0.5">Backend &amp; Database</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Bhavin Shankur</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-space-md">
+              Responsible for backend functionality, database architecture, data management, API integration, and the underlying application logic.
+            </p>
+</div>
+<div class="pt-space-md mt-space-sm bg-surface-container-low -mx-space-lg -mb-space-lg p-space-md rounded-b-xl flex flex-col gap-1.5">
+<span class="font-caption-caps text-caption-caps uppercase text-outline">Core Competencies</span>
+<span class="font-label-code text-label-code text-secondary font-medium">Relational Schema · REST APIs · Simulation Pipeline</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION D: WORK DISTRIBUTION -->
+<section class="w-full bg-surface py-space-xl">
+<div class="max-w-[1400px] mx-auto px-margin">
+<div class="mb-space-lg">
+<span class="font-caption-caps text-caption-caps uppercase text-secondary font-semibold tracking-wider block mb-space-xs">Modular Task Architecture</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-space-xs">How We Divide the Work</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Each workstream contributes to a single integrated computational platform.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Workstream 01 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<span class="font-label-code text-label-code font-semibold px-2 py-0.5 rounded-DEFAULT bg-surface-container text-primary">01 / FRONTEND</span>
+<span class="font-caption-caps text-caption-caps uppercase text-outline">Owner: Furqan Bagwan</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-space-xs">Frontend Development (FSD-1)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+              Engineering an accessible, research-grade analytical dashboard interface conforming to strict academic readability standards.
+            </p>
+<div class="space-y-space-xs mb-space-md">
+<span class="font-caption-caps text-caption-caps uppercase text-outline block mb-1">Key Responsibilities</span>
+<ul class="space-y-1.5 font-body-sm text-body-sm text-on-surface">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>User interface engineering &amp; responsive page layouts</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>Reusable React components &amp; spatial UI architecture</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>Navigation paradigms and telemetry viewports</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>Presentation of complex urban heat indices and findings</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>Direct integration with backend query services &amp; endpoints</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="p-space-md bg-surface-container rounded-lg mt-space-md">
+<span class="font-caption-caps text-caption-caps uppercase text-outline block mb-1">Formal Deliverable</span>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">A cohesive, responsive web interface for the complete HeatShield spatial analytics platform.</p>
+</div>
+</div>
+<!-- Workstream 02 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<span class="font-label-code text-label-code font-semibold px-2 py-0.5 rounded-DEFAULT bg-tertiary-fixed text-on-tertiary-fixed-variant">02 / EDA &amp; DV</span>
+<span class="font-caption-caps text-caption-caps uppercase text-outline">Owner: Aman Shaikh</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-tertiary mb-space-xs">Exploratory Data Analysis &amp; Visualization</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+              Translating high-dimensional simulated temperature data into structured thermal correlations and actionable visual matrices.
+            </p>
+<div class="space-y-space-xs mb-space-md">
+<span class="font-caption-caps text-caption-caps uppercase text-outline block mb-1">Key Responsibilities</span>
+<ul class="space-y-1.5 font-body-sm text-body-sm text-on-surface">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-tertiary-container mt-0.5">check_circle</span>
+<span>Dataset inspection, null value handling &amp; data cleaning</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-tertiary-container mt-0.5">check_circle</span>
+<span>Exploratory analysis and descriptive spatial statistics</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-tertiary-container mt-0.5">check_circle</span>
+<span>Identification of thermal anomalies &amp; canopy correlations</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-tertiary-container mt-0.5">check_circle</span>
+<span>Chart generation, microclimate heat index plots &amp; histograms</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-tertiary-container mt-0.5">check_circle</span>
+<span>Interpretation and narrative synthesis of scientific findings</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="p-space-md bg-surface-container rounded-lg mt-space-md">
+<span class="font-caption-caps text-caption-caps uppercase text-outline block mb-1">Formal Deliverable</span>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">An organized analytical workflow and meaningful visualizations of the simulated urban heat dataset.</p>
+</div>
+</div>
+<!-- Workstream 03 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<span class="font-label-code text-label-code font-semibold px-2 py-0.5 rounded-DEFAULT bg-secondary-fixed text-on-secondary-fixed-variant">03 / DBMS &amp; BACKEND</span>
+<span class="font-caption-caps text-caption-caps uppercase text-outline">Owner: Bhavin Shankur</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-secondary mb-space-xs">Database Management &amp; Backend</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+              Structuring 150,000 synthetic microclimate spatial records into a performant relational repository with resilient API pipelines.
+            </p>
+<div class="space-y-space-xs mb-space-md">
+<span class="font-caption-caps text-caption-caps uppercase text-outline block mb-1">Key Responsibilities</span>
+<ul class="space-y-1.5 font-body-sm text-body-sm text-on-surface">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>Relational database design, normalization &amp; schema indices</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>Data integrity constraints, coordinates &amp; spatial partitioning</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>Backend query optimization, filtering &amp; REST routing</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>High-throughput JSON retrieval for front-facing ledger views</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">check_circle</span>
+<span>Simulation pipeline synchronization across project modules</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="p-space-md bg-surface-container rounded-lg mt-space-md">
+<span class="font-caption-caps text-caption-caps uppercase text-outline block mb-1">Formal Deliverable</span>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">A structured data layer and backend services supporting the HeatShield application.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION E: PROJECT TOPIC AND EXPLANATION -->
+<section class="w-full bg-surface-container-low py-space-xl">
+<div class="max-w-[1400px] mx-auto px-margin">
+<!-- Section Intro -->
+<div class="max-w-3xl mb-space-xl">
+<span class="font-caption-caps text-caption-caps uppercase text-secondary font-semibold tracking-wider block mb-space-xs">Domain Explanation &amp; Rationale</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-space-xs">What Is HeatShield?</h2>
+<p class="font-headline-md text-headline-md text-primary mb-space-md">
+          Understanding Urban Heat. Visualizing Risk. Exploring Cooling Strategies.
+        </p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-space-sm">
+          HeatShield is an academic investigation into how dense urban typologies, localized vegetation variations, and built-up land covers amplify surface temperatures across Solapur, Maharashtra. Designed as a unified semester capstone across Full Stack Development, Relational Databases, and Exploratory Data Analysis, the platform transforms a synthetic 150,000-point microclimate dataset into an accessible urban planning support tool.
+        </p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          By combining spatial models with empirical climate resilience rubrics, HeatShield calculates priority cooling zones and estimates the theoretical mitigation value of reflective surfaces, urban tree canopies, and ventilation corridors.
+        </p>
+</div>
+<!-- Core Research Questions Bento -->
+<div class="mb-space-xl">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-md flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">psychology_alt</span>
+          Core Research Inquiries
+        </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<span class="font-label-code text-label-code text-secondary block mb-1">INQUIRY 01</span>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-1">Air vs. Surface Temperature</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">How do ambient 2-meter air temperature and radiometric land surface temperature (LST) diverge across high-density residential and open basalt plains?</p>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<span class="font-label-code text-label-code text-secondary block mb-1">INQUIRY 02</span>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-1">Canopy &amp; Impervious Correlation</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">How are Normalized Difference Vegetation Index (NDVI), built-up surface fractions, and diurnal peak heating correlated in the modeled Solapur grid?</p>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<span class="font-label-code text-label-code text-secondary block mb-1">INQUIRY 03</span>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-1">Spatio-Temporal Variance</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">How do modeled heat-risk scores vary between pre-monsoon heatwaves (March–May) and winter baseline conditions across administrative wards?</p>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<span class="font-label-code text-label-code text-secondary block mb-1">INQUIRY 04</span>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-1">Cooling Priority Scoring</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Which locations receive elevated cooling-priority weights based on synthetic demographic density and extreme thermal exposure metrics?</p>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm md:col-span-2 lg:col-span-2">
+<span class="font-label-code text-label-code text-secondary block mb-1">INQUIRY 05</span>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-1">Targeted Urban Interventions</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">What specific mitigation typologies—such as cool roofs (high albedo), linear roadside tree canopies, or shaded pedestrian promenades—produce the highest modeled temperature reduction per square meter?</p>
+</div>
+</div>
+</div>
+<!-- Architecture Pipeline Diagram -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-space-lg gap-space-xs">
+<div>
+<span class="font-caption-caps text-caption-caps uppercase text-outline">System Workflow</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">End-to-End Data Processing Pipeline</h3>
+</div>
+<span class="font-label-code text-label-code text-secondary bg-surface-container px-space-sm py-1 rounded-DEFAULT">
+            150,000 SYNTHETIC SENSORY RECORDS
+          </span>
+</div>
+<!-- Flow Visual -->
+<div class="grid grid-cols-1 md:grid-cols-5 gap-space-sm relative">
+<!-- Stage 1 -->
+<div class="p-space-md bg-surface-container rounded-lg flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-code text-label-code text-outline font-semibold">STAGE 01</span>
+<span class="material-symbols-outlined text-[18px] text-primary">database</span>
+</div>
+<div>
+<span class="font-headline-md text-headline-md text-primary block mb-0.5">Synthetic Dataset</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">150k spatial records generated with microclimate parameters.</p>
+</div>
+<div class="mt-space-sm pt-space-xs">
+<span class="font-caption-caps text-caption-caps uppercase text-outline">Output: CSV / GeoJSON</span>
+</div>
+</div>
+<!-- Stage 2 -->
+<div class="p-space-md bg-surface-container rounded-lg flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-code text-label-code text-outline font-semibold">STAGE 02</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">storage</span>
+</div>
+<div>
+<span class="font-headline-md text-headline-md text-secondary block mb-0.5">Database &amp; APIs</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">PostgreSQL schema, indexed coordinates, REST endpoints.</p>
+</div>
+<div class="mt-space-sm pt-space-xs">
+<span class="font-caption-caps text-caption-caps uppercase text-outline">Output: Structured SQL / API</span>
+</div>
+</div>
+<!-- Stage 3 -->
+<div class="p-space-md bg-surface-container rounded-lg flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-code text-label-code text-outline font-semibold">STAGE 03</span>
+<span class="material-symbols-outlined text-[18px] text-tertiary">analytics</span>
+</div>
+<div>
+<span class="font-headline-md text-headline-md text-tertiary block mb-0.5">EDA &amp; Analytics</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Pandas, NumPy, statistical distributions, thermal metrics.</p>
+</div>
+<div class="mt-space-sm pt-space-xs">
+<span class="font-caption-caps text-caption-caps uppercase text-outline">Output: Aggregated Metrics</span>
+</div>
+</div>
+<!-- Stage 4 -->
+<div class="p-space-md bg-surface-container rounded-lg flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-code text-label-code text-outline font-semibold">STAGE 04</span>
+<span class="material-symbols-outlined text-[18px] text-primary-container">dashboard</span>
+</div>
+<div>
+<span class="font-headline-md text-headline-md text-primary-container block mb-0.5">Web Dashboard</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">React, Tailwind CSS, Leaflet spatial heat maps, Recharts.</p>
+</div>
+<div class="mt-space-sm pt-space-xs">
+<span class="font-caption-caps text-caption-caps uppercase text-outline">Output: Interactive Ledger</span>
+</div>
+</div>
+<!-- Stage 5 -->
+<div class="p-space-md bg-primary-container text-on-primary rounded-lg flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-code text-label-code text-secondary-fixed font-semibold">STAGE 05</span>
+<span class="material-symbols-outlined text-[18px] text-secondary-fixed">park</span>
+</div>
+<div>
+<span class="font-headline-md text-headline-md text-on-primary block mb-0.5">Cooling Strategies</span>
+<p class="font-body-sm text-body-sm text-on-primary-container">Priority scoring, canopy targeting &amp; reflective surfaces.</p>
+</div>
+<div class="mt-space-sm pt-space-xs">
+<span class="font-caption-caps text-caption-caps uppercase text-primary-fixed">Output: Mitigation Scores</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION F: PURPOSE AND MOTIVATION -->
+<section class="w-full bg-surface py-space-xl">
+<div class="max-w-[1400px] mx-auto px-margin">
+<div class="mb-space-lg">
+<span class="font-caption-caps text-caption-caps uppercase text-secondary font-semibold tracking-wider block mb-space-xs">Academic Rationale</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-space-xs">Why We Are Building HeatShield</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Five core principles shaping our computational inquiry and design choices.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Motivation 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary mb-space-md font-label-code text-label-code font-semibold">
+              01
+            </div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-xs">Understand Urban Heat Patterns</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Explore how temperature distributions, microclimatic variance, and urban characteristics interact within a structured, reproducible academic simulation.
+            </p>
+</div>
+<span class="font-caption-caps text-caption-caps uppercase text-outline mt-space-md pt-space-sm">Microclimate Science</span>
+</div>
+<!-- Motivation 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-secondary mb-space-md font-label-code text-label-code font-semibold">
+              02
+            </div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-xs">Make Complex Data Easier to Interpret</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Combine statistical methods and interactive visual charts to translate 150,000 spatial observations into intuitive, legible patterns.
+            </p>
+</div>
+<span class="font-caption-caps text-caption-caps uppercase text-outline mt-space-md pt-space-sm">Visual Communication</span>
+</div>
+<!-- Motivation 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-tertiary mb-space-md font-label-code text-label-code font-semibold">
+              03
+            </div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-xs">Connect Data to Possible Actions</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Present candidate cooling interventions and modeled priority scores that help researchers and urban planners frame concrete local mitigation hypotheses.
+            </p>
+</div>
+<span class="font-caption-caps text-caption-caps uppercase text-outline mt-space-md pt-space-sm">Planning Strategies</span>
+</div>
+<!-- Motivation 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between lg:col-span-2">
+<div>
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary-container mb-space-md font-label-code text-label-code font-semibold">
+              04
+            </div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-xs">Integrate Core Engineering Disciplines</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Demonstrate how modern frontend engineering, asynchronous backend services, relational database schemas, and exploratory scientific analytics converge seamlessly in a single production-grade web system.
+            </p>
+</div>
+<span class="font-caption-caps text-caption-caps uppercase text-outline mt-space-md pt-space-sm">Integrated Curriculum</span>
+</div>
+<!-- Motivation 5 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-on-surface mb-space-md font-label-code text-label-code font-semibold">
+              05
+            </div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-xs">Build Practical Technical Skills</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Apply rigorous software engineering principles, normalized database architectures, data cleansing pipelines, and spatial cartography in a team capstone.
+            </p>
+</div>
+<span class="font-caption-caps text-caption-caps uppercase text-outline mt-space-md pt-space-sm">Engineering Rigor</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION G: PROJECT OBJECTIVES -->
+<section class="w-full bg-surface-container-low py-space-xl">
+<div class="max-w-[1400px] mx-auto px-margin">
+<div class="mb-space-lg">
+<span class="font-caption-caps text-caption-caps uppercase text-secondary font-semibold tracking-wider block mb-space-xs">Measurable Milestones</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-space-xs">What We Aim to Achieve</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Seven systematic objectives delivering an end-to-end academic simulation.</p>
+</div>
+<!-- Clean 7-point Structured Ledger -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm">
+<div class="divide-y divide-outline-variant/20">
+<div class="p-space-md flex items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-space-md">
+<span class="font-label-code text-label-code font-bold text-secondary w-8">01</span>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Organize Simulated Dataset</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Clean and curate the project's simulated environmental dataset for systematic, queryable analysis.</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</div>
+<div class="p-space-md flex items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-space-md">
+<span class="font-label-code text-label-code font-bold text-secondary w-8">02</span>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Structured Relational Database</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Develop a normalized relational schema and supporting backend endpoints for sub-millisecond data retrieval.</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</div>
+<div class="p-space-md flex items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-space-md">
+<span class="font-label-code text-label-code font-bold text-secondary w-8">03</span>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Exploratory Correlation Analysis</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Explore temperature patterns, vegetative indices, and density variables through rigorous Python EDA workflows.</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</div>
+<div class="p-space-md flex items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-space-md">
+<span class="font-label-code text-label-code font-bold text-secondary w-8">04</span>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Comparative Visualization Suite</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Create clear visualizations, thermal distribution charts, and spatial comparative plots for heat indicators.</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</div>
+<div class="p-space-md flex items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-space-md">
+<span class="font-label-code text-label-code font-bold text-secondary w-8">05</span>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Candidate Cooling Priority Engine</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Present modeled heat-risk clusters and algorithmic cooling-priority recommendations across wards.</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</div>
+<div class="p-space-md flex items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-space-md">
+<span class="font-label-code text-label-code font-bold text-secondary w-8">06</span>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Integrated Interactive Web Platform</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Integrate analytical data, database engines, and cartographic layers into an accessible responsive web interface.</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</div>
+<div class="p-space-md flex items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-space-md">
+<span class="font-label-code text-label-code font-bold text-secondary w-8">07</span>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Transparent Scientific Documentation</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Document the underlying methodology, simulation assumptions, data limitations, and findings transparently.</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION H: TECHNOLOGY AND ACADEMIC INTEGRATION -->
+<section class="w-full bg-surface py-space-xl">
+<div class="max-w-[1400px] mx-auto px-margin">
+<div class="mb-space-lg">
+<span class="font-caption-caps text-caption-caps uppercase text-secondary font-semibold tracking-wider block mb-space-xs">Technical Stack &amp; Stack Architecture</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-space-xs">Where Engineering Meets Data</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">A synchronized stack across the three academic specializations.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Tech Pillar 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed text-on-primary-fixed flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-[20px]">devices</span>
+</div>
+<span class="font-caption-caps text-caption-caps uppercase text-outline block mb-1">Pillar 01</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-space-sm">Frontend Development</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+            Component-driven architecture prioritizing spatial layout rigor, tabular data density, and sub-100ms user interaction responses.
+          </p>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-1 bg-surface-container rounded-DEFAULT font-label-code text-label-code text-on-surface">React 18</span>
+<span class="px-2 py-1 bg-surface-container rounded-DEFAULT font-label-code text-label-code text-on-surface">Vite</span>
+<span class="px-2 py-1 bg-surface-container rounded-DEFAULT font-label-code text-label-code text-on-surface">JavaScript ES6+</span>
+<span class="px-2 py-1 bg-surface-container rounded-DEFAULT font-label-code text-label-code text-on-surface">Tailwind CSS</span>
+<span class="px-2 py-1 bg-surface-container rounded-DEFAULT font-label-code text-label-code text-on-surface">Leaflet GIS</span>
+<span class="px-2 py-1 bg-surface-container rounded-DEFAULT font-label-code text-label-code text-on-surface">Recharts</span>
+</div>
+</div>
+<!-- Tech Pillar 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="w-10 h-10 rounded-lg bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-[20px]">database</span>
+</div>
+<span class="font-caption-caps text-caption-caps uppercase text-outline block mb-1">Pillar 02</span>
+<h3 class="font-headline-md text-headline-md text-secondary mb-space-sm">Database &amp; Backend</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+            Relational modeling designed for geographic indexing, parametric query execution, and high-efficiency JSON streaming.
+          </p>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-1 bg-surface-container rounded-DEFAULT font-label-code text-label-code text-on-surface">Relational Schema</span>
+<span class="px-2 py-1 bg-surface-container rounded-DEFAULT font-label-code text-label-code text-on-surface">REST API Layer</span>
+<span class="px-2 py-1 bg-surface-container rounded-DEFAULT font-label-code text-label-code text-on-surface">Validation Pipeline</span>
+<span class="px-2 py-1 bg-surface-container rounded-DEFAULT font-label-code text-label-code text-on-surface">Node.js</span>
+<span class="px-2 py-1 bg-surface-container rounded-DEFAULT font-label-code text-label-code text-on-surface">Python FastAPI</span>
+<span class="px-2 py-1 bg-surface-container rounded-DEFAULT font-label-code text-label-code text-on-surface">SQL Indexing</span>
+</div>
+</div>
+<!-- Tech Pillar 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="w-10 h-10 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-[20px]">insights</span>
+</div>
+<span class="font-caption-caps text-caption-caps uppercase text-outline block mb-1">Pillar 03</span>
+<h3 class="font-headline-md text-headline-md text-tertiary mb-space-sm">EDA &amp; Data Visualization</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+            Mathematical data exploration examining thermal variations, spatial regressions, and multi-factor urban surface indices.
+          </p>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-1 bg-surface-container rounded-DEFAULT font-label-code text-label-code text-on-surface">Python 3.11</span>
+<span class="px-2 py-1 bg-surface-container rounded-DEFAULT font-label-code text-label-code text-on-surface">Pandas</span>
+<span class="px-2 py-1 bg-surface-container rounded-DEFAULT font-label-code text-label-code text-on-surface">NumPy</span>
+<span class="px-2 py-1 bg-surface-container rounded-DEFAULT font-label-code text-label-code text-on-surface">Scientific Plotting</span>
+<span class="px-2 py-1 bg-surface-container rounded-DEFAULT font-label-code text-label-code text-on-surface">GeoPandas</span>
+<span class="px-2 py-1 bg-surface-container rounded-DEFAULT font-label-code text-label-code text-on-surface">Spatial Aggregation</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION I: ACADEMIC SCOPE AND DATA TRANSPARENCY -->
+<section class="w-full bg-surface-container-low py-space-xl">
+<div class="max-w-[1400px] mx-auto px-margin">
+<div class="mb-space-md">
+<span class="font-caption-caps text-caption-caps uppercase text-outline block mb-space-xs">Research Integrity &amp; Limitations</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">An Academic Simulation, Clearly Documented</h2>
+</div>
+<!-- Prominent Disclosure Panel -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex-shrink-0 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+</div>
+<div class="space-y-space-sm max-w-4xl">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-code text-label-code px-2 py-0.5 rounded-DEFAULT bg-surface-container font-semibold uppercase text-primary">
+                PROVENANCE DISCLOSURE · SOLAPUR STUDY
+              </span>
+<span class="font-caption-caps text-caption-caps text-outline uppercase">Peer-Review Version 2.4</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+              HeatShield uses a synthetic academic microclimate simulation dataset for Solapur, Maharashtra. The results are intended for educational analysis and demonstration and must not be interpreted as official meteorological measurements or verified real-world observations.
+            </p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Modeled cooling-priority scores and intervention rankings are analytical outputs of the project's methodology, not official government recommendations. Real-world civic cooling interventions require field thermography, localized environmental impact assessments, and municipal stakeholder approvals.
+            </p>
+<div class="pt-space-xs flex flex-wrap items-center gap-space-md font-label-code text-label-code text-outline">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">school</span>
+                MIT Vishwaprayag University
+              </span>
+<span>·</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">folder</span>
+                Dept. of Computer Science &amp; Engineering
+              </span>
+<span>·</span>
+<span>Academic Simulation Model 2021–2025</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION J: CLOSING CTA -->
+<section class="w-full bg-surface-container-high py-space-xl">
+<div class="max-w-[1400px] mx-auto px-margin">
+<div class="bg-primary text-on-primary rounded-xl p-space-xl shadow-md flex flex-col md:flex-row md:items-center justify-between gap-space-lg">
+<div class="max-w-2xl space-y-space-sm">
+<span class="font-caption-caps text-caption-caps uppercase text-secondary-fixed tracking-widest block font-semibold">
+            EXPLORE THE PLATFORM
+          </span>
+<h2 class="font-headline-xl text-headline-xl text-on-primary tracking-tight">
+            One Team. One Platform. A Clearer View of Urban Heat.
+          </h2>
+<p class="font-body-lg text-body-lg text-inverse-on-surface leading-relaxed">
+            HeatShield brings together software engineering, data management, and analytical thinking to explore urban heat patterns and communicate possible cooling strategies through an integrated academic project.
+          </p>
+</div>
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-sm flex-shrink-0">
+<a class="inline-flex items-center justify-center gap-space-xs px-space-lg h-11 rounded-lg bg-secondary-fixed text-on-secondary-fixed font-headline-md text-headline-md hover:bg-secondary-fixed-dim transition-colors" data-path="heat-map" href="#">
+<span class="material-symbols-outlined text-[18px]">map</span>
+<span>Explore Heat Map</span>
+</a>
+<a class="inline-flex items-center justify-center gap-space-xs px-space-lg h-11 rounded-lg bg-surface-container-lowest/10 text-on-primary font-headline-md text-headline-md hover:bg-surface-container-lowest/20 transition-colors" data-path="dashboard" href="#">
+<span class="material-symbols-outlined text-[18px]">analytics</span>
+<span>Open Heat Analytics</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-surface-container-low border-t border-outline-variant/40 pt-space-xl pb-space-lg"><div class="max-w-[1400px] mx-auto px-margin"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-space-xl"><div class="space-y-space-sm"><div class="flex items-center gap-space-sm"><img alt="HeatShield Emblem" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XWJ4qbCUSYLnD1Z6TmO_vemqF6U3qe-WRrr0ikQiuFHOKmX_aSoq5H39etJL4IXE4GSgYb2I0-1s3Oya1-QUTmyQV7tV05SnfXfUMy8POdHV4NMQ4lSIGi3Yd5xfrrk0EEDr49ewjs6mYQz6eeDygLU_6VDPY04zP-4Ppp5uHg49wiTSV2Hy2F-ebhrNshCPJagYUK8z4dJsju-YeprrCv3JWQCclB-xFRyi0IHQVFNTqhcGaP5TcfmgM"/><span class="font-headline-md text-headline-md text-primary">HeatShield</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">Urban microclimate heat risk analysis, spatial thermal sensing models, and cooling intervention planning engine for climate resilience.</p><p class="font-caption-caps text-caption-caps text-outline uppercase">MIT Vishwaprayag University • Solapur, Maharashtra</p></div><div class="space-y-space-sm"><span class="font-caption-caps text-caption-caps uppercase text-on-surface tracking-wider block">Platform Navigation</span><ul class="space-y-space-xs font-body-sm text-body-sm"><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="overview" href="#">Overview</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="dashboard" href="#">Analytics Dashboard</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="heat-map" href="#">India Heat Map</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="explore-data" href="#">Data Explorer</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="methodology" href="#">Methodology</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="team-project" href="#">Team &amp; Project</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="submit-reading" href="#">Submit Reading</a></li></ul></div><div class="space-y-space-sm"><span class="font-caption-caps text-caption-caps uppercase text-on-surface tracking-wider block">Research &amp; Provenance</span><ul class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant"><li>Solapur Synthetic Dataset (150k pts)</li><li>100 Sim Sensory Grid Nodes</li><li>Microclimate Thermal Indices</li><li>Urban Tree Canopy Mitigation Models</li><li>Vector GIS Boundary Layers</li></ul></div><div class="space-y-space-sm"><span class="font-caption-caps text-caption-caps uppercase text-on-surface tracking-wider block">Project &amp; Repository</span><div class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant"><p>Academic Research Initiative TF-141</p><a class="inline-flex items-center gap-space-xs text-primary font-label-code text-label-code hover:underline" href="https://github.com/exobhavinss-sketch/TF-141-Heatshield" rel="noopener noreferrer" target="_blank"><span>GitHub / TF-141-Heatshield</span><span class="material-symbols-outlined text-[14px]">open_in_new</span></a><p>Permissive Open Science License</p><p class="font-body-sm text-body-sm text-outline">Peer-review draft v2.4</p></div></div></div><div class="pt-space-md border-t border-outline-variant/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md"><p class="font-body-sm text-body-sm text-on-surface-variant max-w-4xl">Notice: Solapur microclimate dataset consists of synthetic academic simulation models (2021–2025) for research and urban planning methodologies, not live sensor networks.</p><span class="font-caption-caps text-caption-caps text-outline uppercase whitespace-nowrap">© 2021–2025 MIT Vishwaprayag University</span></div></div></footer></body></html>

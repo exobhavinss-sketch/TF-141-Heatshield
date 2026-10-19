@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;family=Manrope:wght@600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-fixed": "#ffdbcf", "primary-fixed": "#b9eedb", "tertiary": "#581900", "surface-dim": "#d6dbd7", "surface-container": "#eaefeb", "inverse-surface": "#2c312f", "on-secondary-fixed": "#00201c", "on-primary": "#ffffff", "on-error": "#ffffff", "outline-variant": "#c0c8c4", "primary-container": "#194d40", "on-secondary": "#ffffff", "on-surface": "#181d1b", "on-tertiary-container": "#ff9770", "on-primary-fixed-variant": "#1b4f42", "error-container": "#ffdad6", "on-error-container": "#93000a", "surface": "#f6faf7", "on-secondary-fixed-variant": "#005048", "tertiary-container": "#7d2800", "surface-variant": "#dfe4e0", "error": "#ba1a1a", "on-background": "#181d1b", "on-primary-container": "#89bdac", "inverse-primary": "#9dd1c0", "inverse-on-surface": "#edf2ee", "secondary-fixed-dim": "#84d5c8", "secondary": "#016a60", "surface-container-lowest": "#ffffff", "on-secondary-container": "#117166", "secondary-container": "#9ff2e4", "surface-container-highest": "#dfe4e0", "primary": "#00362a", "surface-bright": "#f6faf7", "on-tertiary": "#ffffff", "on-tertiary-fixed": "#380d00", "tertiary-fixed-dim": "#ffb59b", "background": "#f6faf7", "outline": "#707975", "on-primary-fixed": "#002019", "primary-fixed-dim": "#9dd1c0", "surface-tint": "#366759", "surface-container-low": "#f0f5f1", "on-surface-variant": "#404945", "on-tertiary-fixed-variant": "#812900", "secondary-fixed": "#9ff2e4", "surface-container-high": "#e5e9e5" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "gutter-mobile": "0.75rem", "space-sm": "0.5rem", "margin-mobile": "1rem", "space-xs": "0.25rem", "gutter": "1.25rem", "space-lg": "1.5rem", "space-xl": "2.5rem", "space-md": "1rem", "margin": "2rem" }, "fontFamily": { "headline-lg": [ "Manrope" ], "label-code": [ "JetBrains Mono" ], "caption-caps": [ "Inter" ], "headline-xl-mobile": [ "Manrope" ], "headline-md": [ "Manrope" ], "body-sm": [ "Inter" ], "body-md": [ "Inter" ], "headline-lg-mobile": [ "Manrope" ], "body-lg": [ "Inter" ], "headline-xl": [ "Manrope" ], "label-metric": [ "JetBrains Mono" ] }, "fontSize": { "headline-lg": [ "26px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" } ], "label-code": [ "11px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" } ], "caption-caps": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "600" } ], "headline-xl-mobile": [ "28px", { "lineHeight": "34px", "letterSpacing": "-0.025em", "fontWeight": "600" } ], "headline-md": [ "18px", { "lineHeight": "24px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "18px", "fontWeight": "400" } ], "body-md": [ "13px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-lg-mobile": [ "22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "body-lg": [ "15px", { "lineHeight": "24px", "fontWeight": "400" } ], "headline-xl": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "600" } ], "label-metric": [ "13px", { "lineHeight": "18px", "letterSpacing": "-0.01em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/40"><div class="h-[76px] max-w-[1400px] mx-auto px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-md"><img alt="HeatShield Emblem" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XWJ4qbCUSYLnD1Z6TmO_vemqF6U3qe-WRrr0ikQiuFHOKmX_aSoq5H39etJL4IXE4GSgYb2I0-1s3Oya1-QUTmyQV7tV05SnfXfUMy8POdHV4NMQ4lSIGi3Yd5xfrrk0EEDr49ewjs6mYQz6eeDygLU_6VDPY04zP-4Ppp5uHg49wiTSV2Hy2F-ebhrNshCPJagYUK8z4dJsju-YeprrCv3JWQCclB-xFRyi0IHQVFNTqhcGaP5TcfmgM"/><div class="flex flex-col"><span class="font-headline-md text-headline-md text-primary tracking-tight">HeatShield</span><span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">TF-141 / MIT Vishwaprayag University</span></div></div><nav class="hidden lg:flex items-center gap-space-lg h-full" data-active-classes="text-primary border-b-2 border-primary-container font-medium"><a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" data-path="overview" href="#">Overview</a><a aria-current="page" class="h-full flex items-center transition-colors text-primary border-b-2 border-primary-container font-medium" data-path="dashboard" href="#">Dashboard</a><a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" data-path="heat-map" href="#">Heat Map</a><a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" data-path="explore-data" href="#">Explore Data</a><a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors" data-path="methodology" href="#">Methodology</a></nav><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 rounded-DEFAULT bg-surface-container border border-outline-variant/50 text-on-surface"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span><span class="font-label-code text-label-code text-on-surface uppercase">ACADEMIC SIMULATION • 2021-2025</span></div><a class="inline-flex items-center justify-center px-space-md h-9 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md hover:bg-primary transition-colors" data-path="submit-reading" href="#">Submit Reading</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-[76px] min-h-screen bg-background"><div class="flex flex-col w-full">
+<div class="max-w-[1400px] w-full mx-auto px-margin py-space-xl flex flex-col gap-space-xl">
+<!-- Page Header & Academic Coordinate Marker -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm text-secondary">
+<span class="font-caption-caps text-caption-caps uppercase tracking-wider">Spatial Analytical Module · TF-141</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-code text-label-code text-on-surface-variant">GRID LAT: 17.6599° N · LON: 75.9064° E</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-primary">Heat Analytics</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+          Explore diurnal temperature gradients, land-surface radiation anomalies, and microclimate mitigation vectors across the Solapur study area (2021–2025 academic synthetic dataset).
+        </p>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="bg-surface-container px-space-md py-space-xs rounded-lg flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+<div class="flex flex-col">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Baseline Model</span>
+<span class="font-label-code text-label-code text-primary font-semibold">SYNTH-SOLAPUR-V2.4</span>
+</div>
+</div>
+<button class="bg-surface-container-high hover:bg-surface-dim text-on-surface px-space-md h-9 rounded-lg font-body-md text-body-md flex items-center gap-space-xs transition-colors" id="exportLedgerBtn">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span>CSV Ledger</span>
+</button>
+</div>
+</div>
+<!-- Scientific Filter Toolbar -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md flex-1">
+<!-- Filter 1: Range Picker -->
+<div class="flex flex-col gap-1">
+<label class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Observation Window</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-2.5 text-on-surface-variant text-[16px] pointer-events-none">calendar_month</span>
+<select class="w-full bg-surface-container-low text-on-surface font-label-code text-label-code pl-8 pr-7 py-1.5 rounded-lg appearance-none cursor-pointer focus:outline-none focus:bg-surface-container">
+<option selected="">May 2024 (Summer Peak Cycle)</option>
+<option>April 2024 (Pre-Monsoon Surge)</option>
+<option>June 2024 (Equatorial Transition)</option>
+<option>Multi-Year Aggregate (2021–2025)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 text-on-surface-variant text-[16px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Filter 2: Zone Dropdown -->
+<div class="flex flex-col gap-1">
+<label class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Spatial Partition</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-2.5 text-on-surface-variant text-[16px] pointer-events-none">grid_view</span>
+<select class="w-full bg-surface-container-low text-on-surface font-label-code text-label-code pl-8 pr-7 py-1.5 rounded-lg appearance-none cursor-pointer focus:outline-none focus:bg-surface-container" id="zoneFilter">
+<option selected="" value="all">All 9 Urban Zones (Selected)</option>
+<option value="midc">MIDC Industrial Corridor</option>
+<option value="navi-peth">Navi Peth Dense Core</option>
+<option value="bhavani-peth">Bhavani Peth High Density</option>
+<option value="ashok-chowk">Ashok Chowk Commercial</option>
+<option value="kegaon">Kegaon Semi-Arid Fringe</option>
+<option value="siddheshwar">Siddheshwar Lake Oasis</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 text-on-surface-variant text-[16px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Filter 3: Metric Selector -->
+<div class="flex flex-col gap-1">
+<label class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Primary Metric Comparison</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-2.5 text-on-surface-variant text-[16px] pointer-events-none">thermostat</span>
+<select class="w-full bg-surface-container-low text-on-surface font-label-code text-label-code pl-8 pr-7 py-1.5 rounded-lg appearance-none cursor-pointer focus:outline-none focus:bg-surface-container">
+<option selected="">Air Temp (°C) vs Surface Temp (LST)</option>
+<option>Wet Bulb Globe Temperature (WBGT)</option>
+<option>Thermal Heat Index (HI-NOAA)</option>
+<option>Vegetation Canopy Dampening Factor</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 text-on-surface-variant text-[16px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Filter 4: Simulation Confidence -->
+<div class="flex flex-col gap-1">
+<label class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Confidence Interval</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-2.5 text-on-surface-variant text-[16px] pointer-events-none">tune</span>
+<select class="w-full bg-surface-container-low text-on-surface font-label-code text-label-code pl-8 pr-7 py-1.5 rounded-lg appearance-none cursor-pointer focus:outline-none focus:bg-surface-container">
+<option selected="">P95 Confidence Interval (σ = ±0.34)</option>
+<option>P99 Strict Boundary (σ = ±0.48)</option>
+<option>P50 Median Deterministic</option>
+<option>Raw Station Telemetry Aggregate</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 text-on-surface-variant text-[16px] pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<div class="flex items-end pt-2 lg:pt-0">
+<button class="w-full lg:w-auto bg-surface-container-high hover:bg-surface-dim text-on-surface px-space-md py-2 rounded-lg font-caption-caps text-caption-caps uppercase tracking-wider flex items-center justify-center gap-space-xs transition-colors" id="resetFiltersBtn">
+<span class="material-symbols-outlined text-[14px]">restart_alt</span>
+<span>Reset Filters</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Minimalist Scientific KPI Cards Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- KPI 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg flex flex-col justify-between shadow-sm relative overflow-hidden group">
+<div class="flex items-start justify-between">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Mean Air Temperature</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed px-1.5 py-0.5 rounded text-caption-caps font-label-code">P95 μ</span>
+</div>
+<div class="py-space-md flex flex-col">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-primary tracking-tight">34.6</span>
+<span class="font-label-metric text-label-metric text-on-surface-variant">°C</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 flex items-center gap-1">
+<span class="text-tertiary font-medium">±0.4°C</span> variance vs 5-yr baseline
+          </p>
+</div>
+<div class="w-full bg-surface-container-high h-1 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 68%;"></div>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg flex flex-col justify-between shadow-sm relative overflow-hidden group">
+<div class="flex items-start justify-between">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Peak Air Temperature</span>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed px-1.5 py-0.5 rounded text-caption-caps font-label-code">EXTREME</span>
+</div>
+<div class="py-space-md flex flex-col">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-tertiary tracking-tight">43.8</span>
+<span class="font-label-metric text-label-metric text-on-surface-variant">°C</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 truncate" title="Recorded at MIDC Zone Station #42, May 18">
+            MIDC Station #42 · May 18 (14:30)
+          </p>
+</div>
+<div class="w-full bg-surface-container-high h-1 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 92%;"></div>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg flex flex-col justify-between shadow-sm relative overflow-hidden group">
+<div class="flex items-start justify-between">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Mean Land Surface Temp (LST)</span>
+<span class="bg-surface-container text-on-surface-variant px-1.5 py-0.5 rounded text-caption-caps font-label-code">TIRS-2 MODEL</span>
+</div>
+<div class="py-space-md flex flex-col">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-primary tracking-tight">46.2</span>
+<span class="font-label-metric text-label-metric text-on-surface-variant">°C</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Thermal infrared radiation synthetic profile
+          </p>
+</div>
+<div class="w-full bg-surface-container-high h-1 rounded-full overflow-hidden">
+<div class="bg-tertiary-container h-full rounded-full" style="width: 84%;"></div>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg flex flex-col justify-between shadow-sm relative overflow-hidden group">
+<div class="flex items-start justify-between">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Urban Heat Anomaly</span>
+<span class="bg-error-container text-on-error-container px-1.5 py-0.5 rounded text-caption-caps font-label-code">UHI DELTA</span>
+</div>
+<div class="py-space-md flex flex-col">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-tertiary tracking-tight">+4.8</span>
+<span class="font-label-metric text-label-metric text-on-surface-variant">°C</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Dense commercial center vs rural boundary
+          </p>
+</div>
+<div class="w-full bg-surface-container-high h-1 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 78%;"></div>
+</div>
+</div>
+</div>
+<!-- Dominant Primary Visualization: Diurnal Cycle & Thermal Inertia -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm">
+<div>
+<div class="flex items-center gap-space-xs text-primary-container">
+<span class="font-caption-caps text-caption-caps uppercase tracking-wider">Temporal Profile · 24-Hour Diurnal Dynamics</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Diurnal Temperature Cycle &amp; Thermal Inertia</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Comparing diurnal heating cycles and twilight cooling lag across distinct Solapur urban surface typologies. Note the nocturnal heat trapping after 20:00.
+          </p>
+</div>
+<!-- Legend and Threshold Switch -->
+<div class="flex flex-wrap items-center gap-space-md pt-2 md:pt-0">
+<div class="flex items-center gap-space-sm font-label-code text-label-code">
+<div class="flex items-center gap-1">
+<span class="w-3 h-1 bg-tertiary rounded-full"></span>
+<span class="text-on-surface">MIDC Industrial</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-3 h-1 bg-tertiary-container rounded-full"></span>
+<span class="text-on-surface">Navi Peth Commercial</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-3 h-1 bg-secondary rounded-full"></span>
+<span class="text-on-surface">Residential West</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-3 h-1 bg-primary rounded-full"></span>
+<span class="text-on-surface">Siddheshwar Canopy</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Scientific SVG Line Chart -->
+<div class="w-full relative bg-surface-container-low rounded-lg p-space-md overflow-x-auto">
+<div class="min-w-[700px] w-full">
+<svg class="w-full h-auto text-on-surface select-none font-label-code" style="overflow: visible;" viewbox="0 0 1000 380">
+<!-- Grid Lines & Background Bands -->
+<!-- Heat Hazard Band (>40C) -->
+<rect class="text-tertiary-fixed opacity-30" fill="currentColor" height="60" width="880" x="60" y="30"></rect>
+<text class="text-[10px] fill-tertiary font-semibold uppercase tracking-wider" x="68" y="46">Thermal Hazard Zone (&gt;40°C)</text>
+<!-- Horizontal Y-Gridlines -->
+<line class="text-outline-variant/40" stroke="currentColor" stroke-dasharray="2 4" stroke-width="1" x1="60" x2="940" y1="30" y2="30"></line>
+<text class="text-[11px] fill-on-surface-variant font-label-code" text-anchor="end" x="52" y="34">44°C</text>
+<line class="text-tertiary/40" stroke="currentColor" stroke-dasharray="4 4" stroke-width="1.5" x1="60" x2="940" y1="90" y2="90"></line>
+<text class="text-[11px] fill-tertiary font-label-code font-bold" text-anchor="end" x="52" y="94">40°C</text>
+<line class="text-outline-variant/40" stroke="currentColor" stroke-dasharray="2 4" stroke-width="1" x1="60" x2="940" y1="150" y2="150"></line>
+<text class="text-[11px] fill-on-surface-variant font-label-code" text-anchor="end" x="52" y="154">36°C</text>
+<line class="text-outline-variant/40" stroke="currentColor" stroke-dasharray="2 4" stroke-width="1" x1="60" x2="940" y1="210" y2="210"></line>
+<text class="text-[11px] fill-on-surface-variant font-label-code" text-anchor="end" x="52" y="214">32°C</text>
+<line class="text-outline-variant/40" stroke="currentColor" stroke-dasharray="2 4" stroke-width="1" x1="60" x2="940" y1="270" y2="270"></line>
+<text class="text-[11px] fill-on-surface-variant font-label-code" text-anchor="end" x="52" y="274">28°C</text>
+<line class="text-outline-variant/40" stroke="currentColor" stroke-width="1" x1="60" x2="940" y1="330" y2="330"></line>
+<text class="text-[11px] fill-on-surface-variant font-label-code" text-anchor="end" x="52" y="334">24°C</text>
+<!-- Twilight cooling lag highlight zone (18:00 to 24:00) -->
+<rect class="text-surface-container-highest opacity-40" fill="currentColor" height="300" width="220" x="720" y="30"></rect>
+<text class="text-[10px] fill-on-surface-variant font-caption-caps uppercase" x="730" y="295">Twilight Cooling Deficit</text>
+<text class="text-[10px] fill-on-surface-variant font-label-code" x="730" y="310">Lag: +3.6h trapped radiation</text>
+<!-- Vertical X-Gridlines & Hours -->
+<!-- 00:00 -->
+<line class="text-outline-variant/30" stroke="currentColor" stroke-width="1" x1="60" x2="60" y1="30" y2="330"></line>
+<text class="text-[11px] fill-on-surface-variant" text-anchor="middle" x="60" y="352">00:00</text>
+<!-- 03:00 -->
+<line class="text-outline-variant/20" stroke="currentColor" stroke-dasharray="2 4" stroke-width="1" x1="170" x2="170" y1="30" y2="330"></line>
+<text class="text-[11px] fill-on-surface-variant" text-anchor="middle" x="170" y="352">03:00</text>
+<!-- 06:00 (Dawn) -->
+<line class="text-outline-variant/30" stroke="currentColor" stroke-width="1" x1="280" x2="280" y1="30" y2="330"></line>
+<text class="text-[11px] fill-on-surface-variant" text-anchor="middle" x="280" y="352">06:00</text>
+<!-- 09:00 -->
+<line class="text-outline-variant/20" stroke="currentColor" stroke-dasharray="2 4" stroke-width="1" x1="390" x2="390" y1="30" y2="330"></line>
+<text class="text-[11px] fill-on-surface-variant" text-anchor="middle" x="390" y="352">09:00</text>
+<!-- 12:00 (Zenith) -->
+<line class="text-outline-variant/30" stroke="currentColor" stroke-width="1" x1="500" x2="500" y1="30" y2="330"></line>
+<text class="text-[11px] fill-on-surface-variant" text-anchor="middle" x="500" y="352">12:00</text>
+<!-- 15:00 (Peak Heat) -->
+<line class="text-outline-variant/20" stroke="currentColor" stroke-dasharray="2 4" stroke-width="1" x1="610" x2="610" y1="30" y2="330"></line>
+<text class="text-[11px] fill-on-surface-variant" text-anchor="middle" x="610" y="352">15:00</text>
+<!-- 18:00 (Sunset) -->
+<line class="text-outline-variant/30" stroke="currentColor" stroke-width="1" x1="720" x2="720" y1="30" y2="330"></line>
+<text class="text-[11px] fill-on-surface-variant" text-anchor="middle" x="720" y="352">18:00</text>
+<!-- 21:00 -->
+<line class="text-outline-variant/20" stroke="currentColor" stroke-dasharray="2 4" stroke-width="1" x1="830" x2="830" y1="30" y2="330"></line>
+<text class="text-[11px] fill-on-surface-variant" text-anchor="middle" x="830" y="352">21:00</text>
+<!-- 24:00 -->
+<line class="text-outline-variant/30" stroke="currentColor" stroke-width="1" x1="940" x2="940" y1="30" y2="330"></line>
+<text class="text-[11px] fill-on-surface-variant" text-anchor="middle" x="940" y="352">24:00</text>
+<!-- CURVES -->
+<!-- 1. High Canopy / Siddheshwar Lake Oasis (Primary / Dark Green) -->
+<!-- 00:00(26C=300), 03:00(24.5C=322), 06:00(24.0C=330), 09:00(28.5C=262), 12:00(32.8C=198), 15:00(34.2C=177), 18:00(31.5C=217), 21:00(27.8C=273), 24:00(25.8C=303) -->
+<path class="text-primary" d="M 60,300 C 120,318 200,332 280,330 C 340,320 440,225 500,198 C 550,178 580,174 610,177 C 670,185 700,205 720,217 C 770,245 800,265 830,273 C 890,290 920,300 940,303" fill="none" stroke="currentColor" stroke-width="2.5"></path>
+<!-- 2. Residential West (Secondary / Teal) -->
+<!-- 00:00(28.5C=262), 03:00(26.8C=288), 06:00(26.2C=297), 09:00(31.0C=225), 12:00(36.0C=150), 15:00(38.2C=117), 18:00(35.0C=165), 21:00(31.8C=213), 24:00(29.5C=247) -->
+<path class="text-secondary" d="M 60,262 C 120,280 200,297 280,297 C 340,285 440,180 500,150 C 560,120 580,114 610,117 C 670,125 700,150 720,165 C 770,195 800,208 830,213 C 890,230 920,242 940,247" fill="none" stroke="currentColor" stroke-width="2.5"></path>
+<!-- 3. Navi Peth Dense Commercial (Orange-Red / Tertiary-Container) -->
+<!-- 00:00(32.4C=204), 03:00(30.6C=231), 06:00(29.8C=243), 09:00(34.8C=168), 12:00(40.2C=87), 15:00(42.5C=52), 18:00(39.6C=96), 21:00(36.5C=142), 24:00(33.8C=183) -->
+<path class="text-tertiary-container" d="M 60,204 C 120,225 200,245 280,243 C 340,225 440,115 500,87 C 560,60 580,48 610,52 C 670,60 700,85 720,96 C 770,120 800,135 830,142 C 890,165 920,175 940,183" fill="none" stroke="currentColor" stroke-width="2.5"></path>
+<!-- 4. MIDC Industrial Corridor (Deep Brick / Tertiary) -->
+<!-- 00:00(33.8C=183), 03:00(31.5C=217), 06:00(30.4C=234), 09:00(36.5C=142), 12:00(41.8C=63), 15:00(43.8C=33), 18:00(41.0C=75), 21:00(38.0C=120), 24:00(35.2C=162) -->
+<path class="text-tertiary" d="M 60,183 C 120,205 200,235 280,234 C 340,210 440,90 500,63 C 560,35 580,28 610,33 C 670,45 700,65 720,75 C 770,100 800,112 830,120 C 890,145 920,155 940,162" fill="none" stroke="currentColor" stroke-width="3"></path>
+<!-- Peak Indicator Point at 14:30 / 15:00 on MIDC -->
+<circle class="text-tertiary" cx="610" cy="33" fill="currentColor" r="5"></circle>
+<circle class="text-tertiary opacity-40" cx="610" cy="33" fill="none" r="10" stroke="currentColor" stroke-width="1.5"></circle>
+<!-- Tooltip Anchor Simulation Box -->
+<g transform="translate(625, 20)">
+<rect class="text-surface-container-highest shadow-md" fill="currentColor" height="48" rx="4" width="160" x="0" y="0"></rect>
+<text class="text-[10px] font-semibold fill-on-surface uppercase font-caption-caps" x="8" y="18">MIDC PEAK RECORD</text>
+<text class="text-[12px] font-bold fill-tertiary font-label-code" x="8" y="34">43.8°C (14:30 IST)</text>
+<text class="text-[9px] fill-on-surface-variant font-label-code" x="110" y="34">Δ +9.6°C</text>
+</g>
+<!-- Twilight Delta Annotation -->
+<g transform="translate(760, 105)">
+<rect class="text-surface-container-lowest" fill="currentColor" height="42" rx="4" width="150" x="0" y="0"></rect>
+<text class="text-[10px] font-semibold fill-on-surface uppercase font-caption-caps" x="8" y="16">Twilight Canopy Relief</text>
+<text class="text-[11px] font-bold fill-primary font-label-code" x="8" y="32">Canopy is 8.1°C cooler</text>
+</g>
+</svg>
+</div>
+</div>
+<!-- Diurnal Insight Bar -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm pt-space-xs text-body-sm font-body-sm text-on-surface-variant">
+<div class="bg-surface-container rounded-lg p-space-sm flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-[18px]">wb_sunny</span>
+<div>
+<span class="font-medium text-on-surface block">Solar Noon Surge (11:00–14:00)</span>
+            Asphalt and unshaded masonry in MIDC heat at 2.4× the rate of vegetated parcels.
+          </div>
+</div>
+<div class="bg-surface-container rounded-lg p-space-sm flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">nightlight</span>
+<div>
+<span class="font-medium text-on-surface block">Thermal Retention Lag (19:00–23:00)</span>
+            Dense commercial fabric retains radiative heat into late twilight, delaying restorative sleep temps.
+          </div>
+</div>
+<div class="bg-surface-container rounded-lg p-space-sm flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">park</span>
+<div>
+<span class="font-medium text-on-surface block">Canopy Oasis Efficiency</span>
+            Siddheshwar Lake vegetated zone exhibits rapid nocturnal cooling, dropping below 26°C by 23:00.
+          </div>
+</div>
+</div>
+</div>
+<!-- Secondary Analytical Visualizations: 2-Column Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+<!-- Chart Left: Air Temp vs Land Surface Temp (LST) Scatter & Regression -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between gap-space-md">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Cross-Correlation Model</span>
+<span class="font-label-code text-label-code bg-surface-container text-on-surface px-1.5 py-0.5 rounded">R² = 0.884 · 100 SENSORS</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mt-1">Air Temp vs. Land Surface Temp (LST)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Thermal inertia across 100 simulation grid stations in Solapur. Impervious surface fraction drives non-linear surface warming.
+          </p>
+</div>
+<!-- Scatter Plot SVG -->
+<div class="w-full bg-surface-container-low rounded-lg p-space-md">
+<svg class="w-full h-auto text-on-surface font-label-code select-none" style="overflow: visible;" viewbox="0 0 500 280">
+<!-- Gridlines -->
+<line class="text-outline-variant/30" stroke="currentColor" stroke-dasharray="2 3" stroke-width="1" x1="50" x2="480" y1="20" y2="20"></line>
+<text class="text-[10px] fill-on-surface-variant" text-anchor="end" x="42" y="24">52°C</text>
+<line class="text-outline-variant/30" stroke="currentColor" stroke-dasharray="2 3" stroke-width="1" x1="50" x2="480" y1="80" y2="80"></line>
+<text class="text-[10px] fill-on-surface-variant" text-anchor="end" x="42" y="84">44°C</text>
+<line class="text-outline-variant/30" stroke="currentColor" stroke-dasharray="2 3" stroke-width="1" x1="50" x2="480" y1="140" y2="140"></line>
+<text class="text-[10px] fill-on-surface-variant" text-anchor="end" x="42" y="144">36°C</text>
+<line class="text-outline-variant/30" stroke="currentColor" stroke-dasharray="2 3" stroke-width="1" x1="50" x2="480" y1="200" y2="200"></line>
+<text class="text-[10px] fill-on-surface-variant" text-anchor="end" x="42" y="204">28°C</text>
+<line class="text-outline-variant/50" stroke="currentColor" stroke-width="1" x1="50" x2="480" y1="240" y2="240"></line>
+<!-- X Axis ticks (Air Temp 26C - 44C) -->
+<text class="text-[10px] fill-on-surface-variant" text-anchor="middle" x="60" y="258">28°C</text>
+<text class="text-[10px] fill-on-surface-variant" text-anchor="middle" x="160" y="258">32°C</text>
+<text class="text-[10px] fill-on-surface-variant" text-anchor="middle" x="260" y="258">36°C</text>
+<text class="text-[10px] fill-on-surface-variant" text-anchor="middle" x="360" y="258">40°C</text>
+<text class="text-[10px] fill-on-surface-variant" text-anchor="middle" x="460" y="258">44°C</text>
+<text class="text-[9px] fill-on-surface font-caption-caps uppercase" text-anchor="middle" x="260" y="275">Ambient Air Temperature (T_air)</text>
+<!-- Regression Line -->
+<!-- From (x=70, y=210) to (x=460, y=35) -->
+<line class="text-tertiary-container" stroke="currentColor" stroke-width="2" x1="70" x2="465" y1="215" y2="35"></line>
+<!-- Scatter Points Simulated Grid (100 Stations grouped by zone) -->
+<!-- High Vegetated (Green cluster lower left) -->
+<circle class="text-primary opacity-80" cx="85" cy="208" fill="currentColor" r="3"></circle>
+<circle class="text-primary opacity-80" cx="95" cy="195" fill="currentColor" r="3"></circle>
+<circle class="text-primary opacity-80" cx="110" cy="190" fill="currentColor" r="3.5"></circle>
+<circle class="text-primary opacity-80" cx="120" cy="205" fill="currentColor" r="3"></circle>
+<circle class="text-primary opacity-80" cx="125" cy="182" fill="currentColor" r="3"></circle>
+<circle class="text-primary opacity-80" cx="140" cy="178" fill="currentColor" r="3"></circle>
+<circle class="text-primary opacity-80" cx="150" cy="185" fill="currentColor" r="3.5"></circle>
+<!-- Suburban/Residential (Teal cluster mid-left) -->
+<circle class="text-secondary opacity-75" cx="170" cy="170" fill="currentColor" r="3"></circle>
+<circle class="text-secondary opacity-75" cx="185" cy="162" fill="currentColor" r="3.5"></circle>
+<circle class="text-secondary opacity-75" cx="195" cy="175" fill="currentColor" r="3"></circle>
+<circle class="text-secondary opacity-75" cx="210" cy="155" fill="currentColor" r="3"></circle>
+<circle class="text-secondary opacity-75" cx="220" cy="148" fill="currentColor" r="3.5"></circle>
+<circle class="text-secondary opacity-75" cx="235" cy="152" fill="currentColor" r="3"></circle>
+<circle class="text-secondary opacity-75" cx="245" cy="138" fill="currentColor" r="3"></circle>
+<circle class="text-secondary opacity-75" cx="255" cy="142" fill="currentColor" r="3.5"></circle>
+<!-- Commercial Core (Orange-Red cluster mid-right) -->
+<circle class="text-tertiary-container opacity-85" cx="275" cy="125" fill="currentColor" r="3.5"></circle>
+<circle class="text-tertiary-container opacity-85" cx="288" cy="132" fill="currentColor" r="3"></circle>
+<circle class="text-tertiary-container opacity-85" cx="305" cy="115" fill="currentColor" r="3"></circle>
+<circle class="text-tertiary-container opacity-85" cx="320" cy="108" fill="currentColor" r="3.5"></circle>
+<circle class="text-tertiary-container opacity-85" cx="330" cy="98" fill="currentColor" r="3"></circle>
+<circle class="text-tertiary-container opacity-85" cx="345" cy="105" fill="currentColor" r="3"></circle>
+<circle class="text-tertiary-container opacity-85" cx="360" cy="85" fill="currentColor" r="3.5"></circle>
+<!-- MIDC Industrial (Deep Red cluster top-right) -->
+<circle class="text-tertiary opacity-90" cx="380" cy="78" fill="currentColor" r="3.5"></circle>
+<circle class="text-tertiary opacity-90" cx="395" cy="65" fill="currentColor" r="3"></circle>
+<circle class="text-tertiary opacity-90" cx="410" cy="55" fill="currentColor" r="4"></circle>
+<circle class="text-tertiary opacity-90" cx="420" cy="62" fill="currentColor" r="3"></circle>
+<circle class="text-tertiary opacity-90" cx="435" cy="45" fill="currentColor" r="3.5"></circle>
+<circle class="text-tertiary opacity-90" cx="445" cy="40" fill="currentColor" r="4"></circle>
+<circle class="text-tertiary opacity-90" cx="455" cy="36" fill="currentColor" r="4.5"></circle>
+<!-- Regression Formula Label -->
+<text class="text-[11px] font-bold fill-primary font-label-code" x="65" y="45">LST = 1.28 × T_air - 6.42</text>
+<text class="text-[10px] fill-on-surface-variant font-label-code" x="65" y="60">Sensory variance: ±1.1°C</text>
+</svg>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant pt-2 border-t border-outline-variant/30">
+<span>Formula: <span class="font-label-code text-primary font-medium">Landsat-8 TIRS Emissivity Model</span></span>
+<span class="font-label-code text-secondary font-medium">Validation: RMSE 0.62</span>
+</div>
+</div>
+<!-- Chart Right: Thermal Risk Distribution by Urban Zone -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between gap-space-md">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Exposure Burden</span>
+<span class="font-label-code text-label-code bg-surface-container text-on-surface px-1.5 py-0.5 rounded">HOURLY EXPOSURE %</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mt-1">Thermal Risk Distribution by Urban Zone</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Proportion of summer diurnal hours spent under Moderate (&lt;36°C), High (36–40°C), and Severe (&gt;40°C) thermal stress categories across Solapur wards.
+          </p>
+</div>
+<!-- Stacked Horizontal Bar Visualization -->
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<!-- Zone 1: MIDC Corridor -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between font-label-code text-label-code">
+<span class="font-medium text-on-surface">MIDC Industrial</span>
+<span class="text-tertiary font-bold">54% Severe</span>
+</div>
+<div class="w-full h-5 bg-surface-container rounded flex overflow-hidden">
+<div class="bg-secondary h-full" style="width: 16%;" title="Moderate: 16%"></div>
+<div class="bg-tertiary-container h-full" style="width: 30%;" title="High: 30%"></div>
+<div class="bg-tertiary h-full" style="width: 54%;" title="Severe: 54%"></div>
+</div>
+</div>
+<!-- Zone 2: Navi Peth Core -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between font-label-code text-label-code">
+<span class="font-medium text-on-surface">Navi Peth Commercial</span>
+<span class="text-tertiary font-bold">42% Severe</span>
+</div>
+<div class="w-full h-5 bg-surface-container rounded flex overflow-hidden">
+<div class="bg-secondary h-full" style="width: 22%;" title="Moderate: 22%"></div>
+<div class="bg-tertiary-container h-full" style="width: 36%;" title="High: 36%"></div>
+<div class="bg-tertiary h-full" style="width: 42%;" title="Severe: 42%"></div>
+</div>
+</div>
+<!-- Zone 3: Ashok Chowk -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between font-label-code text-label-code">
+<span class="font-medium text-on-surface">Ashok Chowk Transit</span>
+<span class="text-tertiary font-bold">38% Severe</span>
+</div>
+<div class="w-full h-5 bg-surface-container rounded flex overflow-hidden">
+<div class="bg-secondary h-full" style="width: 26%;" title="Moderate: 26%"></div>
+<div class="bg-tertiary-container h-full" style="width: 36%;" title="High: 36%"></div>
+<div class="bg-tertiary h-full" style="width: 38%;" title="Severe: 38%"></div>
+</div>
+</div>
+<!-- Zone 4: Bhavani Peth -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between font-label-code text-label-code">
+<span class="font-medium text-on-surface">Bhavani Peth High Density</span>
+<span class="text-on-surface font-semibold">28% Severe</span>
+</div>
+<div class="w-full h-5 bg-surface-container rounded flex overflow-hidden">
+<div class="bg-secondary h-full" style="width: 32%;" title="Moderate: 32%"></div>
+<div class="bg-tertiary-container h-full" style="width: 40%;" title="High: 40%"></div>
+<div class="bg-tertiary h-full" style="width: 28%;" title="Severe: 28%"></div>
+</div>
+</div>
+<!-- Zone 5: Siddheshwar Sanctuary -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between font-label-code text-label-code">
+<span class="font-medium text-on-surface">Siddheshwar Lake &amp; Forest</span>
+<span class="text-secondary font-bold">6% Severe</span>
+</div>
+<div class="w-full h-5 bg-surface-container rounded flex overflow-hidden">
+<div class="bg-secondary h-full" style="width: 68%;" title="Moderate: 68%"></div>
+<div class="bg-tertiary-container h-full" style="width: 26%;" title="High: 26%"></div>
+<div class="bg-tertiary h-full" style="width: 6%;" title="Severe: 6%"></div>
+</div>
+</div>
+</div>
+<!-- Risk Legend -->
+<div class="flex items-center justify-between pt-2 border-t border-outline-variant/30 text-body-sm font-body-sm">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1">
+<span class="w-2.5 h-2.5 rounded-sm bg-secondary"></span>
+<span class="font-label-code text-label-code text-on-surface-variant">Moderate (&lt;36°C)</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-2.5 h-2.5 rounded-sm bg-tertiary-container"></span>
+<span class="font-label-code text-label-code text-on-surface-variant">High (36–40°C)</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-2.5 h-2.5 rounded-sm bg-tertiary"></span>
+<span class="font-label-code text-label-code text-on-surface-variant">Severe (&gt;40°C)</span>
+</div>
+</div>
+<span class="font-label-code text-label-code text-on-surface-variant">Sample: 720h Cycle</span>
+</div>
+</div>
+</div>
+<!-- Analytical Insights & Scientific Notes Drawer -->
+<div class="bg-surface-container rounded-xl p-space-lg flex flex-col gap-space-md border-l-4 border-l-primary-container">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary-container text-[20px]">science</span>
+<h3 class="font-headline-md text-headline-md text-primary">Key Climatological Findings &amp; Intervention Proofs</h3>
+</div>
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant bg-surface-container-highest px-2 py-0.5 rounded">
+          PEER-REVIEW MEMO · DRAFT 2.4
+        </span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter text-body-md font-body-md text-on-surface">
+<div class="space-y-1">
+<div class="flex items-center gap-1 font-headline-md text-headline-md text-tertiary">
+<span>3.6h</span>
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Thermal Lag</span>
+</div>
+<p class="text-on-surface-variant text-body-sm font-body-sm">
+            High-density paved commercial clusters (Navi Peth &amp; Bhavani Peth) exhibit a pronounced 3.6-hour delayed sensible heat emission into the boundary layer, sustaining temperatures over 34°C past 22:30 IST.
+          </p>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-1 font-headline-md text-headline-md text-primary">
+<span>-3.4°C</span>
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Tree Canopy Delta</span>
+</div>
+<p class="text-on-surface-variant text-body-sm font-body-sm">
+            Urban tree canopy density exceeding 35% in residential sectors directly truncates midday peak air temperatures by up to 3.4°C, verifying urban forestry as the highest ROI microclimate mitigation strategy.
+          </p>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-1 font-headline-md text-headline-md text-secondary">
+<span>0.72</span>
+<span class="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Albedo Sensitivity</span>
+</div>
+<p class="text-on-surface-variant text-body-sm font-body-sm">
+            Simulation modeling confirms converting flat industrial roof albedo from 0.15 to 0.65 across MIDC reduces localized ambient surface heat generation by 6.2°C, limiting downwind convective heat transport.
+          </p>
+</div>
+</div>
+<div class="pt-space-xs border-t border-outline-variant/30 flex flex-col sm:flex-row sm:items-center justify-between text-body-sm font-body-sm text-on-surface-variant gap-2">
+<p>Synthesized via MIT Vishwaprayag Urban Climate Modeling Lab (TF-141 Research Group).</p>
+<div class="flex items-center gap-space-md font-label-code text-label-code">
+<span class="hover:text-primary cursor-pointer underline">Download Raw Simulation NetCDF</span>
+<span class="hover:text-primary cursor-pointer underline">Model Equations Doc</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Filter Reset & Interaction Logic
+  document.getElementById('resetFiltersBtn')?.addEventListener('click', () => {
+    const selects = document.querySelectorAll('select');
+    selects.forEach(select => {
+      select.selectedIndex = 0;
+    });
+    
+    // Visual subtle pulse to confirm reset
+    const cardGrid = document.querySelector('.max-w-\\[1400px\\]');
+    if (cardGrid) {
+      cardGrid.classList.add('opacity-90');
+      setTimeout(() => cardGrid.classList.remove('opacity-90'), 150);
+    }
+  });
+
+  document.getElementById('exportLedgerBtn')?.addEventListener('click', () => {
+    alert("Exporting Solapur synthetic microclimate dataset (May 2024 cycle, 100 stations) to CSV format...");
+  });
+
+  const zoneFilter = document.getElementById('zoneFilter');
+  zoneFilter?.addEventListener('change', (e) => {
+    // Dynamic feedback simulation for scientific dashboard
+    console.log(`Zone filtered to: ${e.target.value}`);
+  });
+</script></main><footer class="w-full bg-surface-container-low border-t border-outline-variant/40 pt-space-xl pb-space-lg"><div class="max-w-[1400px] mx-auto px-margin"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-space-xl"><div class="space-y-space-sm"><div class="flex items-center gap-space-sm"><img alt="HeatShield Emblem" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XWJ4qbCUSYLnD1Z6TmO_vemqF6U3qe-WRrr0ikQiuFHOKmX_aSoq5H39etJL4IXE4GSgYb2I0-1s3Oya1-QUTmyQV7tV05SnfXfUMy8POdHV4NMQ4lSIGi3Yd5xfrrk0EEDr49ewjs6mYQz6eeDygLU_6VDPY04zP-4Ppp5uHg49wiTSV2Hy2F-ebhrNshCPJagYUK8z4dJsju-YeprrCv3JWQCclB-xFRyi0IHQVFNTqhcGaP5TcfmgM"/><span class="font-headline-md text-headline-md text-primary">HeatShield</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">Urban microclimate heat risk analysis, spatial thermal sensing models, and cooling intervention planning engine for climate resilience.</p><p class="font-caption-caps text-caption-caps text-outline uppercase">MIT Vishwaprayag University • Solapur, Maharashtra</p></div><div class="space-y-space-sm"><span class="font-caption-caps text-caption-caps uppercase text-on-surface tracking-wider block">Platform Navigation</span><ul class="space-y-space-xs font-body-sm text-body-sm"><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="overview" href="#">Overview</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="dashboard" href="#">Analytics Dashboard</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="heat-map" href="#">India Heat Map</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="explore-data" href="#">Data Explorer</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="methodology" href="#">Methodology</a></li><li data-active-classes="text-primary"><a class="text-on-surface-variant hover:text-on-surface transition-colors block" data-path="submit-reading" href="#">Submit Reading</a></li></ul></div><div class="space-y-space-sm"><span class="font-caption-caps text-caption-caps uppercase text-on-surface tracking-wider block">Research &amp; Provenance</span><ul class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant"><li>Solapur Synthetic Dataset (150k pts)</li><li>100 Sim Sensory Grid Nodes</li><li>Microclimate Thermal Indices</li><li>Urban Tree Canopy Mitigation Models</li><li>Vector GIS Boundary Layers</li></ul></div><div class="space-y-space-sm"><span class="font-caption-caps text-caption-caps uppercase text-on-surface tracking-wider block">Project &amp; Repository</span><div class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant"><p>Academic Research Initiative TF-141</p><a class="inline-flex items-center gap-space-xs text-primary font-label-code text-label-code hover:underline" href="https://github.com/exobhavinss-sketch/TF-141-Heatshield" rel="noopener noreferrer" target="_blank"><span>GitHub / TF-141-Heatshield</span><span class="material-symbols-outlined text-[14px]">open_in_new</span></a><p>Permissive Open Science License</p><p class="font-body-sm text-body-sm text-outline">Peer-review draft v2.4</p></div></div></div><div class="pt-space-md border-t border-outline-variant/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md"><p class="font-body-sm text-body-sm text-on-surface-variant max-w-4xl">Notice: Solapur microclimate dataset consists of synthetic academic simulation models (2021–2025) for research and urban planning methodologies, not live sensor networks.</p><span class="font-caption-caps text-caption-caps text-outline uppercase whitespace-nowrap">© 2021–2025 MIT Vishwaprayag University</span></div></div></footer></body></html>
