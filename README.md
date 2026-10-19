@@ -18,38 +18,41 @@
 [![Team](https://img.shields.io/badge/Team-TF--141-orange.svg)](#team-name-members-and-work-distribution)
 [![Database](https://img.shields.io/badge/Database-PostgreSQL%20%7C%20MySQL-green.svg)](#database-design)
 [![Data Status](https://img.shields.io/badge/Dataset-Synthetic%20Simulation-yellow.svg)](#dataset-and-data-integrity-disclosure)
+[![Design System](https://img.shields.io/badge/UI%2FUX-Google%20Stitch%20Engine-194D40.svg)](#main-features)
+[![Vite](https://img.shields.io/badge/Build-Vite%205.4%20%7C%20React%2018-646CFF.svg)](#technology-stack)
 
 ---
 
 ## GitHub and Deployment Readiness
 
-This repository is configured for professional GitHub collaboration and Vercel-ready frontend deployment.
+This repository is configured for professional GitHub collaboration and production-grade Vercel frontend deployment.
 
-- Frontend root: repository root itself (`React + Vite + Tailwind + Leaflet + Recharts`)
-- Backend status: no working Flask service is currently committed in this repository; the project is still in the frontend + data/analytics stage
-- Vercel: the frontend is ready for a standard Vite deployment with SPA rewrite support via `vercel.json`
-- Render: no backend code is present yet, so a Render service is intentionally not created until the Flask API is added and verified
-- CI: a minimal GitHub Actions workflow runs `npm ci` and `npm run build` on push and pull request
-
-This keeps the current repo clean, reproducible, and deployable without inventing a nonfunctional backend.
+- **Frontend Core**: Repository root (`React 18 + Vite 5 + Tailwind CSS + Leaflet GIS + Recharts`).
+- **Google Stitch Architecture**: Fully integrates 6 comprehensive telemetry pages and the interactive submission module conforming to Google Stitch research design specifications.
+- **Vercel Readiness**: Configured for instant single-page application (SPA) deployment with deep routing support via [`vercel.json`](vercel.json).
+- **Backend Status**: Focus is currently on the verified frontend and analytical data layers; Python Flask microservices and database ETL are documented and staged for subsequent milestone integration.
+- **CI / Build Validation**: Production build validated cleanly via `npm run build` (`dist/` bundle tree-shaken and optimized).
 
 ---
 
 ## Team Name, Members, and Work Distribution
 
 ### Team Identifier: **TF-141**
-**Institution**: MIT Vishwaprayag University (MIT-VPU), Solapur  
-**Course Track**: Semester III Integrated Project (FSD-1 + DBMS + EDADV)
+**Institution**: MIT Vishwaprayag University (MIT-VPU), Solapur, Maharashtra, India  
+**Course Track**: Semester III Integrated Project (FSD-1 + DBMS + EDADV)  
+**Dedicated Team View**: Accessible directly inside the running application at [`/team`](src/pages/Team.jsx)
 
-| Team Member | Student ID | Primary Responsibility | Key Deliverables |
+| Team Member | Student ID | Primary Academic Role | Key Deliverables & Responsibilities |
 |---|---|---|---|
-| **Furqan Bagwan** | `SCFU425004` | **Frontend** | User interface design, responsive layout, dashboard views, data filters, interactive maps, and component architecture. |
-| **Aman Shaikh** | `SCFU425013` | **Exploratory Data Analysis & Data Visualization (EDADV)** | Data cleaning, statistical profiling, correlation modeling, QA validation reports, and publication-ready analytical charts. |
-| **Bhavin Shankur** | `SCFU425014` | **Backend and Database** | 3NF relational schema design, PostgreSQL/Supabase and MySQL DDL migrations, ETL loading logic, and REST API specification. |
+| **Furqan Bagwan** | `SCFU425004` | **Frontend Development (FSD-1)** | User interface architecture, Google Stitch component engineering, responsive page layouts, navigation paradigms, telemetry viewports, and visual presentation of heat findings. |
+| **Aman Shaikh** | `SCFU425013` | **Exploratory Data Analysis & Visualization (EDADV)** | Dataset inspection, null-handling, statistical distributions, thermal correlation analysis, biophysical regressions (NDVI/NDBI vs. LST), and publication-ready charts. |
+| **Bhavin Shankur** | `SCFU425014` | **Database Management & Backend (DBMS)** | 3NF relational schema design, PostgreSQL/Supabase and MySQL DDL migrations, spatial coordinate indexing, query optimization, and REST API architectural specifications. |
 
 ---
 
-HeatShield is an academic urban heat exposure analysis and cooling-intelligence platform developed for the **Solapur Urban Agglomeration, Maharashtra, India** (covering the simulation period 2021–2025). Built as an integrated Semester III project combining **Full Stack Development (FSD)**, **Database Management Systems (DBMS)**, and **Exploratory Data Analysis and Data Visualization (EDADV)**, HeatShield computationally organizes microclimate data, examines thermal exposure dynamics, and models cooling intervention priorities.
+## Project Overview
+
+HeatShield is an academic urban heat exposure analysis and cooling-intelligence platform developed for the **Solapur Urban Agglomeration, Maharashtra, India** (covering the simulation period 2021–2025). Built as an integrated Semester III capstone combining **Full Stack Development (FSD)**, **Database Management Systems (DBMS)**, and **Exploratory Data Analysis and Data Visualization (EDADV)**, HeatShield computationally organizes microclimate data, examines thermal exposure dynamics, and models cooling intervention priorities.
 
 ### The Problem HeatShield Addresses
 Urban environments frequently experience pronounced spatial variations in temperature due to surface composition and human activity:
@@ -64,18 +67,17 @@ Urban environments frequently experience pronounced spatial variations in temper
 ## Table of Contents
 
 - [Team Information](#team-name-members-and-work-distribution)
-- [Project Overview](#the-problem-heatshield-addresses)
+- [Project Overview](#project-overview)
 - [Data Disclaimer](#dataset-and-data-integrity-disclosure)
 - [Project Objectives](#project-objectives)
 - [System Architecture](#architecture-overview)
 - [Repository Structure](#repository-structure)
-- [Main Features](#main-features)
+- [Main Features & Application Pages](#main-features--application-pages)
 - [Database Design](#database-design)
 - [Data Visualizations](#data-visualizations)
 - [Technology Stack](#technology-stack)
 - [Setup and Running Instructions](#setup-and-running-instructions)
 - [Project Status & Academic Context](#project-status-and-academic-context)
-- [Future Improvements](#future-improvements)
 - [Credits & License](#credits-and-academic-use)
 
 ---
@@ -100,7 +102,7 @@ Please note the following analytical boundaries:
 3. **Zone-Based Thermal Comparison**: Contrast heat exposure across 9 urban morphological zones in Solapur (Residential, Commercial, Industrial, Road Corridors, Parks, Educational, Transport, Waterbodies, and Open Land).
 4. **Thermal Risk Classification**: Categorize locations into standardized public health heat-risk tiers (Low, Moderate, High, Very High) using multi-variable exposure logic.
 5. **Mitigation Prioritization**: Identify high-priority candidate zones for targeted interventions (e.g., urban afforestation, reflective cool roofs, shaded pedestrian transit corridors) based on calculated Shade Gap and Cooling Priority Scores.
-6. **Accessible Visual Communication**: Present findings through clear, publication-quality visualizations and an interactive web interface.
+6. **Accessible Visual Communication**: Present findings through clear, publication-quality visualizations and an interactive web interface conforming to Google Stitch research guidelines.
 7. **Demonstrate Academic Full-Stack Integration**: Integrate 3NF relational database models, rigorous statistical data science, and modern web engineering into an end-to-end curriculum project.
 
 ---
@@ -113,10 +115,10 @@ The platform is designed around a structured data pipeline separating raw simula
 flowchart TD
     A["Synthetic Simulation Dataset (150,000 Records, 57 Features)"] --> B["Data Validation and Integrity Profiling"]
     B --> C["3NF Relational Database (PostgreSQL / Supabase and MySQL)"]
-    B --> D["Exploratory Data Analysis (Statistical and Spatial Analysis)"]
-    C --> E["Backend REST API (Python Flask - In Progress)"]
-    D --> F["Analytical Visualizations (10 Generated PNG Figures)"]
-    E --> G["Frontend Web Dashboard (React and Vite - In Progress)"]
+    B --> D["Exploratory Data Analysis (Statistical & Spatial Analysis)"]
+    C --> E["Backend REST API Specification (PostgreSQL / FastAPI / Flask)"]
+    D --> F["Analytical Visualizations (10 Generated High-Res PNG Figures)"]
+    E --> G["Google Stitch Frontend Engine (React 18 + Vite + Tailwind + Leaflet)"]
     F --> G
     G --> H["Thermal Exposure Insights and Cooling Intervention Decisions"]
 ```
@@ -126,9 +128,14 @@ flowchart TD
 ## Repository Structure
 
 ```
-TF-141/
-├── README.md                                          # Root project overview and documentation
-├── TF-141 Project Work.txt                            # Academic project charter, roles & guidelines
+TF-141-Heatshield/
+├── README.md                                          # Root project documentation and architectural guide
+├── index.html                                         # Single-page application entry point
+├── package.json                                       # Project manifest, dependencies, and build scripts
+├── postcss.config.js                                  # PostCSS configuration with Tailwind and Autoprefixer
+├── tailwind.config.js                                 # Google Stitch color tokens, typography & spacing
+├── vite.config.js                                     # Vite 5 bundler configuration with dependency optimizer
+├── vercel.json                                        # Vercel deployment rewrite rules for SPA routing
 │
 ├── Banner & Logo/                                     # Visual brand assets
 │   ├── heatshield-icon.svg                            # Application vector icon
@@ -136,67 +143,97 @@ TF-141/
 │   ├── heatshield-github-banner.png                   # Repository header card
 │   └── heatshield-website-banner.png                  # Dashboard web banner
 │
-└── Datasets/
-    ├── datasets/                                      # Structured datasets and metadata
-    │   ├── Heat Shield Master Dataset.csv             # Primary flat dataset (150,000 rows × 57 cols)
-    │   ├── Heat Shield Locations.csv                  # Spatial dimension table (100 monitoring sites)
-    │   ├── Heat Shield Weather Data.csv               # Meteorological observations fact table (150,000 rows)
-    │   ├── Heat Shield Surface Observations.csv       # Remote sensing & surface LST fact table (150,000 rows)
-    │   ├── Heat Shield Interventions.csv              # Exposure risk & cooling decisions fact table (150,000 rows)
-    │   └── Heat Shield Dictionary.xlsx                # Variable definitions & 3NF schema mapping workbook
-    │
-    ├── database/                                      # Relational DDL schemas and query benchmarks
-    │   ├── heatshield_schema_postgres.sql             # PostgreSQL 14+ / Supabase migration script
-    │   ├── heatshield_schema_mysql.sql                # MySQL 8.0+ migration script
-    │   ├── Heat Shield Database Schema.sql            # Master unified DDL & analytical queries script
-    │   └── README.md                                  # Database deployment and ETL instructions
-    │
-    ├── charts/                                        # Publication-grade analytical figures (300 DPI)
-    │   ├── 01_temperature_distribution.png            # Air vs. Surface temperature distributions
-    │   ├── 02_monthly_seasonal_trends.png             # Monthly and seasonal thermal progressions
-    │   ├── 03_correlation_heatmap.png                 # Pearson correlation matrix across 14 indicators
-    │   ├── 04_ndvi_vs_lst_scatter.png                 # NDVI vs. Land Surface Temperature scatter
-    │   ├── 05_builtup_intensity_vs_lst.png            # Built-up intensity vs. LST relationship
-    │   ├── 06_heat_risk_distribution.png              # Heat risk categories across 9 urban zones
-    │   ├── 07_geographic_hotspot_map.png              # Spatial distribution of Solapur monitoring sites
-    │   ├── 08_cooling_priority_ranking.png            # Top 25 cooling intervention candidate locations
-    │   ├── 09_location_zone_comparison.png            # Boxplots of LST, Shade Gap, and UHI intensity
-    │   └── 10_executive_summary_dashboard.png         # Multi-panel executive summary dashboard
-    │
-    └── reports/                                       # Technical audit and validation documentation
-        ├── Heat Shield Dataset Analysis Report.md     # Deep-dive dataset profiling & code audit
-        └── Heat Shield Validation Report.txt          # 12-section mathematical QA audit report
+├── Website Design Files/                              # Google Stitch design references & exports
+│   ├── heat_shield_team_page/                         # Stitch Team & Project specifications
+│   │   ├── DESIGN.md                                  # Style tokens, design rules, and typography
+│   │   ├── code.html                                  # Reference semantic HTML and classes
+│   │   └── screen.png                                 # Visual design snapshot
+│   ├── heatshield_overview_research/                  # Overview / Home design specifications
+│   ├── heatshield_heat_analytics_dashboard/           # Dashboard design specifications
+│   ├── heatshield_geographic_heat_map/                # GIS Heat Map design specifications
+│   ├── heatshield_data_explorer/                      # Data Explorer design specifications
+│   ├── heatshield_research_methodology/               # Research Methodology design specifications
+│   └── heatshield_submit_reading/                     # Submit Reading modal/page design specifications
+│
+├── src/                                               # React frontend application source code
+│   ├── main.jsx                                       # React DOM root entry point
+│   ├── App.jsx                                        # React Router v6 route configuration
+│   ├── index.css                                      # Tailwind directives and custom scrollbar/Leaflet theme
+│   │
+│   ├── pages/                                         # Core application views (Google Stitch)
+│   │   ├── Home.jsx                                   # Overview: Mission, quick metrics & telemetry
+│   │   ├── Dashboard.jsx                              # Analytics: Recharts diurnal curves & zone breakdown
+│   │   ├── IndiaHeatMap.jsx                           # Geographic: Leaflet interactive GIS microclimate map
+│   │   ├── ExploreData.jsx                            # Explorer: Filterable tabular ledger with CSV export
+│   │   ├── Methodology.jsx                            # Science: UHI formulation, parameters & BibTeX citation
+│   │   ├── Team.jsx                                   # Contributors: TF-141 profiles, roles & stack
+│   │   └── SubmitReading.jsx                          # Contribution: In-situ community reading submission
+│   │
+│   ├── components/
+│   │   ├── layout/                                    # Global structural layout components
+│   │   │   ├── Navbar.jsx                             # Fixed top navigation header with active state
+│   │   │   ├── Sidebar.jsx                            # Responsive slide-over mobile drawer navigation
+│   │   │   └── PageLayout.jsx                         # Main page shell wrapping header, content & footer
+│   │   ├── branding/                                  # Institutional identity components
+│   │   │   ├── IndianFlag.jsx                         # "Made For Indians — Made By Indians" badge
+│   │   │   └── ProjectFooter.jsx                      # Universal 4-column footer with provenance notice
+│   │   ├── common/                                    # Shared utility UI components
+│   │   │   └── ErrorBoundary.jsx                      # Graceful telemetry runtime error boundary
+│   │   ├── map/                                       # Leaflet GIS mapping components
+│   │   │   ├── HeatMap.jsx                            # 2D interactive map container
+│   │   │   ├── HeatMapLegend.jsx                      # Temperature gradient key
+│   │   │   └── TemperaturePopup.jsx                   # Monitoring site telemetry popover
+│   │   └── dashboard/                                 # Analytics widgets & telemetry charts
+│   │
+│   └── data/                                          # Curated telemetry datasets & mock feeds
+│
+└── Datasets/                                          # Project data assets & analytical figures
+    ├── datasets/                                      # Master simulation tables (150,000 rows × 57 cols)
+    ├── database/                                      # PostgreSQL and MySQL 3NF relational schemas
+    ├── charts/                                        # 10 publication-quality analytical figures (300 DPI)
+    └── reports/                                       # Mathematical QA audits & validation reports
 ```
 
 ---
 
-## Main Features
+## Main Features & Application Pages
 
-### 1. Data Engineering & Normalization *(Completed & Verified)*
-* **150,000 Comprehensive Observations**: 5-year longitudinal coverage (2021–2025) across 100 fixed spatial locations in Solapur.
-* **Zero Missing Values**: 100% data completeness across all 57 simulated attributes.
-* **Physical Thermodynamic Consistency**: Verified that minimum air temperature $\le$ ambient air temperature $\le$ maximum air temperature with zero rule violations.
-* **3NF Relational Structure**: Master flat simulation separated into 6 normalized entities (`locations`, `land_cover`, `weather_observations`, `surface_observations`, `heat_assessments`, and `interventions`).
+The HeatShield frontend implements a research-grade editorial design system adhering to the **Google Stitch** aesthetic:
 
-### 2. Exploratory Data Analysis & Visualizations *(Completed & Verified)*
-* **Distribution Profiling**: Comparative analysis between ambient air temperature ($\mu = 34.28^\circ\text{C}$) and land surface temperature ($\mu = 35.89^\circ\text{C}$, peak $55.35^\circ\text{C}$).
-* **Seasonal Trajectories**: Identification of pre-monsoon heat peaks in April–May and thermal relief during the monsoon season (July–August).
-* **Biophysical Correlation**: Empirical validation of vegetative thermal suppression ($r = -0.307$ for NDVI vs. LST) and built-up heat retention ($r = +0.369$ for NDBI vs. LST).
-* **Spatial Hotspot Mapping**: Geospatial coordinate mapping of monitoring stations scaled by MCDM Cooling Priority Scores.
-* **Zone Morphological Comparison**: Quantitative contrast of Urban Heat Island (UHI) intensity and shade deficits across all 9 zone typologies.
+### 1. Overview (`/`)
+* **Core Academic Mission**: High-level problem statement and academic context for Solapur microclimate research.
+* **Telemetry Metric Strip**: Key statistical aggregations (Average Air Temp $34.3^\circ\text{C}$, Peak LST $55.4^\circ\text{C}$, Active Simulation Stations $100$).
+* **Recent Readings**: Live simulation feeds showcasing localized monitoring node observations.
 
-### 3. Cooling Decision Intelligence *(Completed & Verified)*
-* **Multi-Criteria Scoring**: Algorithmically derives a `cooling_priority_score` (ranging from 13.5 to 89.3) combining thermal exposure, population density, vulnerability index, and shade deficits.
-* **Actionable Interventions**: Generates 9 context-specific mitigation recommendations (e.g., *Urban Afforestation*, *Cool Pavements*, *High-Albedo Cool Roofs*, *Transit Canopy Shading*).
-* **Model Cooling Estimation**: Computes an estimated cooling potential ($\Delta T$ from $0.35^\circ\text{C}$ to $4.05^\circ\text{C}$) as a model-derived baseline for urban planning.
+### 2. Analytics Dashboard (`/dashboard`)
+* **Diurnal Thermal Progression**: Interactive time-series charts illustrating peak daytime surface heating vs. ambient air cooling.
+* **Morphological Zone Contrast**: Comparative bar and box plots contrasting High-Risk industrial corridors against low-stress vegetated zones.
+* **Intervention Priorities**: Algorithmic cooling priority rankings mapping shade gaps to mitigation actions.
 
-### 4. Database Infrastructure *(Completed & Verified)*
-* **Dual-Engine Relational DDL**: Dedicated, tested scripts for **PostgreSQL 14+ / Supabase** and **MySQL 8.0+**.
-* **12 Analytical Benchmark Queries**: Pre-tested SQL queries evaluating spatial hotspot rankings, seasonal anomalies, zone resource allocations, and foreign-key integrity.
+### 3. Geographic Heat Map (`/heat-map`)
+* **Interactive Leaflet GIS**: Custom CartoDB-inspired tile styling with responsive pan/zoom over Solapur's urban footprint (`17.6599° N, 75.9064° E`).
+* **Station Node Inspection**: Clickable monitoring markers revealing live microclimate metrics, NDVI, shade deficit, and cooling scores.
+* **Thermal Stress Legend**: Explicit color ramps mapping temperatures from baseline green ($<30^\circ\text{C}$) to critical vermilion ($>45^\circ\text{C}$).
 
-### 5. Web Dashboard & REST API *(In Active Development)*
-* **Frontend**: React + Vite + Tailwind CSS dashboard interface with interactive charts (Recharts) and spatial mapping (Leaflet), currently undergoing UI integration.
-* **Backend**: Python Flask REST API designed to serve filtered observations, analytical aggregations, and community reading validation.
+### 4. Data Explorer (`/explore-data`)
+* **Multi-Parameter Search & Filters**: Filter 100+ monitoring sites by urban zone typology, heat risk tier, or keyword.
+* **Metric Sorting**: Real-time sorting by air temperature, LST, vegetation cover, or cooling priority score.
+* **CSV Export**: One-click download of filtered records for external analytical research.
+
+### 5. Methodology & Simulation Specifications (`/methodology`)
+* **Mathematical Formulations**: Equations defining Land Surface Temperature (LST), Urban Heat Island (UHI) intensity, and Shade Gap Index.
+* **Simulation Boundaries**: Explicit documentation of the synthetic model assumptions (2021–2025).
+* **Academic Citation**: Pre-formatted BibTeX citation for scholarly attribution.
+
+### 6. Team & Project Information (`/team`)
+* **Team TF-141 Roster**: Complete profiles for Furqan Bagwan (`SCFU425004`), Aman Shaikh (`SCFU425013`), and Bhavin Shankur (`SCFU425014`).
+* **Workstream Architecture**: Detailed breakdown of responsibilities across Frontend (FSD-1), Data Science (EDADV), and Database Engineering (DBMS).
+* **System Pipeline**: Visual 5-stage workflow diagram tracking data from synthetic generation to cooling policy scores.
+* **Academic Scope & Provenance Disclosure**: Prominent institutional transparency card for MIT Vishwaprayag University.
+
+### 7. Submit In-Situ Reading (`/submit-reading`)
+* **Community Data Contribution**: Structured input form allowing contributors to submit local temperature, humidity, and location readings.
+* **Client-Side Validation**: Ensures thermodynamic bounds and coordinate boundaries are preserved before entry staging.
 
 ---
 
@@ -241,62 +278,87 @@ The project contains 10 presentation-grade analytical figures rendered at high r
 | **09** | [`09_location_zone_comparison.png`](Datasets/charts/09_location_zone_comparison.png) | Multi-attribute box plots comparing LST, shade deficits, and UHI intensity across all 9 urban zones. |
 | **10** | [`10_executive_summary_dashboard.png`](Datasets/charts/10_executive_summary_dashboard.png) | Comprehensive multi-panel executive dashboard consolidating key findings, distributions, and policy metrics. |
 
-### Visual Previews
-
-#### Executive Summary Dashboard
-<p align="center">
-  <img src="Datasets/charts/10_executive_summary_dashboard.png" alt="HeatShield Executive Summary Dashboard" width="95%">
-</p>
-
-#### Air vs. Land Surface Temperature Distribution
-<p align="center">
-  <img src="Datasets/charts/01_temperature_distribution.png" alt="Air vs. Surface Temperature Distribution" width="95%">
-</p>
-
 ---
 
 ## Technology Stack
 
 The HeatShield platform is structured around verified and active technologies across data engineering, database management, and application development:
 
+* **Frontend Web Application**:
+  * **React 18** — Declarative component-based UI architecture.
+  * **Vite 5** — High-performance frontend build tool with Esbuild pre-bundling.
+  * **JavaScript (ES6+)** — Client-side interaction logic.
+  * **Tailwind CSS v3** — Curated design tokens, responsive utilities, and clean planar cards.
+  * **Recharts** — Responsive charting for diurnal and statistical distributions.
+  * **Leaflet / React-Leaflet** — 2D geospatial map visualization over Solapur.
+  * **Lucide React** — Modern UI iconography.
 * **Data Engineering & Analysis**:
-  * Python (Pandas, NumPy) — Dataset synthesis, cleaning, validation checks, and feature derivation.
-  * Matplotlib & Seaborn — Generation of 10 publication-quality analytical figures.
-  * OpenPyXL / Microsoft Excel — Tabular data dictionary and schema documentation.
+  * **Python (Pandas, NumPy)** — Dataset synthesis, cleaning, validation checks, and feature derivation.
+  * **Matplotlib & Seaborn** — Generation of 10 publication-quality analytical figures.
+  * **OpenPyXL / Microsoft Excel** — Tabular data dictionary and schema documentation.
 * **Database & Storage**:
-  * PostgreSQL 14+ / Supabase — Production cloud relational database using strict relational constraints.
-  * MySQL 8.0+ — Secondary relational database alternative for standard academic RDBMS environments.
-  * Structured Query Language (SQL) — 3NF DDL migrations, composite indexing, and 12 analytical query benchmarks.
-* **Frontend Web Application** *(In Active Development)*:
-  * React + Vite — Component-based single-page application framework.
-  * JavaScript (ES6+) — Client-side interaction logic.
-  * Tailwind CSS — Responsive styling and design system.
-  * Recharts — Dynamic client-side chart rendering.
-  * Leaflet / React-Leaflet — 2D geospatial map visualization.
-* **Backend REST API** *(In Active Development)*:
-  * Python & Flask — Lightweight API server for query processing, filtering, and data validation.
-* **Version Control & Collaboration**:
-  * Git & GitHub — Collaborative source code and document version control.
+  * **PostgreSQL 14+ / Supabase** — Production cloud relational database using strict relational constraints.
+  * **MySQL 8.0+** — Secondary relational database alternative for standard academic RDBMS environments.
+  * **Structured Query Language (SQL)** — 3NF DDL migrations, composite indexing, and 12 analytical query benchmarks.
+* **Version Control & Deployment**:
+  * **Git & GitHub** — Collaborative source code and document version control.
+  * **Vercel** — Production static hosting with single-page application rewrites via `vercel.json`.
 
 ---
 
 ## Setup and Running Instructions
 
 ### 1. Prerequisites
-* Python 3.9+ installed on your system.
-* PostgreSQL 14+ (or a Supabase account) **OR** MySQL 8.0+.
-* Node.js 18+ and `npm` (for the frontend application once integrated).
+* **Node.js 18+** and `npm` installed.
+* **Python 3.9+** (for analytical scripts).
+* **PostgreSQL 14+** (or Supabase) **OR** **MySQL 8.0+** (for relational database deployment).
 
 ---
 
-### 2. Database Deployment
+### 2. Frontend Application Execution (React + Vite)
+
+#### Standard Local Environment:
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Launch Vite development server
+npm run dev
+```
+The application will launch and be accessible at **`http://localhost:3000/`**.
+
+#### Production Build & Verification:
+```bash
+# Compile and optimize production bundle
+npm run build
+
+# Preview production build locally
+npm run preview
+```
+
+---
+
+### 3. Vercel Deployment Checklist
+
+The frontend is ready for zero-configuration deployment to Vercel:
+
+1. Import your GitHub repository (`TF-141-Heatshield`) into Vercel.
+2. Select **Vite** as the Framework Preset.
+3. Root Directory: `./` (repository root).
+4. Build Command: `npm run build`
+5. Output Directory: `dist`
+6. Deploy. The included [`vercel.json`](vercel.json) automatically routes direct visits (e.g. `/team`, `/dashboard`, `/heat-map`) to `index.html` without 404 errors.
+
+---
+
+### 4. Database Deployment
 
 #### Option A: PostgreSQL / Supabase
-1. Connect to your PostgreSQL instance using `psql` or open the Supabase SQL Editor:
+1. Connect to PostgreSQL or open the Supabase SQL Editor:
    ```bash
    psql -U postgres -d heatshield_db
    ```
-2. Execute the production PostgreSQL migration script:
+2. Execute the migration script:
    ```bash
    psql -U postgres -d heatshield_db -f "Datasets/database/heatshield_schema_postgres.sql"
    ```
@@ -304,103 +366,18 @@ The HeatShield platform is structured around verified and active technologies ac
    ```sql
    \copy heatshield_master FROM 'Datasets/datasets/Heat Shield Master Dataset.csv' WITH (FORMAT csv, HEADER true);
    ```
-4. Run the ETL population queries (defined in Section 3 of the SQL script) to distribute records across the 6 normalized tables.
 
 #### Option B: MySQL 8.0+
-1. Connect via MySQL Command Line Client:
+1. Connect via MySQL Command Line:
    ```bash
    mysql -u root -p
    ```
-2. Create the database and source the MySQL schema:
+2. Source the schema:
    ```sql
    CREATE DATABASE heatshield_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
    USE heatshield_db;
    SOURCE Datasets/database/heatshield_schema_mysql.sql;
    ```
-3. Load data into the master staging table:
-   ```sql
-   LOAD DATA LOCAL INFILE 'Datasets/datasets/Heat Shield Master Dataset.csv'
-   INTO TABLE heatshield_master
-   FIELDS TERMINATED BY ','
-   ENCLOSED BY '"'
-   LINES TERMINATED BY '\n'
-   IGNORE 1 ROWS;
-   ```
-
----
-
-### 3. Python Analysis Environment *(EDA & Validation)*
-
-To inspect datasets, run analytical scripts, or generate additional plots:
-
-1. Create and activate a Python virtual environment:
-   ```bash
-   # Windows (PowerShell)
-   python -m venv venv
-   .\venv\Scripts\Activate.ps1
-
-   # Linux / macOS
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
-2. Install required data science packages:
-   ```bash
-   pip install pandas numpy matplotlib seaborn openpyxl
-   ```
-
----
-
-### 4. Frontend Application Execution (React + Vite)
-
-The frontend is built using **React 18 + Vite + Tailwind CSS + Leaflet + Recharts**:
-
-1. Install frontend dependencies:
-   ```bash
-   npm install
-   ```
-2. Start the local Vite development server:
-   ```bash
-   npm run dev
-   ```
-   The application will be accessible at `http://localhost:3000/`.
-
-3. Build the optimized production bundle:
-   ```bash
-   npm run build
-   ```
-   The production-ready artifacts are compiled into `dist/`.
-
-4. Environment Configuration (`.env.local` / `.env`):
-   ```bash
-   # Target Flask REST API Base URL
-   VITE_API_BASE_URL=http://localhost:5000/api
-   ```
-   *Note: If the backend is not yet running, HeatShield automatically falls back to curated in-situ Solapur facts and NASA POWER reanalysis grid points, ensuring zero-latency offline presentation readiness.*
-
-### 5. Vercel Deployment Checklist
-
-The frontend is designed for straightforward deployment to Vercel:
-
-1. Import the GitHub repository into Vercel.
-2. Set the project root to the repository root if it contains the Vite app directly.
-3. Framework preset: `Vite`
-4. Build command: `npm run build`
-5. Output directory: `dist`
-6. Optional environment variable in production:
-   ```bash
-   VITE_API_BASE_URL=https://your-render-backend-url.example/api
-   ```
-7. Publish the project. The included `vercel.json` ensures direct navigation to routes such as `/dashboard`, `/heat-map`, and `/submit-reading` does not return a 404.
-
-### 6. Render Backend Status
-
-There is currently no Flask backend code committed in this repository. Until a backend service is added, Render configuration should not be invented. When the application is ready for a backend, use a Python web service with a Gunicorn start command such as:
-
-```bash
-gunicorn app:app
-```
-
-and configure production environment variables and CORS explicitly once the API is implemented.
 
 ---
 
@@ -417,29 +394,27 @@ and configure production environment variables and CORS explicitly once the API 
   * ✅ 12-section mathematical and physical QA validation passed.
   * ✅ Complete 3NF relational schemas implemented for PostgreSQL and MySQL.
   * ✅ 10 publication-quality analytical visualization figures created.
-  * ✅ Production-ready frontend application complete (5 telemetry pages, interactive Leaflet CartoDB dark heat map, Recharts analytical dashboards, table filters, and CSV export).
-  * 🟡 Python Flask backend REST API endpoints undergoing integration.
-
----
-
-## Future Improvements
-
-* **Empirical Validation**: Cross-reference simulation parameters against real-world observations from open meteorological and satellite sources (e.g., Landsat thermal infrared bands and ground stations).
-* **Interactive GIS Map**: Integrate full Leaflet/MapLibre map views with layer toggles for NDVI, LST hotspots, and zone boundaries.
-* **Automated CI/CD Validation**: Implement automated test suites (e.g., `pytest` for data ranges, schema check constraint audits).
-* **Dynamic Community Input**: Introduce moderated community-submitted microclimate readings with clear provenance labeling.
-* **Decision Optimization**: Refine multi-criteria intervention algorithms with localized urban planning and cost-benefit parameters.
+  * ✅ **Production-ready Google Stitch frontend complete**:
+    - **Overview** (`/`)
+    - **Analytics Dashboard** (`/dashboard`)
+    - **Geographic Heat Map** (`/heat-map`)
+    - **Data Explorer** (`/explore-data`)
+    - **Methodology & Specifications** (`/methodology`)
+    - **Team & Project Information** (`/team`)
+    - **Submit Reading Form** (`/submit-reading`)
+  * ✅ Production build verified (`npm run build` exit code `0`).
+  * 🟡 Python Flask REST API backend specifications staged for subsequent milestone.
 
 ---
 
 ## Credits and Academic Use
 
 HeatShield is an academic project developed by **Team TF-141**:
-* **Furqan Bagwan** (`SCFU425004`) — Frontend
-* **Aman Shaikh** (`SCFU425013`) — EDADV
-* **Bhavin Shankur** (`SCFU425014`) — Backend & Database
+* **Furqan Bagwan** (`SCFU425004`) — Frontend Development (FSD-1)
+* **Aman Shaikh** (`SCFU425013`) — Exploratory Data Analysis & Data Visualization (EDADV)
+* **Bhavin Shankur** (`SCFU425014`) — Database Management & Backend (DBMS)
 
-Developed for academic demonstration and research prototyping at **MIT Vishwaprayag University (MIT-VPU)**.
+Developed for academic demonstration and research prototyping at **MIT Vishwaprayag University (MIT-VPU)**, Solapur, Maharashtra, India.
 
 ### License
-Project license terms have not yet been specified. All rights remain with the project authors and institution.
+Academic Open Science Prototype. Created for educational and research evaluation under the MIT Vishwaprayag University curriculum.
