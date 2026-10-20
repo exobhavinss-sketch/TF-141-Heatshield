@@ -66,14 +66,22 @@ export default function Login() {
           </p>
         </div>
 
-        {/* Configuration Notice if Supabase keys not set */}
-        {!isConfigured && (
+        {/* Connection Status: Confirmed Live Badge vs Pending Guidance */}
+        {!isConfigured ? (
           <div className="rounded-lg bg-surface-container p-space-sm border border-outline-variant/40 text-xs font-body-sm text-on-surface-variant">
             <div className="flex items-center gap-1.5 text-secondary font-semibold mb-1">
               <span className="material-symbols-outlined text-[16px]">info</span>
               <span>Backend Connection Pending</span>
             </div>
-            Configure <code className="text-primary font-mono font-semibold">VITE_SUPABASE_URL</code> in your <code className="font-mono">.env</code> to connect live authentication.
+            Configure <code className="text-primary font-mono font-semibold">VITE_SUPABASE_URL</code> and <code className="text-primary font-mono font-semibold">VITE_SUPABASE_PUBLISHABLE_KEY</code> in your <code className="font-mono">.env</code> to connect live authentication. If you just added or updated <code className="font-mono">.env</code>, restart the Vite dev server (<code className="font-mono">npm run dev</code>) so Vite can reload the environment variables.
+          </div>
+        ) : (
+          <div className="rounded-lg bg-surface-container-low p-2.5 border border-secondary/30 text-xs font-body-sm text-on-surface-variant flex items-center justify-between">
+            <div className="flex items-center gap-1.5 text-secondary font-medium">
+              <span className="w-2 h-2 rounded-full bg-secondary"></span>
+              <span>Supabase Live Authentication Ready</span>
+            </div>
+            <span className="font-label-code text-[10px] text-outline uppercase tracking-wider">Connected</span>
           </div>
         )}
 

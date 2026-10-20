@@ -12,9 +12,14 @@ import { createClient } from '@supabase/supabase-js';
 const rawUrl = import.meta.env.VITE_SUPABASE_URL;
 const rawKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-// Clean and sanitize string inputs
-const supabaseUrl = typeof rawUrl === 'string' ? rawUrl.trim() : '';
-const supabaseKey = typeof rawKey === 'string' ? rawKey.trim() : '';
+// Clean and sanitize string inputs (strip quotes and whitespace)
+const cleanString = (val) => {
+  if (typeof val !== 'string') return '';
+  return val.trim().replace(/^["']|["']$/g, '').trim();
+};
+
+const supabaseUrl = cleanString(rawUrl);
+const supabaseKey = cleanString(rawKey);
 
 /**
  * Validates whether valid Supabase configuration is present in the environment.
@@ -22,28 +27,33 @@ const supabaseKey = typeof rawKey === 'string' ? rawKey.trim() : '';
 export function isSupabaseConfigured() {
   const isValidUrl = Boolean(
     supabaseUrl && 
-    supabaseUrl.startsWith('http') && 
-    !supabaseUrl.includes('your-project-id')
+    (supabaseUrl.startsWith('http://') || supabaseUrl.startsWith('https://')) && 
+    !supabaseUrl.includes('your-project-id') &&
+    !supabaseUrl.includes('your-project-ref')
   );
   const isValidKey = Boolean(
     supabaseKey && 
     supabaseKey.length > 20 && 
-    !supabaseKey.includes('your-supabase-publishable')
+    !supabaseKey.includes('your-supabase-publishable') &&
+    !supabaseKey.includes('your-public-key')
   );
 
-  return isValidUrl && isValidKey;
+  return Boolean(isValidUrl && isValidKey);
 }
 
 /**
  * Returns configuration diagnostics for friendly user guidance.
  */
 export function getSupabaseConfigStatus() {
+  const configured = isSupabaseConfigured();
   return {
-    configured: isSupabaseConfigured(),
+    configured,
     hasUrl: Boolean(supabaseUrl),
     hasKey: Boolean(supabaseKey),
-    url: supabaseUrl ? `${supabaseUrl.slice(0, 16)}...` : null,
-    keyType: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ? 'publishable' : (import.meta.env.VITE_SUPABASE_ANON_KEY ? 'anon_fallback' : 'none'),
+    urlMasked: supabaseUrl ? `${supabaseUrl.slice(0, 14)}...` : null,
+    keyType: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY 
+      ? 'publishable' 
+      : (import.meta.env.VITE_SUPABASE_ANON_KEY ? 'anon_fallback' : 'none'),
   };
 }
 
