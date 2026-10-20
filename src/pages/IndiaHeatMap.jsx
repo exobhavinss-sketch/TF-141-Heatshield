@@ -4,7 +4,7 @@ import {
   fetchHeatmapGeoJSON, 
   fetchAvailableDates 
 } from '../services/heatmapService';
-import HeatMap from '../components/map/HeatMap';
+import HeatMap, { HeatShieldMap } from '../components/map/HeatMap';
 
 const STATIONS = {
   14: {
@@ -119,9 +119,65 @@ const STATIONS = {
   }
 };
 
+/**
+ * Resolves full telemetry card data for any station id dynamically.
+ * Preserves curated stations #014, #028, #073, #089, #052 while extending
+ * to support all 100 Solapur stations and live Supabase in-situ records.
+ */
+function getStationTelemetry(selectedId, features) {
+  if (STATIONS[selectedId]) return STATIONS[selectedId];
+
+  const cleanId = String(selectedId).toUpperCase();
+  for (const key of Object.keys(STATIONS)) {
+    if (cleanId.includes(key) || String(key) === cleanId) {
+      return STATIONS[key];
+    }
+  }
+
+  const feature = features?.find(f => {
+    const p = f.properties || f;
+    const fId = String(p.grid_id || p.location_id || p.station_id || p.id || '').toUpperCase();
+    return fId === cleanId || cleanId.includes(fId);
+  });
+
+  const p = feature?.properties || feature;
+  if (!p) return STATIONS[14];
+
+  const temp = p.temperature_c ?? p.mean_air_temp ?? 34.2;
+  const anomalyNum = (temp - 32.5).toFixed(1);
+  const anomalySign = Number(anomalyNum) >= 0 ? `+${anomalyNum}` : `${anomalyNum}`;
+  const canopyPct = p.ndvi !== undefined && p.ndvi !== null 
+    ? `${Math.max(Number(p.ndvi) * 100, 2.5).toFixed(1)}%` 
+    : '8.4%';
+
+  return {
+    code: p.grid_id || p.location_id || p.station_id || `STATION #${selectedId}`,
+    title: p.location_name || p.name || `Station ${selectedId}`,
+    subtype: `${p.zone || 'Urban'} Microclimate Node • Solapur High-Res Grid`,
+    coords: `${Number(p.latitude || p.lat || 17.6599).toFixed(4)}° N, ${Number(p.longitude || p.lng || 75.9064).toFixed(4)}° E`,
+    elev: `Elev: ${p.elevation_m || 460}m`,
+    temp: String(Number(temp).toFixed(1)),
+    anomaly: `${anomalySign}°C anomaly vs. baseline`,
+    canopy: canopyPct,
+    canopyStatus: Number(p.ndvi || 0) < 0.05 ? 'Deficit' : 'Moderate',
+    impervious: p.cooling_infra ? '64.0%' : '86.2%',
+    imperviousStatus: p.cooling_infra ? 'Moderate' : 'Critical',
+    albedo: '0.14',
+    albedoType: p.zone || 'Pavement',
+    peak: `Peak: 14:15 (${(temp + 1.2).toFixed(1)}°)`,
+    sparklineD: "M 0,65 Q 40,68 80,60 T 160,35 Q 200,10 220,15 T 280,45 L 320,58",
+    sparklineFill: "M 0,65 Q 40,68 80,60 T 160,35 Q 200,10 220,15 T 280,45 L 320,58 L 320,80 L 0,80 Z",
+    peakCx: "210",
+    peakCy: "12",
+    interventionTitle: p.recommended_intervention || 'Urban Greening & Reflective Cool Roofs',
+    interventionDesc: `Targeted microclimate intervention models an estimated ${Math.min(Math.max((temp - 30) * 0.35, 0.8), 2.8).toFixed(1)}°C reduction in local air temperature.`
+  };
+}
+
 export default function IndiaHeatMap() {
   const [domain, setDomain] = useState('solapur'); // 'solapur' | 'india'
   const [activeLayer, setActiveLayer] = useState('lst'); // 'lst' | 'air' | 'ndvi' | 'hvi'
+  const [viewMode, setViewMode] = useState('map'); // 'map' (Leaflet GIS) | 'schematic' (SVG)
   const [timeStep, setTimeStep] = useState(14);
   const [selectedStationId, setSelectedStationId] = useState(14);
   const [panelOpen, setPanelOpen] = useState(true);
@@ -147,7 +203,7 @@ export default function IndiaHeatMap() {
     loadData();
   }, [domain]);
 
-  const station = STATIONS[selectedStationId] || STATIONS[14];
+  const station = getStationTelemetry(selectedStationId, geoData?.features);
 
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -204,6 +260,39 @@ export default function IndiaHeatMap() {
               >
                 <span className={`w-2 h-2 rounded-full ${domain === 'india' ? 'bg-secondary-fixed' : 'bg-outline-variant'}`}></span>
                 <span>Pan-India Reanalysis</span>
+              </button>
+            </div>
+
+            {/* View Mode Switcher: Leaflet GIS vs Vector Schematic */}
+            <div className="flex items-center gap-space-xs bg-surface-container-low p-1 rounded-lg">
+              <button
+                type="button"
+                onClick={() => setViewMode('map')}
+                className={`px-space-sm py-1.5 rounded-DEFAULT font-label-code text-label-code transition-all flex items-center gap-1.5 ${
+                  viewMode === 'map'
+                    ? 'text-on-primary bg-primary font-semibold shadow-sm'
+                    : 'text-on-surface-variant hover:text-on-surface'
+                }`}
+                title="Switch to Interactive Leaflet Map"
+                id="viewLeafletMapBtn"
+              >
+                <span className="material-symbols-outlined text-[15px]">map</span>
+                <span>Leaflet GIS</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setViewMode('schematic')}
+                className={`px-space-sm py-1.5 rounded-DEFAULT font-label-code text-label-code transition-all flex items-center gap-1.5 ${
+                  viewMode === 'schematic'
+                    ? 'text-on-primary bg-primary font-semibold shadow-sm'
+                    : 'text-on-surface-variant hover:text-on-surface'
+                }`}
+                title="Switch to Vector Microclimate Model"
+                id="viewSchematicBtn"
+              >
+                <span className="material-symbols-outlined text-[15px]">hub</span>
+                <span>Vector Model</span>
               </button>
             </div>
 
@@ -309,24 +398,57 @@ export default function IndiaHeatMap() {
 
         {/* Main Dynamic GIS Cartographic Surface */}
         <div 
-          className="relative w-full h-full flex-1 overflow-hidden cursor-grab active:cursor-grabbing bg-surface-container-high" 
+          className="relative w-full h-full flex-1 overflow-hidden bg-surface-container-high" 
           id="mapViewport"
           onMouseMove={handleMouseMove}
         >
-          {domain === 'india' ? (
-            /* Pan-India View Mode */
-            <div className="w-full h-full">
-              <HeatMap 
-                geoData={geoData}
-                region="india"
+          {viewMode === 'map' ? (
+            /* Interactive Leaflet GIS Map Stage */
+            <div className="w-full h-full relative">
+              <HeatShieldMap
+                domain={domain}
+                onDomainChange={setDomain}
+                markers={geoData?.features || []}
+                selectedLayer={
+                  activeLayer === 'lst'
+                    ? 'surface_lst'
+                    : activeLayer === 'air'
+                    ? 'air_temp'
+                    : activeLayer === 'hvi'
+                    ? 'risk'
+                    : 'cooling_score'
+                }
+                onLayerChange={(layer) => {
+                  if (layer === 'surface_lst') setActiveLayer('lst');
+                  else if (layer === 'air_temp') setActiveLayer('air');
+                  else if (layer === 'risk') setActiveLayer('hvi');
+                  else setActiveLayer('ndvi');
+                }}
+                selectedLocationId={selectedStationId}
+                onSelectLocation={(loc) => {
+                  const id = loc.grid_id || loc.location_id || loc.id;
+                  setSelectedStationId(id);
+                  setPanelOpen(true);
+                  const lat = loc.latitude ?? loc.lat;
+                  const lng = loc.longitude ?? loc.lng;
+                  if (lat !== undefined && lng !== undefined) {
+                    setCursorCoords(`${Number(lat).toFixed(4)}° N, ${Number(lng).toFixed(4)}° E`);
+                  }
+                }}
+                isLoading={loading}
                 activeDate="2024-04-15"
-                selectedLayer="air_temp"
+                provenanceLabel={geoData?.properties?.source}
+                className="w-full h-full border-none rounded-none"
+                height="100%"
+                showControls={false}
+                showLegend={true}
+                showIntensityToggle={true}
               />
             </div>
           ) : (
             /* Solapur High-Res Cartographic Vector Engine */
             <svg 
-              className="absolute inset-0 w-full h-full transition-transform duration-500 ease-out" 
+              className="absolute inset-0 w-full h-full transition-transform duration-500 ease-out cursor-grab active:cursor-grabbing" 
               id="cartoCanvas" 
               preserveAspectRatio="xMidYMid slice" 
               viewBox="0 0 1600 950"
@@ -471,72 +593,76 @@ export default function IndiaHeatMap() {
             </svg>
           )}
 
-          {/* Cartographic Floating Map Tools (Zoom/Compass) */}
-          <div className="absolute bottom-space-lg right-space-md xl:right-[410px] z-20 flex flex-col gap-1.5 shadow-md rounded-lg overflow-hidden bg-surface-container-lowest border border-outline-variant/30">
-            <button 
-              onClick={() => setZoomLevel(Math.min(zoomLevel * 1.2, 2.5))}
-              className="p-2.5 hover:bg-surface-container transition-colors text-on-surface flex items-center justify-center"
-              title="Zoom In"
-            >
-              <span className="material-symbols-outlined text-[18px]">add</span>
-            </button>
-            <div className="h-[1px] w-full bg-outline-variant/30"></div>
-            <button 
-              onClick={() => setZoomLevel(Math.max(zoomLevel * 0.8, 0.75))}
-              className="p-2.5 hover:bg-surface-container transition-colors text-on-surface flex items-center justify-center"
-              title="Zoom Out"
-            >
-              <span className="material-symbols-outlined text-[18px]">remove</span>
-            </button>
-            <div className="h-[1px] w-full bg-outline-variant/30"></div>
-            <button 
-              onClick={() => setZoomLevel(1)}
-              className="p-2.5 hover:bg-surface-container transition-colors text-on-surface flex items-center justify-center" 
-              title="Re-center Solapur"
-            >
-              <span className="material-symbols-outlined text-[18px]">near_me</span>
-            </button>
-          </div>
+          {viewMode === 'schematic' && (
+            <>
+              {/* Cartographic Floating Map Tools (Zoom/Compass) */}
+              <div className="absolute bottom-space-lg right-space-md xl:right-[410px] z-20 flex flex-col gap-1.5 shadow-md rounded-lg overflow-hidden bg-surface-container-lowest border border-outline-variant/30">
+                <button 
+                  onClick={() => setZoomLevel(Math.min(zoomLevel * 1.2, 2.5))}
+                  className="p-2.5 hover:bg-surface-container transition-colors text-on-surface flex items-center justify-center"
+                  title="Zoom In"
+                >
+                  <span className="material-symbols-outlined text-[18px]">add</span>
+                </button>
+                <div className="h-[1px] w-full bg-outline-variant/30"></div>
+                <button 
+                  onClick={() => setZoomLevel(Math.max(zoomLevel * 0.8, 0.75))}
+                  className="p-2.5 hover:bg-surface-container transition-colors text-on-surface flex items-center justify-center"
+                  title="Zoom Out"
+                >
+                  <span className="material-symbols-outlined text-[18px]">remove</span>
+                </button>
+                <div className="h-[1px] w-full bg-outline-variant/30"></div>
+                <button 
+                  onClick={() => setZoomLevel(1)}
+                  className="p-2.5 hover:bg-surface-container transition-colors text-on-surface flex items-center justify-center" 
+                  title="Re-center Solapur"
+                >
+                  <span className="material-symbols-outlined text-[18px]">near_me</span>
+                </button>
+              </div>
 
-          {/* Bottom-Left: Sequential Thermal Scale / Scientific Color Ramp Legend */}
-          <div className="absolute bottom-space-md left-space-md z-20 max-w-sm w-full bg-surface-container-lowest/95 backdrop-blur-md p-space-md rounded-xl shadow-md border border-outline-variant/30">
-            <div className="flex items-center justify-between mb-space-xs">
-              <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant font-semibold">
-                Microclimate Thermal Scale (2m Air Temp)
-              </span>
-              <span className="font-label-code text-label-code text-primary font-bold">Unit: °C</span>
-            </div>
-            
-            {/* Multi-stop Continuous Color Bar */}
-            <div className="w-full h-3 rounded-DEFAULT overflow-hidden relative" style={{ background: 'linear-gradient(to right, #016a60 0%, #366759 20%, #9dd1c0 38%, #ffb59b 55%, #ff9770 70%, #ba1a1a 85%, #581900 100%)' }}>
-              <div className="absolute top-0 bottom-0 w-1 bg-surface-container-lowest shadow-sm" id="legendThumb" style={{ left: '78%' }}></div>
-            </div>
-            
-            {/* Scale Numerical Markings */}
-            <div className="flex justify-between items-center mt-1.5 font-label-code text-label-code text-on-surface-variant">
-              <span>&lt;28°</span>
-              <span>30°</span>
-              <span>34°</span>
-              <span>38°</span>
-              <span>41°</span>
-              <span className="text-error font-semibold">44°C+</span>
-            </div>
-            
-            <div className="grid grid-cols-3 gap-space-xs pt-space-xs mt-space-xs text-[10px] text-on-surface-variant">
-              <div className="flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-secondary"></span>
-                <span>Canopy Cool &lt;30°</span>
+              {/* Bottom-Left: Sequential Thermal Scale / Scientific Color Ramp Legend */}
+              <div className="absolute bottom-space-md left-space-md z-20 max-w-sm w-full bg-surface-container-lowest/95 backdrop-blur-md p-space-md rounded-xl shadow-md border border-outline-variant/30">
+                <div className="flex items-center justify-between mb-space-xs">
+                  <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant font-semibold">
+                    Microclimate Thermal Scale (2m Air Temp)
+                  </span>
+                  <span className="font-label-code text-label-code text-primary font-bold">Unit: °C</span>
+                </div>
+                
+                {/* Multi-stop Continuous Color Bar */}
+                <div className="w-full h-3 rounded-DEFAULT overflow-hidden relative" style={{ background: 'linear-gradient(to right, #016a60 0%, #366759 20%, #9dd1c0 38%, #ffb59b 55%, #ff9770 70%, #ba1a1a 85%, #581900 100%)' }}>
+                  <div className="absolute top-0 bottom-0 w-1 bg-surface-container-lowest shadow-sm" id="legendThumb" style={{ left: '78%' }}></div>
+                </div>
+                
+                {/* Scale Numerical Markings */}
+                <div className="flex justify-between items-center mt-1.5 font-label-code text-label-code text-on-surface-variant">
+                  <span>&lt;28°</span>
+                  <span>30°</span>
+                  <span>34°</span>
+                  <span>38°</span>
+                  <span>41°</span>
+                  <span className="text-error font-semibold">44°C+</span>
+                </div>
+                
+                <div className="grid grid-cols-3 gap-space-xs pt-space-xs mt-space-xs text-[10px] text-on-surface-variant">
+                  <div className="flex items-center gap-1">
+                    <span className="w-2 h-2 rounded-full bg-secondary"></span>
+                    <span>Canopy Cool &lt;30°</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <span className="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
+                    <span>UHI Stress 34-38°</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <span className="w-2 h-2 rounded-full bg-error"></span>
+                    <span>Severe Peak &gt;41°</span>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
-                <span>UHI Stress 34-38°</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-error"></span>
-                <span>Severe Peak &gt;41°</span>
-              </div>
-            </div>
-          </div>
+            </>
+          )}
         </div>
 
         {/* Right-Hand Station Telemetry Inspector (380px Desktop Slide-in) */}

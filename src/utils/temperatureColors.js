@@ -99,3 +99,35 @@ export function getZoneBadge(zoneType) {
       return 'bg-slate-500/15 text-slate-300 border-slate-500/30';
   }
 }
+
+/**
+ * Calculates HeatShield heat-risk category from temperature reading.
+ * Thresholds: <30°C Low, 30-35°C Moderate, 35-40°C High, ≥40°C Very High
+ */
+export function calculateHeatRiskCategory(temp) {
+  if (temp === null || temp === undefined || isNaN(temp)) return 'Unknown';
+  const val = Number(temp);
+  if (val < 30) return 'Low';
+  if (val < 35) return 'Moderate';
+  if (val < 40) return 'High';
+  return 'Very High';
+}
+
+/**
+ * Returns solid color hex code corresponding to risk category.
+ */
+export function getRiskCategoryColor(category) {
+  switch (category?.toLowerCase()) {
+    case 'low':
+      return '#10b981';
+    case 'moderate':
+      return '#facc15';
+    case 'high':
+      return '#f97316';
+    case 'very high':
+      return '#ef4444';
+    default:
+      return MISSING_DATA_COLOR;
+  }
+}
+

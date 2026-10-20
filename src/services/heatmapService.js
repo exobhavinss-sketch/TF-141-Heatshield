@@ -6,6 +6,8 @@
 import { getIndiaGeoJSON, INDIA_REGIONAL_GRID } from '../data/indiaGridData';
 import { SOLAPUR_STATIONS } from '../data/solapurLocations';
 import { MASTER_DATASET_METADATA, MONTHLY_TRENDS, ZONE_COMPARISON, SEASONAL_DATA, RECENT_TREND_SERIES } from '../data/dashboardData';
+import { supabase, isSupabaseConfigured } from './supabaseClient';
+import { calculateHeatRiskCategory } from '../utils/temperatureColors';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
 
@@ -74,8 +76,34 @@ export async function fetchAvailableDates() {
 }
 
 /**
+ * Fetches user or verified in-situ heat readings from Supabase 'heat_readings' table.
+ */
+export async function fetchSupabaseHeatReadings() {
+  if (!isSupabaseConfigured() || !supabase) {
+    return { data: [], isConfigured: false, error: null };
+  }
+  try {
+    const { data, error } = await supabase
+      .from('heat_readings')
+      .select('*')
+      .not('latitude', 'is', null)
+      .not('longitude', 'is', null)
+      .order('recorded_at', { ascending: false })
+      .limit(200);
+
+    if (error) {
+      return { data: [], isConfigured: true, error: error.message };
+    }
+    return { data: data || [], isConfigured: true, error: null };
+  } catch (err) {
+    return { data: [], isConfigured: true, error: err.message };
+  }
+}
+
+/**
  * Fetch GeoJSON for Heat Map view.
  * Supports both India-wide view and Solapur focused station microclimate view.
+ * Seamlessly integrates live Supabase in-situ records with verified research stations.
  */
 export async function fetchHeatmapGeoJSON(date = '2024-04-15', region = 'india') {
   try {
@@ -85,51 +113,95 @@ export async function fetchHeatmapGeoJSON(date = '2024-04-15', region = 'india')
       return { ...data, is_live_backend: true };
     }
   } catch (err) {
-    // Offline fallback
+    // Local / offline fallback
   }
 
   if (region === 'solapur') {
+    // Attempt to fetch any available in-situ observations from Supabase
+    let liveFeatures = [];
+    try {
+      const { data: supaReadings } = await fetchSupabaseHeatReadings();
+      if (supaReadings && supaReadings.length > 0) {
+        liveFeatures = supaReadings.map(r => ({
+          type: 'Feature',
+          id: r.id,
+          geometry: {
+            type: 'Point',
+            coordinates: [Number(r.longitude), Number(r.latitude)]
+          },
+          properties: {
+            grid_id: r.station_id || `SUPA-${r.id.slice(0, 6)}`,
+            location_name: r.station_id ? `Station ${r.station_id}` : 'In-Situ Field Reading',
+            zone: r.substrate || 'Field Telemetry',
+            latitude: Number(r.latitude),
+            longitude: Number(r.longitude),
+            temperature_c: Number(r.temperature_c),
+            humidity_percent: r.humidity_percent ? Number(r.humidity_percent) : null,
+            surface_temp_c: r.surface_temp_c ? Number(r.surface_temp_c) : null,
+            heat_index_c: r.heat_index_c ? Number(r.heat_index_c) : null,
+            risk_category: calculateHeatRiskCategory(r.temperature_c),
+            date: r.recorded_at ? r.recorded_at.split('T')[0] : date,
+            recorded_at: r.recorded_at,
+            source: 'Supabase In-Situ Telemetry (Live)',
+            is_live_backend: true,
+            is_synthetic: false
+          }
+        }));
+      }
+    } catch (e) {
+      // Supabase unconfigured or offline
+    }
+
     // Convert 100 Solapur stations to GeoJSON FeatureCollection
+    const solapurFeatures = SOLAPUR_STATIONS.map(s => ({
+      type: 'Feature',
+      id: s.location_id,
+      geometry: {
+        type: 'Point',
+        coordinates: [s.lng, s.lat]
+      },
+      properties: {
+        grid_id: s.location_id,
+        location_name: s.name,
+        zone: s.zone,
+        latitude: s.lat,
+        longitude: s.lng,
+        elevation_m: s.elevation_m,
+        population_density: s.population_density,
+        cooling_infra: s.cooling_infra,
+        infra_type: s.infra_type,
+        temperature_c: s.mean_air_temp,
+        land_surface_temp_c: s.mean_lst,
+        ndvi: s.mean_ndvi,
+        cooling_priority_score: s.cooling_priority_score,
+        recommended_intervention: s.recommended_intervention,
+        risk_category: s.risk_category,
+        date,
+        source: 'Solapur Microclimate Monitoring Grid (TF-141 Academic Simulation)',
+        measurement_type: 'Ambient Air Temperature (T_air)',
+        spatial_resolution: 'Point Observation',
+        is_synthetic: true,
+        is_live_backend: false
+      }
+    }));
+
+    const allFeatures = [...liveFeatures, ...solapurFeatures];
+
     return {
       type: 'FeatureCollection',
-      is_live_backend: false,
+      is_live_backend: liveFeatures.length > 0,
       properties: {
         date,
         region: 'Solapur Urban Agglomeration',
-        source: 'Solapur Microclimate Monitoring Grid (TF-141)',
+        source: liveFeatures.length > 0 
+          ? `Solapur Hybrid Telemetry (${liveFeatures.length} Live Supabase, ${solapurFeatures.length} Research Baseline)`
+          : 'Solapur Microclimate Monitoring Grid (TF-141)',
         measurement_type: 'Ambient Air Temp & Land Surface Temp (LST)',
         spatial_resolution: '100 Stationary Microclimate Stations',
-        station_count: SOLAPUR_STATIONS.length
+        station_count: allFeatures.length,
+        live_count: liveFeatures.length
       },
-      features: SOLAPUR_STATIONS.map(s => ({
-        type: 'Feature',
-        id: s.location_id,
-        geometry: {
-          type: 'Point',
-          coordinates: [s.lng, s.lat]
-        },
-        properties: {
-          grid_id: s.location_id,
-          location_name: s.name,
-          zone: s.zone,
-          latitude: s.lat,
-          longitude: s.lng,
-          elevation_m: s.elevation_m,
-          population_density: s.population_density,
-          cooling_infra: s.cooling_infra,
-          infra_type: s.infra_type,
-          temperature_c: s.mean_air_temp,
-          land_surface_temp_c: s.mean_lst,
-          ndvi: s.mean_ndvi,
-          cooling_priority_score: s.cooling_priority_score,
-          recommended_intervention: s.recommended_intervention,
-          risk_category: s.risk_category,
-          date,
-          source: 'Solapur Station Grid (TF-141)',
-          measurement_type: 'Ambient Air Temperature (T_air)',
-          spatial_resolution: 'Point Observation'
-        }
-      }))
+      features: allFeatures
     };
   }
 
