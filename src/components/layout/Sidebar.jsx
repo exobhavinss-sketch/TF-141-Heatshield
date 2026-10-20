@@ -16,7 +16,7 @@ export default function Sidebar({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 lg:hidden">
+    <div className="fixed inset-0 z-50 xl:hidden">
       {/* Backdrop */}
       <div 
         className="fixed inset-0 bg-inverse-surface/40 backdrop-blur-xs transition-opacity"
@@ -49,9 +49,9 @@ export default function Sidebar({ isOpen, onClose }) {
           </div>
 
           {/* Academic Badge */}
-          <div className="flex items-center gap-space-xs px-2.5 py-1 rounded-DEFAULT bg-surface-container text-on-surface text-[11px] font-label-code">
-            <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-            <span>SOLAPUR SIMULATION 2021–2025</span>
+          <div className="flex items-center gap-space-xs px-2.5 py-1 rounded-DEFAULT bg-surface-container text-on-surface text-[11px] font-label-code whitespace-nowrap">
+            <span className="w-1.5 h-1.5 rounded-full bg-secondary shrink-0"></span>
+            <span className="whitespace-nowrap">ACADEMIC SIMULATION • 2021–2025</span>
           </div>
 
           {/* Navigation Links */}
