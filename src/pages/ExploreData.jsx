@@ -1,167 +1,82 @@
 import React, { useState, useEffect } from 'react';
-import { fetchExploreRecords } from '../services/heatmapService';
 import { useAuth } from '../context/AuthContext';
 import { supabase, isSupabaseConfigured } from '../services/supabaseClient';
+import { fetchMasterExploreRecords, getMasterDatasetMetadata } from '../services/masterDataService';
 
-const SAMPLE_RECORDS = [
-  {
-    id: 'SLP-014',
-    ward: 'Bhavani Peth',
-    wardSub: 'Ward 14 (Old City Core)',
-    zone: 'Commercial Dense',
-    airTemp: 42.4,
-    lstTemp: 49.8,
-    rh: 28,
-    risk: 'Extreme',
-    timestamp: '2024-05-18 14:00',
-    coords: '17.6599° N, 75.9064° E',
-    solar: '912 W/m²',
-    wind: '2.1 m/s NW',
-    emissivity: '0.912 ε',
-    canopy: '4.2% (Deficit)',
-    engine: 'WRF-UCM v4.3',
-    sha: 'e7f9a2b8...c14'
-  },
-  {
-    id: 'SLP-028',
-    ward: 'Ashok Chowk',
-    wardSub: 'Junction Corridor North',
-    zone: 'Transit Corridor',
-    airTemp: 39.8,
-    lstTemp: 45.1,
-    rh: 31,
-    risk: 'High',
-    timestamp: '2024-05-18 14:00',
-    coords: '17.6680° N, 75.9120° E',
-    solar: '890 W/m²',
-    wind: '2.4 m/s NW',
-    emissivity: '0.908 ε',
-    canopy: '7.8% (Deficit)',
-    engine: 'WRF-UCM v4.3',
-    sha: 'a4b8c190...f72'
-  },
-  {
-    id: 'SLP-089',
-    ward: 'MIDC Phase II',
-    wardSub: 'Fabrication Quad 4',
-    zone: 'Industrial Core',
-    airTemp: 44.1,
-    lstTemp: 53.2,
-    rh: 22,
-    risk: 'Extreme',
-    timestamp: '2024-05-18 14:00',
-    coords: '17.6890° N, 75.9420° E',
-    solar: '945 W/m²',
-    wind: '1.8 m/s W',
-    emissivity: '0.885 ε',
-    canopy: '3.1% (Critical)',
-    engine: 'WRF-UCM v4.3',
-    sha: 'c9d2e144...81b'
-  },
-  {
-    id: 'SLP-042',
-    ward: 'Saat Rasta',
-    wardSub: 'Radial Hub Sector B',
-    zone: 'Commercial Mixed',
-    airTemp: 38.6,
-    lstTemp: 43.7,
-    rh: 34,
-    risk: 'Moderate',
-    timestamp: '2024-05-18 14:00',
-    coords: '17.6640° N, 75.9080° E',
-    solar: '860 W/m²',
-    wind: '2.2 m/s NW',
-    emissivity: '0.920 ε',
-    canopy: '12.4% (Moderate)',
-    engine: 'WRF-UCM v4.3',
-    sha: 'd11a77e0...409'
-  },
-  {
-    id: 'SLP-105',
-    ward: 'Kegaon',
-    wardSub: 'MIT Vishwaprayag Arb Net',
-    zone: 'Canopy Park',
-    airTemp: 33.9,
-    lstTemp: 36.2,
-    rh: 46,
-    risk: 'Mitigated',
-    timestamp: '2024-05-18 14:00',
-    coords: '17.7012° N, 75.8611° E',
-    solar: '780 W/m²',
-    wind: '3.1 m/s W',
-    emissivity: '0.965 ε',
-    canopy: '44.8% (Optimal)',
-    engine: 'WRF-UCM v4.3',
-    sha: 'f482a101...99c'
-  },
-  {
-    id: 'SLP-063',
-    ward: 'Navi Peth',
-    wardSub: 'Market Spine East',
-    zone: 'Commercial Dense',
-    airTemp: 41.8,
-    lstTemp: 48.9,
-    rh: 29,
-    risk: 'Extreme',
-    timestamp: '2024-05-18 14:00',
-    coords: '17.6655° N, 75.9042° E',
-    solar: '905 W/m²',
-    wind: '1.9 m/s NW',
-    emissivity: '0.910 ε',
-    canopy: '5.4% (Deficit)',
-    engine: 'WRF-UCM v4.3',
-    sha: 'b8214f77...e3a'
-  },
-  {
-    id: 'SLP-077',
-    ward: 'Jule Solapur',
-    wardSub: 'Block C Suburban',
-    zone: 'Residential Moderate',
-    airTemp: 36.7,
-    lstTemp: 40.4,
-    rh: 38,
-    risk: 'Moderate',
-    timestamp: '2024-05-18 14:00',
-    coords: '17.6480° N, 75.8920° E',
-    solar: '840 W/m²',
-    wind: '2.6 m/s W',
-    emissivity: '0.932 ε',
-    canopy: '22.1% (Good)',
-    engine: 'WRF-UCM v4.3',
-    sha: '33e198a2...771'
-  },
-  {
-    id: 'SLP-112',
-    ward: 'Sambhaji Lake',
-    wardSub: 'Riparian Heat Sink',
-    zone: 'Riparian / Park',
-    airTemp: 32.5,
-    lstTemp: 34.8,
-    rh: 58,
-    risk: 'Mitigated',
-    timestamp: '2024-05-18 14:00',
-    coords: '17.6520° N, 75.9180° E',
-    solar: '740 W/m²',
-    wind: '2.8 m/s WNW',
-    emissivity: '0.980 ε',
-    canopy: '52.4% (Optimal)',
-    engine: 'WRF-UCM v4.3',
-    sha: '8910cd4a...012'
-  }
-];
+const INITIAL_FALLBACK_RECORD = {
+  id: 'SOL-LOC-001',
+  location_id: 'SOL-LOC-001',
+  ward: 'Jule Solapur',
+  wardSub: 'Sector 1 - D-Mart Enclave',
+  zone: 'Residential',
+  airTemp: 34.06,
+  lstTemp: 35.64,
+  rh: 32.5,
+  risk: 'Moderate',
+  timestamp: '2024-05-24 14:00',
+  coords: '17.6325° N, 75.8940° E',
+  solar: '912 W/m²',
+  wind: '2.1 m/s NW',
+  emissivity: '0.912 ε',
+  canopy: '12.6%',
+  cooling_priority_score: 42.6,
+  recommended_intervention: 'Urban Green Infrastructure & Shade Enhancement',
+  engine: 'WRF-Chem / TF-141 Calibrated',
+  sha: 'e7f9a2b8...001'
+};
 
 export default function ExploreData() {
   const { user, isConfigured } = useAuth();
-  const [search, setSearch] = useState('Solapur');
+  const [search, setSearch] = useState('');
   const [selectedZone, setSelectedZone] = useState('All');
   const [selectedRisk, setSelectedRisk] = useState('All');
-  const [minTemp, setMinTemp] = useState(30.0);
-  const [maxTemp, setMaxTemp] = useState(48.0);
-  const [selectedRecord, setSelectedRecord] = useState(SAMPLE_RECORDS[0]);
+  const [minTemp, setMinTemp] = useState(15.0);
+  const [maxTemp, setMaxTemp] = useState(50.0);
+  const [records, setRecords] = useState([INITIAL_FALLBACK_RECORD]);
+  const [selectedRecord, setSelectedRecord] = useState(INITIAL_FALLBACK_RECORD);
+  const [totalCount, setTotalCount] = useState(100);
+  const [totalPages, setTotalPages] = useState(5);
+  const [page, setPage] = useState(1);
+  const [pageSize] = useState(15);
+  const [loading, setLoading] = useState(false);
+  const [isLiveDb, setIsLiveDb] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
   const [isSavingAnalysis, setIsSavingAnalysis] = useState(false);
   const [saveStatus, setSaveStatus] = useState('');
-  const [page, setPage] = useState(1);
+
+  // Fetch real records from Supabase 'heatshield_master' or verified master dataset
+  useEffect(() => {
+    let cancelled = false;
+    async function loadData() {
+      setLoading(true);
+      try {
+        const res = await fetchMasterExploreRecords({
+          search,
+          zone: selectedZone,
+          risk: selectedRisk,
+          minTemp,
+          maxTemp,
+          page,
+          pageSize
+        });
+        if (!cancelled) {
+          setRecords(res.records);
+          setTotalCount(res.totalCount);
+          setTotalPages(res.totalPages);
+          setIsLiveDb(res.isLiveDb);
+          if (res.records.length > 0) {
+            setSelectedRecord(prev => res.records.find(r => r.id === prev?.id) || res.records[0]);
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load explore records:', err);
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+    loadData();
+    return () => { cancelled = true; };
+  }, [search, selectedZone, selectedRisk, minTemp, maxTemp, page, pageSize]);
 
   const handleSaveAnalysis = async () => {
     if (!user || !isConfigured || !supabase) {
@@ -178,7 +93,7 @@ export default function ExploreData() {
       const payload = {
         user_id: user.id,
         title: title.trim(),
-        description: `Filtered by Zone: ${selectedZone}, Risk: ${selectedRisk}, Search: "${search}" (${filteredRecords.length} records)`,
+        description: `Filtered by Zone: ${selectedZone}, Risk: ${selectedRisk}, Search: "${search}" (${totalCount} records)`,
         filters: {
           search,
           selectedZone,
@@ -187,7 +102,8 @@ export default function ExploreData() {
           maxTemp,
         },
         analysis_data: {
-          matchCount: filteredRecords.length,
+          matchCount: totalCount,
+          isLiveDb,
           savedAt: new Date().toISOString(),
         },
       };
@@ -205,49 +121,49 @@ export default function ExploreData() {
     }
   };
 
-  // Filter records
-  const filteredRecords = SAMPLE_RECORDS.filter((rec) => {
-    const matchSearch = search.trim() === '' || 
-      rec.id.toLowerCase().includes(search.toLowerCase()) ||
-      rec.ward.toLowerCase().includes(search.toLowerCase()) ||
-      rec.wardSub.toLowerCase().includes(search.toLowerCase()) ||
-      rec.zone.toLowerCase().includes(search.toLowerCase());
+  const activeRecord = selectedRecord || records[0] || INITIAL_FALLBACK_RECORD;
 
-    const matchZone = selectedZone === 'All' || rec.zone.toLowerCase().includes(selectedZone.toLowerCase());
-    const matchRisk = selectedRisk === 'All' || rec.risk.toLowerCase().includes(selectedRisk.toLowerCase());
-    const matchTemp = rec.airTemp >= minTemp && rec.airTemp <= maxTemp;
-
-    return matchSearch && matchZone && matchRisk && matchTemp;
-  });
-
-  const activeRecord = selectedRecord || filteredRecords[0] || SAMPLE_RECORDS[0];
-
-  const handleExportCSV = () => {
+  const handleExportCSV = async () => {
     setIsExporting(true);
-    setTimeout(() => {
-      const csvHeader = "Station_ID,Ward_Name,Sub_District,Zone_Classification,Air_Temp_C,Surface_LST_C,RH_Pct,Risk_Tier,Sim_Timestamp,Coordinates\n";
-      const csvRows = filteredRecords.map(r => 
-        `"${r.id}","${r.ward}","${r.wardSub}","${r.zone}",${r.airTemp},${r.lstTemp},${r.rh},"${r.risk}","${r.timestamp}","${r.coords}"`
+    try {
+      // Fetch up to 2,000 filtered records for comprehensive export
+      const exportRes = await fetchMasterExploreRecords({
+        search,
+        zone: selectedZone,
+        risk: selectedRisk,
+        minTemp,
+        maxTemp,
+        page: 1,
+        pageSize: 2000
+      });
+      const exportList = exportRes.records || records;
+
+      const csvHeader = "Record_ID,Location_ID,Location_Name,Zone_Classification,Air_Temp_C,Surface_LST_C,RH_Pct,Risk_Category,Elevation_M,Population_Density_Km2,Cooling_Priority_Score,Recommended_Intervention,Coordinates,Sim_Timestamp,Data_Provenance\n";
+      const csvRows = exportList.map(r => 
+        `"${r.id}","${r.location_id || r.id}","${r.ward} - ${r.wardSub}","${r.zone}",${r.airTemp},${r.lstTemp},${r.rh},"${r.risk}",${r.elevation_m || 460},${r.population_density || 15000},${r.cooling_priority_score || 45.0},"${r.recommended_intervention || 'Cooling Intervention'}","${r.coords}","${r.timestamp}","WRF-Chem / TF-141 Calibrated Simulation"`
       ).join("\n");
       
       const blob = new Blob([csvHeader + csvRows], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.setAttribute("href", url);
-      link.setAttribute("download", `heatshield_telemetry_export_${new Date().toISOString().slice(0, 10)}.csv`);
+      link.setAttribute("download", `heatshield_master_dataset_export_${new Date().toISOString().slice(0, 10)}.csv`);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+    } catch (err) {
+      console.error('Failed to export CSV:', err);
+    } finally {
       setIsExporting(false);
-    }, 800);
+    }
   };
 
   const handleResetFilters = () => {
     setSearch('');
     setSelectedZone('All');
     setSelectedRisk('All');
-    setMinTemp(30.0);
-    setMaxTemp(48.0);
+    setMinTemp(15.0);
+    setMaxTemp(50.0);
     setPage(1);
   };
 
@@ -306,28 +222,31 @@ export default function ExploreData() {
 
           {/* Quick Metrics Strip */}
           <div className="flex flex-wrap items-center gap-space-sm">
-            <div className="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex flex-col min-w-[130px] border border-outline-variant/30">
+            <div className="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex flex-col min-w-[140px] border border-outline-variant/30">
               <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Filtered Subset</span>
               <span className="font-label-metric text-label-metric text-primary font-bold text-base mt-0.5" id="filtered-counter">
-                {filteredRecords.length.toLocaleString()}
+                {totalCount.toLocaleString()}
               </span>
               <span className="font-label-code text-[10px] text-secondary">
-                {((filteredRecords.length / 150000) * 100).toFixed(2)}% of corpus
+                {((totalCount / 150000) * 100).toFixed(2)}% of 150k corpus
               </span>
             </div>
-            <div className="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex flex-col min-w-[130px] border border-outline-variant/30">
+            <div className="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex flex-col min-w-[140px] border border-outline-variant/30">
+              <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Data Repository</span>
+              <span className="font-label-metric text-label-metric text-tertiary font-bold text-xs mt-1 flex items-center gap-1">
+                <span className={`w-2 h-2 rounded-full ${isLiveDb ? 'bg-secondary' : 'bg-primary'}`}></span>
+                {isLiveDb ? 'Supabase Live' : 'Verified Baseline'}
+              </span>
+              <span className="font-label-code text-[10px] text-on-surface-variant">
+                {isLiveDb ? 'heatshield_master' : '100 Station Grid'}
+              </span>
+            </div>
+            <div className="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex flex-col min-w-[140px] border border-outline-variant/30">
               <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Mean LST (Filtered)</span>
               <span className="font-label-metric text-label-metric text-tertiary-container font-bold text-base mt-0.5">
-                42.8°C
+                {(records.reduce((acc, r) => acc + (r.lstTemp || 35.8), 0) / (records.length || 1)).toFixed(1)}°C
               </span>
-              <span className="font-label-code text-[10px] text-on-surface-variant">σ = ±2.3°C</span>
-            </div>
-            <div className="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex flex-col min-w-[130px] border border-outline-variant/30">
-              <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant">High-Risk Canopy</span>
-              <span className="font-label-metric text-label-metric text-error font-bold text-base mt-0.5">
-                64.2%
-              </span>
-              <span className="font-label-code text-[10px] text-error">Critical threshold</span>
+              <span className="font-label-code text-[10px] text-on-surface-variant">Solapur Microclimate</span>
             </div>
           </div>
         </div>
@@ -423,7 +342,7 @@ export default function ExploreData() {
                   {isExporting ? 'refresh' : 'download'}
                 </span>
                 <span className="whitespace-nowrap">
-                  {isExporting ? 'Exporting...' : `Export CSV (${filteredRecords.length})`}
+                  {isExporting ? 'Exporting...' : `Export CSV (${totalCount.toLocaleString()})`}
                 </span>
               </button>
               
@@ -541,67 +460,90 @@ export default function ExploreData() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-surface-container-low">
-                    {filteredRecords.map((r) => {
-                      const isSelected = activeRecord.id === r.id;
-                      return (
-                        <tr 
-                          key={r.id}
-                          onClick={() => setSelectedRecord(r)}
-                          className={`cursor-pointer transition-colors ${
-                            isSelected 
-                              ? 'bg-primary-fixed/20 hover:bg-primary-fixed/30' 
-                              : 'hover:bg-surface-container-low/70'
-                          }`}
-                        >
-                          <td className="py-2.5 px-3 whitespace-nowrap">
-                            <span className="font-label-code text-label-code bg-surface-container text-primary px-2 py-0.5 rounded font-semibold inline-flex items-center gap-1">
-                              <span className={`w-1.5 h-1.5 rounded-full ${r.risk === 'Extreme' ? 'bg-error' : r.risk === 'High' ? 'bg-on-tertiary-container' : 'bg-secondary'}`}></span>
-                              {r.id}
-                            </span>
-                          </td>
-                          <td className="py-2.5 px-3 whitespace-nowrap font-medium text-on-surface">
-                            {r.ward}
-                            <span className="block font-caption-caps text-caption-caps text-on-surface-variant">{r.wardSub}</span>
-                          </td>
-                          <td className="py-2.5 px-3 whitespace-nowrap">
-                            <span className="font-caption-caps text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">
-                              {r.zone}
-                            </span>
-                          </td>
-                          <td className="py-2.5 px-3 text-right whitespace-nowrap">
-                            <div className="inline-flex items-center justify-end gap-1.5">
-                              <span className={`w-2 h-2 rounded-full ${r.airTemp >= 42 ? 'bg-error' : r.airTemp >= 38 ? 'bg-on-tertiary-container' : 'bg-secondary'}`}></span>
-                              <span className="font-label-metric text-label-metric font-semibold text-tertiary">{r.airTemp.toFixed(1)}°C</span>
-                            </div>
-                          </td>
-                          <td className="py-2.5 px-3 text-right whitespace-nowrap font-label-metric text-label-metric font-bold text-tertiary-container">
-                            {r.lstTemp.toFixed(1)}°C
-                          </td>
-                          <td className="py-2.5 px-3 text-right whitespace-nowrap font-label-metric text-label-metric text-on-surface-variant">
-                            {r.rh}%
-                          </td>
-                          <td className="py-2.5 px-3 text-center whitespace-nowrap">
-                            <span className={getRiskTagClass(r.risk)}>
-                              {r.risk}
-                            </span>
-                          </td>
-                          <td className="py-2.5 px-3 whitespace-nowrap font-label-code text-label-code text-on-surface-variant">
-                            {r.timestamp}
-                          </td>
-                          <td className="py-2.5 px-3 text-right whitespace-nowrap">
-                            <button 
-                              onClick={(e) => { e.stopPropagation(); setSelectedRecord(r); }}
-                              className={`px-2 py-1 font-caption-caps text-caption-caps uppercase rounded transition-colors inline-flex items-center gap-0.5 ${
-                                isSelected ? 'bg-primary text-on-primary' : 'bg-surface-container text-on-surface hover:bg-surface-variant'
-                              }`}
-                            >
-                              <span>Inspect</span>
-                              <span className="material-symbols-outlined text-[13px]">chevron_right</span>
+                    {loading ? (
+                      <tr>
+                        <td colSpan="9" className="py-12 text-center text-on-surface-variant font-body-md">
+                          <div className="flex flex-col items-center justify-center gap-2">
+                            <span className="material-symbols-outlined text-[28px] animate-spin text-primary">progress_activity</span>
+                            <span>Querying master microclimate telemetry records...</span>
+                          </div>
+                        </td>
+                      </tr>
+                    ) : records.length === 0 ? (
+                      <tr>
+                        <td colSpan="9" className="py-12 text-center text-on-surface-variant font-body-md">
+                          <div className="flex flex-col items-center justify-center gap-2">
+                            <span className="material-symbols-outlined text-[32px] text-outline-variant">search_off</span>
+                            <span>No observations match the current filter criteria.</span>
+                            <button onClick={handleResetFilters} className="text-primary hover:underline font-semibold text-xs mt-1">
+                              Reset Constraints
                             </button>
-                          </td>
-                        </tr>
-                      );
-                    })}
+                          </div>
+                        </td>
+                      </tr>
+                    ) : (
+                      records.map((r) => {
+                        const isSelected = activeRecord.id === r.id;
+                        return (
+                          <tr 
+                            key={r.id}
+                            onClick={() => setSelectedRecord(r)}
+                            className={`cursor-pointer transition-colors ${
+                              isSelected 
+                                ? 'bg-primary-fixed/20 hover:bg-primary-fixed/30' 
+                                : 'hover:bg-surface-container-low/70'
+                            }`}
+                          >
+                            <td className="py-2.5 px-3 whitespace-nowrap">
+                              <span className="font-label-code text-label-code bg-surface-container text-primary px-2 py-0.5 rounded font-semibold inline-flex items-center gap-1">
+                                <span className={`w-1.5 h-1.5 rounded-full ${r.risk === 'Extreme' ? 'bg-error' : r.risk === 'High' ? 'bg-on-tertiary-container' : 'bg-secondary'}`}></span>
+                                {r.id}
+                              </span>
+                            </td>
+                            <td className="py-2.5 px-3 whitespace-nowrap font-medium text-on-surface">
+                              {r.ward}
+                              <span className="block font-caption-caps text-caption-caps text-on-surface-variant">{r.wardSub}</span>
+                            </td>
+                            <td className="py-2.5 px-3 whitespace-nowrap">
+                              <span className="font-caption-caps text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">
+                                {r.zone}
+                              </span>
+                            </td>
+                            <td className="py-2.5 px-3 text-right whitespace-nowrap">
+                              <div className="inline-flex items-center justify-end gap-1.5">
+                                <span className={`w-2 h-2 rounded-full ${r.airTemp >= 42 ? 'bg-error' : r.airTemp >= 38 ? 'bg-on-tertiary-container' : 'bg-secondary'}`}></span>
+                                <span className="font-label-metric text-label-metric font-semibold text-tertiary">{Number(r.airTemp).toFixed(1)}°C</span>
+                              </div>
+                            </td>
+                            <td className="py-2.5 px-3 text-right whitespace-nowrap font-label-metric text-label-metric font-bold text-tertiary-container">
+                              {Number(r.lstTemp).toFixed(1)}°C
+                            </td>
+                            <td className="py-2.5 px-3 text-right whitespace-nowrap font-label-metric text-label-metric text-on-surface-variant">
+                              {r.rh}%
+                            </td>
+                            <td className="py-2.5 px-3 text-center whitespace-nowrap">
+                              <span className={getRiskTagClass(r.risk)}>
+                                {r.risk}
+                              </span>
+                            </td>
+                            <td className="py-2.5 px-3 whitespace-nowrap font-label-code text-label-code text-on-surface-variant">
+                              {r.timestamp}
+                            </td>
+                            <td className="py-2.5 px-3 text-right whitespace-nowrap">
+                              <button 
+                                onClick={(e) => { e.stopPropagation(); setSelectedRecord(r); }}
+                                className={`px-2 py-1 font-caption-caps text-caption-caps uppercase rounded transition-colors inline-flex items-center gap-0.5 ${
+                                  isSelected ? 'bg-primary text-on-primary' : 'bg-surface-container text-on-surface hover:bg-surface-variant'
+                                }`}
+                              >
+                                <span>Inspect</span>
+                                <span className="material-symbols-outlined text-[13px]">chevron_right</span>
+                              </button>
+                            </td>
+                          </tr>
+                        );
+                      })
+                    )}
                   </tbody>
                 </table>
               </div>
@@ -609,18 +551,28 @@ export default function ExploreData() {
               {/* Bottom Table Pagination Bar */}
               <div className="p-space-md bg-surface-container-lowest flex flex-col sm:flex-row sm:items-center justify-between gap-space-md border-t border-outline-variant/20">
                 <span className="font-body-sm text-body-sm text-on-surface-variant">
-                  Showing <span className="font-semibold text-on-surface">1–{filteredRecords.length}</span> of <span className="font-semibold text-on-surface">{filteredRecords.length}</span> matching simulation observations (150,000 total in repository)
+                  Showing <span className="font-semibold text-on-surface">{totalCount === 0 ? 0 : (page - 1) * pageSize + 1}–{Math.min(page * pageSize, totalCount)}</span> of <span className="font-semibold text-on-surface">{totalCount.toLocaleString()}</span> matching records ({isLiveDb ? 'Supabase heatshield_master' : '150,000 corpus repository'})
                 </span>
                 <div className="flex items-center gap-1">
-                  <button className="p-1 rounded bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container disabled:opacity-40 transition-colors" disabled>
+                  <button 
+                    onClick={() => setPage(p => Math.max(1, p - 1))}
+                    disabled={page <= 1 || loading}
+                    className="p-1 rounded bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container disabled:opacity-40 transition-colors"
+                    title="Previous page"
+                  >
                     <span className="material-symbols-outlined text-[18px]">chevron_left</span>
                   </button>
-                  <button className="px-2.5 py-1 rounded bg-primary-container text-on-primary font-label-code text-label-code font-semibold">1</button>
-                  <button className="px-2.5 py-1 rounded bg-surface-container-low text-on-surface font-label-code text-label-code hover:bg-surface-container transition-colors">2</button>
-                  <button className="px-2.5 py-1 rounded bg-surface-container-low text-on-surface font-label-code text-label-code hover:bg-surface-container transition-colors">3</button>
-                  <span className="px-1 text-on-surface-variant font-label-code text-label-code">...</span>
-                  <button className="px-2.5 py-1 rounded bg-surface-container-low text-on-surface font-label-code text-label-code hover:bg-surface-container transition-colors">124</button>
-                  <button className="p-1 rounded bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors">
+                  
+                  <span className="px-3 py-1 rounded bg-surface-container font-label-code text-label-code text-on-surface font-semibold">
+                    Page {page} of {Math.max(1, totalPages)}
+                  </span>
+
+                  <button 
+                    onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+                    disabled={page >= totalPages || loading}
+                    className="p-1 rounded bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container disabled:opacity-40 transition-colors"
+                    title="Next page"
+                  >
                     <span className="material-symbols-outlined text-[18px]">chevron_right</span>
                   </button>
                 </div>

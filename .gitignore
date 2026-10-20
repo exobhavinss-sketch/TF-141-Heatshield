@@ -60,3 +60,11 @@ temp/
 *.local
 *.orig
 
+# Master datasets and batch import logs
+Heat Shield Master Dataset*.csv
+Datasets/datasets/*.csv
+*.csv.gz
+import_rejections_*.log
+.playwright-mcp/
+
+
