@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchExploreRecords } from '../services/heatmapService';
+import { useAuth } from '../context/AuthContext';
+import { supabase, isSupabaseConfigured } from '../services/supabaseClient';
 
 const SAMPLE_RECORDS = [
   {
@@ -149,6 +151,7 @@ const SAMPLE_RECORDS = [
 ];
 
 export default function ExploreData() {
+  const { user, isConfigured } = useAuth();
   const [search, setSearch] = useState('Solapur');
   const [selectedZone, setSelectedZone] = useState('All');
   const [selectedRisk, setSelectedRisk] = useState('All');
@@ -156,7 +159,51 @@ export default function ExploreData() {
   const [maxTemp, setMaxTemp] = useState(48.0);
   const [selectedRecord, setSelectedRecord] = useState(SAMPLE_RECORDS[0]);
   const [isExporting, setIsExporting] = useState(false);
+  const [isSavingAnalysis, setIsSavingAnalysis] = useState(false);
+  const [saveStatus, setSaveStatus] = useState('');
   const [page, setPage] = useState(1);
+
+  const handleSaveAnalysis = async () => {
+    if (!user || !isConfigured || !supabase) {
+      alert('Please sign in with your research credentials to bookmark and persist analytical filter sets.');
+      return;
+    }
+
+    const defaultTitle = `Solapur Query: ${selectedZone} (${selectedRisk}) [${minTemp}°C–${maxTemp}°C]`;
+    const title = window.prompt('Enter a title for this saved analysis snapshot:', defaultTitle);
+    if (!title || !title.trim()) return;
+
+    setIsSavingAnalysis(true);
+    try {
+      const payload = {
+        user_id: user.id,
+        title: title.trim(),
+        description: `Filtered by Zone: ${selectedZone}, Risk: ${selectedRisk}, Search: "${search}" (${filteredRecords.length} records)`,
+        filters: {
+          search,
+          selectedZone,
+          selectedRisk,
+          minTemp,
+          maxTemp,
+        },
+        analysis_data: {
+          matchCount: filteredRecords.length,
+          savedAt: new Date().toISOString(),
+        },
+      };
+
+      const { error } = await supabase.from('saved_analyses').insert([payload]);
+      if (error) throw error;
+
+      setSaveStatus('Analysis query saved to your account profile!');
+      setTimeout(() => setSaveStatus(''), 4000);
+    } catch (err) {
+      console.error('Failed to save analysis:', err);
+      alert(`Could not save analysis: ${err.message}`);
+    } finally {
+      setIsSavingAnalysis(false);
+    }
+  };
 
   // Filter records
   const filteredRecords = SAMPLE_RECORDS.filter((rec) => {
@@ -364,23 +411,41 @@ export default function ExploreData() {
               </div>
             </div>
 
-            {/* Export Action CTA */}
-            <div className="lg:col-span-2 flex items-center justify-end">
+            {/* Export and Save Analysis Action CTAs */}
+            <div className="lg:col-span-2 flex flex-col sm:flex-row lg:flex-col gap-1.5 justify-end">
               <button 
                 type="button"
                 onClick={handleExportCSV}
                 disabled={isExporting}
-                className="w-full inline-flex items-center justify-center gap-space-xs py-2 px-space-md rounded-lg bg-primary-container text-on-primary font-body-md text-body-md hover:bg-primary transition-all duration-150 shadow-sm disabled:opacity-70"
+                className="w-full inline-flex items-center justify-center gap-space-xs py-2 px-space-sm rounded-lg bg-primary-container text-on-primary font-body-sm text-xs hover:bg-primary transition-all duration-150 shadow-sm disabled:opacity-70 font-semibold"
               >
-                <span className={`material-symbols-outlined text-[18px] ${isExporting ? 'animate-spin' : ''}`}>
+                <span className={`material-symbols-outlined text-[16px] ${isExporting ? 'animate-spin' : ''}`}>
                   {isExporting ? 'refresh' : 'download'}
                 </span>
-                <span className="font-medium whitespace-nowrap">
+                <span className="whitespace-nowrap">
                   {isExporting ? 'Exporting...' : `Export CSV (${filteredRecords.length})`}
                 </span>
               </button>
+              
+              <button 
+                type="button"
+                onClick={handleSaveAnalysis}
+                disabled={isSavingAnalysis}
+                className="w-full inline-flex items-center justify-center gap-1 py-1.5 px-space-sm rounded-lg bg-surface-container hover:bg-surface-container-highest text-secondary font-body-sm text-xs transition-colors border border-outline-variant/30 font-medium"
+                title="Bookmark current query to your Supabase profile"
+              >
+                <span className="material-symbols-outlined text-[15px]">bookmark_add</span>
+                <span className="whitespace-nowrap">{isSavingAnalysis ? 'Saving...' : 'Save Query'}</span>
+              </button>
             </div>
           </div>
+
+          {saveStatus && (
+            <div className="mt-2 p-2 rounded-lg bg-secondary-container text-on-secondary-container font-body-sm text-xs flex items-center gap-2">
+              <span className="material-symbols-outlined text-[16px]">check_circle</span>
+              <span>{saveStatus}</span>
+            </div>
+          )}
 
           {/* Advanced Metric Range & Tag Sliders Row */}
           <div className="mt-space-md pt-space-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md bg-surface-container-low/60 p-space-sm rounded-lg">

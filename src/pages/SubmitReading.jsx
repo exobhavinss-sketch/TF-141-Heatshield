@@ -1,4 +1,6 @@
 import React, { useState, useId } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { supabase, isSupabaseConfigured } from '../services/supabaseClient';
 
 const STATIONS = [
   {
@@ -62,6 +64,8 @@ const SUBSTRATES = [
 ];
 
 export default function SubmitReading() {
+  const { user, isConfigured } = useAuth();
+
   const [airTemp, setAirTemp] = useState('38.5');
   const [tempUnit, setTempUnit] = useState('C');
   const [humidity, setHumidity] = useState(34);
@@ -79,8 +83,11 @@ export default function SubmitReading() {
   const [selectedSubstrate, setSelectedSubstrate] = useState(SUBSTRATES[0]);
   const [fieldNotes, setFieldNotes] = useState('Observed cooling deficit under mature neem canopy along Saat Rasta corridor; surface asphalt radiates intense convective heat plume during peak 14:00 solar transit.');
   
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [toastVisible, setToastVisible] = useState(false);
+  const [toastTitle, setToastTitle] = useState('Telemetry Observation Buffered');
   const [toastMessage, setToastMessage] = useState('');
+  const [toastIsError, setToastIsError] = useState(false);
   const [copyStatus, setCopyStatus] = useState('Copy JSON');
 
   // Compute thermal indicators live
@@ -135,12 +142,76 @@ export default function SubmitReading() {
     }
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const readingSummary = `Reading for ${selectedStation.id} (${tempInC.toFixed(1)}°C) recorded in local transient memory buffer for ${selectedStation.shortName}.`;
-    setToastMessage(readingSummary);
-    setToastVisible(true);
-    setTimeout(() => setToastVisible(false), 4500);
+    if (isSubmitting) return;
+
+    // Numerical range validation
+    if (tempInC < -10 || tempInC > 75) {
+      setToastIsError(true);
+      setToastTitle('Invalid Temperature Reading');
+      setToastMessage('Air temperature must be between -10°C and 75°C.');
+      setToastVisible(true);
+      return;
+    }
+    if (humidity < 0 || humidity > 100) {
+      setToastIsError(true);
+      setToastTitle('Invalid Relative Humidity');
+      setToastMessage('Relative humidity must be between 0% and 100%.');
+      setToastVisible(true);
+      return;
+    }
+
+    setIsSubmitting(true);
+    setToastIsError(false);
+
+    try {
+      if (isConfigured && supabase && user) {
+        // Authenticated live insertion into Supabase PostgreSQL
+        const readingRecord = {
+          user_id: user.id,
+          temperature_c: parseFloat(tempInC.toFixed(1)),
+          humidity_percent: parseFloat(humidity),
+          surface_temp_c: surfaceTemp ? parseFloat(surfaceTemp) : null,
+          heat_index_c: parseFloat(heatIndex),
+          latitude: parseFloat(latitude),
+          longitude: parseFloat(longitude),
+          station_id: selectedStation.id,
+          substrate: selectedSubstrate.name,
+          instrument_spec: instrumentSpec,
+          notes: fieldNotes.trim() || null,
+          recorded_at: new Date(timestamp).toISOString(),
+          status: 'pending',
+        };
+
+        const { data, error } = await supabase
+          .from('heat_readings')
+          .insert([readingRecord])
+          .select('id, status, created_at')
+          .single();
+
+        if (error) throw error;
+
+        setToastTitle('Telemetry Recorded to Supabase Database');
+        setToastMessage(`Record ID ${data.id.slice(0, 8)}... successfully registered under ${selectedStation.shortName} (Status: pending peer-review validation).`);
+        setToastVisible(true);
+      } else {
+        // Offline or Guest simulation fallback
+        const summary = `Reading for ${selectedStation.id} (${tempInC.toFixed(1)}°C) buffered in local research sandbox memory for ${selectedStation.shortName}. Sign in to save permanently to your Supabase ledger.`;
+        setToastTitle('Telemetry Observation Buffered in Sandbox');
+        setToastMessage(summary);
+        setToastVisible(true);
+      }
+    } catch (err) {
+      console.error('[HeatShield Submit] Database insertion error:', err);
+      setToastIsError(true);
+      setToastTitle('Submission Failed');
+      setToastMessage(err.message || 'Could not record reading to Supabase database. Please try again.');
+      setToastVisible(true);
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setToastVisible(false), 5500);
+    }
   };
 
   const handleReset = () => {
@@ -165,6 +236,8 @@ export default function SubmitReading() {
     coords: [latitude, longitude],
     timestamp_ist: timestamp,
     instrument: instrumentSpec,
+    submitter_user_id: user ? user.id : 'guest_researcher',
+    submission_mode: user && isConfigured ? 'supabase_live' : 'sandbox_demo',
     checksum: "sha256-d41d8cd98f00b204e9800998ecf8427e"
   }, null, 2);
 
@@ -542,10 +615,22 @@ export default function SubmitReading() {
                   <div className="flex items-center gap-space-sm">
                     <button 
                       type="submit"
-                      className="inline-flex items-center gap-space-xs px-space-xl py-3 rounded-lg bg-primary-container text-on-primary font-headline-md text-headline-md hover:bg-primary transition-all shadow-md active:scale-[0.98] font-semibold"
+                      disabled={isSubmitting}
+                      className="inline-flex items-center gap-space-xs px-space-xl py-3 rounded-lg bg-primary-container text-on-primary font-headline-md text-headline-md hover:bg-primary transition-all shadow-md active:scale-[0.98] font-semibold disabled:opacity-60"
                     >
-                      <span className="material-symbols-outlined text-[20px]">send_time_extension</span>
-                      <span>Validate &amp; Record Reading (Demo)</span>
+                      {isSubmitting ? (
+                        <>
+                          <span className="w-5 h-5 border-2 border-on-primary border-t-transparent rounded-full animate-spin"></span>
+                          <span>Recording Telemetry...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span className="material-symbols-outlined text-[20px]">send_time_extension</span>
+                          <span>
+                            {user && isConfigured ? 'Record Reading to Supabase' : 'Record Reading (Sandbox Demo)'}
+                          </span>
+                        </>
+                      )}
                     </button>
                     <button 
                       type="button"
@@ -558,22 +643,28 @@ export default function SubmitReading() {
                   </div>
                   <div className="font-caption-caps text-caption-caps text-outline flex items-center gap-1">
                     <span className="material-symbols-outlined text-[14px]">lock_clock</span>
-                    <span>SHA-256 BUFFERED TRANSIENT STATE</span>
+                    <span>{user && isConfigured ? 'SUPABASE RLS POSTGRESQL' : 'RESEARCH SANDBOX BUFFER'}</span>
                   </div>
                 </div>
 
                 {/* Dynamic Feedback Notification Toast */}
                 {toastVisible && (
-                  <div className="rounded-xl bg-primary text-on-primary p-space-md shadow-xl transition-all duration-300">
+                  <div className={`rounded-xl p-space-md shadow-xl transition-all duration-300 ${
+                    toastIsError ? 'bg-error text-on-error' : 'bg-primary text-on-primary'
+                  }`}>
                     <div className="flex items-start justify-between gap-space-md">
                       <div className="flex items-center gap-space-sm">
-                        <div className="w-8 h-8 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-bold">✓</div>
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold ${
+                          toastIsError ? 'bg-error-container text-on-error-container' : 'bg-primary-fixed text-on-primary-fixed'
+                        }`}>
+                          {toastIsError ? '!' : '✓'}
+                        </div>
                         <div>
-                          <h4 className="font-headline-md text-headline-md font-semibold text-on-primary">Telemetry Observation Buffered in Research Sandbox</h4>
-                          <p className="font-body-sm text-body-sm text-primary-fixed mt-0.5">{toastMessage}</p>
+                          <h4 className="font-headline-md text-headline-md font-semibold">{toastTitle}</h4>
+                          <p className="font-body-sm text-body-sm mt-0.5 opacity-90">{toastMessage}</p>
                         </div>
                       </div>
-                      <button onClick={() => setToastVisible(false)} type="button" className="text-on-primary hover:text-primary-fixed-dim">
+                      <button onClick={() => setToastVisible(false)} type="button" className="opacity-80 hover:opacity-100">
                         <span className="material-symbols-outlined text-[20px]">close</span>
                       </button>
                     </div>

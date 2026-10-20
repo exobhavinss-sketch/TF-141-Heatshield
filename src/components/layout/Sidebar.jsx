@@ -1,19 +1,27 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import IndianFlag from '../branding/IndianFlag';
-
-const NAV_ITEMS = [
-  { path: '/', label: 'Overview', icon: 'home' },
-  { path: '/dashboard', label: 'Dashboard', icon: 'query_stats' },
-  { path: '/heat-map', label: 'Heat Map', icon: 'map' },
-  { path: '/explore-data', label: 'Explore Data', icon: 'dataset' },
-  { path: '/methodology', label: 'Methodology', icon: 'science' },
-  { path: '/team', label: 'Team & Project', icon: 'groups' },
-  { path: '/submit-reading', label: 'Submit Reading', icon: 'edit_calendar' },
-];
+import { useAuth } from '../../context/AuthContext';
 
 export default function Sidebar({ isOpen, onClose }) {
+  const { user } = useAuth();
   if (!isOpen) return null;
+
+  const navItems = [
+    { path: '/', label: 'Overview', icon: 'home' },
+    { path: '/dashboard', label: 'Dashboard', icon: 'query_stats' },
+    { path: '/heat-map', label: 'Heat Map', icon: 'map' },
+    { path: '/explore-data', label: 'Explore Data', icon: 'dataset' },
+    { path: '/methodology', label: 'Methodology', icon: 'science' },
+    { path: '/team', label: 'Team & Project', icon: 'groups' },
+    { path: '/submit-reading', label: 'Submit Reading', icon: 'edit_calendar' },
+    { path: '/contact', label: 'Contact Team', icon: 'mail' },
+    {
+      path: user ? '/profile' : '/login',
+      label: user ? 'My Profile' : 'Sign In / Register',
+      icon: user ? 'account_circle' : 'login',
+    },
+  ];
 
   return (
     <div className="fixed inset-0 z-50 xl:hidden">
@@ -56,14 +64,14 @@ export default function Sidebar({ isOpen, onClose }) {
 
           {/* Navigation Links */}
           <nav className="flex flex-col space-y-1">
-            {NAV_ITEMS.map((item) => (
+            {navItems.map((item) => (
               <NavLink
                 key={item.path}
                 to={item.path}
                 end={item.path === '/'}
                 onClick={onClose}
                 className={({ isActive }) =>
-                  `flex items-center gap-space-sm px-space-md py-2.5 rounded-lg font-body-md text-body-md transition-colors ${
+                  `flex items-center gap-space-sm px-space-md py-2 rounded-lg font-body-md text-body-md transition-colors ${
                     isActive
                       ? 'bg-primary-container text-on-primary font-medium shadow-sm'
                       : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'

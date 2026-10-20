@@ -73,6 +73,11 @@ export default function ProjectFooter({ className = '' }) {
                   Submit Reading
                 </Link>
               </li>
+              <li>
+                <Link to="/contact" className="text-on-surface-variant hover:text-on-surface transition-colors block">
+                  Contact & Inquiries
+                </Link>
+              </li>
             </ul>
           </div>
 

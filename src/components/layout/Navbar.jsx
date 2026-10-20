@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import IndianFlag from '../branding/IndianFlag';
+import { useAuth } from '../../context/AuthContext';
 
 const NAV_LINKS = [
   { path: '/', label: 'Overview' },
@@ -12,6 +13,7 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar({ onOpenMobileMenu }) {
+  const { user, profile } = useAuth();
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/40">
       <div className="h-[76px] w-full max-w-[1600px] mx-auto px-2.5 sm:px-4 xl:px-3 2xl:px-8 flex items-center justify-between gap-1.5 lg:gap-2.5 xl:gap-2.5 2xl:gap-6">
@@ -84,11 +86,15 @@ export default function Navbar({ onOpenMobileMenu }) {
 
           {/* User Avatar */}
           <Link
-            to="/team"
+            to={user ? "/profile" : "/login"}
             className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-label-code text-xs font-semibold shrink-0 hover:ring-2 hover:ring-primary-container transition-all"
-            title="TF-141 Team: Furqan B., Aman S., Bhavin S."
+            title={user ? `Profile: ${profile?.full_name || user.email}` : "Sign In to HeatShield"}
           >
-            <span className="material-symbols-outlined text-[18px]">person</span>
+            {user && profile?.full_name ? (
+              <span className="text-[11px] font-bold">{profile.full_name.charAt(0).toUpperCase()}</span>
+            ) : (
+              <span className="material-symbols-outlined text-[18px]">person</span>
+            )}
           </Link>
 
           {/* Mobile Menu Trigger */}
