@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { mapAuthError } from '../utils/authErrors';
 
 export default function ForgotPassword() {
   const { resetPasswordForEmail, isConfigured } = useAuth();
@@ -11,6 +12,7 @@ export default function ForgotPassword() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (loading) return;
     setErrorMsg('');
 
     if (!email.trim()) {
@@ -24,7 +26,7 @@ export default function ForgotPassword() {
       setSubmitted(true);
     } catch (err) {
       console.error('[HeatShield Password Reset] Error:', err);
-      setErrorMsg(err.message || 'Unable to send password recovery email. Please verify the address.');
+      setErrorMsg(mapAuthError(err) || 'Unable to send password recovery email. Please verify the address.');
     } finally {
       setLoading(false);
     }

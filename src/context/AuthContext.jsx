@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { supabase, isSupabaseConfigured, getSupabaseConfigStatus } from '../services/supabaseClient';
+import { getAuthRedirectUrl } from '../utils/authRedirect';
 
 const AuthContext = createContext(null);
 
@@ -98,7 +99,7 @@ export function AuthProvider({ children }) {
       throw new Error('Supabase is not configured. Please add VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY to your .env file.');
     }
 
-    const emailRedirectTo = `${window.location.origin}/auth/callback`;
+    const emailRedirectTo = getAuthRedirectUrl('/auth/callback');
 
     const { data, error } = await supabase.auth.signUp({
       email,
@@ -107,6 +108,28 @@ export function AuthProvider({ children }) {
         data: {
           full_name: fullName.trim(),
         },
+        emailRedirectTo,
+      },
+    });
+
+    if (error) throw error;
+    return data;
+  };
+
+  /**
+   * Resend Verification Email with Cooldown Support
+   */
+  const resendVerificationEmail = async (email) => {
+    if (!isSupabaseConfigured() || !supabase) {
+      throw new Error('Supabase is not configured. Please check your .env settings.');
+    }
+
+    const emailRedirectTo = getAuthRedirectUrl('/auth/callback');
+
+    const { data, error } = await supabase.auth.resend({
+      type: 'signup',
+      email: email.trim(),
+      options: {
         emailRedirectTo,
       },
     });
@@ -161,7 +184,7 @@ export function AuthProvider({ children }) {
       throw new Error('Supabase is not configured.');
     }
 
-    const redirectTo = `${window.location.origin}/reset-password`;
+    const redirectTo = getAuthRedirectUrl('/reset-password');
 
     const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo,
@@ -238,6 +261,7 @@ export function AuthProvider({ children }) {
     signUp,
     signIn,
     signOut,
+    resendVerificationEmail,
     resetPasswordForEmail,
     updatePassword,
     updateProfile,

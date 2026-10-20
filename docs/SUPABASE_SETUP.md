@@ -87,15 +87,22 @@ In the Supabase Dashboard, go to **Authentication**:
 ### 4.1 URL Configuration
 Under **Authentication** → **URL Configuration**:
 - **Site URL:**
-  - Local development: `http://localhost:5173`
-  - Production: `https://your-production-domain.com` (or Vercel / Netlify domain)
+  - Production (Render): `https://heatshield-tf141.onrender.com`
+  - Local development: `http://localhost:3000` (Vite dev server default in `vite.config.js`)
 - **Redirect URLs (Allow List):** Add the following paths:
+  - `http://localhost:3000/**`
+  - `http://localhost:3000/auth/callback`
+  - `http://localhost:3000/reset-password`
   - `http://localhost:5173/**`
   - `http://localhost:5173/auth/callback`
   - `http://localhost:5173/reset-password`
-  - `https://your-production-domain.com/**`
-  - `https://your-production-domain.com/auth/callback`
-  - `https://your-production-domain.com/reset-password`
+  - `https://heatshield-tf141.onrender.com/**`
+  - `https://heatshield-tf141.onrender.com/auth/callback`
+  - `https://heatshield-tf141.onrender.com/reset-password`
+
+> [!IMPORTANT]
+> **Preventing `ERR_CONNECTION_REFUSED` for Localhost:**
+> If the Supabase **Site URL** is configured as `http://localhost:3000` while testing outside of a running local server, or if `emailRedirectTo` is rejected because it doesn't match the allowed Redirect URLs list, Supabase defaults back to the Site URL. Always ensure `https://heatshield-tf141.onrender.com/auth/callback` is included in the Supabase Redirect URLs allowlist and set the production Site URL to `https://heatshield-tf141.onrender.com`.
 
 ### 4.2 Email Auth Providers & Confirmation
 Under **Authentication** → **Providers** → **Email**:
@@ -103,20 +110,41 @@ Under **Authentication** → **Providers** → **Email**:
 - Enable **Confirm email**: `ON` (recommended for production academic integrity; when developing locally, can temporarily be set to OFF if testing without mail servers).
 - Secure email change: `ON`
 
-### 4.3 Email Templates (Optional Customization)
+### 4.3 Email Templates (Recommended Configuration)
 Under **Authentication** → **Email Templates**:
 - **Confirm signup:**
   ```html
   <h2>Confirm your HeatShield Account (Team TF-141)</h2>
   <p>Follow this link to verify your email address:</p>
-  <p><a href="{{ .SiteURL }}/auth/callback?token_hash={{ .TokenHash }}&type=signup">Verify Email</a></p>
+  <p><a href="{{ .ConfirmationURL }}">Verify Email</a></p>
   ```
 - **Reset Password:**
   ```html
   <h2>Reset your HeatShield Password</h2>
   <p>Click below to choose a new password:</p>
-  <p><a href="{{ .SiteURL }}/reset-password?token_hash={{ .TokenHash }}&type=recovery">Reset Password</a></p>
+  <p><a href="{{ .ConfirmationURL }}">Reset Password</a></p>
   ```
+  *(Using `{{ .ConfirmationURL }}` ensures Supabase applies the client's requested `emailRedirectTo` parameter validated against the Redirect URLs allowlist).*
+
+### 4.4 Custom SMTP Configuration (Resolving 'Email Rate Limit Exceeded')
+By default, Supabase applies an internal rate limit of **3 to 4 emails per hour** for projects using the shared default email service. When testing signups or password resets repeatedly, this limit is quickly triggered, causing the error `email rate limit exceeded`.
+
+To send unlimited emails for production and active academic testing, configure a **Custom SMTP Provider**:
+
+1. In the Supabase Dashboard, navigate to **Project Settings** → **Authentication** (or **Authentication** → **SMTP Settings**).
+2. Toggle **Enable Custom SMTP** to `ON`.
+3. Provide your SMTP provider credentials:
+   - **Sender Email:** e.g., `noreply@yourdomain.com` or `research@heatshield.ac.in` (must match your verified sending domain)
+   - **Sender Name:** `HeatShield Research (TF-141)`
+   - **Host:** e.g., `smtp.resend.com` (Resend), `smtp-relay.brevo.com` (Brevo), or `smtp.sendgrid.net` (SendGrid)
+   - **Port:** `587` (TLS) or `465` (SSL)
+   - **Username:** Your provider username or API key name
+   - **Password:** Your provider SMTP secret / API key
+4. Click **Save Changes**.
+
+> [!CAUTION]
+> **Zero SMTP Secrets in Frontend Code:**
+> Custom SMTP credentials must be configured **strictly within the Supabase Dashboard backend settings**. Never add SMTP passwords, usernames, or service-role keys to `.env` or frontend files.
 
 ---
 

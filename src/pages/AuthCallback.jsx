@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { supabase, isSupabaseConfigured } from '../services/supabaseClient';
 import { useAuth } from '../context/AuthContext';
+import { mapAuthError } from '../utils/authErrors';
 
 export default function AuthCallback() {
   const navigate = useNavigate();
@@ -9,6 +10,7 @@ export default function AuthCallback() {
   
   const [status, setStatus] = useState('processing'); // 'processing' | 'success' | 'error'
   const [errorMessage, setErrorMessage] = useState('');
+  const [redirectCountdown, setRedirectCountdown] = useState(3);
 
   useEffect(() => {
     let isMounted = true;
@@ -23,20 +25,50 @@ export default function AuthCallback() {
       }
 
       try {
-        // 1. Check for authorization code in search parameters (PKCE flow)
         const params = new URLSearchParams(window.location.search);
         const code = params.get('code');
+        const tokenHash = params.get('token_hash');
+        const type = params.get('type');
+        const next = params.get('next');
         const error = params.get('error');
         const errorDescription = params.get('error_description');
 
+        // Check for error parameters returned from Supabase
         if (error) {
           throw new Error(errorDescription || error);
         }
 
+        // 1. Token Hash Verification (OTP verification link)
+        if (tokenHash) {
+          const { data, error: verifyError } = await supabase.auth.verifyOtp({
+            token_hash: tokenHash,
+            type: type || 'signup',
+          });
+
+          if (verifyError) throw verifyError;
+
+          if (type === 'recovery') {
+            navigate('/reset-password', { replace: true });
+            return;
+          }
+
+          if (data?.session || data?.user) {
+            await refreshUserData();
+            if (isMounted) setStatus('success');
+            return;
+          }
+        }
+
+        // 2. PKCE Authorization Code Exchange
         if (code) {
           const { data, error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
           if (exchangeError) throw exchangeError;
           
+          if (type === 'recovery' || next === '/reset-password') {
+            navigate('/reset-password', { replace: true });
+            return;
+          }
+
           if (data?.session) {
             await refreshUserData();
             if (isMounted) setStatus('success');
@@ -44,11 +76,24 @@ export default function AuthCallback() {
           }
         }
 
-        // 2. Check for hash fragment token (Implicit flow)
+        // 3. Hash Fragment Token (Implicit Grant flow)
         const hash = window.location.hash;
-        if (hash && hash.includes('access_token')) {
+        if (hash && (hash.includes('access_token') || hash.includes('type='))) {
+          const hashParams = new URLSearchParams(hash.replace(/^#/, ''));
+          const hashError = hashParams.get('error_description') || hashParams.get('error');
+          const hashType = hashParams.get('type');
+
+          if (hashError) {
+            throw new Error(hashError);
+          }
+
           const { data: { session }, error: sessionError } = await supabase.auth.getSession();
           if (sessionError) throw sessionError;
+
+          if (hashType === 'recovery') {
+            navigate('/reset-password', { replace: true });
+            return;
+          }
 
           if (session) {
             await refreshUserData();
@@ -57,7 +102,7 @@ export default function AuthCallback() {
           }
         }
 
-        // 3. Fallback: check if session already established
+        // 4. Fallback: check if session already established
         const { data: { session } } = await supabase.auth.getSession();
         if (session) {
           await refreshUserData();
@@ -70,7 +115,7 @@ export default function AuthCallback() {
         console.error('[HeatShield Auth Callback] Error:', err);
         if (isMounted) {
           setStatus('error');
-          setErrorMessage(err.message || 'Verification link is invalid or has expired.');
+          setErrorMessage(mapAuthError(err) || 'Verification link is invalid or has expired.');
         }
       }
     }
@@ -80,7 +125,25 @@ export default function AuthCallback() {
     return () => {
       isMounted = false;
     };
-  }, [refreshUserData]);
+  }, [refreshUserData, navigate]);
+
+  // Automated redirect countdown upon successful verification
+  useEffect(() => {
+    if (status !== 'success') return;
+
+    const timer = setInterval(() => {
+      setRedirectCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          navigate('/profile', { replace: true });
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [status, navigate]);
 
   return (
     <div className="w-full flex-1 flex items-center justify-center py-space-xl px-margin">
@@ -109,12 +172,15 @@ export default function AuthCallback() {
             <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
               Your HeatShield research account is now active and verified. You may proceed to in-situ telemetry reporting or analytical modeling.
             </p>
+            <p className="font-caption-caps text-caption-caps text-on-surface-variant">
+              Redirecting to your research profile in <span className="font-semibold text-primary">{redirectCountdown}s</span>...
+            </p>
             <div className="pt-space-xs flex justify-center gap-space-sm">
               <Link
                 to="/profile"
                 className="px-space-md py-2.5 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md hover:bg-primary transition-colors font-semibold shadow-sm"
               >
-                Go to Profile
+                Go to Profile Now
               </Link>
               <Link
                 to="/submit-reading"
@@ -143,6 +209,12 @@ export default function AuthCallback() {
                 className="px-space-md py-2.5 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md hover:bg-primary transition-colors font-semibold shadow-sm"
               >
                 Return to Sign In
+              </Link>
+              <Link
+                to="/register"
+                className="px-space-md py-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-md text-body-md transition-colors"
+              >
+                Create Account
               </Link>
             </div>
           </div>

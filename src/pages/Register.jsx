@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { mapAuthError } from '../utils/authErrors';
 
 export default function Register() {
-  const { signUp, user, isConfigured } = useAuth();
+  const { signUp, resendVerificationEmail, user, isConfigured } = useAuth();
   const navigate = useNavigate();
 
   const [fullName, setFullName] = useState('');
@@ -14,6 +15,29 @@ export default function Register() {
   const [errorMsg, setErrorMsg] = useState('');
   const [successInfo, setSuccessInfo] = useState(null);
 
+  // Resend verification state with cooldown
+  const [resendLoading, setResendLoading] = useState(false);
+  const [resendCooldown, setResendCooldown] = useState(0);
+  const [resendStatusMsg, setResendStatusMsg] = useState('');
+  const [resendStatusType, setResendStatusType] = useState('info'); // 'info' | 'error' | 'success'
+
+  // Manage resend cooldown timer
+  useEffect(() => {
+    if (resendCooldown <= 0) return;
+
+    const timer = setInterval(() => {
+      setResendCooldown((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [resendCooldown]);
+
   if (user) {
     navigate('/profile', { replace: true });
     return null;
@@ -21,6 +45,8 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (loading) return; // Strict guard against duplicate rapid submissions
+
     setErrorMsg('');
 
     // Validations
@@ -49,21 +75,45 @@ export default function Register() {
         fullName: fullName.trim(),
       });
 
+      // Supabase user enumeration protection: if user already registered, identities array is empty
+      if (data?.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) {
+        setErrorMsg('An account with this email address already exists. Please sign in instead, or request a password reset if you forgot your credentials.');
+        return;
+      }
+
       // Check whether user requires confirmation
       const requiresConfirmation = !data?.session;
       setSuccessInfo({
         email: email.trim(),
         requiresConfirmation,
       });
+      // Start initial 60s cooldown for resend
+      setResendCooldown(60);
     } catch (err) {
       console.error('[HeatShield Registration] Error:', err);
-      if (err.message?.includes('User already registered')) {
-        setErrorMsg('An account with this email address already exists. Please sign in instead.');
-      } else {
-        setErrorMsg(err.message || 'Registration could not be completed. Please try again.');
-      }
+      setErrorMsg(mapAuthError(err));
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleResend = async () => {
+    if (resendCooldown > 0 || resendLoading || !successInfo?.email) return;
+
+    setResendLoading(true);
+    setResendStatusMsg('');
+
+    try {
+      await resendVerificationEmail(successInfo.email);
+      setResendStatusType('success');
+      setResendStatusMsg('A fresh verification link has been dispatched to your email.');
+      setResendCooldown(60);
+    } catch (err) {
+      console.error('[HeatShield Resend Verification] Error:', err);
+      setResendStatusType('error');
+      setResendStatusMsg(mapAuthError(err));
+    } finally {
+      setResendLoading(false);
     }
   };
 
@@ -111,29 +161,78 @@ export default function Register() {
               <span className="material-symbols-outlined text-[28px] text-secondary">mark_email_read</span>
               <div>
                 <h3 className="font-headline-md text-headline-md font-semibold text-primary">
-                  Verify Your Email Address
+                  {successInfo.requiresConfirmation ? 'Verify Your Email Address' : 'Account Ready'}
                 </h3>
                 <p className="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
-                  We have dispatched a verification link to <strong className="text-on-surface">{successInfo.email}</strong>. 
-                  Please click the link in your email to confirm your account before logging in.
+                  {successInfo.requiresConfirmation ? (
+                    <>
+                      We have dispatched a verification link to <strong className="text-on-surface">{successInfo.email}</strong>. 
+                      Please check your inbox (and spam folder) and click the link to verify your research credentials before signing in.
+                    </>
+                  ) : (
+                    <>
+                      Your account for <strong className="text-on-surface">{successInfo.email}</strong> has been initialized successfully. You may proceed to sign in.
+                    </>
+                  )}
                 </p>
               </div>
             </div>
 
-            <div className="p-space-sm bg-surface-container-lowest rounded-lg border border-outline-variant/30 text-xs font-body-sm text-on-surface-variant space-y-1">
-              <div className="flex items-center gap-1 font-semibold text-primary">
-                <span className="material-symbols-outlined text-[15px]">security</span>
-                <span>Verification &amp; Security Note</span>
-              </div>
-              <p>Unverified accounts remain pending and cannot submit in-situ telemetry readings until confirmed.</p>
-            </div>
+            {successInfo.requiresConfirmation && (
+              <>
+                <div className="p-space-sm bg-surface-container-lowest rounded-lg border border-outline-variant/30 text-xs font-body-sm text-on-surface-variant space-y-1">
+                  <div className="flex items-center gap-1 font-semibold text-primary">
+                    <span className="material-symbols-outlined text-[15px]">security</span>
+                    <span>Verification &amp; Security Note</span>
+                  </div>
+                  <p>Unverified accounts remain pending and cannot submit in-situ telemetry readings until confirmed.</p>
+                </div>
 
-            <div className="pt-space-xs flex justify-end">
+                {/* Resend Verification Section with Cooldown */}
+                <div className="pt-space-xs border-t border-outline-variant/20 space-y-space-xs">
+                  <div className="flex items-center justify-between text-xs font-body-sm text-on-surface-variant">
+                    <span>Did not receive the verification email?</span>
+                    <button
+                      type="button"
+                      onClick={handleResend}
+                      disabled={resendCooldown > 0 || resendLoading}
+                      className="font-semibold text-secondary hover:text-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center gap-1"
+                    >
+                      {resendLoading ? (
+                        <>
+                          <span className="w-3 h-3 border-2 border-secondary border-t-transparent rounded-full animate-spin"></span>
+                          <span>Dispatching...</span>
+                        </>
+                      ) : resendCooldown > 0 ? (
+                        <span>Resend in {resendCooldown}s</span>
+                      ) : (
+                        <>
+                          <span className="material-symbols-outlined text-[14px]">send</span>
+                          <span>Resend Email</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                  {resendStatusMsg && (
+                    <div className={`p-2 rounded text-xs ${
+                      resendStatusType === 'success' 
+                        ? 'bg-secondary-container text-on-secondary-container border border-secondary/30' 
+                        : 'bg-error-container text-on-error-container border border-error/30'
+                    }`}>
+                      {resendStatusMsg}
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
+
+            <div className="pt-space-xs flex justify-end gap-space-sm">
               <Link
                 to="/login"
-                className="px-space-md py-2.5 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md hover:bg-primary transition-colors font-medium shadow-sm"
+                className="px-space-md py-2.5 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md hover:bg-primary transition-colors font-medium shadow-sm inline-block"
               >
-                Return to Sign In
+                Proceed to Sign In
               </Link>
             </div>
           </div>
@@ -158,10 +257,11 @@ export default function Register() {
                   type="text"
                   autoComplete="name"
                   required
+                  disabled={loading}
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="e.g. Prof. / Dr. / Researcher Name"
-                  className="w-full bg-surface-container-low px-space-md py-2 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/30"
+                  className="w-full bg-surface-container-low px-space-md py-2 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/30 disabled:opacity-60"
                 />
               </div>
 
@@ -174,10 +274,11 @@ export default function Register() {
                   type="email"
                   autoComplete="email"
                   required
+                  disabled={loading}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="researcher@mitvpu.ac.in"
-                  className="w-full bg-surface-container-low px-space-md py-2 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/30"
+                  className="w-full bg-surface-container-low px-space-md py-2 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/30 disabled:opacity-60"
                 />
               </div>
 
@@ -191,10 +292,11 @@ export default function Register() {
                     type="password"
                     autoComplete="new-password"
                     required
+                    disabled={loading}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Min 8 characters"
-                    className="w-full bg-surface-container-low px-space-md py-2 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/30"
+                    className="w-full bg-surface-container-low px-space-md py-2 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/30 disabled:opacity-60"
                   />
                 </div>
 
@@ -207,10 +309,11 @@ export default function Register() {
                     type="password"
                     autoComplete="new-password"
                     required
+                    disabled={loading}
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="Repeat password"
-                    className="w-full bg-surface-container-low px-space-md py-2 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/30"
+                    className="w-full bg-surface-container-low px-space-md py-2 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/30 disabled:opacity-60"
                   />
                 </div>
               </div>
@@ -221,8 +324,9 @@ export default function Register() {
 
               <button
                 type="submit"
-                disabled={loading}
-                className="w-full h-11 rounded-lg bg-primary-container text-on-primary font-headline-md text-body-md font-semibold hover:bg-primary transition-colors shadow-sm disabled:opacity-60 flex items-center justify-center gap-2 mt-space-sm"
+                disabled={loading || !isConfigured}
+                aria-disabled={loading || !isConfigured}
+                className="w-full h-11 rounded-lg bg-primary-container text-on-primary font-headline-md text-body-md font-semibold hover:bg-primary transition-colors shadow-sm disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-space-sm"
               >
                 {loading ? (
                   <>
