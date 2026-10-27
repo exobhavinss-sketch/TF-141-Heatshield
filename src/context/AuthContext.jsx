@@ -17,26 +17,17 @@ export function AuthProvider({ children }) {
     if (!supabase || !userId) return;
 
     try {
-      // Fetch profile
-      const { data: profileData, error: profileErr } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', userId)
-        .maybeSingle();
+      const [profileResult, settingsResult] = await Promise.all([
+        supabase.from('profiles').select('*').eq('id', userId).maybeSingle(),
+        supabase.from('user_settings').select('*').eq('user_id', userId).maybeSingle(),
+      ]);
 
-      if (!profileErr && profileData) {
-        setProfile(profileData);
+      if (!profileResult.error && profileResult.data) {
+        setProfile(profileResult.data);
       }
 
-      // Fetch user settings
-      const { data: settingsData, error: settingsErr } = await supabase
-        .from('user_settings')
-        .select('*')
-        .eq('user_id', userId)
-        .maybeSingle();
-
-      if (!settingsErr && settingsData) {
-        setSettings(settingsData);
+      if (!settingsResult.error && settingsResult.data) {
+        setSettings(settingsResult.data);
       }
     } catch (err) {
       console.warn('[HeatShield Auth] Failed to load auxiliary user data:', err.message);
@@ -52,31 +43,17 @@ export function AuthProvider({ children }) {
 
     let isMounted = true;
 
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session: initialSession }, error }) => {
-      if (!isMounted) return;
-      if (error) {
-        console.warn('[HeatShield Auth] Initial session fetch error:', error.message);
-      }
-      setSession(initialSession);
-      setUser(initialSession?.user || null);
-      if (initialSession?.user) {
-        loadUserData(initialSession.user.id);
-      }
-      setLoading(false);
-    });
-
-    // Subscribe to auth state changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, currentSession) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, currentSession) => {
       if (!isMounted) return;
 
       setSession(currentSession);
       setUser(currentSession?.user || null);
 
-      if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED' || event === 'USER_UPDATED') {
-        if (currentSession?.user) {
-          await loadUserData(currentSession.user.id);
-        }
+      if (event === 'INITIAL_SESSION' || event === 'SIGNED_IN' || event === 'USER_UPDATED') {
+        const userId = currentSession?.user?.id;
+        if (userId) window.setTimeout(() => {
+          if (isMounted) void loadUserData(userId);
+        }, 0);
       } else if (event === 'SIGNED_OUT') {
         setProfile(null);
         setSettings(null);
@@ -218,9 +195,17 @@ export function AuthProvider({ children }) {
       throw new Error('User not authenticated or database not configured.');
     }
 
+    const editableFields = ['full_name', 'avatar_url', 'affiliation'];
+    const safeUpdates = Object.fromEntries(
+      Object.entries(updates || {}).filter(([field]) => editableFields.includes(field))
+    );
+    if (Object.keys(safeUpdates).length === 0) {
+      throw new Error('No editable profile fields were provided.');
+    }
+
     const { data, error } = await supabase
       .from('profiles')
-      .update(updates)
+      .update(safeUpdates)
       .eq('id', user.id)
       .select()
       .single();

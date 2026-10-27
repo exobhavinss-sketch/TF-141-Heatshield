@@ -1,0 +1,239 @@
+column,category,count,percent
+location_id,SOL-LOC-001,1500,1.0
+location_id,SOL-LOC-002,1500,1.0
+location_id,SOL-LOC-003,1500,1.0
+location_id,SOL-LOC-004,1500,1.0
+location_id,SOL-LOC-005,1500,1.0
+location_id,SOL-LOC-006,1500,1.0
+location_id,SOL-LOC-007,1500,1.0
+location_id,SOL-LOC-008,1500,1.0
+location_id,SOL-LOC-009,1500,1.0
+location_id,SOL-LOC-010,1500,1.0
+location_id,SOL-LOC-011,1500,1.0
+location_id,SOL-LOC-012,1500,1.0
+location_id,SOL-LOC-013,1500,1.0
+location_id,SOL-LOC-014,1500,1.0
+location_id,SOL-LOC-015,1500,1.0
+location_id,SOL-LOC-016,1500,1.0
+location_id,SOL-LOC-017,1500,1.0
+location_id,SOL-LOC-018,1500,1.0
+location_id,SOL-LOC-019,1500,1.0
+location_id,SOL-LOC-020,1500,1.0
+location_id,SOL-LOC-021,1500,1.0
+location_id,SOL-LOC-022,1500,1.0
+location_id,SOL-LOC-023,1500,1.0
+location_id,SOL-LOC-024,1500,1.0
+location_id,SOL-LOC-025,1500,1.0
+location_id,SOL-LOC-026,1500,1.0
+location_id,SOL-LOC-027,1500,1.0
+location_id,SOL-LOC-028,1500,1.0
+location_id,SOL-LOC-029,1500,1.0
+location_id,SOL-LOC-030,1500,1.0
+location_id,SOL-LOC-031,1500,1.0
+location_id,SOL-LOC-032,1500,1.0
+location_id,SOL-LOC-033,1500,1.0
+location_id,SOL-LOC-034,1500,1.0
+location_id,SOL-LOC-035,1500,1.0
+location_id,SOL-LOC-036,1500,1.0
+location_id,SOL-LOC-037,1500,1.0
+location_id,SOL-LOC-038,1500,1.0
+location_id,SOL-LOC-039,1500,1.0
+location_id,SOL-LOC-040,1500,1.0
+location_id,SOL-LOC-041,1500,1.0
+location_id,SOL-LOC-042,1500,1.0
+location_id,SOL-LOC-043,1500,1.0
+location_id,SOL-LOC-044,1500,1.0
+location_id,SOL-LOC-045,1500,1.0
+location_id,SOL-LOC-046,1500,1.0
+location_id,SOL-LOC-047,1500,1.0
+location_id,SOL-LOC-048,1500,1.0
+location_id,SOL-LOC-049,1500,1.0
+location_id,SOL-LOC-050,1500,1.0
+location_id,SOL-LOC-051,1500,1.0
+location_id,SOL-LOC-052,1500,1.0
+location_id,SOL-LOC-053,1500,1.0
+location_id,SOL-LOC-054,1500,1.0
+location_id,SOL-LOC-055,1500,1.0
+location_id,SOL-LOC-056,1500,1.0
+location_id,SOL-LOC-057,1500,1.0
+location_id,SOL-LOC-058,1500,1.0
+location_id,SOL-LOC-059,1500,1.0
+location_id,SOL-LOC-060,1500,1.0
+location_id,SOL-LOC-061,1500,1.0
+location_id,SOL-LOC-062,1500,1.0
+location_id,SOL-LOC-063,1500,1.0
+location_id,SOL-LOC-064,1500,1.0
+location_id,SOL-LOC-065,1500,1.0
+location_id,SOL-LOC-066,1500,1.0
+location_id,SOL-LOC-067,1500,1.0
+location_id,SOL-LOC-068,1500,1.0
+location_id,SOL-LOC-069,1500,1.0
+location_id,SOL-LOC-070,1500,1.0
+location_id,SOL-LOC-071,1500,1.0
+location_id,SOL-LOC-072,1500,1.0
+location_id,SOL-LOC-073,1500,1.0
+location_id,SOL-LOC-074,1500,1.0
+location_id,SOL-LOC-075,1500,1.0
+location_id,SOL-LOC-076,1500,1.0
+location_id,SOL-LOC-077,1500,1.0
+location_id,SOL-LOC-078,1500,1.0
+location_id,SOL-LOC-079,1500,1.0
+location_id,SOL-LOC-080,1500,1.0
+location_id,SOL-LOC-081,1500,1.0
+location_id,SOL-LOC-082,1500,1.0
+location_id,SOL-LOC-083,1500,1.0
+location_id,SOL-LOC-084,1500,1.0
+location_id,SOL-LOC-085,1500,1.0
+location_id,SOL-LOC-086,1500,1.0
+location_id,SOL-LOC-087,1500,1.0
+location_id,SOL-LOC-088,1500,1.0
+location_id,SOL-LOC-089,1500,1.0
+location_id,SOL-LOC-090,1500,1.0
+location_id,SOL-LOC-091,1500,1.0
+location_id,SOL-LOC-092,1500,1.0
+location_id,SOL-LOC-093,1500,1.0
+location_id,SOL-LOC-094,1500,1.0
+location_id,SOL-LOC-095,1500,1.0
+location_id,SOL-LOC-096,1500,1.0
+location_id,SOL-LOC-097,1500,1.0
+location_id,SOL-LOC-098,1500,1.0
+location_id,SOL-LOC-099,1500,1.0
+location_id,SOL-LOC-100,1500,1.0
+season,Monsoon,50100,33.4
+season,Summer,37800,25.2
+season,Winter,37100,24.733333333333334
+season,Post-Monsoon,25000,16.666666666666668
+data_source_type,Synthetic simulation,150000,100.0
+is_synthetic,True,150000,100.0
+city,Solapur,150000,100.0
+state,Maharashtra,150000,100.0
+country,India,150000,100.0
+location_name,Jule Solapur Sector 1 - D-Mart Enclave,1500,1.0
+location_name,Jule Solapur Sector 4 - Asara Chowk Enclave,1500,1.0
+location_name,Bhavani Peth Traditional Residential Quarter,1500,1.0
+location_name,Murarji Peth Core Residential Lane,1500,1.0
+location_name,Budhwar Peth Dense Residential Cluster,1500,1.0
+location_name,Navi Peth Residential Outskirts,1500,1.0
+location_name,Majrewadi Housing Board Colony,1500,1.0
+location_name,Ashok Chowk Residential Enclave,1500,1.0
+location_name,Vijapur Road Housing Society Phase 1,1500,1.0
+location_name,Vijapur Road Housing Society Phase 2,1500,1.0
+location_name,Kumtha Naka Residential Extension,1500,1.0
+location_name,Degaon Nagar Housing Layout,1500,1.0
+location_name,Soregaon Residential Colony,1500,1.0
+location_name,Shelgi Residential Layout Block A,1500,1.0
+location_name,Shelgi Residential Layout Block B,1500,1.0
+location_name,Bale Gaon Residential Expansion,1500,1.0
+location_name,Nehru Nagar Municipal Colony,1500,1.0
+location_name,Kegaon Teachers Colony,1500,1.0
+location_name,Pratap Nagar Urban Colony,1500,1.0
+location_name,Shastri Nagar Residential Pocket,1500,1.0
+location_name,Guru Nanak Nagar,1500,1.0
+location_name,Indira Nagar Informal Settlement,1500,1.0
+location_name,Karnik Nagar Middle Income Enclave,1500,1.0
+location_name,Modi Khana Old Quarter,1500,1.0
+location_name,Antrolikar Nagar Layout,1500,1.0
+location_name,Saiful Housing Complex,1500,1.0
+location_name,Damani Nagar Co-op Society,1500,1.0
+location_name,Vasant Nagar Green Suburb,1500,1.0
+location_name,Navi Peth Textile Wholesale Market,1500,1.0
+location_name,Saat Rasta Central Commercial Hub,1500,1.0
+location_name,Cloth Market Bhavani Peth Arcade,1500,1.0
+location_name,Station Road Commercial Strip,1500,1.0
+location_name,Samrat Chowk Retail Plaza,1500,1.0
+location_name,Murarji Peth Wholesale Grocery Market,1500,1.0
+location_name,Old Poona Naka Commercial Center,1500,1.0
+location_name,Chhatrapati Shivaji Maharaj Chowk Mall,1500,1.0
+location_name,Pangul Galli Jewelry & Retail Cluster,1500,1.0
+location_name,Budhwar Peth Vegetable & Fruit Mandi,1500,1.0
+location_name,Vijapur Road Big Bazaar Complex,1500,1.0
+location_name,Jule Solapur Commercial Complex,1500,1.0
+location_name,Hotgi Road Trade Tower Strip,1500,1.0
+location_name,Akkalkot Road Agro Market Yard,1500,1.0
+location_name,MIDC Chincholi Heavy Fabrications Sector A,1500,1.0
+location_name,MIDC Chincholi Textile Dyeing Sector B,1500,1.0
+location_name,MIDC Akkalkot Road Textile Processing Unit,1500,1.0
+location_name,MIDC Akkalkot Road Garment Cluster,1500,1.0
+location_name,Hotgi Road Industrial Area Rolling Mills,1500,1.0
+location_name,Solapur Spinning Mill Industrial Zone,1500,1.0
+location_name,Laxmi Cooperative Industrial Estate,1500,1.0
+location_name,Old Bidi Works Industrial Sheds,1500,1.0
+location_name,Degaon Industrial Scrap Yard,1500,1.0
+location_name,Kumtha Naka Engineering Works,1500,1.0
+location_name,Chincholi Agro Processing Plant,1500,1.0
+location_name,Bale Railway Siding Heavy Freight Depot,1500,1.0
+location_name,Saat Rasta Traffic Rotary Junction,1500,1.0
+location_name,Ashok Chowk Signal Intersection,1500,1.0
+location_name,Old Poona Naka Flyover Corridor,1500,1.0
+location_name,Pune-Solapur Highway Junction (NH 65),1500,1.0
+location_name,Hyderabad Road Ring Intersection,1500,1.0
+location_name,Bijapur Road Toll Tollway Corridor,1500,1.0
+location_name,Samrat Chowk Arterial Crossing,1500,1.0
+location_name,Hotgi Road Railway Overbridge,1500,1.0
+location_name,Kumtha Naka Traffic Roundabout,1500,1.0
+location_name,Degaon Naka Ring Road Segment,1500,1.0
+location_name,Shelgi Naka Traffic Interchange,1500,1.0
+location_name,Akkalkot Naka Commercial Junction,1500,1.0
+location_name,Kegaon Bypass Highway Link,1500,1.0
+location_name,Railway Station Approach Boulevard,1500,1.0
+location_name,Hutatma Smarak Municipal Memorial Garden,1500,1.0
+location_name,Smruti Udyan Botanical Park,1500,1.0
+location_name,Indira Gandhi Stadium Green Belt,1500,1.0
+location_name,Shelgi Forest Department Nursery,1500,1.0
+location_name,Sambhaji Lake Promenade Garden,1500,1.0
+location_name,Siddheshwar Lake Waterfront Garden,1500,1.0
+location_name,Police Grounds Ecological Pocket,1500,1.0
+location_name,Jule Solapur Central Children's Park,1500,1.0
+location_name,Degaon Community Woodland Park,1500,1.0
+location_name,Old Solapur Fort Heritage Lawn,1500,1.0
+location_name,Solapur University Campus Academic Zone,1500,1.0
+location_name,Walchand Institute of Technology Campus,1500,1.0
+location_name,Dayanand College Campus Enclave,1500,1.0
+location_name,Government Polytechnic Solapur Campus,1500,1.0
+location_name,Dr. Vaishampayan Memorial Govt Medical College,1500,1.0
+location_name,Sangameshwar College Historic Quadrangle,1500,1.0
+location_name,DAV Velvet Lawn School Campus,1500,1.0
+location_name,North Maharashtra Agricultural School Farm,1500,1.0
+location_name,Solapur Central Railway Station Terminal,1500,1.0
+location_name,MSRTC Central Bus Stand (CBS) Concourse,1500,1.0
+location_name,Old Bus Stand Regional Depot,1500,1.0
+location_name,Solapur Goods Railway Yard Marshalling Area,1500,1.0
+location_name,Solapur Airport Hotgi Road Runway Apron,1500,1.0
+location_name,Truck Transport Nagar Logistics Depot,1500,1.0
+location_name,Siddheshwar Lake Waterfront & Temple Moat,1500,1.0
+location_name,Kambar Talav Freshwater Wetland Basin,1500,1.0
+location_name,Hipparga Lake (Ekruk Tank) Embankment Shore,1500,1.0
+location_name,Sambhaji Lake Perimeter Edge,1500,1.0
+location_name,Shelgi Peripheral Scrubland Outskirts,1500,1.0
+location_name,Degaon Barren Ridge Fallow Scrub,1500,1.0
+location_name,Bale Northern Semi-Arid Fallow Patch,1500,1.0
+location_name,Kegaon Western Open Grassland Buffer,1500,1.0
+zone_type,Residential,42000,28.0
+zone_type,Commercial,21000,14.0
+zone_type,Road,21000,14.0
+zone_type,Industrial,18000,12.0
+zone_type,Park,15000,10.0
+zone_type,Educational,12000,8.0
+zone_type,Transport,9000,6.0
+zone_type,Waterbody,6000,4.0
+zone_type,Open Land,6000,4.0
+cooling_infrastructure_present,False,84000,56.0
+cooling_infrastructure_present,True,66000,44.0
+cooling_infrastructure_type,None,84000,56.0
+cooling_infrastructure_type,Trees,40500,27.0
+cooling_infrastructure_type,Park,15000,10.0
+cooling_infrastructure_type,Water Feature,6000,4.0
+cooling_infrastructure_type,Shade Structure,4500,3.0
+heat_risk_category,Moderate,77145,51.43
+heat_risk_category,High,37548,25.032
+heat_risk_category,Low,21737,14.491333333333333
+heat_risk_category,Very High,13570,9.046666666666667
+recommended_intervention,Urban Green Infrastructure & Shade Enhancement,40558,27.038666666666668
+recommended_intervention,Cool Roofs & High-Albedo Permeable Pavements,30000,20.0
+recommended_intervention,Preserve Existing Cover & Microclimate Monitoring,24098,16.065333333333335
+recommended_intervention,Vegetated Buffer Belts & Reflective Industrial Coatings,18000,12.0
+recommended_intervention,Urban Miyawaki Afforestation & Pocket Parks,15508,10.338666666666667
+recommended_intervention,Campus Green Corridors & Microclimate Misting,8320,5.546666666666667
+recommended_intervention,Tensile Shade Canopies & Street Trees,6450,4.3
+recommended_intervention,Native Afforestation & Drought-Resistant Groundcover,5698,3.7986666666666666
+recommended_intervention,Canopy Density Enhancement & Native Tree Planting,1368,0.912

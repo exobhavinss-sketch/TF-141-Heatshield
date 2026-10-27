@@ -7,11 +7,11 @@
  * Rules:
  * 1. Environment variable override (VITE_AUTH_REDIRECT_URL or VITE_SITE_URL) if specified.
  * 2. Local development: Preserves local developer origin (http://localhost:3000) when running on localhost.
- * 3. Production: Uses the verified production deployed origin (https://heatshield-tf141.onrender.com).
+ * 3. Any deployed environment: Uses the current browser origin so Netlify
+ *    production and deploy-preview links return to the same site.
  * 
- * Verified Supabase Allowed Redirect URLs in production:
- * - https://heatshield-tf141.onrender.com/auth/callback
- * - https://heatshield-tf141.onrender.com/reset-password
+ * Configure the active production and local origins in the Supabase Auth URL
+ * allow-list. Do not hard-code one hosting provider's domain here.
  */
 
 export const PRODUCTION_ORIGIN = 'https://heatshield-tf141.onrender.com';
@@ -41,10 +41,9 @@ export function getAuthRedirectUrl(path = '/auth/callback') {
       return `${origin}${normalizedPath}`;
     }
 
-    // In production browser, if on the primary Render domain, use window.location.origin
-    if (origin.includes('heatshield-tf141.onrender.com')) {
-      return `${origin}${normalizedPath}`;
-    }
+    // On Netlify, Render, and deploy previews, return to the host initiating
+    // the auth flow. The Supabase URL allow-list remains the security boundary.
+    return `${origin}${normalizedPath}`;
   }
 
   // 3. Default production deployed origin

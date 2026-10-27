@@ -3,12 +3,12 @@
  * HEATSHIELD (TF-141) — MASTER DATASET SERVICE
  * Institution: MIT Vishwaprayag University, Solapur, Maharashtra, India
  * 
- * Provides unified, high-performance querying, filtering, and export for the
- * 150,000 observation Solapur microclimate dataset across Supabase PostgreSQL
- * ('heatshield_master') and local verified fallback fixtures.
+ * Provides paginated queries for the master simulation table. Offline fixture
+ * paths remain explicitly separate from rows returned by Supabase.
  * 
  * Provenance:
- * Calibrated WRF-Chem / ERA5-Land physical simulation for Solapur (2021-2025).
+ * Synthetic academic simulation data. Repository WRF-Chem, ERA5-Land, and
+ * IMD provenance statements have not been independently verified.
  * ============================================================================
  */
 
@@ -38,14 +38,74 @@ export async function checkMasterTablePopulated() {
       .from('heatshield_master')
       .select('record_id', { count: 'exact', head: true });
     
-    masterTableStatusCache = !error && count > 0;
+    if (error) {
+      // Do not cache transient authorization, schema, or network failures as
+      // an empty table. A later request should be allowed to retry.
+      masterTableStatusCache = null;
+      lastCheckTime = 0;
+    return false;
+    }
+    masterTableStatusCache = (count ?? 0) > 0;
     lastCheckTime = now;
     return masterTableStatusCache;
   } catch {
-    masterTableStatusCache = false;
-    lastCheckTime = now;
+    masterTableStatusCache = null;
+    lastCheckTime = 0;
     return false;
   }
+}
+
+const MASTER_EXPLORE_COLUMNS = [
+  'record_id',
+  'location_id',
+  'zone_type',
+  'observation_date',
+  'air_temperature_c',
+  'relative_humidity_pct',
+  'land_surface_temperature_c',
+  'heat_risk_category',
+].join(',');
+
+const MASTER_EXPLORE_SORT_FIELDS = new Set(MASTER_EXPLORE_COLUMNS.split(','));
+
+function describeMasterQueryError(error) {
+  const code = String(error?.code || '').toUpperCase();
+  const status = Number(error?.status || error?.statusCode || 0);
+  const detail = String(error?.message || '');
+
+  if (status === 401 || status === 403 || code === '42501' || code === 'PGRST301') {
+    return {
+      kind: 'permission',
+      message: 'Supabase denied access to the master records. Check the signed-in state and the existing read policy.',
+      code: code || String(status),
+    };
+  }
+  if (status === 404 || code === '42P01' || code === 'PGRST205') {
+    return {
+      kind: 'relation',
+      message: 'The configured Supabase project does not expose the expected heatshield_master relation.',
+      code: code || String(status),
+    };
+  }
+  if (/failed to fetch|fetch failed|network|connection refused|econn|load failed|aborterror/i.test(detail)) {
+    return {
+      kind: 'network',
+      message: 'Could not reach the configured Supabase service. Check the connection and retry.',
+      code: code || 'NETWORK',
+    };
+  }
+  if (code === '57014' || /statement timeout|query timeout/i.test(detail)) {
+    return {
+      kind: 'query',
+      message: 'The Supabase query exceeded its time limit. Retry with narrower filters.',
+      code: code || 'TIMEOUT',
+    };
+  }
+  return {
+    kind: 'query',
+    message: 'Supabase could not return master records. Retry, or contact the project maintainer if this continues.',
+    code: code || (status ? String(status) : 'QUERY'),
+  };
 }
 
 /**
@@ -118,25 +178,36 @@ export async function fetchMasterExploreRecords({
   search = '',
   zone = 'All',
   risk = 'All',
-  minTemp = 15.0,
-  maxTemp = 50.0,
+  minTemp,
+  maxTemp,
   date = null,
   year = null,
   page = 1,
   pageSize = 20,
-  sortBy = 'air_temperature_c',
-  sortDir = 'desc'
+  sortBy = 'observation_date',
+  sortDir = 'desc',
+  allowLocalFallback = true
 } = {}) {
-  const isPopulated = await checkMasterTablePopulated();
+  const currentPage = Math.max(1, Math.floor(Number(page) || 1));
+  const safePageSize = Math.min(100, Math.max(1, Math.floor(Number(pageSize) || 20)));
 
-  if (isPopulated) {
+  if (!isSupabaseConfigured() || !supabase) {
+    if (!allowLocalFallback) {
+      return {
+        records: [], totalCount: 0, page: currentPage, pageSize: safePageSize,
+        totalPages: 0, isLiveDb: false,
+        error: { kind: 'configuration', message: 'Supabase is not configured in this application environment.', code: 'CONFIG' },
+      };
+    }
+  } else {
     try {
+      const hasSearch = Boolean(search && search.trim());
       let query = supabase
         .from('heatshield_master')
-        .select('*', { count: 'exact' });
+        .select(MASTER_EXPLORE_COLUMNS, hasSearch ? {} : { count: 'exact' });
 
       if (zone && zone !== 'All') {
-        query = query.ilike('zone_type', `%${zone}%`);
+        query = query.eq('zone_type', zone);
       }
       if (risk && risk !== 'All') {
         query = query.eq('heat_risk_category', risk);
@@ -154,31 +225,73 @@ export async function fetchMasterExploreRecords({
         query = query.eq('year', parseInt(year, 10));
       }
       if (search && search.trim() !== '') {
-        const q = search.trim();
-        query = query.or(`location_name.ilike.%${q}%,location_id.ilike.%${q}%,zone_type.ilike.%${q}%,recommended_intervention.ilike.%${q}%`);
+        // Route by identifier prefix to one indexed column. A multi-column
+        // OR/ILIKE caused full scans and statement timeouts on this dataset.
+        const normalizedSearch = search.trim().toUpperCase();
+        const searchColumn = normalizedSearch.startsWith('SOL-LOC-')
+          ? 'location_id'
+          : normalizedSearch.startsWith('HS-')
+            ? 'record_id'
+            : null;
+
+        if (!searchColumn) {
+          return {
+            records: [], totalCount: 0, page: currentPage, pageSize: safePageSize,
+            totalPages: 0, countKnown: true, hasMore: false, isLiveDb: true, error: null,
+          };
+        }
+
+        const escapedSearch = normalizedSearch.replace(/[%_]/g, '\\$&');
+        query = query.ilike(searchColumn, `${escapedSearch}%`);
       }
 
-      const ascending = sortDir === 'asc';
-      query = query.order(sortBy, { ascending });
+      const safeSortBy = MASTER_EXPLORE_SORT_FIELDS.has(sortBy) ? sortBy : 'observation_date';
+      query = query
+        .order(safeSortBy, { ascending: sortDir === 'asc' })
+        .order('record_id', { ascending: true });
 
-      const from = (page - 1) * pageSize;
-      const to = from + pageSize - 1;
+      const from = (currentPage - 1) * safePageSize;
+      const to = from + safePageSize - 1 + (hasSearch ? 1 : 0);
       query = query.range(from, to);
 
       const { data, count, error } = await query;
-      if (!error && data) {
+      if (error) {
+        const failure = describeMasterQueryError(error);
+        if (!allowLocalFallback) {
+          return {
+            records: [], totalCount: 0, page: currentPage, pageSize: safePageSize,
+            totalPages: 0, isLiveDb: false, error: failure,
+          };
+        }
+      } else {
+        const rows = data || [];
+        const hasMore = hasSearch && rows.length > safePageSize;
+        const records = hasMore ? rows.slice(0, safePageSize) : rows;
+        const totalCount = hasSearch ? null : (count ?? records.length);
+        if (!hasSearch) {
+          masterTableStatusCache = totalCount > 0;
+          lastCheckTime = Date.now();
+        }
         return {
-          records: data.map(formatSupabaseRecord),
-          totalCount: count || data.length,
-          page,
-          pageSize,
-          totalPages: Math.ceil((count || data.length) / pageSize) || 1,
+          records,
+          totalCount,
+          countKnown: !hasSearch,
+          hasMore: hasSearch ? hasMore : currentPage < Math.ceil(totalCount / safePageSize),
+          page: currentPage,
+          pageSize: safePageSize,
+          totalPages: hasSearch ? null : Math.ceil(totalCount / safePageSize),
           isLiveDb: true,
-          error: null
+          error: null,
         };
       }
-    } catch (err) {
-      console.warn('[masterDataService] Supabase query failed, falling back to local station dataset:', err);
+    } catch (error) {
+      const failure = describeMasterQueryError(error);
+      if (!allowLocalFallback) {
+        return {
+          records: [], totalCount: 0, page: currentPage, pageSize: safePageSize,
+          totalPages: 0, isLiveDb: false, error: failure,
+        };
+      }
     }
   }
 
@@ -267,6 +380,7 @@ export async function fetchMasterExploreRecords({
  */
 function formatSupabaseRecord(r) {
   return {
+    ...r,
     id: r.record_id,
     location_id: r.location_id,
     ward: r.location_name?.split('-')[0]?.trim() || r.location_name,
@@ -287,15 +401,14 @@ function formatSupabaseRecord(r) {
     infra_type: r.cooling_infrastructure_type,
     solar: `${r.solar_radiation_w_m2} W/m²`,
     wind: `${r.wind_speed_mps} m/s (${r.wind_direction_deg}°)`,
-    emissivity: `${(1.0 - (r.surface_albedo || 0.15)).toFixed(3)} ε`,
     canopy: `${r.tree_canopy_cover_pct}%`,
     ndvi: Number(r.ndvi),
     cooling_priority_score: Number(r.cooling_priority_score),
     recommended_intervention: r.recommended_intervention,
     estimated_cooling: Number(r.estimated_cooling_potential_c),
     uhi_intensity: Number(r.urban_heat_island_intensity_c),
-    engine: 'WRF-Chem v4.3 / TF-141 Calibrated',
-    sha: `e7f9...${r.record_id.slice(-6)}`
+    is_synthetic: r.is_synthetic === true,
+    source_disclosure: 'Synthetic academic simulation data; not verified live Solapur measurements.'
   };
 }
 
@@ -305,7 +418,7 @@ function formatSupabaseRecord(r) {
 export function getMasterDatasetMetadata() {
   return {
     ...MASTER_DATASET_METADATA,
-    provenance: 'WRF-Chem & ERA5-Land microclimate simulation calibrated against IMD Solapur station observations',
+    provenance: 'Synthetic academic simulation data; WRF-Chem, ERA5-Land, and IMD provenance claims are repository documented and not independently verified.',
     isSimulation: true,
     totalRecordsFormatted: '150,000'
   };

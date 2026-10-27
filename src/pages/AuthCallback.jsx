@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { supabase, isSupabaseConfigured } from '../services/supabaseClient';
-import { useAuth } from '../context/AuthContext';
 import { mapAuthError } from '../utils/authErrors';
 
 export default function AuthCallback() {
   const navigate = useNavigate();
-  const { refreshUserData } = useAuth();
   
   const [status, setStatus] = useState('processing');
   const [errorMessage, setErrorMessage] = useState('');
@@ -51,25 +49,28 @@ export default function AuthCallback() {
             return;
           }
 
-          if (data?.session || data?.user) {
-            await refreshUserData();
+          if (data?.session) {
             if (isMounted) setStatus('success');
+            return;
+          }
+          if (data?.user) {
+            navigate('/login', { replace: true });
             return;
           }
         }
 
-        // 2. PKCE Authorization Code Exchange
+        // 2. The Supabase client processes PKCE codes during initialization.
+        // Read that session here instead of exchanging the same code twice.
         if (code) {
-          const { data, error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
-          if (exchangeError) throw exchangeError;
-          
+          const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+          if (sessionError) throw sessionError;
+
           if (type === 'recovery' || next === '/reset-password') {
             navigate('/reset-password', { replace: true });
             return;
           }
 
-          if (data?.session) {
-            await refreshUserData();
+          if (session) {
             if (isMounted) setStatus('success');
             return;
           }
@@ -95,7 +96,6 @@ export default function AuthCallback() {
           }
 
           if (session) {
-            await refreshUserData();
             if (isMounted) setStatus('success');
             return;
           }
@@ -104,17 +104,22 @@ export default function AuthCallback() {
         // 4. Fallback check
         const { data: { session } } = await supabase.auth.getSession();
         if (session) {
-          await refreshUserData();
           if (isMounted) setStatus('success');
           return;
         }
 
         throw new Error('No valid authentication token or verification code found in this callback.');
       } catch (err) {
-        console.error('[HeatShield Auth Callback] Error:', err);
+        const safeMessage = mapAuthError(err) || 'Verification link is invalid or has expired.';
+        console.warn('[HeatShield Auth Callback]', safeMessage);
         if (isMounted) {
           setStatus('error');
-          setErrorMessage(mapAuthError(err) || 'Verification link is invalid or has expired.');
+          setErrorMessage(safeMessage);
+        }
+      } finally {
+        // Remove callback parameters and tokens from the visible/history URL.
+        if (window.location.search || window.location.hash) {
+          window.history.replaceState({}, document.title, window.location.pathname);
         }
       }
     }
@@ -124,7 +129,7 @@ export default function AuthCallback() {
     return () => {
       isMounted = false;
     };
-  }, [refreshUserData, navigate]);
+  }, [navigate]);
 
   useEffect(() => {
     if (status !== 'success') return;

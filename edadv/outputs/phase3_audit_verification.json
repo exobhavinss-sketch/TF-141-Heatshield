@@ -1,0 +1,1063 @@
+{
+  "source": {
+    "path": "Heat Shield Master Dataset(2).csv",
+    "filename": "Heat Shield Master Dataset(2).csv",
+    "size_bytes": 66009030,
+    "sha256": "b9e73ed10d0dc7c824063e7f1b868a95b11a435758f2ed940d63aa30f45e1b83",
+    "encoding": "UTF-8 (BOM tolerated)",
+    "delimiter": "comma"
+  },
+  "shape": {
+    "rows": 150000,
+    "columns": 57
+  },
+  "columns": [
+    "record_id",
+    "location_id",
+    "observation_datetime",
+    "observation_date",
+    "year",
+    "month",
+    "day",
+    "season",
+    "data_source_type",
+    "is_synthetic",
+    "city",
+    "state",
+    "country",
+    "latitude",
+    "longitude",
+    "location_name",
+    "zone_type",
+    "elevation_m",
+    "population_density_per_km2",
+    "distance_to_green_space_m",
+    "air_temperature_c",
+    "max_air_temperature_c",
+    "min_air_temperature_c",
+    "relative_humidity_pct",
+    "wind_speed_mps",
+    "wind_direction_deg",
+    "solar_radiation_w_m2",
+    "precipitation_mm",
+    "cloud_cover_pct",
+    "atmospheric_pressure_hpa",
+    "land_surface_temperature_c",
+    "surface_temperature_anomaly_c",
+    "ndvi",
+    "ndbi",
+    "ndwi",
+    "vegetation_cover_pct",
+    "impervious_surface_pct",
+    "building_density_index",
+    "road_density_km_per_km2",
+    "tree_canopy_cover_pct",
+    "shade_availability_pct",
+    "surface_albedo",
+    "distance_to_water_m",
+    "pedestrian_activity_index",
+    "traffic_intensity_index",
+    "built_up_intensity_index",
+    "heat_exposure_index",
+    "vulnerable_population_index",
+    "cooling_infrastructure_present",
+    "cooling_infrastructure_type",
+    "urban_heat_island_intensity_c",
+    "heat_risk_category",
+    "shade_gap_index",
+    "green_cover_deficit_pct",
+    "cooling_priority_score",
+    "recommended_intervention",
+    "estimated_cooling_potential_c"
+  ],
+  "inferred_types": {
+    "record_id": {
+      "inferred": "text",
+      "numeric_parse_rate": 0.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "location_id": {
+      "inferred": "text",
+      "numeric_parse_rate": 0.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "observation_datetime": {
+      "inferred": "datetime",
+      "numeric_parse_rate": 0.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "observation_date": {
+      "inferred": "datetime",
+      "numeric_parse_rate": 0.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "year": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "month": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "day": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "season": {
+      "inferred": "text",
+      "numeric_parse_rate": 0.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "data_source_type": {
+      "inferred": "text",
+      "numeric_parse_rate": 0.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "is_synthetic": {
+      "inferred": "boolean",
+      "numeric_parse_rate": 0.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "city": {
+      "inferred": "text",
+      "numeric_parse_rate": 0.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "state": {
+      "inferred": "text",
+      "numeric_parse_rate": 0.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "country": {
+      "inferred": "text",
+      "numeric_parse_rate": 0.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "latitude": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "longitude": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "location_name": {
+      "inferred": "text",
+      "numeric_parse_rate": 0.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "zone_type": {
+      "inferred": "text",
+      "numeric_parse_rate": 0.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "elevation_m": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "population_density_per_km2": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "distance_to_green_space_m": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "air_temperature_c": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "max_air_temperature_c": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "min_air_temperature_c": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "relative_humidity_pct": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "wind_speed_mps": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "wind_direction_deg": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "solar_radiation_w_m2": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "precipitation_mm": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "cloud_cover_pct": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "atmospheric_pressure_hpa": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "land_surface_temperature_c": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "surface_temperature_anomaly_c": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "ndvi": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "ndbi": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "ndwi": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "vegetation_cover_pct": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "impervious_surface_pct": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "building_density_index": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "road_density_km_per_km2": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "tree_canopy_cover_pct": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "shade_availability_pct": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "surface_albedo": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "distance_to_water_m": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "pedestrian_activity_index": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "traffic_intensity_index": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "built_up_intensity_index": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "heat_exposure_index": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "vulnerable_population_index": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "cooling_infrastructure_present": {
+      "inferred": "boolean",
+      "numeric_parse_rate": 0.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "cooling_infrastructure_type": {
+      "inferred": "text",
+      "numeric_parse_rate": 0.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "urban_heat_island_intensity_c": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "heat_risk_category": {
+      "inferred": "text",
+      "numeric_parse_rate": 0.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "shade_gap_index": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "green_cover_deficit_pct": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "cooling_priority_score": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "recommended_intervention": {
+      "inferred": "text",
+      "numeric_parse_rate": 0.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    },
+    "estimated_cooling_potential_c": {
+      "inferred": "numeric",
+      "numeric_parse_rate": 1.0,
+      "missing_count": 0,
+      "missing_pct": 0.0
+    }
+  },
+  "numeric_summary": {
+    "year": {
+      "count": 150000,
+      "mean": 2022.9993333333334,
+      "sample_stddev": 1.4135108332239243,
+      "min": 2021.0,
+      "q1": 2022.0,
+      "median": 2023.0,
+      "q3": 2024.0,
+      "max": 2025.0
+    },
+    "month": {
+      "count": 150000,
+      "mean": 6.521333333333334,
+      "sample_stddev": 3.449293290861709,
+      "min": 1.0,
+      "q1": 4.0,
+      "median": 7.0,
+      "q3": 10.0,
+      "max": 12.0
+    },
+    "day": {
+      "count": 150000,
+      "mean": 15.738,
+      "sample_stddev": 8.799954863219694,
+      "min": 1.0,
+      "q1": 8.0,
+      "median": 16.0,
+      "q3": 23.0,
+      "max": 31.0
+    },
+    "latitude": {
+      "count": 150000,
+      "mean": 17.661595,
+      "sample_stddev": 0.025101547274709993,
+      "min": 17.612,
+      "q1": 17.641750000000002,
+      "median": 17.6615,
+      "q3": 17.675375,
+      "max": 17.722
+    },
+    "longitude": {
+      "count": 150000,
+      "mean": 75.90599,
+      "sample_stddev": 0.02498437634723769,
+      "min": 75.836,
+      "q1": 75.8935,
+      "median": 75.909,
+      "q3": 75.91975,
+      "max": 75.962
+    },
+    "elevation_m": {
+      "count": 150000,
+      "mean": 459.03,
+      "sample_stddev": 6.1651726168607235,
+      "min": 449.0,
+      "q1": 455.0,
+      "median": 457.0,
+      "q3": 463.0,
+      "max": 477.0
+    },
+    "population_density_per_km2": {
+      "count": 150000,
+      "mean": 12479.8,
+      "sample_stddev": 9652.868234145106,
+      "min": 280.0,
+      "q1": 3725.0,
+      "median": 11750.0,
+      "q3": 19125.0,
+      "max": 36000.0
+    },
+    "distance_to_green_space_m": {
+      "count": 150000,
+      "mean": 601.2,
+      "sample_stddev": 450.30424362432876,
+      "min": 0.0,
+      "q1": 305.0,
+      "median": 530.0,
+      "q3": 820.0,
+      "max": 1950.0
+    },
+    "air_temperature_c": {
+      "count": 150000,
+      "mean": 34.284914,
+      "sample_stddev": 5.615816693048145,
+      "min": 19.35,
+      "q1": 29.91,
+      "median": 34.15,
+      "q3": 38.85,
+      "max": 46.81
+    },
+    "max_air_temperature_c": {
+      "count": 150000,
+      "mean": 36.57121166666666,
+      "sample_stddev": 4.764153178502339,
+      "min": 26.75,
+      "q1": 32.74,
+      "median": 35.43,
+      "q3": 40.77,
+      "max": 48.01
+    },
+    "min_air_temperature_c": {
+      "count": 150000,
+      "mean": 19.8948348,
+      "sample_stddev": 4.162711703104974,
+      "min": 11.5,
+      "q1": 16.43,
+      "median": 20.85,
+      "q3": 23.07,
+      "max": 26.5
+    },
+    "relative_humidity_pct": {
+      "count": 150000,
+      "mean": 48.550471333333334,
+      "sample_stddev": 21.3173074619778,
+      "min": 14.8,
+      "q1": 29.3,
+      "median": 42.9,
+      "q3": 67.3,
+      "max": 98.0
+    },
+    "wind_speed_mps": {
+      "count": 150000,
+      "mean": 2.9750378,
+      "sample_stddev": 1.2159016040299333,
+      "min": 0.84,
+      "q1": 2.07,
+      "median": 2.74,
+      "q3": 3.71,
+      "max": 7.37
+    },
+    "wind_direction_deg": {
+      "count": 150000,
+      "mean": 178.89455866666668,
+      "sample_stddev": 102.02708522299044,
+      "min": 18.0,
+      "q1": 72.6,
+      "median": 227.5,
+      "q3": 262.4,
+      "max": 332.0
+    },
+    "solar_radiation_w_m2": {
+      "count": 150000,
+      "mean": 313.7536093333333,
+      "sample_stddev": 214.00859351443506,
+      "min": 0.0,
+      "q1": 154.3,
+      "median": 286.2,
+      "q3": 457.1,
+      "max": 889.0
+    },
+    "precipitation_mm": {
+      "count": 150000,
+      "mean": 2.1837666666666666,
+      "sample_stddev": 4.060813516230253,
+      "min": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 3.0,
+      "max": 19.9
+    },
+    "cloud_cover_pct": {
+      "count": 150000,
+      "mean": 43.82133533333333,
+      "sample_stddev": 28.787110871393473,
+      "min": 8.9,
+      "q1": 19.3,
+      "median": 29.2,
+      "q3": 75.7,
+      "max": 95.5
+    },
+    "atmospheric_pressure_hpa": {
+      "count": 150000,
+      "mean": 961.9386266666667,
+      "sample_stddev": 3.292931703404062,
+      "min": 954.9,
+      "q1": 958.9,
+      "median": 961.9,
+      "q3": 965.0,
+      "max": 968.5
+    },
+    "land_surface_temperature_c": {
+      "count": 150000,
+      "mean": 35.89230246666667,
+      "sample_stddev": 6.962779239351589,
+      "min": 17.06,
+      "q1": 30.96,
+      "median": 35.54,
+      "q3": 40.47,
+      "max": 55.35
+    },
+    "surface_temperature_anomaly_c": {
+      "count": 150000,
+      "mean": 1.3597455333333333,
+      "sample_stddev": 3.04543318303574,
+      "min": -12.07,
+      "q1": -0.05,
+      "median": 1.33,
+      "q3": 3.27,
+      "max": 10.45
+    },
+    "ndvi": {
+      "count": 150000,
+      "mean": 0.08722443333333332,
+      "sample_stddev": 0.20447054672423787,
+      "min": -0.12,
+      "q1": -0.05,
+      "median": -0.015,
+      "q3": 0.143,
+      "max": 0.764
+    },
+    "ndbi": {
+      "count": 150000,
+      "mean": 0.41076029999999997,
+      "sample_stddev": 0.30418809464960356,
+      "min": -0.364,
+      "q1": 0.28,
+      "median": 0.585,
+      "q3": 0.65,
+      "max": 0.65
+    },
+    "ndwi": {
+      "count": 150000,
+      "mean": -0.17477310000000001,
+      "sample_stddev": 0.18433655192650347,
+      "min": -0.329,
+      "q1": -0.311,
+      "median": -0.24,
+      "q3": -0.125,
+      "max": 0.56
+    },
+    "vegetation_cover_pct": {
+      "count": 150000,
+      "mean": 22.626348666666665,
+      "sample_stddev": 23.234042319103985,
+      "min": 2.5,
+      "q1": 5.7,
+      "median": 13.3,
+      "q3": 30.6,
+      "max": 95.0
+    },
+    "impervious_surface_pct": {
+      "count": 150000,
+      "mean": 67.16,
+      "sample_stddev": 28.66321470455087,
+      "min": 8.0,
+      "q1": 52.0,
+      "median": 81.0,
+      "q3": 91.25,
+      "max": 95.0
+    },
+    "building_density_index": {
+      "count": 150000,
+      "mean": 0.6388,
+      "sample_stddev": 0.28128115376004675,
+      "min": 0.07,
+      "q1": 0.5375000000000001,
+      "median": 0.715,
+      "q3": 0.88,
+      "max": 0.96
+    },
+    "road_density_km_per_km2": {
+      "count": 150000,
+      "mean": 16.91,
+      "sample_stddev": 8.089384170271659,
+      "min": 3.5,
+      "q1": 11.0,
+      "median": 17.25,
+      "q3": 23.625,
+      "max": 32.0
+    },
+    "tree_canopy_cover_pct": {
+      "count": 150000,
+      "mean": 15.211678666666666,
+      "sample_stddev": 18.078768778725372,
+      "min": 0.8,
+      "q1": 2.9,
+      "median": 6.2,
+      "q3": 20.7,
+      "max": 85.0
+    },
+    "shade_availability_pct": {
+      "count": 150000,
+      "mean": 12.649968666666666,
+      "sample_stddev": 13.932986558994255,
+      "min": 2.0,
+      "q1": 2.4,
+      "median": 5.7,
+      "q3": 17.5,
+      "max": 65.7
+    },
+    "surface_albedo": {
+      "count": 150000,
+      "mean": 0.1516,
+      "sample_stddev": 0.046983557936418306,
+      "min": 0.06,
+      "q1": 0.1175,
+      "median": 0.15,
+      "q3": 0.19,
+      "max": 0.27
+    },
+    "distance_to_water_m": {
+      "count": 150000,
+      "mean": 1990.3,
+      "sample_stddev": 1112.8212640886102,
+      "min": 0.0,
+      "q1": 1200.0,
+      "median": 1750.0,
+      "q3": 2700.0,
+      "max": 5200.0
+    },
+    "pedestrian_activity_index": {
+      "count": 150000,
+      "mean": 48.563552666666666,
+      "sample_stddev": 20.73606344079656,
+      "min": 11.5,
+      "q1": 28.6,
+      "median": 51.2,
+      "q3": 62.9,
+      "max": 88.0
+    },
+    "traffic_intensity_index": {
+      "count": 150000,
+      "mean": 46.07985133333334,
+      "sample_stddev": 24.639498742139352,
+      "min": 18.0,
+      "q1": 24.2,
+      "median": 31.8,
+      "q3": 69.7,
+      "max": 92.0
+    },
+    "built_up_intensity_index": {
+      "count": 150000,
+      "mean": 65.848,
+      "sample_stddev": 28.030635635144407,
+      "min": 8.0,
+      "q1": 52.85,
+      "median": 79.9,
+      "q3": 88.05,
+      "max": 94.8
+    },
+    "heat_exposure_index": {
+      "count": 150000,
+      "mean": 45.55548266666667,
+      "sample_stddev": 11.59195284796764,
+      "min": 10.2,
+      "q1": 37.5,
+      "median": 45.3,
+      "q3": 53.5,
+      "max": 84.1
+    },
+    "vulnerable_population_index": {
+      "count": 150000,
+      "mean": 42.21,
+      "sample_stddev": 13.96306555815491,
+      "min": 15.0,
+      "q1": 31.75,
+      "median": 42.5,
+      "q3": 52.0,
+      "max": 78.0
+    },
+    "urban_heat_island_intensity_c": {
+      "count": 150000,
+      "mean": 3.2723642,
+      "sample_stddev": 2.660726547078839,
+      "min": 0.0,
+      "q1": 1.04,
+      "median": 2.81,
+      "q3": 5.06,
+      "max": 9.8
+    },
+    "shade_gap_index": {
+      "count": 150000,
+      "mean": 59.83801733333333,
+      "sample_stddev": 13.02523917098656,
+      "min": 22.0,
+      "q1": 51.5,
+      "median": 57.1,
+      "q3": 65.7,
+      "max": 90.9
+    },
+    "green_cover_deficit_pct": {
+      "count": 150000,
+      "mean": 51.017280666666665,
+      "sample_stddev": 34.75429102116057,
+      "min": 0.0,
+      "q1": 12.6,
+      "median": 62.0,
+      "q3": 83.7,
+      "max": 92.9
+    },
+    "cooling_priority_score": {
+      "count": 150000,
+      "mean": 49.186171333333334,
+      "sample_stddev": 16.04162032937644,
+      "min": 13.5,
+      "q1": 35.6,
+      "median": 51.8,
+      "q3": 61.7,
+      "max": 89.3
+    },
+    "estimated_cooling_potential_c": {
+      "count": 150000,
+      "mean": 2.5531674,
+      "sample_stddev": 1.0643827762206612,
+      "min": 0.35,
+      "q1": 2.05,
+      "median": 2.54,
+      "q3": 3.55,
+      "max": 4.05
+    }
+  },
+  "duplicates": {
+    "exact_duplicate_rows": 0,
+    "duplicate_identifier_count": 0,
+    "duplicate_identifiers_sample": {},
+    "duplicate_station_date_pairs": 0,
+    "unique_station_date_pairs": 150000
+  },
+  "time": {
+    "minimum": "2021-01-01T08:00:00+00:00",
+    "maximum": "2025-12-31T12:47:00+00:00",
+    "date_parse_failures": {},
+    "unique_dates": 1500,
+    "rows_per_date_min": 100,
+    "rows_per_date_max": 100,
+    "calendar_days_inclusive": 1826,
+    "dates_without_observations": 326,
+    "largest_gap_between_observed_dates_days": 2,
+    "date_component_mismatches": {}
+  },
+  "geography": {
+    "valid_coordinate_rows": 150000,
+    "invalid_coordinate_rows": 0,
+    "outside_solapur_envelope_rows": 0,
+    "solapur_envelope": {
+      "latitude": [
+        17.4,
+        17.9
+      ],
+      "longitude": [
+        75.7,
+        76.2
+      ]
+    },
+    "latitude_min": 17.612,
+    "latitude_max": 17.722,
+    "longitude_min": 75.836,
+    "longitude_max": 75.962,
+    "unique_coordinate_pairs": 100
+  },
+  "quality_checks": {
+    "out_of_range_values": {},
+    "air_temperature_hierarchy_violations": 0
+  },
+  "categorical_distributions": {
+    "location_id": {
+      "unique": 100,
+      "counts": {
+        "SOL-LOC-001": 1500,
+        "SOL-LOC-002": 1500,
+        "SOL-LOC-003": 1500,
+        "SOL-LOC-004": 1500,
+        "SOL-LOC-005": 1500,
+        "SOL-LOC-006": 1500,
+        "SOL-LOC-007": 1500,
+        "SOL-LOC-008": 1500,
+        "SOL-LOC-009": 1500,
+        "SOL-LOC-010": 1500,
+        "SOL-LOC-011": 1500,
+        "SOL-LOC-012": 1500,
+        "SOL-LOC-013": 1500,
+        "SOL-LOC-014": 1500,
+        "SOL-LOC-015": 1500,
+        "SOL-LOC-016": 1500,
+        "SOL-LOC-017": 1500,
+        "SOL-LOC-018": 1500,
+        "SOL-LOC-019": 1500,
+        "SOL-LOC-020": 1500,
+        "SOL-LOC-021": 1500,
+        "SOL-LOC-022": 1500,
+        "SOL-LOC-023": 1500,
+        "SOL-LOC-024": 1500,
+        "SOL-LOC-025": 1500,
+        "SOL-LOC-026": 1500,
+        "SOL-LOC-027": 1500,
+        "SOL-LOC-028": 1500,
+        "SOL-LOC-029": 1500,
+        "SOL-LOC-030": 1500,
+        "SOL-LOC-031": 1500,
+        "SOL-LOC-032": 1500,
+        "SOL-LOC-033": 1500,
+        "SOL-LOC-034": 1500,
+        "SOL-LOC-035": 1500,
+        "SOL-LOC-036": 1500,
+        "SOL-LOC-037": 1500,
+        "SOL-LOC-038": 1500,
+        "SOL-LOC-039": 1500,
+        "SOL-LOC-040": 1500,
+        "SOL-LOC-041": 1500,
+        "SOL-LOC-042": 1500,
+        "SOL-LOC-043": 1500,
+        "SOL-LOC-044": 1500,
+        "SOL-LOC-045": 1500,
+        "SOL-LOC-046": 1500,
+        "SOL-LOC-047": 1500,
+        "SOL-LOC-048": 1500,
+        "SOL-LOC-049": 1500,
+        "SOL-LOC-050": 1500,
+        "SOL-LOC-051": 1500,
+        "SOL-LOC-052": 1500,
+        "SOL-LOC-053": 1500,
+        "SOL-LOC-054": 1500,
+        "SOL-LOC-055": 1500,
+        "SOL-LOC-056": 1500,
+        "SOL-LOC-057": 1500,
+        "SOL-LOC-058": 1500,
+        "SOL-LOC-059": 1500,
+        "SOL-LOC-060": 1500,
+        "SOL-LOC-061": 1500,
+        "SOL-LOC-062": 1500,
+        "SOL-LOC-063": 1500,
+        "SOL-LOC-064": 1500,
+        "SOL-LOC-065": 1500,
+        "SOL-LOC-066": 1500,
+        "SOL-LOC-067": 1500,
+        "SOL-LOC-068": 1500,
+        "SOL-LOC-069": 1500,
+        "SOL-LOC-070": 1500,
+        "SOL-LOC-071": 1500,
+        "SOL-LOC-072": 1500,
+        "SOL-LOC-073": 1500,
+        "SOL-LOC-074": 1500,
+        "SOL-LOC-075": 1500,
+        "SOL-LOC-076": 1500,
+        "SOL-LOC-077": 1500,
+        "SOL-LOC-078": 1500,
+        "SOL-LOC-079": 1500,
+        "SOL-LOC-080": 1500,
+        "SOL-LOC-081": 1500,
+        "SOL-LOC-082": 1500,
+        "SOL-LOC-083": 1500,
+        "SOL-LOC-084": 1500,
+        "SOL-LOC-085": 1500,
+        "SOL-LOC-086": 1500,
+        "SOL-LOC-087": 1500,
+        "SOL-LOC-088": 1500,
+        "SOL-LOC-089": 1500,
+        "SOL-LOC-090": 1500,
+        "SOL-LOC-091": 1500,
+        "SOL-LOC-092": 1500,
+        "SOL-LOC-093": 1500,
+        "SOL-LOC-094": 1500,
+        "SOL-LOC-095": 1500,
+        "SOL-LOC-096": 1500,
+        "SOL-LOC-097": 1500,
+        "SOL-LOC-098": 1500,
+        "SOL-LOC-099": 1500,
+        "SOL-LOC-100": 1500
+      }
+    },
+    "season": {
+      "unique": 4,
+      "counts": {
+        "Monsoon": 50100,
+        "Summer": 37800,
+        "Winter": 37100,
+        "Post-Monsoon": 25000
+      }
+    },
+    "data_source_type": {
+      "unique": 1,
+      "counts": {
+        "Synthetic simulation": 150000
+      }
+    },
+    "is_synthetic": {
+      "unique": 1,
+      "counts": {
+        "True": 150000
+      }
+    },
+    "zone_type": {
+      "unique": 9,
+      "counts": {
+        "Residential": 42000,
+        "Commercial": 21000,
+        "Road": 21000,
+        "Industrial": 18000,
+        "Park": 15000,
+        "Educational": 12000,
+        "Transport": 9000,
+        "Waterbody": 6000,
+        "Open Land": 6000
+      }
+    },
+    "cooling_infrastructure_present": {
+      "unique": 2,
+      "counts": {
+        "False": 84000,
+        "True": 66000
+      }
+    },
+    "cooling_infrastructure_type": {
+      "unique": 5,
+      "counts": {
+        "None": 84000,
+        "Trees": 40500,
+        "Park": 15000,
+        "Water Feature": 6000,
+        "Shade Structure": 4500
+      }
+    },
+    "heat_risk_category": {
+      "unique": 4,
+      "counts": {
+        "Moderate": 77145,
+        "High": 37548,
+        "Low": 21737,
+        "Very High": 13570
+      }
+    },
+    "recommended_intervention": {
+      "unique": 9,
+      "counts": {
+        "Urban Green Infrastructure & Shade Enhancement": 40558,
+        "Cool Roofs & High-Albedo Permeable Pavements": 30000,
+        "Preserve Existing Cover & Microclimate Monitoring": 24098,
+        "Vegetated Buffer Belts & Reflective Industrial Coatings": 18000,
+        "Urban Miyawaki Afforestation & Pocket Parks": 15508,
+        "Campus Green Corridors & Microclimate Misting": 8320,
+        "Tensile Shade Canopies & Street Trees": 6450,
+        "Native Afforestation & Drought-Resistant Groundcover": 5698,
+        "Canopy Density Enhancement & Native Tree Planting": 1368
+      }
+    }
+  },
+  "requested_fields_absent": [
+    "substrate",
+    "status",
+    "heat_index_c"
+  ],
+  "notes": [
+    "A field absent from the source CSV is reported as unavailable, not inferred.",
+    "Solapur envelope is a broad screening box, not an official municipal boundary."
+  ]
+}

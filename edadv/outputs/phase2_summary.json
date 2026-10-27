@@ -1,0 +1,87 @@
+{
+  "source": {
+    "path": "Heat Shield Master Dataset(2).csv",
+    "filename": "Heat Shield Master Dataset(2).csv",
+    "size_bytes": 66009030,
+    "sha256": "b9e73ed10d0dc7c824063e7f1b868a95b11a435758f2ed940d63aa30f45e1b83",
+    "encoding": "UTF-8 (BOM tolerated)",
+    "delimiter": "comma"
+  },
+  "source_sha256": "b9e73ed10d0dc7c824063e7f1b868a95b11a435758f2ed940d63aa30f45e1b83",
+  "provenance": "Synthetic academic simulation data; not verified live Solapur measurements.",
+  "row_count": 150000,
+  "column_count": 57,
+  "all_synthetic": true,
+  "station_count": 100,
+  "rows_per_station_min": 1500,
+  "rows_per_station_max": 1500,
+  "zone_station_counts": {
+    "Residential": 28,
+    "Commercial": 14,
+    "Industrial": 12,
+    "Road": 14,
+    "Park": 10,
+    "Educational": 8,
+    "Transport": 6,
+    "Waterbody": 4,
+    "Open Land": 4
+  },
+  "zone_observation_counts": {
+    "Residential": 42000,
+    "Commercial": 21000,
+    "Industrial": 18000,
+    "Road": 21000,
+    "Park": 15000,
+    "Educational": 12000,
+    "Transport": 9000,
+    "Waterbody": 6000,
+    "Open Land": 6000
+  },
+  "risk_category_counts": {
+    "Moderate": 77145,
+    "High": 37548,
+    "Low": 21737,
+    "Very High": 13570
+  },
+  "season_label_counts": {
+    "Winter": 37100,
+    "Summer": 37800,
+    "Monsoon": 50100,
+    "Post-Monsoon": 25000
+  },
+  "date_range_utc": [
+    "2021-01-01T08:00:00+00:00",
+    "2025-12-31T12:47:00+00:00"
+  ],
+  "unique_observed_dates": 1500,
+  "calendar_days_inclusive": 1826,
+  "dates_without_observations": 326,
+  "records_per_observed_date_min": 100,
+  "records_per_observed_date_max": 100,
+  "timestamp_hour_utc_counts": {
+    "8": 15200,
+    "10": 15000,
+    "11": 14900,
+    "12": 15100,
+    "13": 15000,
+    "14": 14900,
+    "15": 15000,
+    "16": 15100,
+    "17": 14900,
+    "20": 14900
+  },
+  "unique_timestamp_hours": 10,
+  "hour_of_day_environmental_analysis": "Not performed: timestamps cover fewer than 24 UTC clock hours and do not establish a full diurnal sampling design.",
+  "season_interpretation": "Groups use the source season labels; season definitions are not independently available in the audited source.",
+  "risk_interpretation": "Summaries use the source heat_risk_category labels; threshold/provenance definition is unavailable in the audited source.",
+  "heat_index_c_available": false,
+  "substrate_available": false,
+  "status_available": false,
+  "analysis_limits": [
+    "All records are synthetic simulation data, not verified measurements.",
+    "Row-level correlations are descriptive; station/date observations are repeated and dependent.",
+    "No missing dates were imputed.",
+    "No continuous heat surface was interpolated.",
+    "IQR flags are screening candidates; no records were removed."
+  ]
+}

@@ -1,0 +1,37 @@
+zone_type,heat_risk_category,count,zone_observations,percent_within_zone,provenance
+Commercial,Low,2,21000,0.009523809523809525,Source-encoded category; thresholds not independently verified.
+Commercial,Moderate,7224,21000,34.4,Source-encoded category; thresholds not independently verified.
+Commercial,High,10739,21000,51.13809523809524,Source-encoded category; thresholds not independently verified.
+Commercial,Very High,3035,21000,14.452380952380953,Source-encoded category; thresholds not independently verified.
+Educational,Low,1898,12000,15.816666666666666,Source-encoded category; thresholds not independently verified.
+Educational,Moderate,7596,12000,63.3,Source-encoded category; thresholds not independently verified.
+Educational,High,2279,12000,18.991666666666667,Source-encoded category; thresholds not independently verified.
+Educational,Very High,227,12000,1.8916666666666666,Source-encoded category; thresholds not independently verified.
+Industrial,Low,2726,18000,15.144444444444444,Source-encoded category; thresholds not independently verified.
+Industrial,Moderate,8453,18000,46.96111111111111,Source-encoded category; thresholds not independently verified.
+Industrial,High,3876,18000,21.533333333333335,Source-encoded category; thresholds not independently verified.
+Industrial,Very High,2945,18000,16.36111111111111,Source-encoded category; thresholds not independently verified.
+Open Land,Low,2216,6000,36.93333333333333,Source-encoded category; thresholds not independently verified.
+Open Land,Moderate,2561,6000,42.68333333333333,Source-encoded category; thresholds not independently verified.
+Open Land,High,1209,6000,20.15,Source-encoded category; thresholds not independently verified.
+Open Land,Very High,14,6000,0.23333333333333334,Source-encoded category; thresholds not independently verified.
+Park,Low,4373,15000,29.153333333333332,Source-encoded category; thresholds not independently verified.
+Park,Moderate,10088,15000,67.25333333333333,Source-encoded category; thresholds not independently verified.
+Park,High,539,15000,3.5933333333333333,Source-encoded category; thresholds not independently verified.
+Park,Very High,0,15000,0.0,Source-encoded category; thresholds not independently verified.
+Residential,Low,2863,42000,6.816666666666666,Source-encoded category; thresholds not independently verified.
+Residential,Moderate,26424,42000,62.91428571428571,Source-encoded category; thresholds not independently verified.
+Residential,High,9912,42000,23.6,Source-encoded category; thresholds not independently verified.
+Residential,Very High,2801,42000,6.669047619047619,Source-encoded category; thresholds not independently verified.
+Road,Low,3787,21000,18.033333333333335,Source-encoded category; thresholds not independently verified.
+Road,Moderate,9481,21000,45.147619047619045,Source-encoded category; thresholds not independently verified.
+Road,High,4373,21000,20.823809523809523,Source-encoded category; thresholds not independently verified.
+Road,Very High,3359,21000,15.995238095238095,Source-encoded category; thresholds not independently verified.
+Transport,Low,31,9000,0.34444444444444444,Source-encoded category; thresholds not independently verified.
+Transport,Moderate,3179,9000,35.32222222222222,Source-encoded category; thresholds not independently verified.
+Transport,High,4601,9000,51.12222222222222,Source-encoded category; thresholds not independently verified.
+Transport,Very High,1189,9000,13.21111111111111,Source-encoded category; thresholds not independently verified.
+Waterbody,Low,3841,6000,64.01666666666667,Source-encoded category; thresholds not independently verified.
+Waterbody,Moderate,2139,6000,35.65,Source-encoded category; thresholds not independently verified.
+Waterbody,High,20,6000,0.3333333333333333,Source-encoded category; thresholds not independently verified.
+Waterbody,Very High,0,6000,0.0,Source-encoded category; thresholds not independently verified.

@@ -20,7 +20,7 @@
 [![Data Status](https://img.shields.io/badge/Dataset-Synthetic%20Simulation%20(150k)-yellow.svg)](#dataset-and-data-integrity-disclosure)
 [![Design System](https://img.shields.io/badge/Design%20System-Apple--Inspired%20Minimalism-0071e3.svg)](#design-system-and-uiux-architecture)
 [![Build](https://img.shields.io/badge/Build-Vite%205.4%20%7C%20React%2018.3-646CFF.svg)](#technology-stack)
-[![Deployment](https://img.shields.io/badge/Deploy-Vercel%20%7C%20Render-black.svg)](#github-and-deployment-readiness)
+[![Deployment](https://img.shields.io/badge/Deploy-Netlify%20%7C%20Vercel%20%7C%20Render-black.svg)](#netlify-deployment)
 
 ---
 
@@ -33,11 +33,11 @@ The project combines an **Apple-inspired minimalist scientific design system** w
 ### Repository Deployment Highlights
 - **Production Frontend**: Built with React 18, Vite 5, Tailwind CSS, Leaflet 2D GIS, and Recharts. Validated cleanly via `npm run build` (`0` exit code, tree-shaken vendor chunks).
 - **Apple-Inspired Design Language**: Complete UI redesign across all 14 routes adhering to Human Interface Guidelines (HIG) principles: quiet elegance, SF Pro typographic hierarchy, `#0071e3` Apple System Blue accents, generous whitespace, and scientific data density. (See [Design System Documentation](docs/design-research/apple-inspired-design-system.md)).
-- **Cloud Database & Auth**: Supabase PostgreSQL backend with Row Level Security (RLS), full authentication suite (Email/Password, Google OAuth, Password Recovery, Profiles, Settings), and the 150k observation master ledger.
-- **GIS Mapping Engine**: Interactive Leaflet map rendering 100 Solapur microclimate monitoring stations with thermodynamic popups, risk classification, and dual-mode domain switching (Solapur Microclimate vs. National Reanalysis Grid).
+- **Cloud Database & Auth**: Supabase PostgreSQL backend with Row Level Security (RLS), email/password authentication, user profiles/settings, user-submitted readings, saved analyses, and a public read-only master relation.
+- **GIS Mapping Engine**: Interactive Leaflet map rendering 100 synthetic station summaries with metric switching, filters, popups, and OpenStreetMap tiles.
 - **High-Throughput Ingestion Pipelines**: Production-grade Node.js streaming parser (`csv-parse`, ~$140,000$ rows/sec validation) and Python batch upsert tools.
-- **Zero-Downtime Offline Resilience**: Automatically falls back to bundled station datasets if cloud services or networks are unavailable.
-- **Multi-Cloud Hosting**: Ready for immediate deployment to **Vercel** ([`vercel.json`](vercel.json)) and **Render** ([`render.yaml`](render.yaml)) with full SPA routing rewrites and security response headers.
+- **Honest Unavailable States**: Research summaries remain available from the bundled validated JSON; failed Supabase/API requests are not presented as live measurements.
+- **Static Hosting**: Netlify, Vercel, and Render deployment configurations are maintained separately for the React/Vite single-page application.
 
 ---
 
@@ -69,7 +69,7 @@ The project combines an **Apple-inspired minimalist scientific design system** w
 9. [Data Visualizations & Analytical Findings](#data-visualizations--analytical-findings)
 10. [Technology Stack](#technology-stack)
 11. [Setup and Local Development Guide](#setup-and-local-development-guide)
-12. [Deployment Guide (Vercel & Render)](#deployment-guide-vercel--render)
+12. [Deployment Guide (Netlify, Vercel and Render)](#deployment-guide-netlify-vercel-and-render)
 13. [Project Roadmap & Status](#project-roadmap--status)
 14. [Credits and Academic Attribution](#credits-and-academic-attribution)
 
@@ -84,7 +84,7 @@ HeatShield computationally models and analyzes these thermal dynamics to provide
 * **Quantifying Microclimate Disparities**: Analyzes ambient air temperature ($T_{air}$) and land surface temperature ($LST$) dynamics across diurnal and seasonal cycles.
 * **Biophysical Correlation Modeling**: Evaluates the mitigating impact of vegetation indices (NDVI, tree canopy cover) against heat-amplifying factors (NDBI built-up index, impervious surface cover, albedo deficits).
 * **Morphological Zone Contrast**: Compares thermal stress across 9 standardized urban zones: *Residential, Commercial, Industrial, Road Corridors, Parks, Educational, Transport, Waterbodies, and Open Land*.
-* **Thermal Risk Classification**: Categorizes urban sites into 4 standardized public health risk tiers (*Low, Moderate, High, Very High*) based on multi-criteria temperature and humidity thresholds.
+* **Source Risk Labels**: Summarizes four labels present in the synthetic source records (*Low, Moderate, High, Very High*). Their thresholds and health-risk validity are not independently established.
 * **Cooling Intervention Prioritization**: Calculates Shade Gap Indices and Multi-Criteria Decision Making (MCDM) Cooling Priority Scores to recommend targeted cooling solutions (urban afforestation, cool roofs, shaded transit corridors).
 
 > [!NOTE]
@@ -96,14 +96,14 @@ HeatShield computationally models and analyzes these thermal dynamics to provide
 
 > [!WARNING]
 > **Academic Simulation Disclosure:**
-> HeatShield currently operates on a **synthetic academic simulation dataset for Solapur covering the 5-year period 2021–2025** ($150,000$ observation records across $100$ monitoring sites). All records are computationally generated using physics-informed simulation modeling (calibrated to regional WRF-Chem and ERA5-Land climatological baselines).
+> HeatShield's master research dataset is **synthetic academic simulation data for Solapur covering 2021–2025** (150,000 records across 100 represented locations). The repository documents WRF-Chem, ERA5-Land, and IMD provenance, but those provenance claims have not been independently verified.
 >
-> They are **not** live readings from the Indian Meteorological Department (IMD), certified municipal sensor grids, or validated hospital heat-stroke records.
+> They are **not** verified live readings from the Indian Meteorological Department (IMD), certified municipal sensor grids, or validated hospital heat-stroke records. Source-encoded risk labels are not independently validated health-risk classes.
 
 ### Analytical Boundaries
-1. **Model-Derived Patterns**: Statistical correlations (e.g., negative association between NDVI and LST) describe synthesized relationships and should be validated against physical field sensors before municipal infrastructure investment.
-2. **Predictive Estimates**: Estimated cooling impacts (e.g., predicted $\Delta T$ in $^\circ\text{C}$ from vegetative interventions) are algorithmic estimates based on linear biophysical regression.
-3. **Representative Geospatial Coordinates**: Station coordinates ($17.6120^\circ\text{N}$–$17.7220^\circ\text{N}$, $75.8360^\circ\text{E}$–$75.9620^\circ\text{E}$) represent representative spatial centroids within Solapur's 9 urban zones.
+1. **Descriptive Associations**: Correlations summarize the synthetic records and do not establish causation or real environmental mechanisms.
+2. **Unvalidated Labels and Scores**: Source risk labels and application-derived scores are descriptive fields, not official warnings or validated medical classifications.
+3. **Represented Coordinates**: Map points represent the dataset's sampled coordinates only; they are not independently verified sensor sites or municipal boundaries.
 
 ---
 
@@ -234,7 +234,7 @@ TF-141-Heatshield/
 
 ## Application Pages & Confirmed Features
 
-HeatShield implements **14 verified routes** organized into Public Research, Analytical Explorer, Protected Telemetry, and Authentication workflows:
+The routes declared in [`src/App.jsx`](src/App.jsx) are organized into Public Research, Analytical Explorer, Protected Telemetry, and Authentication workflows. Protected routes continue to use the existing auth guard; unknown paths redirect to the home route.
 
 ### 1. Research Overview (`/`)
 - **Editorial Hero**: Apple-style typography highlighting Solapur's urban heat challenges and platform capabilities.
@@ -243,29 +243,25 @@ HeatShield implements **14 verified routes** organized into Public Research, Ana
 - **Academic Mission Callout**: Clear statement of academic purpose and simulation boundaries.
 
 ### 2. Analytics Dashboard (`/dashboard`)
-- **Diurnal Thermal Curve**: Interactive Recharts time-series comparing daytime surface heating ($55.4^\circ\text{C}$ peak) against ambient cooling.
-- **Morphological Zone Contrast**: Multi-attribute comparisons across 9 urban zones (NDVI, NDBI, Shade Deficit, Heat Risk).
-- **Cooling Interventions Breakdown**: Zone-level ranking of shade deficits and recommended mitigation strategies.
-- **Regional Summary Export**: One-click client-side CSV download of precomputed zone aggregates.
+- **Validated Research Summary**: Displays static EDADV summaries derived from the synthetic academic dataset with clear provenance and interpretation limits.
+- **Separate Optional Live API Panel**: Shows live values only when a configured API explicitly identifies the response as live; otherwise it presents an unavailable or unconfigured state.
 
 ### 3. Geographic Heat Map (`/heat-map`)
 - **Leaflet 2D GIS Engine**: Custom CartoDB-styled base tiles with smooth pan/zoom over Solapur (`17.6599° N, 75.9064° E`).
-- **100 Station Microclimate Nodes**: Color-coded CircleMarkers representing 100 monitoring sites across Solapur's 9 zones.
-- **Telemetry Inspector Popups**: Interactive popups displaying Air Temperature, LST, Relative Humidity, Wind Speed, Solar Radiation, NDVI, Shade Gap Index, and MCDM Cooling Priority Score.
-- **Domain Switcher**: Seamlessly toggle between local Solapur Microclimate Stations (100 sites) and the India-wide National Reanalysis Grid (54 stations).
-- **Thermal Intensity Envelope**: Semi-transparent thermal overlay toggle for spatial heat distribution modeling.
+- **100 Synthetic Station Summaries**: CircleMarkers represent sampled coordinates and synthetic station means, not verified sensors.
+- **Station Popups**: Show available summary fields and sample counts with simulation provenance.
+- **Metric and Station Filters**: Switch air-temperature/LST styling and filter represented stations.
 
 ### 4. Data Explorer (`/explore-data`)
 - **150,000 Record Supabase Integration**: Real-time querying against `public.heatshield_master` via PostgREST.
-- **Server-Side Pagination**: High-efficiency paginated queries supporting 10, 25, 50, and 100 records per page.
-- **Multi-Parameter Filtering**: Filter by Urban Zone (9 typologies), Heat Risk Tier (Low, Moderate, High, Very High), Search query (station name, location ID, record ID), and Temperature Slider ($20^\circ\text{C}$–$55^\circ\text{C}$).
-- **Active Record Drawer**: Slide-out telemetry drawer inspecting all 57 biophysical attributes for any selected record.
-- **Filter-Aware CSV Export**: Client-side streaming export of currently filtered datasets.
-- **Zero-Downtime Offline Fallback**: Automatically serves bundled 100-station fixtures if cloud services are unreachable.
+- **Server-Side Pagination**: Queries the existing `public.heatshield_master` relation in bounded pages.
+- **Zone and Risk Filters**: Filters the source records by zone and source-encoded risk label; identifier search uses station/record ID prefixes.
+- **Visible-Row CSV Export**: Exports only rows currently displayed by the table.
+- **Honest Unavailable State**: A failed master query is not replaced by station fixtures or represented as a successful live response.
 
 ### 5. Methodology & Simulation Specifications (`/methodology`)
 - **Thermodynamic Equations**: Documented mathematical formulations for Land Surface Temperature (LST), Urban Heat Island (UHI) intensity, and Shade Gap Index.
-- **Model Physics & Boundaries**: Explicit assumptions of the calibrated WRF-Chem v4.3 and ERA5-Land simulation models.
+- **Model Physics & Boundaries**: Repository provenance references WRF-Chem and ERA5-Land; those claims have not been independently verified. Results remain synthetic and descriptive.
 - **Scholarly Citation**: Pre-formatted BibTeX citation block for academic attribution.
 
 ### 6. Team & Work Distribution (`/team`)
@@ -466,7 +462,7 @@ The platform leverages modern, industry-standard technologies across every tier:
 ## Setup and Local Development Guide
 
 ### 1. Prerequisites
-- **Node.js 18.x or 20.x** and `npm 9+` installed.
+- **Node.js 24.x** and `npm 9+` recommended for matching the Netlify build runtime (the package declares Node.js `>=18`).
 - **Git** installed.
 - **Python 3.9+** (optional, required only for running Python ingestion scripts or generating charts).
 
@@ -497,20 +493,19 @@ cp .env.example .env
 Edit `.env` to include your Supabase project credentials:
 
 ```env
-# Supabase Public Configuration (Safe for client-side browser exposure)
+# Supabase public configuration (compiled into browser assets)
 VITE_SUPABASE_URL=https://your-project-id.supabase.co
 VITE_SUPABASE_PUBLISHABLE_KEY=your-supabase-anon-key
 
-# Optional local Python analytics API base URL
-VITE_API_BASE_URL=http://localhost:5000/api
+# Optional: set only when an actual external analytics API is deployed
+# VITE_API_BASE_URL=
 
-# Secret Service Role Key (Used ONLY for CLI batch ingestion scripts)
-# NEVER commit or expose this key in client-side code!
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key-here
+# Optional: defaults to the current browser origin for auth callbacks
+# VITE_AUTH_REDIRECT_URL=https://your-site.netlify.app
 ```
 
 > [!NOTE]
-> **Offline Resilient Mode:** If you do not configure Supabase credentials, HeatShield automatically enters **Offline Mode**, utilizing bundled microclimate fixtures ([`src/data/solapurLocations.js`](src/data/solapurLocations.js) and [`src/data/dashboardData.js`](src/data/dashboardData.js)) so the entire UI and map remain fully functional.
+> The precomputed EDADV research summaries are bundled with the frontend. A missing or unreachable Supabase/API service is shown as unavailable; those summaries and synthetic map aggregates are not live readings. `SUPABASE_SERVICE_ROLE_KEY`, if needed for the local batch-import script, must stay outside all `VITE_` variables and must never be configured in Netlify's frontend build.
 
 ---
 
@@ -545,7 +540,45 @@ To deploy the database schema to your Supabase project:
 
 ---
 
-## Deployment Guide (Vercel & Render)
+## Deployment Guide (Netlify, Vercel and Render)
+
+### Netlify deployment
+
+The repository includes [`netlify.toml`](netlify.toml) with the Vite build, `dist` publish directory, Node.js 24 build runtime, SPA fallback, security headers, and caching for Vite's content-hashed `/assets/*` files. The existing npm lockfile is used for dependency resolution; no Netlify plugin or extra package is required.
+
+1. In Netlify, choose **Add new project → Import an existing project** and connect `exobhavinss-sketch/TF-141-Heatshield` from GitHub. Select the repository root as the base directory.
+2. Confirm the build command is `npm run build` and the publish directory is `dist`. `netlify.toml` supplies these values; do not set the publish directory to the repository root.
+3. In the site's environment-variable settings, add `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` for the **Production** build context. Add them to Deploy Previews/Branch Deploys only if those builds should connect to the same current Supabase project. These are browser-public values; never add a service-role key, database password, SMTP credential, or private API secret.
+4. `VITE_API_BASE_URL` is optional and should remain unset unless a real external API is deployed and configured. `VITE_AUTH_REDIRECT_URL` is optional; without it, the app builds callback URLs from the active browser origin, including the Netlify production or preview hostname.
+5. Trigger a production build from the Netlify Deploys page, or merge/push a reviewed change to the configured production branch. No deployment is performed by these repository instructions.
+
+#### Supabase Auth URL settings
+
+In the **current** Supabase project, set **Authentication → URL Configuration → Site URL** to the canonical production origin, for example `https://<site-name>.netlify.app` (or your already configured custom domain). Add these Redirect URLs:
+
+```text
+https://<site-name>.netlify.app/auth/callback
+https://<site-name>.netlify.app/reset-password
+http://localhost:3000/auth/callback
+http://localhost:3000/reset-password
+http://127.0.0.1:3000/auth/callback
+http://127.0.0.1:3000/reset-password
+```
+
+Replace `<site-name>` with the actual Netlify site name. If using a custom domain, add both production paths for that exact host. Add specific Deploy Preview hosts only when testing auth from previews; avoid broad unrelated redirect patterns. The app callback route is `/auth/callback`; password recovery returns to `/reset-password`. Do not change Site URL or redirect allow-list until the current production host and email flows have been reviewed.
+
+#### Verify a deploy
+
+Open the production site and directly visit then refresh `/dashboard`, `/explore-data`, `/heat-map`, `/login`, `/register`, `/auth/callback`, `/reset-password`, `/profile`, and `/contact`. Public research routes should render without a Netlify 404; protected profile routes should follow the existing auth guard. Confirm the static research disclosure is visible, the master-data relation returns actual Supabase rows, map markers/popups and both temperature metrics work, and a missing/unavailable backend is not described as live. Test signup, login, sign-out, verification callback, password recovery, and reset using an authorized test account after adding the required Supabase URL settings. Email delivery is not verified by a successful frontend build.
+
+#### Common errors and rollback
+
+- **Build cannot find dependencies:** keep `package-lock.json` committed and do not mix npm with another lockfile. Netlify installs from the detected npm lockfile before `npm run build`.
+- **Supabase configuration warning or unavailable state:** check that both required `VITE_` variables are set in the correct Netlify build contexts, then trigger a new build. Vite embeds public variables at build time.
+- **Auth link returns to an old host or is rejected:** check that no `VITE_AUTH_REDIRECT_URL`/`VITE_SITE_URL` override points at an old domain, then check the exact callback/reset URLs in the current Supabase project's allow-list.
+- **Nested route returns 404:** confirm the deployed build includes the root `netlify.toml` and that the publish directory is `dist`; its non-forced 200 rewrite preserves existing assets.
+- **Old frontend remains cached:** Vite assets are content-hashed; request a fresh HTML document and inspect the deploy's published `index.html` before changing cache rules.
+- **Rollback:** use Netlify **Deploys** to select the last known-good published deploy and choose **Publish deploy**. This changes the active static site version only; it does not roll back Supabase settings or database state.
 
 ### Deploying to Vercel
 The repository includes a ready-to-use [`vercel.json`](vercel.json) that configures SPA routing rewrites:

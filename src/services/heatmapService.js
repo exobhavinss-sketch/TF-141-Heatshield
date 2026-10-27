@@ -10,20 +10,21 @@ import { supabase, isSupabaseConfigured } from './supabaseClient';
 import { calculateHeatRiskCategory } from '../utils/temperatureColors';
 import { fetchMasterStations, checkMasterTablePopulated } from './masterDataService';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
+const API_BASE_URL = String(import.meta.env.VITE_API_BASE_URL || '').trim().replace(/\/+$/, '');
+const apiEndpoint = path => API_BASE_URL ? `${API_BASE_URL}${path}` : null;
 
 /**
  * Checks backend health
  */
 export async function checkBackendHealth() {
+  if (!API_BASE_URL) return { status: 'not_configured' };
   try {
-    const res = await fetch(`${API_BASE_URL}/health`, { method: 'GET', signal: AbortSignal.timeout(2500) });
+    const res = await fetch(apiEndpoint('/health'), { method: 'GET', signal: AbortSignal.timeout(2500) });
     if (res.ok) {
       return await res.json();
     }
   } catch (err) {
-    // Backend offline; use local verified dataset
-    return { status: 'offline', error: err.message };
+    return { status: 'offline' };
   }
   return { status: 'offline' };
 }
@@ -32,24 +33,26 @@ export async function checkBackendHealth() {
  * Fetch dataset metadata
  */
 export async function fetchDatasetMetadata() {
-  try {
-    const res = await fetch(`${API_BASE_URL}/heatmap/metadata`, { signal: AbortSignal.timeout(3000) });
-    if (res.ok) return await res.json();
-  } catch (err) {
-    // Return verified master dataset metadata
+  if (API_BASE_URL) {
+    try {
+      const res = await fetch(apiEndpoint('/heatmap/metadata'), { signal: AbortSignal.timeout(3000) });
+      if (res.ok) return await res.json();
+    } catch {
+      // Show repository data metadata below; it is not a live API response.
+    }
   }
 
   return {
     success: true,
-    source: 'HeatShield Solapur Simulation & NASA POWER Reanalysis Grid',
     is_live_backend: false,
     ...MASTER_DATASET_METADATA,
-    geographicCoverage: 'Solapur Urban Agglomeration (17.6120°N – 17.7220°N) & India National Grid',
-    temperatureVariable: 'Daily Maximum 2-Metre Air Temp (T2M_MAX) & Land Surface Temp (LST)',
+    source: 'HeatShield synthetic academic simulation dataset',
+    provenance: 'Repository-documented WRF-Chem, ERA5-Land, and IMD provenance claims have not been independently verified.',
+    geographicCoverage: '100 represented synthetic station locations in the Solapur study area',
+    temperatureVariable: 'Source fields: air_temperature_c and land_surface_temperature_c',
     temperatureUnit: '°C',
-    spatialResolution: '0.5° × 0.5° (India Grid) / Station-Level In-Situ (Solapur 100 Sites)',
-    historicalCoverage: '2021-01-01 to 2025-12-31 (150,000 Records)',
-    websiteLastRefreshed: '2026-10-18T17:15:00+05:30'
+    spatialResolution: '100 represented point locations; no continuous surface interpolation',
+    historicalCoverage: '2021-01-01 to 2025-12-31 (150,000 synthetic records)',
   };
 }
 
@@ -57,11 +60,13 @@ export async function fetchDatasetMetadata() {
  * Fetch available observation dates
  */
 export async function fetchAvailableDates() {
-  try {
-    const res = await fetch(`${API_BASE_URL}/heatmap/dates`, { signal: AbortSignal.timeout(3000) });
-    if (res.ok) return await res.json();
-  } catch (err) {
-    // Return list of representative dates
+  if (API_BASE_URL) {
+    try {
+      const res = await fetch(apiEndpoint('/heatmap/dates'), { signal: AbortSignal.timeout(3000) });
+      if (res.ok) return await res.json();
+    } catch {
+      // Return the repository date choices below.
+    }
   }
 
   return [
@@ -107,14 +112,17 @@ export async function fetchSupabaseHeatReadings() {
  * Seamlessly integrates live Supabase in-situ records with verified research stations.
  */
 export async function fetchHeatmapGeoJSON(date = '2024-04-15', region = 'india') {
-  try {
-    const res = await fetch(`${API_BASE_URL}/heatmap?date=${date}&region=${region}`, { signal: AbortSignal.timeout(3500) });
-    if (res.ok) {
-      const data = await res.json();
-      return { ...data, is_live_backend: true };
+  if (API_BASE_URL) {
+    try {
+      const params = new URLSearchParams({ date, region });
+      const res = await fetch(`${apiEndpoint('/heatmap')}?${params}`, { signal: AbortSignal.timeout(3500) });
+      if (res.ok) {
+        const data = await res.json();
+        return { ...data, is_live_backend: data?.is_live_backend === true };
+      }
+    } catch {
+      // Use the explicitly labeled local research view below.
     }
-  } catch (err) {
-    // Local / offline fallback
   }
 
   if (region === 'solapur') {
@@ -229,43 +237,23 @@ export async function fetchHeatmapGeoJSON(date = '2024-04-15', region = 'india')
  * Fetch dashboard summary for date
  */
 export async function fetchDashboardSummary(date = '2024-04-15', zone = 'all') {
+  if (!API_BASE_URL) {
+    return { is_live_backend: false, availability: 'not_configured' };
+  }
+
   try {
-    const res = await fetch(`${API_BASE_URL}/dashboard/summary?date=${date}&zone=${zone}`, { signal: AbortSignal.timeout(3000) });
-    if (res.ok) return await res.json();
-  } catch (err) {
-    // Offline fallback calculation
+    const params = new URLSearchParams({ date, zone });
+    const res = await fetch(`${apiEndpoint('/dashboard/summary')}?${params}`, { signal: AbortSignal.timeout(3000) });
+    if (!res.ok) return { is_live_backend: false, availability: 'unavailable' };
+
+    const data = await res.json();
+    const metricFields = ['meanAirTemp', 'maxAirTemp', 'meanLST', 'validRecordsCount'];
+    const hasValidMetrics = metricFields.every(field => data?.[field] !== null && data?.[field] !== '' && Number.isFinite(Number(data?.[field])));
+    if (data?.is_live_backend === true && hasValidMetrics) return data;
+    return { is_live_backend: false, availability: 'invalid_response' };
+  } catch {
+    return { is_live_backend: false, availability: 'unavailable' };
   }
-
-  let filtered = SOLAPUR_STATIONS;
-  if (zone !== 'all') {
-    filtered = SOLAPUR_STATIONS.filter(s => s.zone.toLowerCase() === zone.toLowerCase());
-  }
-
-  const validTemps = filtered.map(s => s.mean_air_temp).filter(t => t !== null && !isNaN(t));
-  const validLSTs = filtered.map(s => s.mean_lst).filter(t => t !== null && !isNaN(t));
-
-  const meanAir = validTemps.length ? (validTemps.reduce((a, b) => a + b, 0) / validTemps.length) : 34.28;
-  const maxAir = validTemps.length ? Math.max(...validTemps) : 46.81;
-  const minAir = validTemps.length ? Math.min(...validTemps) : 19.35;
-  const meanLST = validLSTs.length ? (validLSTs.reduce((a, b) => a + b, 0) / validLSTs.length) : 35.89;
-  const peakLST = validLSTs.length ? Math.max(...validLSTs) : 55.35;
-
-  return {
-    success: true,
-    selectedDate: date,
-    selectedZone: zone,
-    meanAirTemp: Number(meanAir.toFixed(2)),
-    maxAirTemp: Number(maxAir.toFixed(2)),
-    minAirTemp: Number(minAir.toFixed(2)),
-    meanLST: Number(meanLST.toFixed(2)),
-    peakLST: Number(peakLST.toFixed(2)),
-    validRecordsCount: filtered.length,
-    activeSensors: filtered.length,
-    uhiAnomalyMean: Number((meanLST - meanAir).toFixed(2)),
-    measurementType: 'Ambient Air Temperature (2m) & Land Surface Temperature',
-    source: 'Solapur Microclimate Pilot & 150k Fact Repository',
-    is_live_backend: false
-  };
 }
 
 /**

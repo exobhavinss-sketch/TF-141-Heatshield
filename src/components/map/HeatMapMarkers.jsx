@@ -88,7 +88,7 @@ function HeatMapMarkersComponent({
 
       // Risk category filter
       if (riskFilter && riskFilter !== 'all') {
-        const itemRisk = normalized.props.risk_category || 
+        const itemRisk = normalized.props.is_edadv_summary ? null : normalized.props.risk_category ||
                          normalized.props.heat_risk_category || 
                          calculateHeatRiskCategory(normalized.props.temperature_c ?? normalized.props.mean_air_temp);
         if (itemRisk?.toLowerCase() !== riskFilter.toLowerCase()) {
@@ -105,11 +105,11 @@ function HeatMapMarkersComponent({
     <>
       {validMarkers.map(({ id, lat, lng, props }) => {
         // Determine temperature or metric value for color-coding
-        let colorValue = props.temperature_c ?? props.air_temperature_c ?? props.mean_air_temp;
+        let colorValue = props.temperature_c ?? props.air_temperature_c ?? props.mean_air_temp ?? props.air_temperature_c_mean;
         let markerColor = getTemperatureColor(colorValue);
 
         if (selectedLayer === 'surface_lst') {
-          const lstVal = props.surface_temp_c ?? props.land_surface_temp_c ?? props.mean_lst;
+          const lstVal = props.surface_temp_c ?? props.land_surface_temp_c ?? props.mean_lst ?? props.land_surface_temperature_c_mean;
           if (lstVal !== undefined && lstVal !== null) {
             colorValue = lstVal;
             markerColor = getTemperatureColor(lstVal);
@@ -128,7 +128,7 @@ function HeatMapMarkersComponent({
           String(selectedLocationId) === String(props.station_id)
         );
 
-        const isHotspot = props.risk_category === 'Very High' || (typeof colorValue === 'number' && colorValue >= 40);
+        const isHotspot = !props.is_edadv_summary && (props.risk_category === 'Very High' || (typeof colorValue === 'number' && colorValue >= 40));
 
         // Marker radius calculations
         let radius = isSolapur ? 7 : 9;

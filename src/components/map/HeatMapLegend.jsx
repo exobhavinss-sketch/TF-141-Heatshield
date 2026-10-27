@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, Layers } from 'lucide-react';
 
 const RISK_TIERS = [
-  { label: 'Low Risk', name: '< 30°C', color: '#059669', desc: 'Baseline microclimate comfort' },
-  { label: 'Moderate Risk', name: '30°C – 35°C', color: '#d97706', desc: 'Mild urban thermal stress' },
-  { label: 'High Risk', name: '35°C – 40°C', color: '#ea580c', desc: 'Elevated urban heat island' },
-  { label: 'Severe Exposure', name: '≥ 40°C', color: '#dc2626', desc: 'Critical thermal exposure pocket' },
+  { label: 'Low visual tier', name: '< 30°C', color: '#10b981' },
+  { label: 'Moderate visual tier', name: '30°C – 35°C', color: '#facc15' },
+  { label: 'High visual tier', name: '35°C – 40°C', color: '#f97316' },
+  { label: 'Very high visual tier', name: '≥ 40°C', color: '#ef4444' },
 ];
 
 const COOLING_TIERS = [
-  { label: 'Priority 1 (Critical)', name: 'Score > 65', color: '#dc2626', desc: 'Urgent cool-roof / canopy intervention' },
-  { label: 'Priority 2 (High)', name: 'Score 45–65', color: '#ea580c', desc: 'Pocket parks / reflective pavers' },
-  { label: 'Priority 3 (Moderate)', name: 'Score 25–45', color: '#d97706', desc: 'Routine street greening' },
-  { label: 'Priority 4 (Low)', name: 'Score < 25', color: '#059669', desc: 'Existing canopy / water buffer' },
+  { label: 'Higher displayed score', name: 'Score > 65', color: '#dc2626' },
+  { label: 'Displayed score', name: 'Score 45–65', color: '#ea580c' },
+  { label: 'Displayed score', name: 'Score 25–45', color: '#d97706' },
+  { label: 'Lower displayed score', name: 'Score < 25', color: '#059669' },
 ];
 
 export default function HeatMapLegend({ 
@@ -38,7 +38,7 @@ export default function HeatMapLegend({
           <span className="font-semibold text-[#1d1d1f] text-[12px] tracking-tight">
             {isCoolingLayer 
               ? 'Cooling Priority Index' 
-              : (isRiskLayer ? 'Heat Risk Classification' : 'Observation Scale')}
+              : (isRiskLayer ? 'Heat Risk Classification' : 'Temperature display bands')}
           </span>
         </div>
 
@@ -62,6 +62,7 @@ export default function HeatMapLegend({
         <div className="p-3.5 pt-2.5">
           {/* Tiers List */}
           <div className="flex flex-col gap-1.5">
+            {isCoolingLayer && <p className="text-[10px] leading-snug text-[#6e6e73]">Application score bands only; not validated municipal priorities or measured intervention effects.</p>}
             {isCoolingLayer && (
               COOLING_TIERS.map((tier) => (
                 <div
@@ -85,7 +86,9 @@ export default function HeatMapLegend({
             )}
 
             {isRiskLayer && (
-              RISK_TIERS.map((tier) => (
+              <>
+              <p className="text-[10px] leading-snug text-[#6e6e73]">Application-derived temperature buckets; not source-encoded master labels, validated health-risk classes, or official warnings.</p>
+              {RISK_TIERS.map((tier) => (
                 <div
                   key={tier.label}
                   className="flex items-center justify-between gap-2 py-1 px-1.5 rounded-lg hover:bg-black/[0.03] cursor-default transition-colors"
@@ -103,17 +106,19 @@ export default function HeatMapLegend({
                     {tier.name}
                   </span>
                 </div>
-              ))
+              ))}
+              </>
             )}
 
             {!isCoolingLayer && !isRiskLayer && (
               <div className="flex flex-col gap-2 pt-1">
                 <div className="h-2.5 w-full rounded-full bg-gradient-to-r from-[#059669] via-[#d97706] to-[#dc2626] shadow-xs" />
                 <div className="flex justify-between items-center text-[10px] font-mono text-[#86868b]">
-                  <span>26°C (Cooling)</span>
-                  <span>35°C (Mid)</span>
-                  <span>45°C+ (Severe)</span>
+                  <span>&lt; 15°C</span>
+                  <span>30°C</span>
+                  <span>35°C+</span>
                 </div>
+                <p className="text-[10px] leading-snug text-[#6e6e73]">Color bands are visual guides only; they are not validated health-risk categories or official warnings.</p>
               </div>
             )}
           </div>

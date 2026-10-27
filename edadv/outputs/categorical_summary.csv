@@ -1,0 +1,15 @@
+column,n,missing_count,unique_count
+record_id,150000,0,150000
+location_id,150000,0,100
+season,150000,0,4
+data_source_type,150000,0,1
+is_synthetic,150000,0,1
+city,150000,0,1
+state,150000,0,1
+country,150000,0,1
+location_name,150000,0,100
+zone_type,150000,0,9
+cooling_infrastructure_present,150000,0,2
+cooling_infrastructure_type,150000,0,5
+heat_risk_category,150000,0,4
+recommended_intervention,150000,0,9

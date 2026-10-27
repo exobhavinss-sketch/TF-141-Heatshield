@@ -16,6 +16,24 @@ function formatField(value, suffix = '') {
 export default function HeatMapPopup({ data, properties }) {
   const props = properties || data || {};
 
+  if (props.is_edadv_summary) {
+    const rows = [
+      ['Air temperature mean', props.air_temperature_c_mean, ' °C'],
+      ['Relative humidity mean', props.relative_humidity_pct_mean, ' %'],
+      ['Land surface temperature mean', props.land_surface_temperature_c_mean, ' °C'],
+      ['NDVI mean', props.ndvi_mean, ''],
+      ['NDBI mean', props.ndbi_mean, ''],
+    ];
+    return <div className="p-4 flex flex-col gap-2 max-w-[280px] text-xs font-sans select-text">
+      <span className="font-mono text-[10px] text-[#0071e3] uppercase tracking-wider">{props.location_id}</span>
+      <strong className="text-sm">{props.zone_type} · station summary</strong>
+      <p className="text-[10px] text-amber-800">Synthetic academic simulation mean; not a verified sensor reading.</p>
+      {rows.map(([label, value, unit]) => <div key={label} className="flex justify-between gap-3"><span>{label}</span><b>{formatField(value, unit)}</b></div>)}
+      <div className="flex justify-between gap-3"><span>Observations summarized</span><b>{formatField(props.observation_count)}</b></div>
+      <div className="text-[10px] text-gray-500">{Number(props.latitude).toFixed(4)}° N, {Number(props.longitude).toFixed(4)}° E</div>
+    </div>;
+  }
+
   const locationName = props.location_name || props.name || props.station_id || 'Solapur Monitoring Site';
   const stationCode = props.grid_id || props.location_id || props.station_id || 'STN-NODE';
   const zone = props.zone || props.zone_type || null;

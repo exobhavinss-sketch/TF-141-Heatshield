@@ -78,9 +78,9 @@ export default function Login() {
           <div className="rounded-[16px] bg-[#059669]/10 p-3 text-[12px] text-[#059669] flex items-center justify-between">
             <div className="flex items-center gap-1.5 font-medium">
               <span className="w-2 h-2 rounded-full bg-[#059669]"></span>
-              <span>Supabase Live Ready</span>
+              <span>Supabase client configured</span>
             </div>
-            <span className="font-mono text-[10px] uppercase tracking-wider">Connected</span>
+            <span className="font-mono text-[10px] uppercase tracking-wider">Reachability checked on sign-in</span>
           </div>
         )}
 

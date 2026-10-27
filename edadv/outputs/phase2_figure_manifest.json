@@ -1,0 +1,65 @@
+{
+  "source_sha256": "b9e73ed10d0dc7c824063e7f1b868a95b11a435758f2ed940d63aa30f45e1b83",
+  "figures": [
+    {
+      "file": "01_temperature_humidity_distributions.png",
+      "description": "Histograms of air temperature, relative humidity, and LST.",
+      "source": "Synthetic academic simulation data; not verified live Solapur measurements."
+    },
+    {
+      "file": "02_core_variable_boxplots.png",
+      "description": "Separate-axis boxplots with IQR candidate counts.",
+      "source": "Synthetic academic simulation data; not verified live Solapur measurements."
+    },
+    {
+      "file": "03_station_level_lst_by_zone.png",
+      "description": "Boxplots of station-level mean LST by source zone.",
+      "source": "Synthetic academic simulation data; not verified live Solapur measurements."
+    },
+    {
+      "file": "04_air_temperature_vs_humidity.png",
+      "description": "Hexbin of air temperature and relative humidity.",
+      "source": "Synthetic academic simulation data; not verified live Solapur measurements."
+    },
+    {
+      "file": "05_lst_vs_vegetation_indices.png",
+      "description": "LST against NDVI and NDBI using density hexagons.",
+      "source": "Synthetic academic simulation data; not verified live Solapur measurements."
+    },
+    {
+      "file": "06_core_correlation_matrix.png",
+      "description": "Pearson correlation matrix for selected continuous fields.",
+      "source": "Synthetic academic simulation data; not verified live Solapur measurements."
+    },
+    {
+      "file": "07_monthly_temperature_patterns.png",
+      "description": "Monthly temperature patterns with station-level 95% normal intervals.",
+      "source": "Synthetic academic simulation data; not verified live Solapur measurements."
+    },
+    {
+      "file": "08_annual_temperature_comparison.png",
+      "description": "Annual temperature summaries with station-level intervals.",
+      "source": "Synthetic academic simulation data; not verified live Solapur measurements."
+    },
+    {
+      "file": "09_season_label_temperature_summary.png",
+      "description": "Mean temperatures across source season labels.",
+      "source": "Synthetic academic simulation data; not verified live Solapur measurements."
+    },
+    {
+      "file": "10_station_mean_lst_map.png",
+      "description": "Station point map colored by mean LST; no continuous surface interpolation.",
+      "source": "Synthetic academic simulation data; not verified live Solapur measurements."
+    },
+    {
+      "file": "11_observation_date_coverage.png",
+      "description": "Daily observation coverage; missing dates are explicit and not imputed.",
+      "source": "Synthetic academic simulation data; not verified live Solapur measurements."
+    },
+    {
+      "file": "12_risk_category_by_zone.png",
+      "description": "100% stacked zone bars of the source risk labels.",
+      "source": "Synthetic academic simulation data; not verified live Solapur measurements."
+    }
+  ]
+}

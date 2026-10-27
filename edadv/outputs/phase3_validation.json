@@ -1,0 +1,174 @@
+{
+  "status": "passed",
+  "source": {
+    "path": "Heat Shield Master Dataset(2).csv",
+    "filename": "Heat Shield Master Dataset(2).csv",
+    "size_bytes": 66009030,
+    "sha256": "b9e73ed10d0dc7c824063e7f1b868a95b11a435758f2ed940d63aa30f45e1b83",
+    "encoding": "UTF-8 (BOM tolerated)",
+    "delimiter": "comma"
+  },
+  "checks": [
+    {
+      "check": "master_hash",
+      "passed": true,
+      "detail": "b9e73ed10d0dc7c824063e7f1b868a95b11a435758f2ed940d63aa30f45e1b83"
+    },
+    {
+      "check": "dataset_shape",
+      "passed": true,
+      "detail": "150000 rows x 57 columns"
+    },
+    {
+      "check": "synthetic_disclosure",
+      "passed": true,
+      "detail": "Synthetic academic simulation data; not verified live Solapur measurements."
+    },
+    {
+      "check": "rerun_audit_consistency",
+      "passed": true,
+      "detail": "fresh full audit matches canonical shape, duplicate, time, geography, and range checks"
+    },
+    {
+      "check": "numeric_summary_claims",
+      "passed": true,
+      "detail": "41 numeric columns; four report rows cross-checked against CSV"
+    },
+    {
+      "check": "correlation_claims_and_n",
+      "passed": true,
+      "detail": "4 Pearson claims and paired n cross-checked; all use row-level dependent records"
+    },
+    {
+      "check": "station_zone_totals",
+      "passed": true,
+      "detail": "100 station rows x 1,500 records; 9 zones; zone counts sum to 150,000"
+    },
+    {
+      "check": "risk_and_zone_totals",
+      "passed": true,
+      "detail": "risk totals={'Low': 21737, 'Moderate': 77145, 'High': 37548, 'Very High': 13570}; risk-by-zone sums match zone totals"
+    },
+    {
+      "check": "temporal_coverage",
+      "passed": true,
+      "detail": "1500 observed dates; 326 unobserved calendar dates; gaps retained"
+    },
+    {
+      "check": "iqr_screen",
+      "passed": true,
+      "detail": "core-variable flags={'air_temperature_c': 0, 'relative_humidity_pct': 0, 'land_surface_temperature_c': 17, 'urban_heat_island_intensity_c': 0}; candidates only"
+    },
+    {
+      "check": "grouped_summaries",
+      "passed": true,
+      "detail": "monthly 24 variable-month rows, annual 10 variable-year rows, zone 45 variable-zone rows"
+    },
+    {
+      "check": "final_report_claims",
+      "passed": true,
+      "detail": "21/21 temporal, zone, risk, and spatial claim fragments match outputs; missing=[]"
+    },
+    {
+      "check": "figure_manifest_and_resolution",
+      "passed": true,
+      "detail": "12 manifest figures and 2 annotated copies; all >=1200x600 px; provenance documented"
+    },
+    {
+      "check": "unsupported_fields_absent",
+      "passed": true,
+      "detail": "heat_index_c, substrate, and status are unavailable"
+    }
+  ],
+  "figure_dimensions": [
+    {
+      "file": "01_temperature_humidity_distributions.png",
+      "width": 2503,
+      "height": 872,
+      "source_disclosed": true
+    },
+    {
+      "file": "02_core_variable_boxplots.png",
+      "width": 2503,
+      "height": 907,
+      "source_disclosed": true
+    },
+    {
+      "file": "03_station_level_lst_by_zone.png",
+      "width": 1915,
+      "height": 986,
+      "source_disclosed": true
+    },
+    {
+      "file": "04_air_temperature_vs_humidity.png",
+      "width": 1653,
+      "height": 1075,
+      "source_disclosed": true
+    },
+    {
+      "file": "05_lst_vs_vegetation_indices.png",
+      "width": 1942,
+      "height": 907,
+      "source_disclosed": true
+    },
+    {
+      "file": "06_core_correlation_matrix.png",
+      "width": 2223,
+      "height": 1787,
+      "source_disclosed": true
+    },
+    {
+      "file": "07_monthly_temperature_patterns.png",
+      "width": 2065,
+      "height": 986,
+      "source_disclosed": true
+    },
+    {
+      "file": "08_annual_temperature_comparison.png",
+      "width": 1840,
+      "height": 986,
+      "source_disclosed": true
+    },
+    {
+      "file": "09_season_label_temperature_summary.png",
+      "width": 2090,
+      "height": 986,
+      "source_disclosed": true
+    },
+    {
+      "file": "10_station_mean_lst_map.png",
+      "width": 1989,
+      "height": 1164,
+      "source_disclosed": true
+    },
+    {
+      "file": "11_observation_date_coverage.png",
+      "width": 2035,
+      "height": 808,
+      "source_disclosed": true
+    },
+    {
+      "file": "12_risk_category_by_zone.png",
+      "width": 2031,
+      "height": 1075,
+      "source_disclosed": true
+    },
+    {
+      "file": "figures_phase3/03_station_level_lst_by_zone_annotated.png",
+      "width": 3105,
+      "height": 1792,
+      "source_disclosed": true
+    },
+    {
+      "file": "figures_phase3/12_risk_label_mix_by_zone_annotated.png",
+      "width": 3105,
+      "height": 1792,
+      "source_disclosed": true
+    }
+  ],
+  "notes": [
+    "The audit validates internal consistency of source-derived outputs, not environmental truth.",
+    "Correlation n is paired row count; station/date repetitions are dependent.",
+    "Legacy chart review is documented separately in reports/legacy_chart_validation.md."
+  ]
+}
