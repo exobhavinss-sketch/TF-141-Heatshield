@@ -167,86 +167,86 @@ export default function Profile() {
   const isEmailVerified = Boolean(user?.email_confirmed_at);
 
   return (
-    <div className="w-full flex-1 py-space-xl px-margin">
-      <div className="max-w-[1200px] mx-auto space-y-space-xl">
+    <div className="w-full flex-1 py-12 px-6 bg-[#fafafc]">
+      <div className="max-w-[1240px] mx-auto space-y-8">
         
         {/* Top Header Card */}
-        <div className="bg-surface-container-lowest rounded-xl p-space-lg md:p-space-xl shadow-md border border-outline-variant/30 flex flex-col md:flex-row md:items-center justify-between gap-space-md">
-          <div className="flex items-center gap-space-md">
-            <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-on-primary text-2xl font-bold font-headline shadow-inner flex-shrink-0">
+        <div className="bg-white rounded-[28px] p-8 md:p-10 shadow-[0_2px_16px_rgba(0,0,0,0.04)] border border-black/[0.06] flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="flex items-center gap-5">
+            <div className="w-16 h-16 rounded-[980px] bg-[#1d1d1f] flex items-center justify-center text-white text-2xl font-semibold shadow-xs flex-shrink-0">
               {profile?.full_name ? profile.full_name.charAt(0).toUpperCase() : user?.email?.charAt(0).toUpperCase()}
             </div>
             <div className="space-y-1">
-              <div className="flex flex-wrap items-center gap-space-xs">
-                <h1 className="font-headline-lg text-headline-lg text-primary font-semibold">
+              <div className="flex flex-wrap items-center gap-2">
+                <h1 className="text-[24px] md:text-[28px] font-semibold text-[#1d1d1f] tracking-tight">
                   {profile?.full_name || 'HeatShield Researcher'}
                 </h1>
-                <span className="font-label-code text-[11px] px-2 py-0.5 rounded-DEFAULT bg-surface-container text-on-surface font-semibold uppercase">
+                <span className="font-mono text-[11px] px-2.5 py-0.5 rounded-[980px] bg-[#f5f5f7] text-[#1d1d1f] font-semibold uppercase">
                   {profile?.role || 'RESEARCHER'}
                 </span>
                 {isEmailVerified ? (
-                  <span className="inline-flex items-center gap-1 font-label-code text-[11px] px-2 py-0.5 rounded-DEFAULT bg-secondary-container text-on-secondary-container font-semibold">
+                  <span className="inline-flex items-center gap-1 font-mono text-[11px] px-2.5 py-0.5 rounded-[980px] bg-[#059669]/10 text-[#059669] font-semibold">
                     <span className="material-symbols-outlined text-[13px]">verified</span>
                     <span>VERIFIED</span>
                   </span>
                 ) : (
-                  <span className="inline-flex items-center gap-1 font-label-code text-[11px] px-2 py-0.5 rounded-DEFAULT bg-error-container text-on-error-container font-semibold">
+                  <span className="inline-flex items-center gap-1 font-mono text-[11px] px-2.5 py-0.5 rounded-[980px] bg-[#dc2626]/10 text-[#dc2626] font-semibold">
                     <span className="material-symbols-outlined text-[13px]">warning</span>
-                    <span>UNCONFIRMED EMAIL</span>
+                    <span>UNCONFIRMED</span>
                   </span>
                 )}
               </div>
-              <p className="font-body-sm text-body-sm text-on-surface-variant font-mono">
+              <p className="text-[13px] text-[#86868b] font-mono">
                 {user?.email}
               </p>
-              <p className="font-caption-caps text-caption-caps text-outline uppercase">
-                {profile?.affiliation || 'MIT Vishwaprayag University'} · Solapur Research Grid
+              <p className="text-[11px] text-[#86868b] uppercase tracking-wider">
+                {profile?.affiliation || 'MIT Vishwaprayag University'} • Solapur Research Grid
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-space-sm self-start md:self-auto">
+          <div className="flex items-center gap-3 self-start md:self-auto">
             <Link
               to="/submit-reading"
-              className="inline-flex items-center gap-1 px-space-md py-2.5 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md hover:bg-primary transition-colors shadow-sm font-semibold"
+              className="inline-flex items-center gap-1.5 px-5 h-11 rounded-[980px] bg-[#0071e3] hover:bg-[#0077ed] text-white text-[13px] font-medium shadow-[0_2px_8px_rgba(0,113,227,0.25)] transition-all"
             >
-              <span className="material-symbols-outlined text-[18px]">add_location_alt</span>
+              <span className="material-symbols-outlined text-[16px]">add_location_alt</span>
               <span>Submit Reading</span>
             </Link>
             <button
               onClick={handleSignOut}
-              className="inline-flex items-center gap-1 px-space-md py-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-md text-body-md transition-colors"
+              className="inline-flex items-center gap-1.5 px-4 h-11 rounded-[980px] bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#1d1d1f] text-[13px] font-medium transition-colors"
             >
-              <span className="material-symbols-outlined text-[18px]">logout</span>
+              <span className="material-symbols-outlined text-[16px]">logout</span>
               <span>Sign Out</span>
             </button>
           </div>
         </div>
 
-        {/* Two-Column Layout: Left = Account Settings / Right = Research Ledgers */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+        {/* Two-Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
-          {/* Left Column: Profile & Settings Panels */}
-          <div className="lg:col-span-5 space-y-space-md">
+          {/* Left Column (5 Cols) */}
+          <div className="lg:col-span-5 space-y-6">
             
             {/* Profile Edit Panel */}
-            <div className="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm border border-outline-variant/30 space-y-space-md">
-              <div className="flex items-center justify-between border-b border-outline-variant/20 pb-space-xs">
-                <div className="flex items-center gap-2 text-primary font-semibold">
-                  <span className="material-symbols-outlined text-[20px]">person</span>
-                  <h2 className="font-headline-md text-headline-md">Profile Information</h2>
+            <div className="bg-white rounded-[28px] p-6 shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-black/[0.06] space-y-5">
+              <div className="flex items-center justify-between border-b border-black/[0.04] pb-3">
+                <div className="flex items-center gap-2 text-[#1d1d1f] font-semibold text-[15px]">
+                  <span className="material-symbols-outlined text-[18px] text-[#0071e3]">person</span>
+                  <h2>Profile Information</h2>
                 </div>
               </div>
 
               {profileMessage && (
-                <div className="p-space-sm rounded-lg bg-surface-container text-primary font-body-sm text-xs">
+                <div className="p-3 rounded-[12px] bg-[#059669]/10 text-[#059669] text-[12px] font-medium">
                   {profileMessage}
                 </div>
               )}
 
-              <form onSubmit={handleProfileSubmit} className="space-y-space-sm">
-                <div className="space-y-space-xs">
-                  <label className="font-body-sm text-xs font-semibold text-on-surface block" htmlFor="profName">
+              <form onSubmit={handleProfileSubmit} className="space-y-4">
+                <div className="space-y-1.5">
+                  <label className="text-[12px] font-medium text-[#86868b] uppercase tracking-wider block" htmlFor="profName">
                     Display Name
                   </label>
                   <input
@@ -254,24 +254,24 @@ export default function Profile() {
                     type="text"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    className="w-full bg-surface-container-low px-space-md py-2 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/30"
+                    className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all"
                   />
                 </div>
 
-                <div className="space-y-space-xs">
-                  <span className="font-body-sm text-xs font-semibold text-on-surface block">
+                <div className="space-y-1.5">
+                  <span className="text-[12px] font-medium text-[#86868b] uppercase tracking-wider block">
                     Institutional Email (Read Only)
                   </span>
-                  <div className="w-full bg-surface-container px-space-md py-2 rounded-lg font-mono text-xs text-on-surface-variant">
+                  <div className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] font-mono text-[13px] text-[#86868b] flex items-center">
                     {user?.email}
                   </div>
                 </div>
 
-                <div className="pt-space-xs flex justify-end">
+                <div className="pt-2 flex justify-end">
                   <button
                     type="submit"
                     disabled={profileSaving}
-                    className="px-space-md py-2 rounded-lg bg-primary-container text-on-primary font-body-sm text-xs hover:bg-primary transition-colors font-semibold disabled:opacity-60"
+                    className="px-5 py-2 rounded-[980px] bg-[#0071e3] hover:bg-[#0077ed] text-white text-[12px] font-medium transition-all shadow-[0_2px_8px_rgba(0,113,227,0.25)] disabled:opacity-60"
                   >
                     {profileSaving ? 'Saving...' : 'Update Profile'}
                   </button>
@@ -279,46 +279,46 @@ export default function Profile() {
               </form>
             </div>
 
-            {/* Research Preferences Panel */}
-            <div className="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm border border-outline-variant/30 space-y-space-md">
-              <div className="flex items-center justify-between border-b border-outline-variant/20 pb-space-xs">
-                <div className="flex items-center gap-2 text-secondary font-semibold">
-                  <span className="material-symbols-outlined text-[20px]">tune</span>
-                  <h2 className="font-headline-md text-headline-md">Analytical Preferences</h2>
+            {/* Analytical Preferences Panel */}
+            <div className="bg-white rounded-[28px] p-6 shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-black/[0.06] space-y-5">
+              <div className="flex items-center justify-between border-b border-black/[0.04] pb-3">
+                <div className="flex items-center gap-2 text-[#1d1d1f] font-semibold text-[15px]">
+                  <span className="material-symbols-outlined text-[18px] text-[#0071e3]">tune</span>
+                  <h2>Analytical Preferences</h2>
                 </div>
               </div>
 
               {settingsMessage && (
-                <div className="p-space-sm rounded-lg bg-surface-container text-secondary font-body-sm text-xs">
+                <div className="p-3 rounded-[12px] bg-[#059669]/10 text-[#059669] text-[12px] font-medium">
                   {settingsMessage}
                 </div>
               )}
 
-              <form onSubmit={handleSettingsSubmit} className="space-y-space-sm">
-                <div className="space-y-space-xs">
-                  <label className="font-body-sm text-xs font-semibold text-on-surface block" htmlFor="prefUnits">
-                    Temperature Measurement Scale
+              <form onSubmit={handleSettingsSubmit} className="space-y-4">
+                <div className="space-y-1.5">
+                  <label className="text-[12px] font-medium text-[#86868b] uppercase tracking-wider block" htmlFor="prefUnits">
+                    Temperature Scale
                   </label>
                   <select
                     id="prefUnits"
                     value={units}
                     onChange={(e) => setUnits(e.target.value)}
-                    className="w-full bg-surface-container-low px-space-md py-2 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/30"
+                    className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[13px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all cursor-pointer"
                   >
                     <option value="celsius">Celsius (°C) — Standard Academic Metric</option>
                     <option value="fahrenheit">Fahrenheit (°F)</option>
                   </select>
                 </div>
 
-                <div className="space-y-space-xs">
-                  <label className="font-body-sm text-xs font-semibold text-on-surface block" htmlFor="prefTheme">
+                <div className="space-y-1.5">
+                  <label className="text-[12px] font-medium text-[#86868b] uppercase tracking-wider block" htmlFor="prefTheme">
                     Interface Theme Mode
                   </label>
                   <select
                     id="prefTheme"
                     value={theme}
                     onChange={(e) => setTheme(e.target.value)}
-                    className="w-full bg-surface-container-low px-space-md py-2 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/30"
+                    className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[13px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all cursor-pointer"
                   >
                     <option value="system">System Default</option>
                     <option value="light">Light Mode (Clean Academic)</option>
@@ -326,11 +326,11 @@ export default function Profile() {
                   </select>
                 </div>
 
-                <div className="pt-space-xs flex justify-end">
+                <div className="pt-2 flex justify-end">
                   <button
                     type="submit"
                     disabled={settingsSaving}
-                    className="px-space-md py-2 rounded-lg bg-secondary text-on-secondary font-body-sm text-xs hover:bg-secondary-fixed-variant transition-colors font-semibold disabled:opacity-60"
+                    className="px-5 py-2 rounded-[980px] bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#1d1d1f] text-[12px] font-medium transition-colors disabled:opacity-60"
                   >
                     {settingsSaving ? 'Saving...' : 'Save Settings'}
                   </button>
@@ -340,77 +340,77 @@ export default function Profile() {
 
           </div>
 
-          {/* Right Column: User's Readings & Saved Analyses */}
-          <div className="lg:col-span-7 space-y-space-md">
+          {/* Right Column (7 Cols) */}
+          <div className="lg:col-span-7 space-y-6">
             
             {/* My Readings Ledger */}
-            <div className="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm border border-outline-variant/30 space-y-space-md">
-              <div className="flex items-center justify-between border-b border-outline-variant/20 pb-space-xs">
-                <div className="flex items-center gap-2 text-primary font-semibold">
-                  <span className="material-symbols-outlined text-[20px]">sensors</span>
-                  <h2 className="font-headline-md text-headline-md">My In-Situ Field Readings</h2>
+            <div className="bg-white rounded-[28px] p-6 shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-black/[0.06] space-y-5">
+              <div className="flex items-center justify-between border-b border-black/[0.04] pb-3">
+                <div className="flex items-center gap-2 text-[#1d1d1f] font-semibold text-[15px]">
+                  <span className="material-symbols-outlined text-[18px] text-[#0071e3]">sensors</span>
+                  <h2>My In-Situ Field Readings</h2>
                 </div>
-                <span className="font-label-code text-xs text-on-surface-variant bg-surface-container px-2 py-0.5 rounded">
+                <span className="font-mono text-[11px] text-[#86868b] bg-[#f5f5f7] px-2.5 py-0.5 rounded-[980px]">
                   {readings.length} Submitted
                 </span>
               </div>
 
               {readingsLoading ? (
-                <div className="py-space-lg text-center font-label-code text-xs text-on-surface-variant">
+                <div className="py-8 text-center text-[13px] text-[#86868b]">
                   Loading telemetry records...
                 </div>
               ) : readingsError ? (
-                <div className="p-space-sm bg-error-container text-on-error-container rounded-lg text-xs">
+                <div className="p-3 bg-[#dc2626]/10 text-[#dc2626] rounded-[12px] text-[12px]">
                   {readingsError}
                 </div>
               ) : readings.length === 0 ? (
-                <div className="py-space-lg text-center space-y-space-xs">
-                  <span className="material-symbols-outlined text-[36px] text-outline block">history_edu</span>
-                  <p className="font-body-md text-body-md text-on-surface font-semibold">No readings submitted yet</p>
-                  <p className="font-body-sm text-body-sm text-on-surface-variant max-w-sm mx-auto">
+                <div className="py-8 text-center space-y-2">
+                  <span className="material-symbols-outlined text-[36px] text-black/20 block">history_edu</span>
+                  <p className="text-[14px] text-[#1d1d1f] font-semibold">No readings submitted yet</p>
+                  <p className="text-[13px] text-[#86868b] max-w-sm mx-auto">
                     Record your first in-situ Solapur urban microclimate observation to view telemetry ledger records here.
                   </p>
-                  <div className="pt-space-xs">
+                  <div className="pt-2">
                     <Link
                       to="/submit-reading"
-                      className="inline-block px-space-md py-2 rounded-lg bg-primary-container text-on-primary font-body-sm text-xs font-semibold hover:bg-primary transition-colors"
+                      className="inline-block px-5 py-2 rounded-[980px] bg-[#0071e3] text-white text-[12px] font-medium shadow-[0_2px_8px_rgba(0,113,227,0.25)] hover:bg-[#0077ed] transition-colors"
                     >
-                      Open Submit Reading Interface
+                      Open Submit Reading
                     </Link>
                   </div>
                 </div>
               ) : (
-                <div className="space-y-space-xs max-h-80 overflow-y-auto pr-1">
+                <div className="space-y-2 max-h-80 overflow-y-auto pr-1">
                   {readings.map((r) => (
                     <div
                       key={r.id}
-                      className="p-space-sm rounded-lg bg-surface-container-low border border-outline-variant/20 flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs hover:bg-surface-container transition-colors"
+                      className="p-3.5 rounded-[16px] bg-[#f5f5f7] border border-black/[0.03] flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:bg-[#e8e8ed]/60 transition-colors"
                     >
-                      <div className="space-y-0.5">
-                        <div className="flex items-center gap-space-xs">
-                          <span className="font-headline-md text-headline-md font-bold text-primary">
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <span className="text-[15px] font-semibold text-[#1d1d1f] tabular-nums">
                             {Number(r.temperature_c).toFixed(1)}°C
                           </span>
                           {r.humidity_percent && (
-                            <span className="font-label-code text-xs text-on-surface-variant">
-                              · {r.humidity_percent}% RH
+                            <span className="font-mono text-[11px] text-[#86868b]">
+                              • {r.humidity_percent}% RH
                             </span>
                           )}
-                          <span className={`font-label-code text-[10px] uppercase px-1.5 py-0.5 rounded ${
+                          <span className={`font-mono text-[10px] uppercase px-2 py-0.5 rounded-[980px] ${
                             r.status === 'verified'
-                              ? 'bg-secondary-container text-on-secondary-container font-semibold'
-                              : 'bg-surface-container-high text-on-surface-variant font-medium'
+                              ? 'bg-[#059669]/10 text-[#059669] font-medium'
+                              : 'bg-black/5 text-[#86868b]'
                           }`}>
                             {r.status}
                           </span>
                         </div>
-                        <div className="font-body-sm text-xs text-on-surface-variant flex flex-wrap items-center gap-2">
+                        <div className="text-[11px] text-[#86868b] flex flex-wrap items-center gap-2">
                           <span>Station: {r.station_id || 'Custom Coordinate'}</span>
-                          <span>·</span>
+                          <span>•</span>
                           <span>{new Date(r.recorded_at).toLocaleDateString()} {new Date(r.recorded_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                         </div>
                         {r.notes && (
-                          <p className="font-body-sm text-xs text-on-surface line-clamp-1 italic">
+                          <p className="text-[12px] text-[#1d1d1f] line-clamp-1 italic">
                             "{r.notes}"
                           </p>
                         )}
@@ -421,10 +421,10 @@ export default function Profile() {
                           <button
                             type="button"
                             onClick={() => handleDeleteReading(r.id)}
-                            className="text-error hover:text-on-error-container p-1 rounded hover:bg-error-container transition-colors text-xs flex items-center gap-1"
+                            className="text-[#dc2626] hover:bg-[#dc2626]/10 px-2.5 py-1 rounded-[980px] transition-colors text-[11px] font-medium flex items-center gap-1"
                             title="Withdraw pending reading"
                           >
-                            <span className="material-symbols-outlined text-[16px]">delete</span>
+                            <span className="material-symbols-outlined text-[14px]">delete</span>
                             <span>Withdraw</span>
                           </button>
                         )}
@@ -436,51 +436,51 @@ export default function Profile() {
             </div>
 
             {/* My Saved Analyses */}
-            <div className="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm border border-outline-variant/30 space-y-space-md">
-              <div className="flex items-center justify-between border-b border-outline-variant/20 pb-space-xs">
-                <div className="flex items-center gap-2 text-secondary font-semibold">
-                  <span className="material-symbols-outlined text-[20px]">bookmark</span>
-                  <h2 className="font-headline-md text-headline-md">My Saved Analyses</h2>
+            <div className="bg-white rounded-[28px] p-6 shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-black/[0.06] space-y-5">
+              <div className="flex items-center justify-between border-b border-black/[0.04] pb-3">
+                <div className="flex items-center gap-2 text-[#1d1d1f] font-semibold text-[15px]">
+                  <span className="material-symbols-outlined text-[18px] text-[#0071e3]">bookmark</span>
+                  <h2>My Saved Analyses</h2>
                 </div>
-                <span className="font-label-code text-xs text-on-surface-variant bg-surface-container px-2 py-0.5 rounded">
+                <span className="font-mono text-[11px] text-[#86868b] bg-[#f5f5f7] px-2.5 py-0.5 rounded-[980px]">
                   {analyses.length} Saved
                 </span>
               </div>
 
               {analysesLoading ? (
-                <div className="py-space-sm text-center font-label-code text-xs text-on-surface-variant">
+                <div className="py-6 text-center text-[13px] text-[#86868b]">
                   Loading saved query snapshots...
                 </div>
               ) : analyses.length === 0 ? (
-                <div className="py-space-md text-center space-y-1 text-on-surface-variant">
-                  <p className="font-body-md text-body-md text-on-surface font-semibold">No saved analyses yet</p>
-                  <p className="font-body-sm text-body-sm text-xs">
-                    You can bookmark custom filter configurations and analytical snapshots from the Analytics Dashboard or Data Explorer.
+                <div className="py-6 text-center space-y-1 text-[#86868b]">
+                  <p className="text-[14px] text-[#1d1d1f] font-semibold">No saved analyses yet</p>
+                  <p className="text-[12px]">
+                    Bookmark custom filter configurations and analytical snapshots from Data Explorer.
                   </p>
                 </div>
               ) : (
-                <div className="space-y-space-xs max-h-60 overflow-y-auto pr-1">
+                <div className="space-y-2 max-h-60 overflow-y-auto pr-1">
                   {analyses.map((a) => (
                     <div
                       key={a.id}
-                      className="p-space-sm rounded-lg bg-surface-container-low border border-outline-variant/20 flex items-center justify-between gap-space-sm"
+                      className="p-3.5 rounded-[16px] bg-[#f5f5f7] border border-black/[0.03] flex items-center justify-between gap-3 hover:bg-[#e8e8ed]/60 transition-colors"
                     >
                       <div className="space-y-0.5">
-                        <h4 className="font-headline-md text-body-md font-semibold text-primary">{a.title}</h4>
+                        <h4 className="text-[14px] font-semibold text-[#1d1d1f]">{a.title}</h4>
                         {a.description && (
-                          <p className="font-body-sm text-xs text-on-surface-variant">{a.description}</p>
+                          <p className="text-[12px] text-[#86868b]">{a.description}</p>
                         )}
-                        <span className="font-label-code text-[10px] text-outline block">
+                        <span className="font-mono text-[10px] text-[#86868b] block">
                           Saved: {new Date(a.created_at).toLocaleDateString()}
                         </span>
                       </div>
                       <button
                         type="button"
                         onClick={() => handleDeleteAnalysis(a.id)}
-                        className="text-outline hover:text-error p-1 rounded transition-colors"
+                        className="text-[#86868b] hover:text-[#dc2626] p-1.5 rounded-[980px] hover:bg-black/5 transition-colors"
                         title="Delete saved analysis"
                       >
-                        <span className="material-symbols-outlined text-[18px]">delete</span>
+                        <span className="material-symbols-outlined text-[16px]">delete</span>
                       </button>
                     </div>
                   ))}

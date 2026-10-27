@@ -16,7 +16,6 @@ export default function ResetPassword() {
   const [checkingSession, setCheckingSession] = useState(true);
 
   useEffect(() => {
-    // Check if recovery session is active (either from session state or hash fragment)
     if (session) {
       setHasValidSession(true);
       setCheckingSession(false);
@@ -60,9 +59,9 @@ export default function ResetPassword() {
 
   if (authLoading || checkingSession) {
     return (
-      <div className="min-h-[50vh] flex flex-col items-center justify-center py-space-xl">
-        <div className="w-8 h-8 border-3 border-primary border-t-transparent rounded-full animate-spin mb-space-sm"></div>
-        <span className="font-label-code text-label-code text-on-surface-variant uppercase tracking-wider">
+      <div className="min-h-[50vh] flex flex-col items-center justify-center py-16">
+        <div className="w-8 h-8 border-2 border-black/10 border-t-[#0071e3] rounded-full animate-spin mb-3"></div>
+        <span className="font-mono text-[11px] text-[#86868b] uppercase tracking-wider">
           Validating Password Recovery Token...
         </span>
       </div>
@@ -70,54 +69,62 @@ export default function ResetPassword() {
   }
 
   return (
-    <div className="w-full flex-1 flex items-center justify-center py-space-xl px-margin">
-      <div className="w-full max-w-[460px] bg-surface-container-lowest rounded-xl p-space-lg md:p-space-xl shadow-md border border-outline-variant/30 space-y-space-md">
+    <div className="w-full flex-1 flex items-center justify-center py-16 px-6 bg-[#fafafc]">
+      <div className="w-full max-w-[440px] bg-white rounded-[28px] p-8 md:p-10 shadow-[0_2px_16px_rgba(0,0,0,0.04)] border border-black/[0.06] space-y-6">
         
-        {/* Academic Header */}
-        <div className="space-y-space-xs text-center border-b border-outline-variant/20 pb-space-sm">
-          <div className="inline-flex items-center gap-space-xs px-2.5 py-1 rounded-DEFAULT bg-surface-container text-on-surface text-label-code font-label-code">
-            <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+        {/* Header */}
+        <div className="space-y-2 text-center pb-2">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[980px] bg-black/[0.04] text-[#1d1d1f] text-[11px] font-mono tracking-wider uppercase font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0071e3]"></span>
             <span>CREDENTIAL RECOVERY · TF-141</span>
           </div>
-          <h1 className="font-headline-lg text-headline-lg text-primary font-semibold tracking-tight">
+          <h1 className="text-[28px] font-semibold tracking-[-0.02em] text-[#1d1d1f]">
             Set New Password
           </h1>
-          <p className="font-body-sm text-body-sm text-on-surface-variant">
+          <p className="text-[13px] text-[#86868b]">
             Create a secure new password for your HeatShield account
           </p>
         </div>
 
         {success ? (
-          <div className="rounded-xl bg-surface-container p-space-md border border-secondary/30 space-y-space-sm text-center">
-            <span className="material-symbols-outlined text-[36px] text-secondary block mx-auto">task_alt</span>
-            <h3 className="font-headline-md text-headline-md font-semibold text-primary">
-              Password Updated Successfully
-            </h3>
-            <p className="font-body-sm text-body-sm text-on-surface-variant">
-              Your credentials have been securely updated. Redirecting to sign in...
-            </p>
-            <div className="pt-space-sm">
+          <div className="rounded-[20px] bg-[#f5f5f7] p-6 space-y-4 text-center border border-black/[0.04]">
+            <div className="w-12 h-12 rounded-[980px] bg-[#059669]/10 text-[#059669] flex items-center justify-center mx-auto">
+              <span className="material-symbols-outlined text-[24px]">task_alt</span>
+            </div>
+            <div className="space-y-1">
+              <h3 className="text-[16px] font-semibold text-[#1d1d1f]">
+                Password Updated Successfully
+              </h3>
+              <p className="text-[13px] text-[#86868b] leading-relaxed">
+                Your credentials have been securely updated. Redirecting to sign in...
+              </p>
+            </div>
+            <div className="pt-2">
               <Link
                 to="/login"
-                className="px-space-md py-2.5 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md hover:bg-primary transition-colors inline-block font-semibold"
+                className="px-5 py-2.5 rounded-[980px] bg-[#0071e3] text-white text-[13px] font-medium shadow-[0_2px_8px_rgba(0,113,227,0.25)] hover:bg-[#0077ed] transition-colors inline-block"
               >
                 Sign In Now
               </Link>
             </div>
           </div>
         ) : !hasValidSession ? (
-          <div className="rounded-xl bg-surface-container p-space-md border border-error/30 space-y-space-sm text-center">
-            <span className="material-symbols-outlined text-[36px] text-error block mx-auto">link_off</span>
-            <h3 className="font-headline-md text-headline-md font-semibold text-primary">
-              Invalid or Expired Link
-            </h3>
-            <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
-              This password recovery link has either expired or already been utilized. Please request a new recovery link.
-            </p>
-            <div className="pt-space-sm">
+          <div className="rounded-[20px] bg-[#f5f5f7] p-6 space-y-4 text-center border border-black/[0.04]">
+            <div className="w-12 h-12 rounded-[980px] bg-[#dc2626]/10 text-[#dc2626] flex items-center justify-center mx-auto">
+              <span className="material-symbols-outlined text-[24px]">link_off</span>
+            </div>
+            <div className="space-y-1">
+              <h3 className="text-[16px] font-semibold text-[#1d1d1f]">
+                Invalid or Expired Link
+              </h3>
+              <p className="text-[13px] text-[#86868b] leading-relaxed">
+                This password recovery link has either expired or already been utilized. Please request a new recovery link.
+              </p>
+            </div>
+            <div className="pt-2">
               <Link
                 to="/forgot-password"
-                className="px-space-md py-2.5 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md hover:bg-primary transition-colors inline-block font-semibold"
+                className="px-5 py-2.5 rounded-[980px] bg-[#0071e3] text-white text-[13px] font-medium shadow-[0_2px_8px_rgba(0,113,227,0.25)] hover:bg-[#0077ed] transition-colors inline-block"
               >
                 Request New Link
               </Link>
@@ -126,15 +133,15 @@ export default function ResetPassword() {
         ) : (
           <>
             {errorMsg && (
-              <div className="rounded-lg bg-error-container text-on-error-container p-space-sm border border-error/30 text-body-sm flex items-start gap-2">
-                <span className="material-symbols-outlined text-[18px] text-error flex-shrink-0 mt-0.5">error</span>
-                <div className="flex-1 text-xs leading-relaxed">{errorMsg}</div>
+              <div className="rounded-[16px] bg-[#dc2626]/10 text-[#dc2626] p-3.5 text-[12px] flex items-start gap-2">
+                <span className="material-symbols-outlined text-[16px] flex-shrink-0 mt-0.5">error</span>
+                <div className="flex-1 leading-relaxed font-medium">{errorMsg}</div>
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-space-md">
-              <div className="space-y-space-xs">
-                <label className="font-body-sm text-body-sm font-semibold text-on-surface block" htmlFor="newPassword">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-1.5">
+                <label className="text-[12px] font-medium text-[#86868b] uppercase tracking-wider block" htmlFor="newPassword">
                   New Password
                 </label>
                 <input
@@ -145,12 +152,12 @@ export default function ResetPassword() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Min 8 characters"
-                  className="w-full bg-surface-container-low px-space-md py-2.5 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/30"
+                  className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all placeholder:text-[#86868b]"
                 />
               </div>
 
-              <div className="space-y-space-xs">
-                <label className="font-body-sm text-body-sm font-semibold text-on-surface block" htmlFor="confirmNewPassword">
+              <div className="space-y-1.5">
+                <label className="text-[12px] font-medium text-[#86868b] uppercase tracking-wider block" htmlFor="confirmNewPassword">
                   Confirm New Password
                 </label>
                 <input
@@ -161,18 +168,18 @@ export default function ResetPassword() {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="Repeat new password"
-                  className="w-full bg-surface-container-low px-space-md py-2.5 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/30"
+                  className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all placeholder:text-[#86868b]"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full h-11 rounded-lg bg-primary-container text-on-primary font-headline-md text-body-md font-semibold hover:bg-primary transition-colors shadow-sm disabled:opacity-60 flex items-center justify-center gap-2"
+                className="w-full h-11 rounded-[980px] bg-[#0071e3] hover:bg-[#0077ed] text-white text-[14px] font-medium transition-all shadow-[0_2px_8px_rgba(0,113,227,0.25)] disabled:opacity-60 flex items-center justify-center gap-2 mt-2"
               >
                 {submitting ? (
                   <>
-                    <span className="w-4 h-4 border-2 border-on-primary border-t-transparent rounded-full animate-spin"></span>
+                    <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
                     <span>Updating Credentials...</span>
                   </>
                 ) : (

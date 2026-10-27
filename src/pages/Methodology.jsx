@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function Methodology() {
+  const [copied, setCopied] = useState(false);
+
   const bibtex = `@article{tf141_heatshield_2024,
   title   = {HeatShield: Microclimatic Canopy Simulation & Diurnal Urban Heat Island Analysis in Solapur},
   author  = {Bagwan, Furqan and Shaikh, Aman and Shankur, Bhavin},
@@ -11,164 +13,176 @@ export default function Methodology() {
   doi     = {10.1145/TF141.2024.SOLAPUR}
 }`;
 
+  const handleCopyBibtex = () => {
+    navigator.clipboard.writeText(bibtex);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 3000);
+  };
+
   return (
-    <div className="flex flex-col w-full pb-space-xl">
+    <div className="flex flex-col w-full pb-24 bg-[#fafafc]">
       
-      {/* Top Ambient Gradient Anchor */}
-      <div className="relative w-full overflow-hidden bg-surface-container-low pt-space-xl pb-space-lg border-b border-outline-variant/30">
-        <div className="max-w-[1400px] mx-auto px-margin">
-          
-          {/* Section Breadcrumb / Version Header */}
-          <div className="flex flex-wrap items-center justify-between gap-space-sm mb-space-md">
-            <div className="inline-flex items-center gap-space-xs bg-surface-container-highest px-space-sm py-1 rounded-DEFAULT">
-              <span className="w-2 h-2 rounded-full bg-secondary"></span>
-              <span className="font-label-code text-label-code text-on-surface uppercase tracking-wider">
-                RESEARCH SPECIFICATION • VERSION 2.4
-              </span>
-            </div>
-            <div className="flex items-center gap-space-xs text-on-surface-variant font-label-code text-label-code">
-              <span>PEER-REVIEW COMPLIANT</span>
-              <span className="text-outline">•</span>
-              <span>DOI: 10.1145/TF141.2024.SOLAPUR</span>
-            </div>
+      {/* Top Academic Context Ribbon */}
+      <div className="w-full bg-[#f5f5f7]/80 backdrop-blur-md py-2.5 px-6 border-b border-black/[0.04]">
+        <div className="max-w-[1340px] mx-auto flex flex-col md:flex-row md:items-center justify-between gap-2 text-[12px] text-[#86868b]">
+          <div className="flex items-center gap-2.5 flex-wrap">
+            <span className="font-mono text-[#1d1d1f] font-medium tracking-wide">RESEARCH SPECIFICATION • VERSION 2.4</span>
+            <span className="w-1 h-1 rounded-full bg-black/20"></span>
+            <span className="text-[#0071e3] font-medium">PEER-REVIEW COMPLIANT</span>
           </div>
-
-          {/* Main Headline Block */}
-          <div className="max-w-4xl space-y-space-sm">
-            <h1 className="font-headline-xl text-headline-xl text-primary font-semibold tracking-tight">
-              Methodology &amp; Simulation Architecture
-            </h1>
-            <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-              Detailed technical documentation of urban canopy modeling, synthetic microclimate generation, and heat vulnerability indices for Solapur, Maharashtra.
-            </p>
-          </div>
-
-          {/* Metadata Ledger Strip */}
-          <div className="mt-space-lg pt-space-md bg-surface-container-lowest rounded-xl p-space-md shadow-sm grid grid-cols-2 sm:grid-cols-4 gap-gutter border border-outline-variant/30">
-            <div className="space-y-space-xs">
-              <span className="font-caption-caps text-caption-caps uppercase text-outline block">Research Consortium</span>
-              <span className="font-headline-md text-headline-md text-on-surface font-semibold">Team TF-141</span>
-            </div>
-            <div className="space-y-space-xs">
-              <span className="font-caption-caps text-caption-caps uppercase text-outline block">Academic Seat</span>
-              <span className="font-body-md text-body-md text-on-surface font-medium">MIT Vishwaprayag Univ.</span>
-            </div>
-            <div className="space-y-space-xs">
-              <span className="font-caption-caps text-caption-caps uppercase text-outline block">Chronological Window</span>
-              <span className="font-label-metric text-label-metric text-secondary font-bold">2021 – 2025 Synthetic</span>
-            </div>
-            <div className="space-y-space-xs">
-              <span className="font-caption-caps text-caption-caps uppercase text-outline block">Document Revision</span>
-              <span className="font-label-code text-label-code text-on-surface">May 2024 (v2.4.1)</span>
-            </div>
+          <div className="flex items-center gap-2 text-[11px] font-mono tracking-wider">
+            <span>DOI: 10.1145/TF141.2024.SOLAPUR</span>
           </div>
         </div>
       </div>
 
-      {/* Main Technical Body Container */}
-      <div className="max-w-[1400px] mx-auto px-margin py-space-xl w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
+      {/* Hero Header */}
+      <section className="w-full px-6 pt-12 pb-10">
+        <div className="max-w-[1340px] mx-auto space-y-6">
+          <div className="space-y-3 max-w-3xl">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[980px] bg-black/[0.04] text-[#1d1d1f] text-[12px] font-mono tracking-wider uppercase font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#0071e3]"></span>
+              <span>Scientific Documentation</span>
+            </div>
+            <h1 className="text-[38px] md:text-[50px] font-semibold tracking-[-0.03em] text-[#1d1d1f] leading-[1.1]">
+              Methodology &amp; Simulation Architecture
+            </h1>
+            <p className="text-[17px] text-[#86868b] leading-relaxed">
+              Technical documentation of urban canopy modeling, synthetic microclimate generation, and heat vulnerability indices for Solapur, Maharashtra.
+            </p>
+          </div>
+
+          {/* Metadata Ledger Strip */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
+            <div className="bg-white rounded-[20px] p-4 border border-black/[0.06] shadow-[0_2px_8px_rgba(0,0,0,0.03)] space-y-1">
+              <span className="text-[11px] font-medium text-[#86868b] uppercase tracking-wider block">Research Group</span>
+              <span className="text-[15px] font-semibold text-[#1d1d1f]">Team TF-141</span>
+            </div>
+            <div className="bg-white rounded-[20px] p-4 border border-black/[0.06] shadow-[0_2px_8px_rgba(0,0,0,0.03)] space-y-1">
+              <span className="text-[11px] font-medium text-[#86868b] uppercase tracking-wider block">Academic Seat</span>
+              <span className="text-[15px] font-semibold text-[#1d1d1f]">MIT Vishwaprayag Univ.</span>
+            </div>
+            <div className="bg-white rounded-[20px] p-4 border border-black/[0.06] shadow-[0_2px_8px_rgba(0,0,0,0.03)] space-y-1">
+              <span className="text-[11px] font-medium text-[#86868b] uppercase tracking-wider block">Chronological Window</span>
+              <span className="text-[15px] font-semibold text-[#0071e3]">2021 – 2025 Synthetic</span>
+            </div>
+            <div className="bg-white rounded-[20px] p-4 border border-black/[0.06] shadow-[0_2px_8px_rgba(0,0,0,0.03)] space-y-1">
+              <span className="text-[11px] font-medium text-[#86868b] uppercase tracking-wider block">Document Revision</span>
+              <span className="text-[15px] font-mono text-[#1d1d1f]">May 2024 (v2.4.1)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Content Layout */}
+      <div className="max-w-[1340px] mx-auto px-6 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           
-          {/* Left Column: Sticky Table of Contents & Quick Metrics */}
-          <aside className="lg:col-span-3 space-y-space-lg">
-            <div className="bg-surface-container-lowest rounded-xl p-space-md shadow-sm sticky top-28 space-y-space-md border border-outline-variant/30">
-              <div className="flex items-center justify-between pb-space-xs bg-surface-container-low px-space-sm py-1.5 rounded-lg">
-                <span className="font-caption-caps text-caption-caps uppercase text-on-surface tracking-wider font-semibold">
+          {/* Left Column: Sticky Index */}
+          <aside className="lg:col-span-3 space-y-6">
+            <div className="bg-white rounded-[24px] p-5 shadow-[0_2px_12px_rgba(0,0,0,0.04)] sticky top-[72px] space-y-4 border border-black/[0.06]">
+              <div className="flex items-center justify-between pb-3 border-b border-black/[0.04]">
+                <span className="text-[11px] font-semibold text-[#86868b] uppercase tracking-wider">
                   Specifications Index
                 </span>
-                <span className="font-label-code text-label-code text-outline">6 SECTIONS</span>
+                <span className="font-mono text-[10px] text-[#0071e3] bg-[#0071e3]/10 px-2 py-0.5 rounded-[980px]">6 SECTIONS</span>
               </div>
-              <nav className="flex flex-col space-y-1 font-body-sm text-body-sm text-on-surface-variant">
-                <a className="p-space-xs rounded hover:bg-surface-container hover:text-primary transition-colors flex items-center justify-between" href="#overview">
+              <nav className="flex flex-col space-y-1 text-[13px]">
+                <a className="px-3 py-2 rounded-[12px] text-[#86868b] hover:text-[#1d1d1f] hover:bg-[#f5f5f7] transition-all flex items-center justify-between" href="#overview">
                   <span>01. Project Motivation</span>
-                  <span className="font-label-code text-label-code text-outline">BSh</span>
+                  <span className="font-mono text-[11px] text-[#86868b]">BSh</span>
                 </a>
-                <a className="p-space-xs rounded hover:bg-surface-container hover:text-primary transition-colors flex items-center justify-between" href="#study-area">
+                <a className="px-3 py-2 rounded-[12px] text-[#86868b] hover:text-[#1d1d1f] hover:bg-[#f5f5f7] transition-all flex items-center justify-between" href="#study-area">
                   <span>02. Study Morphologies</span>
-                  <span className="font-label-code text-label-code text-outline">9 LCZs</span>
+                  <span className="font-mono text-[11px] text-[#86868b]">9 LCZs</span>
                 </a>
-                <a className="p-space-xs rounded hover:bg-surface-container hover:text-primary transition-colors flex items-center justify-between" href="#synthetic-engine">
+                <a className="px-3 py-2 rounded-[12px] text-[#86868b] hover:text-[#1d1d1f] hover:bg-[#f5f5f7] transition-all flex items-center justify-between" href="#synthetic-engine">
                   <span>03. WRF-Canopy Engine</span>
-                  <span className="font-label-code text-label-code text-outline">150k pts</span>
+                  <span className="font-mono text-[11px] text-[#86868b]">150k pts</span>
                 </a>
-                <a className="p-space-xs rounded hover:bg-surface-container hover:text-primary transition-colors flex items-center justify-between" href="#thermal-indices">
+                <a className="px-3 py-2 rounded-[12px] text-[#86868b] hover:text-[#1d1d1f] hover:bg-[#f5f5f7] transition-all flex items-center justify-between" href="#thermal-indices">
                   <span>04. Vulnerability Indices</span>
-                  <span className="font-label-code text-label-code text-outline">WBGT/NDVI</span>
+                  <span className="font-mono text-[11px] text-[#86868b]">WBGT</span>
                 </a>
-                <a className="p-space-xs rounded hover:bg-surface-container hover:text-primary transition-colors flex items-center justify-between" href="#architecture">
+                <a className="px-3 py-2 rounded-[12px] text-[#86868b] hover:text-[#1d1d1f] hover:bg-[#f5f5f7] transition-all flex items-center justify-between" href="#architecture">
                   <span>05. Open Tech Pipeline</span>
-                  <span className="font-label-code text-label-code text-outline">React/Geo</span>
+                  <span className="font-mono text-[11px] text-[#86868b]">Stack</span>
                 </a>
-                <a className="p-space-xs rounded hover:bg-surface-container hover:text-primary transition-colors flex items-center justify-between" href="#provenance">
+                <a className="px-3 py-2 rounded-[12px] text-[#86868b] hover:text-[#1d1d1f] hover:bg-[#f5f5f7] transition-all flex items-center justify-between" href="#provenance">
                   <span>06. Citation &amp; Authors</span>
-                  <span className="font-label-code text-label-code text-outline">BibTeX</span>
+                  <span className="font-mono text-[11px] text-[#86868b]">BibTeX</span>
                 </a>
               </nav>
 
-              {/* Compact Sensor Distribution Gauge Card */}
-              <div className="bg-surface-container rounded-lg p-space-sm space-y-space-xs">
-                <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant block font-semibold">
+              {/* Topology Micro-card */}
+              <div className="bg-[#f5f5f7] rounded-[18px] p-4 space-y-1.5 border border-black/[0.04]">
+                <span className="text-[11px] font-semibold text-[#86868b] uppercase tracking-wider block">
                   Mesh Topology
                 </span>
                 <div className="flex items-baseline justify-between">
-                  <span className="font-headline-md text-headline-md text-primary font-bold">100 Nodes</span>
-                  <span className="font-label-code text-label-code text-secondary font-medium">Δh 462m mean</span>
+                  <span className="text-[20px] font-semibold text-[#1d1d1f] tracking-tight">100 Nodes</span>
+                  <span className="font-mono text-[11px] text-[#0071e3]">Δh 462m mean</span>
                 </div>
-                <p className="font-body-sm text-body-sm text-on-surface-variant">
+                <p className="text-[12px] text-[#86868b] leading-relaxed">
                   Solapur Municipal boundary (148.4 km²) stratified via Local Climate Zones.
                 </p>
               </div>
             </div>
           </aside>
 
-          {/* Center & Right: In-depth Technical Documentation */}
-          <article className="lg:col-span-9 space-y-space-xl">
+          {/* Right Column: In-depth Technical Documentation */}
+          <article className="lg:col-span-9 space-y-12">
             
             {/* SECTION 1: Project Overview & Scientific Motivation */}
-            <section className="space-y-space-md" id="overview">
-              <div className="flex items-center gap-space-sm">
-                <span className="w-6 h-6 rounded-full bg-primary text-on-primary font-label-code text-label-code flex items-center justify-center font-bold">01</span>
-                <h2 className="font-headline-lg text-headline-lg text-primary font-semibold">Project Overview &amp; Scientific Motivation</h2>
+            <section className="space-y-4" id="overview">
+              <div className="flex items-center gap-2 text-[12px] font-semibold text-[#0071e3] uppercase tracking-wider">
+                <span>01</span>
+                <span>/</span>
+                <span>Research Scope</span>
               </div>
-              <div className="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md border border-outline-variant/30">
-                <p className="font-body-lg text-body-lg text-on-surface leading-relaxed max-w-prose">
-                  The semi-arid Deccan plateau represents one of South Asia's most climatologically vulnerable interior land expanses. Solapur, situated at <span className="font-label-code text-label-code text-primary bg-surface-container px-1 py-0.5 rounded font-semibold">17.6599° N, 75.9064° E</span>, experiences an extreme hot semi-arid climate (Köppen classification <em className="font-semibold text-primary">BSh</em>). Escalating pre-monsoon summer ambient temperatures consistently breach <span className="font-label-metric text-label-metric text-tertiary-container font-semibold">44.5°C</span> during April and May, amplified by intense solar insolation and deficient green canopy mitigation.
+              <h2 className="text-[28px] md:text-[34px] font-semibold text-[#1d1d1f] tracking-[-0.02em]">
+                Project Overview &amp; Scientific Motivation
+              </h2>
+
+              <div className="bg-white rounded-[28px] p-8 md:p-10 shadow-[0_2px_16px_rgba(0,0,0,0.04)] space-y-6 border border-black/[0.06]">
+                <p className="text-[15px] text-[#1d1d1f] leading-[1.7] max-w-[720px]">
+                  The semi-arid Deccan plateau represents one of South Asia's most climatologically vulnerable interior land expanses. Solapur, situated at <span className="font-mono text-[13px] bg-[#f5f5f7] px-2 py-0.5 rounded-[6px] font-medium text-[#1d1d1f]">17.6599° N, 75.9064° E</span>, experiences an extreme hot semi-arid climate (Köppen classification <em className="font-medium text-[#1d1d1f]">BSh</em>). Escalating pre-monsoon summer ambient temperatures consistently breach <span className="font-semibold text-[#dc2626]">44.5°C</span> during April and May, amplified by intense solar insolation and deficient green canopy mitigation.
                 </p>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-space-md pt-space-xs">
-                  <div className="bg-surface-container-low rounded-xl p-space-md space-y-space-xs">
-                    <span className="material-symbols-outlined text-tertiary-container">thermostat</span>
-                    <h3 className="font-headline-md text-headline-md text-on-surface font-semibold">Thermal Inertia Trapping</h3>
-                    <p className="font-body-sm text-body-sm text-on-surface-variant">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                  <div className="bg-[#f5f5f7] rounded-[20px] p-6 space-y-2 border border-black/[0.04]">
+                    <span className="material-symbols-outlined text-[#dc2626] text-[24px]">thermostat</span>
+                    <h3 className="text-[16px] font-semibold text-[#1d1d1f]">Thermal Inertia Trapping</h3>
+                    <p className="text-[13px] text-[#86868b] leading-relaxed">
                       High thermal mass basalt construction and asphalt fractions retain day-cycle solar energy, causing night-time cooling stalls of 4.2°C above surrounding rural peri-urban buffers.
                     </p>
                   </div>
-                  <div className="bg-surface-container-low rounded-xl p-space-md space-y-space-xs">
-                    <span className="material-symbols-outlined text-secondary">water_drop</span>
-                    <h3 className="font-headline-md text-headline-md text-on-surface font-semibold">Vapor-Pressure Deficit</h3>
-                    <p className="font-body-sm text-body-sm text-on-surface-variant">
+                  <div className="bg-[#f5f5f7] rounded-[20px] p-6 space-y-2 border border-black/[0.04]">
+                    <span className="material-symbols-outlined text-[#0071e3] text-[24px]">water_drop</span>
+                    <h3 className="text-[16px] font-semibold text-[#1d1d1f]">Vapor-Pressure Deficit</h3>
+                    <p className="text-[13px] text-[#86868b] leading-relaxed">
                       Pre-monsoon atmospheric moisture surges combine with persistent thermal plumes, driving wet-bulb temperatures into elevated human physiological stress categories.
                     </p>
                   </div>
                 </div>
 
-                {/* Visual Graphic: Climate Elevation Profile & Insolation Sparkline */}
-                <div className="bg-surface-container rounded-lg p-space-md space-y-space-xs">
+                {/* Visual Graphic: Diurnal Trend */}
+                <div className="bg-[#f5f5f7] rounded-[20px] p-6 space-y-3 border border-black/[0.04]">
                   <div className="flex items-center justify-between">
-                    <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant font-semibold">
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#86868b]">
                       Solapur Climatological Baseline • 10-Year Diurnal Trend
                     </span>
-                    <span className="font-label-code text-label-code text-primary font-semibold">BSh ZONE PROFILE</span>
+                    <span className="font-mono text-[11px] text-[#0071e3] font-medium">BSh ZONE PROFILE</span>
                   </div>
-                  <svg className="w-full h-24 text-secondary stroke-current fill-none" viewBox="0 0 760 120">
+                  <svg className="w-full h-24 text-[#0071e3] stroke-current fill-none" viewBox="0 0 760 120">
                     <path d="M0,90 Q70,75 140,82 T280,45 T420,20 T560,35 T700,75 T760,65" strokeLinecap="round" strokeWidth="2.5"></path>
-                    <path className="fill-secondary/10" d="M0,90 Q70,75 140,82 T280,45 T420,20 T560,35 T700,75 T760,65 L760,120 L0,120 Z" strokeWidth="0"></path>
-                    <circle className="fill-tertiary-container" cx="420" cy="20" r="4" strokeWidth="0"></circle>
-                    <text className="font-label-code text-label-code fill-on-surface font-semibold" fontSize="10" x="428" y="24">May Peak: 44.8°C</text>
-                    <circle className="fill-primary" cx="140" cy="82" r="3" strokeWidth="0"></circle>
-                    <text className="font-label-code text-label-code fill-on-surface-variant" fontSize="9" x="145" y="86">Jan Min: 16.2°C</text>
+                    <path className="fill-[#0071e3]/10" d="M0,90 Q70,75 140,82 T280,45 T420,20 T560,35 T700,75 T760,65 L760,120 L0,120 Z" strokeWidth="0"></path>
+                    <circle className="fill-[#dc2626]" cx="420" cy="20" r="4" strokeWidth="0"></circle>
+                    <text className="font-mono text-[10px] fill-[#1d1d1f] font-medium" x="428" y="24">May Peak: 44.8°C</text>
+                    <circle className="fill-[#0071e3]" cx="140" cy="82" r="3" strokeWidth="0"></circle>
+                    <text className="font-mono text-[9px] fill-[#86868b]" x="145" y="86">Jan Min: 16.2°C</text>
                   </svg>
-                  <div className="flex justify-between font-label-code text-label-code text-outline pt-1">
+                  <div className="flex justify-between font-mono text-[10px] text-[#86868b] pt-1">
                     <span>JAN</span><span>MAR</span><span>MAY (CRITICAL)</span><span>JUL (MONSOON)</span><span>SEP</span><span>NOV</span><span>DEC</span>
                   </div>
                 </div>
@@ -176,141 +190,145 @@ export default function Methodology() {
             </section>
 
             {/* SECTION 2: Study Area & Geographic Characterization */}
-            <section className="space-y-space-md" id="study-area">
-              <div className="flex items-center gap-space-sm">
-                <span className="w-6 h-6 rounded-full bg-primary text-on-primary font-label-code text-label-code flex items-center justify-center font-bold">02</span>
-                <h2 className="font-headline-lg text-headline-lg text-primary font-semibold">Study Area &amp; Geographic Characterization</h2>
+            <section className="space-y-4" id="study-area">
+              <div className="flex items-center gap-2 text-[12px] font-semibold text-[#0071e3] uppercase tracking-wider">
+                <span>02</span>
+                <span>/</span>
+                <span>Spatial Morphologies</span>
               </div>
-              <div className="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-lg border border-outline-variant/30">
-                <p className="font-body-md text-body-md text-on-surface leading-relaxed max-w-prose">
-                  The research framework stratifies 100 computationally modeled virtual monitoring stations across Solapur’s administrative limits. The sampling strategy aligns with Stewart &amp; Oke’s Local Climate Zone (LCZ) taxonomy across 9 distinct urban fabric morphologies:
+              <h2 className="text-[28px] md:text-[34px] font-semibold text-[#1d1d1f] tracking-[-0.02em]">
+                Study Area &amp; Geographic Characterization
+              </h2>
+
+              <div className="bg-white rounded-[28px] p-8 md:p-10 shadow-[0_2px_16px_rgba(0,0,0,0.04)] space-y-6 border border-black/[0.06]">
+                <p className="text-[15px] text-[#1d1d1f] leading-[1.7] max-w-[720px]">
+                  The research framework stratifies 100 computationally modeled virtual monitoring stations across Solapur's administrative limits. The sampling strategy aligns with Stewart &amp; Oke's Local Climate Zone (LCZ) taxonomy across 9 distinct urban fabric morphologies:
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-space-md">
-                  {/* Morph Zone 1 */}
-                  <div className="bg-surface-container-low rounded-xl p-space-md space-y-space-sm">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {/* Zone 1 */}
+                  <div className="bg-[#f5f5f7] rounded-[20px] p-5 space-y-3 border border-black/[0.04]">
                     <div className="flex items-center justify-between">
-                      <span className="px-space-xs py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-code text-label-code font-bold">
-                        LCZ 2 • Compact Midrise
+                      <span className="px-2 py-0.5 rounded-[980px] bg-[#ea580c]/10 text-[#ea580c] font-mono text-[10px] font-semibold uppercase">
+                        LCZ 2 • Midrise
                       </span>
-                      <span className="font-label-code text-label-code text-tertiary-container font-semibold">42 Nodes</span>
+                      <span className="font-mono text-[11px] text-[#ea580c] font-medium">42 Nodes</span>
                     </div>
-                    <h3 className="font-headline-md text-headline-md text-on-surface font-semibold">Core Commercial Fabric</h3>
-                    <p className="font-body-sm text-body-sm text-on-surface-variant">
+                    <h3 className="text-[15px] font-semibold text-[#1d1d1f]">Core Commercial Fabric</h3>
+                    <p className="text-[12px] text-[#86868b] leading-relaxed">
                       Bhavani Peth, Mangalwar Peth, and Guruwar Peth. Characterized by high building aspect ratios (&gt;1.5 H/W), canyon radiative trapping, zero setback curbs, and impermeable paving &gt;88%.
                     </p>
-                    <div className="pt-space-xs text-outline font-label-code text-label-code">
-                      Sky View Factor (SVF): 0.28 – 0.41
+                    <div className="pt-1 text-[#86868b] font-mono text-[11px]">
+                      Sky View Factor: 0.28 – 0.41
                     </div>
                   </div>
 
-                  {/* Morph Zone 2 */}
-                  <div className="bg-surface-container-low rounded-xl p-space-md space-y-space-sm">
+                  {/* Zone 2 */}
+                  <div className="bg-[#f5f5f7] rounded-[20px] p-5 space-y-3 border border-black/[0.04]">
                     <div className="flex items-center justify-between">
-                      <span className="px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-code text-label-code font-bold">
-                        LCZ 8 • Large Low-Rise
+                      <span className="px-2 py-0.5 rounded-[980px] bg-[#0071e3]/10 text-[#0071e3] font-mono text-[10px] font-semibold uppercase">
+                        LCZ 8 • Low-Rise
                       </span>
-                      <span className="font-label-code text-label-code text-secondary font-semibold">28 Nodes</span>
+                      <span className="font-mono text-[11px] text-[#0071e3] font-medium">28 Nodes</span>
                     </div>
-                    <h3 className="font-headline-md text-headline-md text-on-surface font-semibold">Industrial Agglomeration</h3>
-                    <p className="font-body-sm text-body-sm text-on-surface-variant">
+                    <h3 className="text-[15px] font-semibold text-[#1d1d1f]">Industrial Agglomeration</h3>
+                    <p className="text-[12px] text-[#86868b] leading-relaxed">
                       MIDC Chhatrapati Sambhaji Nagar Road and Akkalkot Road Textile Industrial Corridors. Galvanized iron roofing, vast low-albedo hardscape, and waste heat exhaust signatures.
                     </p>
-                    <div className="pt-space-xs text-outline font-label-code text-label-code">
+                    <div className="pt-1 text-[#86868b] font-mono text-[11px]">
                       Impervious Surface: 92.4% mean
                     </div>
                   </div>
 
-                  {/* Morph Zone 3 */}
-                  <div className="bg-surface-container-low rounded-xl p-space-md space-y-space-sm">
+                  {/* Zone 3 */}
+                  <div className="bg-[#f5f5f7] rounded-[20px] p-5 space-y-3 border border-black/[0.04]">
                     <div className="flex items-center justify-between">
-                      <span className="px-space-xs py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-code text-label-code font-bold">
+                      <span className="px-2 py-0.5 rounded-[980px] bg-[#059669]/10 text-[#059669] font-mono text-[10px] font-semibold uppercase">
                         LCZ 9/D • Sparsely Built
                       </span>
-                      <span className="font-label-code text-label-code text-primary font-semibold">30 Nodes</span>
+                      <span className="font-mono text-[11px] text-[#059669] font-medium">30 Nodes</span>
                     </div>
-                    <h3 className="font-headline-md text-headline-md text-on-surface font-semibold">Peri-Urban Transition</h3>
-                    <p className="font-body-sm text-body-sm text-on-surface-variant">
+                    <h3 className="text-[15px] font-semibold text-[#1d1d1f]">Peri-Urban Transition</h3>
+                    <p className="text-[12px] text-[#86868b] leading-relaxed">
                       Kegaon University Campus, Degaon, and Hipparga Lake agricultural edges. Mixed scrublands, permeable clay soils, seasonal biomass, representing rural reference boundary baselines.
                     </p>
-                    <div className="pt-space-xs text-outline font-label-code text-label-code">
+                    <div className="pt-1 text-[#86868b] font-mono text-[11px]">
                       Vegetation Cover: 34% – 61%
                     </div>
                   </div>
                 </div>
 
-                {/* Solapur Spatial Map / Morphological Visual Element */}
-                <div className="bg-surface-container rounded-xl overflow-hidden shadow-sm border border-outline-variant/30">
-                  <div className="w-full h-64 bg-surface-container-high relative flex flex-col justify-end p-space-md text-on-primary">
-                    <div className="bg-surface-container-lowest/95 backdrop-blur-sm p-space-sm rounded-lg max-w-md text-on-surface space-y-space-xs border border-outline-variant/30">
-                      <span className="font-caption-caps text-caption-caps uppercase text-secondary block font-semibold">
-                        GIS Bounding Coordinate Polygon
-                      </span>
-                      <p className="font-label-code text-label-code text-on-surface">
-                        Bounding Box: [17.6212°N, 75.8450°E] to [17.7120°N, 75.9625°E] • Elevation: 458m – 483m MSL
-                      </p>
-                    </div>
-                  </div>
+                <div className="bg-[#f5f5f7] p-4 rounded-[18px] border border-black/[0.04] text-[12px] text-[#86868b] flex items-center justify-between">
+                  <span className="font-medium text-[#1d1d1f]">Bounding Coordinate Polygon</span>
+                  <span className="font-mono">[17.6212°N, 75.8450°E] to [17.7120°N, 75.9625°E] • 458m – 483m MSL</span>
                 </div>
               </div>
             </section>
 
             {/* SECTION 3: Synthetic Data Generation & Simulation Models */}
-            <section className="space-y-space-md" id="synthetic-engine">
-              <div className="flex items-center gap-space-sm">
-                <span className="w-6 h-6 rounded-full bg-primary text-on-primary font-label-code text-label-code flex items-center justify-center font-bold">03</span>
-                <h2 className="font-headline-lg text-headline-lg text-primary font-semibold">Synthetic Data Generation &amp; Simulation Models</h2>
+            <section className="space-y-4" id="synthetic-engine">
+              <div className="flex items-center gap-2 text-[12px] font-semibold text-[#0071e3] uppercase tracking-wider">
+                <span>03</span>
+                <span>/</span>
+                <span>Simulation Engine</span>
               </div>
-              <div className="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-lg border border-outline-variant/30">
+              <h2 className="text-[28px] md:text-[34px] font-semibold text-[#1d1d1f] tracking-[-0.02em]">
+                Synthetic Data Generation &amp; Simulation Models
+              </h2>
+
+              <div className="bg-white rounded-[28px] p-8 md:p-10 shadow-[0_2px_16px_rgba(0,0,0,0.04)] space-y-6 border border-black/[0.06]">
                 
                 {/* MANDATORY SCIENTIFIC TRANSPARENCY CALLOUT */}
-                <div className="bg-surface-container-high rounded-xl p-space-md shadow-sm space-y-space-xs border-l-4 border-l-primary-container">
-                  <div className="flex items-center gap-space-sm text-primary">
+                <div className="bg-[#f5f5f7] rounded-[20px] p-6 space-y-2 border-l-4 border-l-[#0071e3]">
+                  <div className="flex items-center gap-2 text-[#0071e3]">
                     <span className="material-symbols-outlined text-[20px]">science</span>
-                    <span className="font-caption-caps text-caption-caps uppercase tracking-wider font-semibold">
+                    <span className="text-[11px] font-semibold uppercase tracking-wider">
                       Academic Simulation Notice • Epistemic Integrity
                     </span>
                   </div>
-                  <p className="font-body-md text-body-md text-on-surface leading-relaxed">
+                  <p className="text-[14px] text-[#1d1d1f] leading-relaxed">
                     All <strong>150,000 microclimate observations</strong> within the HeatShield database are computationally generated using calibrated <strong>Weather Research and Forecasting (WRF)</strong> urban canopy parameterizations paired with semi-empirical thermal inertia models. They represent synthetic computational simulations for urban planning research, comparative policy intervention simulations, and algorithmic resilience benchmarking—not real-time physical telemetry.
                   </p>
                 </div>
 
-                {/* Mathematical Formulation Module */}
-                <div className="space-y-space-sm">
-                  <span className="font-caption-caps text-caption-caps uppercase text-outline tracking-wider block font-semibold">
+                {/* Mathematical Formulations */}
+                <div className="space-y-3">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#86868b] block">
                     Mathematical Modeling Formulations
                   </span>
-                  <div className="bg-surface-container-low rounded-xl p-space-md space-y-space-md">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-xs">
+                  
+                  <div className="bg-[#f5f5f7] rounded-[20px] p-6 space-y-4 border border-black/[0.04]">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 pb-2 border-b border-black/[0.04]">
                       <div>
-                        <span className="font-headline-md text-headline-md text-primary font-semibold">Urban Heat Island (UHI) Intensity Formulation</span>
-                        <p className="font-body-sm text-body-sm text-on-surface-variant">Calculated at 15-minute discrete time-steps across all 100 spatial grid cells.</p>
+                        <span className="text-[16px] font-semibold text-[#1d1d1f]">Urban Heat Island (UHI) Intensity Formulation</span>
+                        <p className="text-[12px] text-[#86868b]">Calculated at 15-minute discrete time-steps across all 100 spatial grid cells.</p>
                       </div>
-                      <span className="font-label-code text-label-code px-space-sm py-1 rounded bg-surface-container-highest text-on-surface font-semibold">Eq. (1.4a)</span>
+                      <span className="font-mono text-[11px] px-2.5 py-1 rounded-[980px] bg-white text-[#1d1d1f] font-medium border border-black/[0.06] shadow-xs self-start md:self-auto">
+                        Eq. (1.4a)
+                      </span>
                     </div>
 
                     {/* Equation Display Box */}
-                    <div className="bg-surface-container-lowest rounded-lg p-space-md flex flex-col items-center justify-center text-center space-y-space-xs border border-outline-variant/30">
-                      <div className="font-label-metric text-[18px] text-primary font-bold tracking-wide py-2">
+                    <div className="bg-white rounded-[16px] p-6 flex flex-col items-center justify-center text-center space-y-2 border border-black/[0.04] shadow-xs">
+                      <div className="text-[20px] md:text-[22px] text-[#1d1d1f] font-semibold tracking-wide py-1 font-mono">
                         ΔT<sub>UHI</sub>(t, i) = T<sub>urban_canopy</sub>(t, i) − T<sub>rural_reference</sub>(t)
                       </div>
-                      <p className="font-body-sm text-body-sm text-on-surface-variant max-w-xl">
-                        Where <span className="font-label-code text-label-code text-on-surface">T<sub>urban_canopy</sub>(t, i)</span> represents the simulated 2m air temperature at station node <span className="font-label-code text-label-code">i</span>, parameterized by local anthropogenic heat flux (<span className="font-label-code text-label-code">Q<sub>F</sub></span>), surface albedo (α), and sky view factor (<span className="font-label-code text-label-code">ψ<sub>sky</sub></span>); and <span className="font-label-code text-label-code">T<sub>rural_reference</sub></span> denotes the baseline peri-urban ambient temperature at Kegaon station.
+                      <p className="text-[12px] text-[#86868b] max-w-xl leading-relaxed">
+                        Where <span className="font-mono text-[#1d1d1f]">T<sub>urban_canopy</sub>(t, i)</span> represents the simulated 2m air temperature at station node <span className="font-mono">i</span>; and <span className="font-mono text-[#1d1d1f]">T<sub>rural_reference</sub></span> denotes the baseline peri-urban ambient temperature at Kegaon station.
                       </p>
                     </div>
 
-                    {/* Subsidiary Equation: Energy Balance */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-space-md pt-space-xs">
-                      <div className="bg-surface-container rounded-lg p-space-sm space-y-space-xs">
-                        <span className="font-caption-caps text-caption-caps uppercase text-outline font-semibold">Surface Energy Budget</span>
-                        <div className="font-label-code text-label-code text-primary font-bold">R<sub>n</sub> + Q<sub>F</sub> = H + λE + G</div>
-                        <p className="font-body-sm text-body-sm text-on-surface-variant">Solves net radiation (<span className="font-label-code text-label-code">R<sub>n</sub></span>), sensible heat (<span className="font-label-code text-label-code">H</span>), latent heat (<span className="font-label-code text-label-code">λE</span>), and subsurface heat storage (<span className="font-label-code text-label-code">G</span>).</p>
+                    {/* Subsidiary Equations */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+                      <div className="bg-white rounded-[16px] p-4 space-y-1.5 border border-black/[0.04]">
+                        <span className="text-[10px] font-semibold text-[#86868b] uppercase tracking-wider">Surface Energy Budget</span>
+                        <div className="font-mono text-[13px] text-[#0071e3] font-semibold">R<sub>n</sub> + Q<sub>F</sub> = H + λE + G</div>
+                        <p className="text-[11px] text-[#86868b]">Net radiation (<span className="font-mono">R<sub>n</sub></span>), sensible heat (<span className="font-mono">H</span>), latent heat (<span className="font-mono">λE</span>), and subsurface storage (<span className="font-mono">G</span>).</p>
                       </div>
-                      <div className="bg-surface-container rounded-lg p-space-sm space-y-space-xs">
-                        <span className="font-caption-caps text-caption-caps uppercase text-outline font-semibold">Cooling Tree Mitigation Factor</span>
-                        <div className="font-label-code text-label-code text-secondary font-bold">ΔT<sub>canopy</sub> = −(κ × NDVI<sub>eff</sub> + β × SVF<sub>reduction</sub>)</div>
-                        <p className="font-body-sm text-body-sm text-on-surface-variant">Empirical attenuation constant calibrated to neem (Azadirachta indica) and banyan roadside canopies.</p>
+                      <div className="bg-white rounded-[16px] p-4 space-y-1.5 border border-black/[0.04]">
+                        <span className="text-[10px] font-semibold text-[#86868b] uppercase tracking-wider">Cooling Tree Mitigation</span>
+                        <div className="font-mono text-[13px] text-[#059669] font-semibold">ΔT<sub>canopy</sub> = −(κ × NDVI<sub>eff</sub> + β × SVF<sub>reduction</sub>)</div>
+                        <p className="text-[11px] text-[#86868b]">Empirical attenuation constant calibrated to neem (Azadirachta indica) and banyan canopies.</p>
                       </div>
                     </div>
                   </div>
@@ -319,235 +337,212 @@ export default function Methodology() {
             </section>
 
             {/* SECTION 4: Urban Heat Indicators & Risk Thresholds */}
-            <section className="space-y-space-md" id="thermal-indices">
-              <div className="flex items-center gap-space-sm">
-                <span className="w-6 h-6 rounded-full bg-primary text-on-primary font-label-code text-label-code flex items-center justify-center font-bold">04</span>
-                <h2 className="font-headline-lg text-headline-lg text-primary font-semibold">Urban Heat Indicators &amp; Risk Thresholds</h2>
+            <section className="space-y-4" id="thermal-indices">
+              <div className="flex items-center gap-2 text-[12px] font-semibold text-[#0071e3] uppercase tracking-wider">
+                <span>04</span>
+                <span>/</span>
+                <span>Bioclimatic Metrics</span>
               </div>
-              <div className="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md border border-outline-variant/30">
-                <p className="font-body-md text-body-md text-on-surface leading-relaxed max-w-prose">
-                  The monitoring pipeline maps thermal strain using three standardized bioclimatic and remote-sensing indices. The metrics cross-reference physiological stress markers defined by ISO 7243 and IMD heat action directives.
+              <h2 className="text-[28px] md:text-[34px] font-semibold text-[#1d1d1f] tracking-[-0.02em]">
+                Urban Heat Indicators &amp; Risk Thresholds
+              </h2>
+
+              <div className="bg-white rounded-[28px] p-8 md:p-10 shadow-[0_2px_16px_rgba(0,0,0,0.04)] space-y-6 border border-black/[0.06]">
+                <p className="text-[15px] text-[#1d1d1f] leading-[1.7] max-w-[720px]">
+                  The monitoring pipeline maps thermal strain using three standardized bioclimatic and remote-sensing indices, cross-referencing physiological stress markers defined by ISO 7243 and IMD directives.
                 </p>
 
-                {/* Scientific Ledger Table */}
-                <div className="overflow-x-auto rounded-xl bg-surface-container-low shadow-sm border border-outline-variant/30">
-                  <table className="w-full text-left font-body-sm text-body-sm">
+                {/* Ledger Table */}
+                <div className="overflow-x-auto rounded-[20px] border border-black/[0.06] shadow-xs">
+                  <table className="w-full text-left text-[13px] border-collapse min-w-[680px]">
                     <thead>
-                      <tr className="bg-surface-container text-on-surface font-caption-caps text-caption-caps uppercase">
-                        <th className="py-space-sm px-space-md font-semibold">Indicator Metric</th>
-                        <th className="py-space-sm px-space-md font-semibold">Sensor / Simulation Source</th>
-                        <th className="py-space-sm px-space-md font-semibold">Nominal Normal</th>
-                        <th className="py-space-sm px-space-md font-semibold">Moderate Risk</th>
-                        <th className="py-space-sm px-space-md font-semibold">Extreme Thermal Stress</th>
+                      <tr className="bg-[#fafafc] border-b border-black/[0.06] text-[11px] font-semibold text-[#86868b] uppercase tracking-wider">
+                        <th className="py-3 px-4">Indicator Metric</th>
+                        <th className="py-3 px-4">Sensor / Source</th>
+                        <th className="py-3 px-4">Nominal</th>
+                        <th className="py-3 px-4">Moderate Risk</th>
+                        <th className="py-3 px-4">Extreme Stress</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-surface-container">
-                      <tr className="hover:bg-surface-container/60 transition-colors">
-                        <td className="py-3 px-space-md font-medium text-on-surface">
-                          <div className="font-headline-md text-[14px] font-semibold">WBGT Index</div>
-                          <span className="font-caption-caps text-caption-caps text-outline uppercase">Wet-Bulb Globe Temp</span>
+                    <tbody className="divide-y divide-black/[0.04]">
+                      <tr className="h-[52px] hover:bg-black/[0.01] transition-colors">
+                        <td className="py-2.5 px-4 font-medium text-[#1d1d1f]">
+                          <span className="block font-semibold">WBGT Index</span>
+                          <span className="text-[11px] text-[#86868b]">Wet-Bulb Globe Temp</span>
                         </td>
-                        <td className="py-3 px-space-md font-label-code text-label-code text-on-surface-variant">
-                          Liljegren approximation algorithm
+                        <td className="py-2.5 px-4 font-mono text-[11px] text-[#86868b]">
+                          Liljegren algorithm
                         </td>
-                        <td className="py-3 px-space-md font-label-metric text-label-metric text-secondary font-bold">
+                        <td className="py-2.5 px-4 font-semibold text-[#059669] tabular-nums">
                           &lt; 28.0 °C
                         </td>
-                        <td className="py-3 px-space-md">
-                          <span className="inline-block px-space-xs py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-metric text-label-metric font-semibold">
+                        <td className="py-2.5 px-4">
+                          <span className="px-2 py-0.5 rounded-[980px] bg-[#d97706]/10 text-[#d97706] font-medium text-[11px]">
                             28.0 – 31.9 °C
                           </span>
                         </td>
-                        <td className="py-3 px-space-md">
-                          <span className="inline-block px-space-xs py-0.5 rounded bg-error-container text-on-error-container font-label-metric text-label-metric font-semibold">
+                        <td className="py-2.5 px-4">
+                          <span className="px-2 py-0.5 rounded-[980px] bg-[#dc2626]/10 text-[#dc2626] font-medium text-[11px]">
                             ≥ 32.0 °C
                           </span>
                         </td>
                       </tr>
-                      <tr className="hover:bg-surface-container/60 transition-colors">
-                        <td className="py-3 px-space-md font-medium text-on-surface">
-                          <div className="font-headline-md text-[14px] font-semibold">LST Radiance</div>
-                          <span className="font-caption-caps text-caption-caps text-outline uppercase">Land Surface Temp</span>
+                      <tr className="h-[52px] hover:bg-black/[0.01] transition-colors">
+                        <td className="py-2.5 px-4 font-medium text-[#1d1d1f]">
+                          <span className="block font-semibold">LST Radiance</span>
+                          <span className="text-[11px] text-[#86868b]">Land Surface Temp</span>
                         </td>
-                        <td className="py-3 px-space-md font-label-code text-label-code text-on-surface-variant">
-                          Landsat 8/9 TIRS (Band 10) split-window
+                        <td className="py-2.5 px-4 font-mono text-[11px] text-[#86868b]">
+                          Landsat 8/9 Band 10
                         </td>
-                        <td className="py-3 px-space-md font-label-metric text-label-metric text-secondary font-bold">
+                        <td className="py-2.5 px-4 font-semibold text-[#059669] tabular-nums">
                           &lt; 38.5 °C
                         </td>
-                        <td className="py-3 px-space-md">
-                          <span className="inline-block px-space-xs py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-metric text-label-metric font-semibold">
+                        <td className="py-2.5 px-4">
+                          <span className="px-2 py-0.5 rounded-[980px] bg-[#d97706]/10 text-[#d97706] font-medium text-[11px]">
                             38.5 – 43.0 °C
                           </span>
                         </td>
-                        <td className="py-3 px-space-md">
-                          <span className="inline-block px-space-xs py-0.5 rounded bg-error-container text-on-error-container font-label-metric text-label-metric font-semibold">
+                        <td className="py-2.5 px-4">
+                          <span className="px-2 py-0.5 rounded-[980px] bg-[#dc2626]/10 text-[#dc2626] font-medium text-[11px]">
                             &gt; 43.0 °C
                           </span>
                         </td>
                       </tr>
-                      <tr className="hover:bg-surface-container/60 transition-colors">
-                        <td className="py-3 px-space-md font-medium text-on-surface">
-                          <div className="font-headline-md text-[14px] font-semibold">NDVI Green Fraction</div>
-                          <span className="font-caption-caps text-caption-caps text-outline uppercase">Normalized Veg. Index</span>
+                      <tr className="h-[52px] hover:bg-black/[0.01] transition-colors">
+                        <td className="py-2.5 px-4 font-medium text-[#1d1d1f]">
+                          <span className="block font-semibold">NDVI Green Fraction</span>
+                          <span className="text-[11px] text-[#86868b]">Normalized Veg. Index</span>
                         </td>
-                        <td className="py-3 px-space-md font-label-code text-label-code text-on-surface-variant">
-                          Sentinel-2 MSI Red/NIR Ortho (10m)
+                        <td className="py-2.5 px-4 font-mono text-[11px] text-[#86868b]">
+                          Sentinel-2 MSI (10m)
                         </td>
-                        <td className="py-3 px-space-md font-label-metric text-label-metric text-secondary font-bold">
+                        <td className="py-2.5 px-4 font-semibold text-[#059669] tabular-nums">
                           &gt; 0.40 (High)
                         </td>
-                        <td className="py-3 px-space-md">
-                          <span className="inline-block px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-metric text-label-metric font-semibold">
+                        <td className="py-2.5 px-4">
+                          <span className="px-2 py-0.5 rounded-[980px] bg-[#0071e3]/10 text-[#0071e3] font-medium text-[11px]">
                             0.20 – 0.40
                           </span>
                         </td>
-                        <td className="py-3 px-space-md">
-                          <span className="inline-block px-space-xs py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-metric text-label-metric font-semibold">
-                            &lt; 0.20 (Critical Sparse)
-                          </span>
-                        </td>
-                      </tr>
-                      <tr className="hover:bg-surface-container/60 transition-colors">
-                        <td className="py-3 px-space-md font-medium text-on-surface">
-                          <div className="font-headline-md text-[14px] font-semibold">Diurnal Cooling Delta</div>
-                          <span className="font-caption-caps text-caption-caps text-outline uppercase">Night Decay Rate (ΔT<sub>decay</sub>)</span>
-                        </td>
-                        <td className="py-3 px-space-md font-label-code text-label-code text-on-surface-variant">
-                          Newtonian cooling relaxation fits
-                        </td>
-                        <td className="py-3 px-space-md font-label-metric text-label-metric text-secondary font-bold">
-                          &gt; 1.8 °C/hr
-                        </td>
-                        <td className="py-3 px-space-md">
-                          <span className="inline-block px-space-xs py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-metric text-label-metric font-semibold">
-                            1.0 – 1.8 °C/hr
-                          </span>
-                        </td>
-                        <td className="py-3 px-space-md">
-                          <span className="inline-block px-space-xs py-0.5 rounded bg-error-container text-on-error-container font-label-metric text-label-metric font-semibold">
-                            &lt; 1.0 °C/hr (Stagnant)
+                        <td className="py-2.5 px-4">
+                          <span className="px-2 py-0.5 rounded-[980px] bg-[#ea580c]/10 text-[#ea580c] font-medium text-[11px]">
+                            &lt; 0.20 (Sparse)
                           </span>
                         </td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-
-                <div className="flex items-start gap-space-sm text-on-surface-variant font-body-sm text-body-sm pt-space-xs">
-                  <span className="material-symbols-outlined text-[16px] text-secondary mt-0.5">info</span>
-                  <p>
-                    Extreme thermal stress represents criteria where sustained outdoor labour warrants mandatory hydration interventions and localized cool-corridor access according to the Solapur District Disaster Management Authority (DDMA) protocols.
-                  </p>
-                </div>
               </div>
             </section>
 
-            {/* SECTION 5: Technical Stack & Open Source Architecture */}
-            <section className="space-y-space-md" id="architecture">
-              <div className="flex items-center gap-space-sm">
-                <span className="w-6 h-6 rounded-full bg-primary text-on-primary font-label-code text-label-code flex items-center justify-center font-bold">05</span>
-                <h2 className="font-headline-lg text-headline-lg text-primary font-semibold">Technical Stack &amp; Open Source Architecture</h2>
+            {/* SECTION 5: Architecture */}
+            <section className="space-y-4" id="architecture">
+              <div className="flex items-center gap-2 text-[12px] font-semibold text-[#0071e3] uppercase tracking-wider">
+                <span>05</span>
+                <span>/</span>
+                <span>Software Systems</span>
               </div>
-              <div className="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-lg border border-outline-variant/30">
-                <p className="font-body-md text-body-md text-on-surface leading-relaxed max-w-prose">
-                  The system operates as a modular decoupled pipeline constructed strictly on open scientific toolchains. The repository maintains complete determinism and reproducibility for peer researchers.
+              <h2 className="text-[28px] md:text-[34px] font-semibold text-[#1d1d1f] tracking-[-0.02em]">
+                Technical Stack &amp; Open Source Architecture
+              </h2>
+
+              <div className="bg-white rounded-[28px] p-8 md:p-10 shadow-[0_2px_16px_rgba(0,0,0,0.04)] space-y-6 border border-black/[0.06]">
+                <p className="text-[15px] text-[#1d1d1f] leading-[1.7] max-w-[720px]">
+                  The system operates as a modular decoupled pipeline constructed strictly on open scientific toolchains, maintaining complete determinism and reproducibility for peer researchers.
                 </p>
 
-                {/* Technical Pipeline Architecture Flow Diagram */}
-                <div className="bg-surface-container-low rounded-xl p-space-md shadow-sm space-y-space-md">
-                  <span className="font-caption-caps text-caption-caps uppercase text-outline tracking-wider block font-semibold">
-                    End-to-End Computational Pipeline
-                  </span>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-space-sm relative">
-                    {/* Step 1 */}
-                    <div className="bg-surface-container-lowest rounded-xl p-space-md space-y-space-xs shadow-sm flex flex-col justify-between border border-outline-variant/20">
-                      <div className="space-y-space-xs">
-                        <div className="w-7 h-7 rounded bg-primary-container text-on-primary flex items-center justify-center font-label-code text-label-code font-semibold">01</div>
-                        <span className="font-caption-caps text-caption-caps uppercase text-secondary font-bold">Data Ingest &amp; Sim</span>
-                        <h4 className="font-headline-md text-[15px] text-on-surface font-semibold">WRF Simulation Core</h4>
-                        <p className="font-body-sm text-body-sm text-on-surface-variant">Calibrated diurnal boundary models, solar elevation ephemeris, albedo coefficients.</p>
-                      </div>
-                      <div className="pt-space-sm font-label-code text-label-code text-outline border-t border-outline-variant/20">
-                        Python • NumPy • Pandas
-                      </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="bg-[#f5f5f7] rounded-[20px] p-5 space-y-3 flex flex-col justify-between border border-black/[0.04]">
+                    <div className="space-y-2">
+                      <div className="w-7 h-7 rounded-[980px] bg-[#0071e3] text-white flex items-center justify-center font-mono text-[11px] font-semibold">01</div>
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[#0071e3] block">Data Ingest</span>
+                      <h4 className="text-[14px] font-semibold text-[#1d1d1f]">WRF Simulation Core</h4>
+                      <p className="text-[12px] text-[#86868b] leading-relaxed">Calibrated diurnal boundary models, solar elevation ephemeris, albedo coefficients.</p>
                     </div>
-                    {/* Step 2 */}
-                    <div className="bg-surface-container-lowest rounded-xl p-space-md space-y-space-xs shadow-sm flex flex-col justify-between border border-outline-variant/20">
-                      <div className="space-y-space-xs">
-                        <div className="w-7 h-7 rounded bg-primary-container text-on-primary flex items-center justify-center font-label-code text-label-code font-semibold">02</div>
-                        <span className="font-caption-caps text-caption-caps uppercase text-secondary font-bold">Spatial Projection</span>
-                        <h4 className="font-headline-md text-[15px] text-on-surface font-semibold">GIS Vector Aggregator</h4>
-                        <p className="font-body-sm text-body-sm text-on-surface-variant">Solapur ward topologies, administrative boundaries, and raster interpolation.</p>
-                      </div>
-                      <div className="pt-space-sm font-label-code text-label-code text-outline border-t border-outline-variant/20">
-                        Leaflet • GeoJSON • GDAL
-                      </div>
+                    <div className="pt-2 font-mono text-[10px] text-[#86868b] border-t border-black/[0.04]">
+                      Python • NumPy • Pandas
                     </div>
-                    {/* Step 3 */}
-                    <div className="bg-surface-container-lowest rounded-xl p-space-md space-y-space-xs shadow-sm flex flex-col justify-between border border-outline-variant/20">
-                      <div className="space-y-space-xs">
-                        <div className="w-7 h-7 rounded bg-primary-container text-on-primary flex items-center justify-center font-label-code text-label-code font-semibold">03</div>
-                        <span className="font-caption-caps text-caption-caps uppercase text-secondary font-bold">Analytical Client</span>
-                        <h4 className="font-headline-md text-[15px] text-on-surface font-semibold">Interactive Interface</h4>
-                        <p className="font-body-sm text-body-sm text-on-surface-variant">Sub-second parametric querying, diurnal scrubbers, and heat mitigation testbenches.</p>
-                      </div>
-                      <div className="pt-space-sm font-label-code text-label-code text-outline border-t border-outline-variant/20">
-                        React • Vite • Tailwind
-                      </div>
+                  </div>
+
+                  <div className="bg-[#f5f5f7] rounded-[20px] p-5 space-y-3 flex flex-col justify-between border border-black/[0.04]">
+                    <div className="space-y-2">
+                      <div className="w-7 h-7 rounded-[980px] bg-[#0071e3] text-white flex items-center justify-center font-mono text-[11px] font-semibold">02</div>
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[#0071e3] block">Spatial Engine</span>
+                      <h4 className="text-[14px] font-semibold text-[#1d1d1f]">GIS Vector Aggregator</h4>
+                      <p className="text-[12px] text-[#86868b] leading-relaxed">Solapur ward topologies, administrative boundaries, and raster interpolation.</p>
                     </div>
-                    {/* Step 4 */}
-                    <div className="bg-surface-container-lowest rounded-xl p-space-md space-y-space-xs shadow-sm flex flex-col justify-between border border-outline-variant/20">
-                      <div className="space-y-space-xs">
-                        <div className="w-7 h-7 rounded bg-primary-container text-on-primary flex items-center justify-center font-label-code text-label-code font-semibold">04</div>
-                        <span className="font-caption-caps text-caption-caps uppercase text-secondary font-bold">Decision Support</span>
-                        <h4 className="font-headline-md text-[15px] text-on-surface font-semibold">Cooling Engine</h4>
-                        <p className="font-body-sm text-body-sm text-on-surface-variant">Spatial prioritization, cool roof albedo optimization, and canopy expansion ROI models.</p>
-                      </div>
-                      <div className="pt-space-sm font-label-code text-label-code text-outline border-t border-outline-variant/20">
-                        TF-141 Micro-Sim Engine
-                      </div>
+                    <div className="pt-2 font-mono text-[10px] text-[#86868b] border-t border-black/[0.04]">
+                      Leaflet • GeoJSON • GDAL
+                    </div>
+                  </div>
+
+                  <div className="bg-[#f5f5f7] rounded-[20px] p-5 space-y-3 flex flex-col justify-between border border-black/[0.04]">
+                    <div className="space-y-2">
+                      <div className="w-7 h-7 rounded-[980px] bg-[#0071e3] text-white flex items-center justify-center font-mono text-[11px] font-semibold">03</div>
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[#0071e3] block">Client App</span>
+                      <h4 className="text-[14px] font-semibold text-[#1d1d1f]">Interactive Interface</h4>
+                      <p className="text-[12px] text-[#86868b] leading-relaxed">Sub-second parametric querying, diurnal scrubbers, and heat mitigation testbenches.</p>
+                    </div>
+                    <div className="pt-2 font-mono text-[10px] text-[#86868b] border-t border-black/[0.04]">
+                      React • Vite • Tailwind
+                    </div>
+                  </div>
+
+                  <div className="bg-[#f5f5f7] rounded-[20px] p-5 space-y-3 flex flex-col justify-between border border-black/[0.04]">
+                    <div className="space-y-2">
+                      <div className="w-7 h-7 rounded-[980px] bg-[#0071e3] text-white flex items-center justify-center font-mono text-[11px] font-semibold">04</div>
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[#0071e3] block">Decision Layer</span>
+                      <h4 className="text-[14px] font-semibold text-[#1d1d1f]">Cooling Engine</h4>
+                      <p className="text-[12px] text-[#86868b] leading-relaxed">Spatial prioritization, cool roof albedo optimization, and canopy expansion models.</p>
+                    </div>
+                    <div className="pt-2 font-mono text-[10px] text-[#86868b] border-t border-black/[0.04]">
+                      TF-141 Micro-Sim
                     </div>
                   </div>
                 </div>
               </div>
             </section>
 
-            {/* SECTION 6: Citation & Authors */}
-            <section className="space-y-space-md" id="provenance">
-              <div className="flex items-center gap-space-sm">
-                <span className="w-6 h-6 rounded-full bg-primary text-on-primary font-label-code text-label-code flex items-center justify-center font-bold">06</span>
-                <h2 className="font-headline-lg text-headline-lg text-primary font-semibold">Citation &amp; Academic Provenance</h2>
+            {/* SECTION 6: Citation & Provenance */}
+            <section className="space-y-4" id="provenance">
+              <div className="flex items-center gap-2 text-[12px] font-semibold text-[#0071e3] uppercase tracking-wider">
+                <span>06</span>
+                <span>/</span>
+                <span>Academic Lineage</span>
               </div>
-              <div className="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md border border-outline-variant/30">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-space-md">
-                  <div>
-                    <h3 className="font-headline-md text-headline-md text-primary font-semibold mb-1">Research Group TF-141</h3>
-                    <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              <h2 className="text-[28px] md:text-[34px] font-semibold text-[#1d1d1f] tracking-[-0.02em]">
+                Citation &amp; Academic Provenance
+              </h2>
+
+              <div className="bg-white rounded-[28px] p-8 md:p-10 shadow-[0_2px_16px_rgba(0,0,0,0.04)] space-y-6 border border-black/[0.06]">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                  <div className="space-y-3">
+                    <h3 className="text-[18px] font-semibold text-[#1d1d1f]">Research Group TF-141</h3>
+                    <p className="text-[13px] text-[#86868b] leading-relaxed">
                       Department of Computer Science &amp; Engineering<br />
                       MIT Vishwaprayag University, Solapur, Maharashtra, India
                     </p>
-                    <div className="mt-3 space-y-1 font-body-sm text-body-sm">
-                      <p><strong className="text-on-surface">Furqan Bagwan</strong> — Geospatial Modeling &amp; Architecture</p>
-                      <p><strong className="text-on-surface">Aman Shaikh</strong> — Database Systems &amp; Ingestion Engine</p>
-                      <p><strong className="text-on-surface">Bhavin Shankur</strong> — Computational UI/UX &amp; Microclimate Analytics</p>
+                    <div className="pt-2 space-y-1.5 text-[13px]">
+                      <p><strong className="text-[#1d1d1f]">Furqan Bagwan</strong> — Geospatial Modeling &amp; Architecture</p>
+                      <p><strong className="text-[#1d1d1f]">Aman Shaikh</strong> — Database Systems &amp; Ingestion Engine</p>
+                      <p><strong className="text-[#1d1d1f]">Bhavin Shankur</strong> — Computational UI/UX &amp; Microclimate Analytics</p>
                     </div>
                   </div>
 
-                  <div>
+                  <div className="space-y-2">
                     <div className="flex items-center justify-between pb-1">
-                      <span className="font-caption-caps text-caption-caps uppercase text-outline font-semibold">BibTeX Citation</span>
+                      <span className="text-[11px] font-semibold uppercase tracking-wider text-[#86868b]">BibTeX Citation</span>
                       <button 
-                        onClick={() => {
-                          navigator.clipboard.writeText(bibtex);
-                          alert('BibTeX citation copied to clipboard!');
-                        }}
-                        className="font-label-code text-[11px] text-secondary hover:underline"
+                        onClick={handleCopyBibtex}
+                        className="font-mono text-[11px] text-[#0071e3] hover:underline flex items-center gap-1 font-medium"
                       >
-                        Copy Citation
+                        <span className="material-symbols-outlined text-[14px]">{copied ? 'done' : 'content_copy'}</span>
+                        <span>{copied ? 'Copied to Clipboard' : 'Copy Citation'}</span>
                       </button>
                     </div>
-                    <pre className="bg-surface-container-low p-space-sm rounded-lg font-label-code text-[11px] text-on-surface overflow-x-auto leading-relaxed border border-outline-variant/20">
+                    <pre className="bg-[#1d1d1f] text-[#f5f5f7] p-4 rounded-[18px] font-mono text-[11px] overflow-x-auto leading-relaxed shadow-inner">
                       {bibtex}
                     </pre>
                   </div>

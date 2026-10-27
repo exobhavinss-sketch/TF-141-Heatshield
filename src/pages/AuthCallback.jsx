@@ -6,9 +6,9 @@ import { mapAuthError } from '../utils/authErrors';
 
 export default function AuthCallback() {
   const navigate = useNavigate();
-  const { user, refreshUserData } = useAuth();
+  const { refreshUserData } = useAuth();
   
-  const [status, setStatus] = useState('processing'); // 'processing' | 'success' | 'error'
+  const [status, setStatus] = useState('processing');
   const [errorMessage, setErrorMessage] = useState('');
   const [redirectCountdown, setRedirectCountdown] = useState(3);
 
@@ -33,12 +33,11 @@ export default function AuthCallback() {
         const error = params.get('error');
         const errorDescription = params.get('error_description');
 
-        // Check for error parameters returned from Supabase
         if (error) {
           throw new Error(errorDescription || error);
         }
 
-        // 1. Token Hash Verification (OTP verification link)
+        // 1. Token Hash Verification
         if (tokenHash) {
           const { data, error: verifyError } = await supabase.auth.verifyOtp({
             token_hash: tokenHash,
@@ -76,7 +75,7 @@ export default function AuthCallback() {
           }
         }
 
-        // 3. Hash Fragment Token (Implicit Grant flow)
+        // 3. Hash Fragment Token
         const hash = window.location.hash;
         if (hash && (hash.includes('access_token') || hash.includes('type='))) {
           const hashParams = new URLSearchParams(hash.replace(/^#/, ''));
@@ -102,7 +101,7 @@ export default function AuthCallback() {
           }
         }
 
-        // 4. Fallback: check if session already established
+        // 4. Fallback check
         const { data: { session } } = await supabase.auth.getSession();
         if (session) {
           await refreshUserData();
@@ -127,7 +126,6 @@ export default function AuthCallback() {
     };
   }, [refreshUserData, navigate]);
 
-  // Automated redirect countdown upon successful verification
   useEffect(() => {
     if (status !== 'success') return;
 
@@ -146,45 +144,49 @@ export default function AuthCallback() {
   }, [status, navigate]);
 
   return (
-    <div className="w-full flex-1 flex items-center justify-center py-space-xl px-margin">
-      <div className="w-full max-w-[480px] bg-surface-container-lowest rounded-xl p-space-lg md:p-space-xl shadow-md border border-outline-variant/30 text-center space-y-space-md">
+    <div className="w-full flex-1 flex items-center justify-center py-16 px-6 bg-[#fafafc]">
+      <div className="w-full max-w-[460px] bg-white rounded-[28px] p-8 md:p-10 shadow-[0_2px_16px_rgba(0,0,0,0.04)] border border-black/[0.06] text-center space-y-6">
         
         {status === 'processing' && (
-          <div className="space-y-space-md py-space-md">
-            <div className="w-12 h-12 border-3 border-primary border-t-secondary rounded-full animate-spin mx-auto"></div>
-            <h2 className="font-headline-md text-headline-md font-semibold text-primary">
-              Verifying Institutional Credentials
-            </h2>
-            <p className="font-body-sm text-body-sm text-on-surface-variant">
-              Confirming your security token with the HeatShield authentication service...
-            </p>
+          <div className="space-y-4 py-6">
+            <div className="w-10 h-10 border-2 border-black/10 border-t-[#0071e3] rounded-full animate-spin mx-auto"></div>
+            <div className="space-y-1">
+              <h2 className="text-[20px] font-semibold text-[#1d1d1f]">
+                Verifying Credentials
+              </h2>
+              <p className="text-[13px] text-[#86868b]">
+                Confirming your security token with the HeatShield authentication service...
+              </p>
+            </div>
           </div>
         )}
 
         {status === 'success' && (
-          <div className="space-y-space-md py-space-sm">
-            <div className="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center mx-auto">
-              <span className="material-symbols-outlined text-[28px]">check_circle</span>
+          <div className="space-y-4 py-4">
+            <div className="w-12 h-12 rounded-[980px] bg-[#059669]/10 text-[#059669] flex items-center justify-center mx-auto">
+              <span className="material-symbols-outlined text-[24px]">check_circle</span>
             </div>
-            <h2 className="font-headline-md text-headline-md font-semibold text-primary">
-              Email Verified Successfully
-            </h2>
-            <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
-              Your HeatShield research account is now active and verified. You may proceed to in-situ telemetry reporting or analytical modeling.
+            <div className="space-y-1">
+              <h2 className="text-[22px] font-semibold text-[#1d1d1f]">
+                Email Verified Successfully
+              </h2>
+              <p className="text-[13px] text-[#86868b] leading-relaxed">
+                Your HeatShield research account is now active and verified.
+              </p>
+            </div>
+            <p className="text-[12px] text-[#86868b]">
+              Redirecting to your research profile in <span className="font-semibold text-[#1d1d1f] tabular-nums">{redirectCountdown}s</span>...
             </p>
-            <p className="font-caption-caps text-caption-caps text-on-surface-variant">
-              Redirecting to your research profile in <span className="font-semibold text-primary">{redirectCountdown}s</span>...
-            </p>
-            <div className="pt-space-xs flex justify-center gap-space-sm">
+            <div className="pt-2 flex justify-center gap-2">
               <Link
                 to="/profile"
-                className="px-space-md py-2.5 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md hover:bg-primary transition-colors font-semibold shadow-sm"
+                className="px-5 py-2.5 rounded-[980px] bg-[#0071e3] text-white text-[13px] font-medium shadow-[0_2px_8px_rgba(0,113,227,0.25)] hover:bg-[#0077ed] transition-colors"
               >
-                Go to Profile Now
+                Go to Profile
               </Link>
               <Link
                 to="/submit-reading"
-                className="px-space-md py-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-md text-body-md transition-colors"
+                className="px-5 py-2.5 rounded-[980px] bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#1d1d1f] text-[13px] font-medium transition-colors"
               >
                 Submit Reading
               </Link>
@@ -193,26 +195,28 @@ export default function AuthCallback() {
         )}
 
         {status === 'error' && (
-          <div className="space-y-space-md py-space-sm">
-            <div className="w-12 h-12 rounded-full bg-error-container text-on-error-container flex items-center justify-center mx-auto">
-              <span className="material-symbols-outlined text-[28px]">error</span>
+          <div className="space-y-4 py-4">
+            <div className="w-12 h-12 rounded-[980px] bg-[#dc2626]/10 text-[#dc2626] flex items-center justify-center mx-auto">
+              <span className="material-symbols-outlined text-[24px]">error</span>
             </div>
-            <h2 className="font-headline-md text-headline-md font-semibold text-primary">
-              Verification Problem
-            </h2>
-            <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
-              {errorMessage || 'The verification link may have expired or is malformed.'}
-            </p>
-            <div className="pt-space-xs flex justify-center gap-space-sm">
+            <div className="space-y-1">
+              <h2 className="text-[22px] font-semibold text-[#1d1d1f]">
+                Verification Problem
+              </h2>
+              <p className="text-[13px] text-[#86868b] leading-relaxed">
+                {errorMessage || 'The verification link may have expired or is malformed.'}
+              </p>
+            </div>
+            <div className="pt-2 flex justify-center gap-2">
               <Link
                 to="/login"
-                className="px-space-md py-2.5 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md hover:bg-primary transition-colors font-semibold shadow-sm"
+                className="px-5 py-2.5 rounded-[980px] bg-[#0071e3] text-white text-[13px] font-medium shadow-[0_2px_8px_rgba(0,113,227,0.25)] hover:bg-[#0077ed] transition-colors"
               >
                 Return to Sign In
               </Link>
               <Link
                 to="/register"
-                className="px-space-md py-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-md text-body-md transition-colors"
+                className="px-5 py-2.5 rounded-[980px] bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#1d1d1f] text-[13px] font-medium transition-colors"
               >
                 Create Account
               </Link>

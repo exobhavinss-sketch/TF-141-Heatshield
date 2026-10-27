@@ -8,45 +8,45 @@ export default function StatCard({
   icon: Icon,
   trend,
   badgeText,
-  badgeColor = 'text-primary bg-primary/10 border-primary/20',
-  accentColor = 'text-primary'
+  badgeColor = 'text-[#059669] bg-[#059669]/10 border-[#059669]/20',
+  accentColor = 'text-[#0071e3]'
 }) {
   return (
-    <div className="bg-surface-container rounded-xl p-space-md border border-outline-variant/30 flex flex-col justify-between gap-space-sm shadow-sm hover:border-outline-variant/60 transition-colors">
+    <div className="bg-white rounded-[28px] p-6 border border-black/[0.06] shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.07)] hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between gap-3 group">
       {/* Top Header */}
       <div className="flex items-center justify-between gap-2">
-        <span className="font-body text-xs font-semibold uppercase tracking-wider text-outline truncate">
+        <span className="text-[11px] sm:text-[12px] font-semibold uppercase tracking-wider text-[#86868b] truncate">
           {title}
         </span>
         {Icon && (
-          <div className="p-2 rounded-lg bg-surface-container-high border border-outline-variant/30 text-on-surface-variant shrink-0">
+          <div className="w-8 h-8 rounded-full bg-[#f5f5f7] flex items-center justify-center text-[#1d1d1f] border border-black/[0.04] shrink-0 group-hover:scale-105 transition-transform">
             <Icon size={16} className={accentColor} />
           </div>
         )}
       </div>
 
       {/* Main Metric Value */}
-      <div className="flex items-baseline gap-1 mt-1">
-        <span className="font-headline font-bold text-2xl lg:text-3xl text-on-surface tracking-tight">
+      <div className="flex items-baseline gap-1.5 my-1">
+        <span className="font-semibold text-3xl lg:text-4xl text-[#1d1d1f] tracking-tight tabular-nums">
           {value !== undefined && value !== null ? value : '—'}
         </span>
         {unit && (
-          <span className="font-body text-sm font-medium text-on-surface-variant">
+          <span className="text-[14px] sm:text-[15px] font-normal text-[#6e6e73]">
             {unit}
           </span>
         )}
       </div>
 
-      {/* Footer / Description / Trend */}
-      <div className="flex items-center justify-between gap-2 pt-1 border-t border-outline-variant/20 mt-1">
+      {/* Footer / Description / Trend Badge */}
+      <div className="flex items-center justify-between gap-2 pt-3 border-t border-black/[0.04] mt-auto">
         {description && (
-          <span className="font-body text-xs text-on-surface-variant truncate">
+          <span className="text-[12px] sm:text-[13px] text-[#6e6e73] truncate font-normal">
             {description}
           </span>
         )}
 
         {badgeText && (
-          <span className={`inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium border ${badgeColor} shrink-0`}>
+          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium border ${badgeColor} shrink-0`}>
             {badgeText}
           </span>
         )}

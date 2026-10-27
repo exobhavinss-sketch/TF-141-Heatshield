@@ -19,9 +19,8 @@ export default function Register() {
   const [resendLoading, setResendLoading] = useState(false);
   const [resendCooldown, setResendCooldown] = useState(0);
   const [resendStatusMsg, setResendStatusMsg] = useState('');
-  const [resendStatusType, setResendStatusType] = useState('info'); // 'info' | 'error' | 'success'
+  const [resendStatusType, setResendStatusType] = useState('info');
 
-  // Manage resend cooldown timer
   useEffect(() => {
     if (resendCooldown <= 0) return;
 
@@ -45,11 +44,10 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (loading) return; // Strict guard against duplicate rapid submissions
+    if (loading) return;
 
     setErrorMsg('');
 
-    // Validations
     if (!fullName.trim()) {
       setErrorMsg('Please enter your full name for your academic profile.');
       return;
@@ -75,19 +73,16 @@ export default function Register() {
         fullName: fullName.trim(),
       });
 
-      // Supabase user enumeration protection: if user already registered, identities array is empty
       if (data?.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) {
         setErrorMsg('An account with this email address already exists. Please sign in instead, or request a password reset if you forgot your credentials.');
         return;
       }
 
-      // Check whether user requires confirmation
       const requiresConfirmation = !data?.session;
       setSuccessInfo({
         email: email.trim(),
         requiresConfirmation,
       });
-      // Start initial 60s cooldown for resend
       setResendCooldown(60);
     } catch (err) {
       console.error('[HeatShield Registration] Error:', err);
@@ -118,60 +113,62 @@ export default function Register() {
   };
 
   return (
-    <div className="w-full flex-1 flex items-center justify-center py-space-xl px-margin">
-      <div className="w-full max-w-[480px] bg-surface-container-lowest rounded-xl p-space-lg md:p-space-xl shadow-md border border-outline-variant/30 space-y-space-md">
+    <div className="w-full flex-1 flex items-center justify-center py-16 px-6 bg-[#fafafc]">
+      <div className="w-full max-w-[460px] bg-white rounded-[28px] p-8 md:p-10 shadow-[0_2px_16px_rgba(0,0,0,0.04)] border border-black/[0.06] space-y-6">
         
-        {/* Academic Header */}
-        <div className="space-y-space-xs text-center border-b border-outline-variant/20 pb-space-sm">
-          <div className="inline-flex items-center gap-space-xs px-2.5 py-1 rounded-DEFAULT bg-surface-container text-on-surface text-label-code font-label-code">
-            <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+        {/* Header */}
+        <div className="space-y-2 text-center pb-2">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[980px] bg-black/[0.04] text-[#1d1d1f] text-[11px] font-mono tracking-wider uppercase font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0071e3]"></span>
             <span>RESEARCHER REGISTRATION · TF-141</span>
           </div>
-          <h1 className="font-headline-lg text-headline-lg text-primary font-semibold tracking-tight">
+          <h1 className="text-[28px] font-semibold tracking-[-0.02em] text-[#1d1d1f]">
             Create Research Account
           </h1>
-          <p className="font-body-sm text-body-sm text-on-surface-variant">
-            Join the HeatShield microclimate telemetry and urban analysis network
+          <p className="text-[13px] text-[#86868b]">
+            Join the HeatShield microclimate telemetry network
           </p>
         </div>
 
-        {/* Connection Status: Confirmed Live Badge vs Pending Guidance */}
+        {/* Connection Status */}
         {!isConfigured ? (
-          <div className="rounded-lg bg-surface-container p-space-sm border border-outline-variant/40 text-xs font-body-sm text-on-surface-variant">
-            <div className="flex items-center gap-1.5 text-secondary font-semibold mb-1">
+          <div className="rounded-[16px] bg-[#f5f5f7] p-3.5 border border-black/[0.04] text-[12px] text-[#86868b] leading-relaxed">
+            <div className="flex items-center gap-1.5 text-[#ea580c] font-medium mb-1">
               <span className="material-symbols-outlined text-[16px]">info</span>
               <span>Backend Connection Pending</span>
             </div>
-            Configure <code className="text-primary font-mono font-semibold">VITE_SUPABASE_URL</code> and <code className="text-primary font-mono font-semibold">VITE_SUPABASE_PUBLISHABLE_KEY</code> in your <code className="font-mono">.env</code> to connect live authentication. If you just added or updated <code className="font-mono">.env</code>, restart the Vite dev server (<code className="font-mono">npm run dev</code>) so Vite can reload the environment variables.
+            Configure Supabase in <code className="font-mono text-[#1d1d1f]">.env</code> to connect live authentication.
           </div>
         ) : (
-          <div className="rounded-lg bg-surface-container-low p-2.5 border border-secondary/30 text-xs font-body-sm text-on-surface-variant flex items-center justify-between">
-            <div className="flex items-center gap-1.5 text-secondary font-medium">
-              <span className="w-2 h-2 rounded-full bg-secondary"></span>
-              <span>Supabase Live Authentication Ready</span>
+          <div className="rounded-[16px] bg-[#059669]/10 p-3 text-[12px] text-[#059669] flex items-center justify-between">
+            <div className="flex items-center gap-1.5 font-medium">
+              <span className="w-2 h-2 rounded-full bg-[#059669]"></span>
+              <span>Supabase Live Ready</span>
             </div>
-            <span className="font-label-code text-[10px] text-outline uppercase tracking-wider">Connected</span>
+            <span className="font-mono text-[10px] uppercase tracking-wider">Connected</span>
           </div>
         )}
 
-        {/* Success Message / Email Confirmation Instructions */}
+        {/* Success Message / Instructions */}
         {successInfo ? (
-          <div className="rounded-xl bg-surface-container p-space-md border border-secondary/30 space-y-space-md">
-            <div className="flex items-start gap-space-sm text-secondary">
-              <span className="material-symbols-outlined text-[28px] text-secondary">mark_email_read</span>
-              <div>
-                <h3 className="font-headline-md text-headline-md font-semibold text-primary">
+          <div className="rounded-[20px] bg-[#f5f5f7] p-6 space-y-4 border border-black/[0.04]">
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 rounded-[980px] bg-[#059669]/10 text-[#059669] flex items-center justify-center shrink-0">
+                <span className="material-symbols-outlined text-[20px]">mark_email_read</span>
+              </div>
+              <div className="space-y-1">
+                <h3 className="text-[16px] font-semibold text-[#1d1d1f]">
                   {successInfo.requiresConfirmation ? 'Verify Your Email Address' : 'Account Ready'}
                 </h3>
-                <p className="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+                <p className="text-[13px] text-[#86868b] leading-relaxed">
                   {successInfo.requiresConfirmation ? (
                     <>
-                      We have dispatched a verification link to <strong className="text-on-surface">{successInfo.email}</strong>. 
-                      Please check your inbox (and spam folder) and click the link to verify your research credentials before signing in.
+                      We have dispatched a verification link to <strong className="text-[#1d1d1f]">{successInfo.email}</strong>. 
+                      Please check your inbox and click the link to verify your research credentials before signing in.
                     </>
                   ) : (
                     <>
-                      Your account for <strong className="text-on-surface">{successInfo.email}</strong> has been initialized successfully. You may proceed to sign in.
+                      Your account for <strong className="text-[#1d1d1f]">{successInfo.email}</strong> has been initialized successfully.
                     </>
                   )}
                 </p>
@@ -179,58 +176,44 @@ export default function Register() {
             </div>
 
             {successInfo.requiresConfirmation && (
-              <>
-                <div className="p-space-sm bg-surface-container-lowest rounded-lg border border-outline-variant/30 text-xs font-body-sm text-on-surface-variant space-y-1">
-                  <div className="flex items-center gap-1 font-semibold text-primary">
-                    <span className="material-symbols-outlined text-[15px]">security</span>
-                    <span>Verification &amp; Security Note</span>
-                  </div>
-                  <p>Unverified accounts remain pending and cannot submit in-situ telemetry readings until confirmed.</p>
+              <div className="pt-2 border-t border-black/[0.04] space-y-2">
+                <div className="flex items-center justify-between text-[12px] text-[#86868b]">
+                  <span>Didn't receive the email?</span>
+                  <button
+                    type="button"
+                    onClick={handleResend}
+                    disabled={resendCooldown > 0 || resendLoading}
+                    className="font-medium text-[#0071e3] hover:underline disabled:opacity-50 disabled:no-underline inline-flex items-center gap-1"
+                  >
+                    {resendLoading ? (
+                      <>
+                        <div className="w-3 h-3 border-2 border-[#0071e3]/20 border-t-[#0071e3] rounded-full animate-spin"></div>
+                        <span>Dispatching...</span>
+                      </>
+                    ) : resendCooldown > 0 ? (
+                      <span>Resend in {resendCooldown}s</span>
+                    ) : (
+                      <span>Resend Email</span>
+                    )}
+                  </button>
                 </div>
 
-                {/* Resend Verification Section with Cooldown */}
-                <div className="pt-space-xs border-t border-outline-variant/20 space-y-space-xs">
-                  <div className="flex items-center justify-between text-xs font-body-sm text-on-surface-variant">
-                    <span>Did not receive the verification email?</span>
-                    <button
-                      type="button"
-                      onClick={handleResend}
-                      disabled={resendCooldown > 0 || resendLoading}
-                      className="font-semibold text-secondary hover:text-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center gap-1"
-                    >
-                      {resendLoading ? (
-                        <>
-                          <span className="w-3 h-3 border-2 border-secondary border-t-transparent rounded-full animate-spin"></span>
-                          <span>Dispatching...</span>
-                        </>
-                      ) : resendCooldown > 0 ? (
-                        <span>Resend in {resendCooldown}s</span>
-                      ) : (
-                        <>
-                          <span className="material-symbols-outlined text-[14px]">send</span>
-                          <span>Resend Email</span>
-                        </>
-                      )}
-                    </button>
+                {resendStatusMsg && (
+                  <div className={`p-2.5 rounded-[10px] text-[12px] ${
+                    resendStatusType === 'success' 
+                      ? 'bg-[#059669]/10 text-[#059669]' 
+                      : 'bg-[#dc2626]/10 text-[#dc2626]'
+                  }`}>
+                    {resendStatusMsg}
                   </div>
-
-                  {resendStatusMsg && (
-                    <div className={`p-2 rounded text-xs ${
-                      resendStatusType === 'success' 
-                        ? 'bg-secondary-container text-on-secondary-container border border-secondary/30' 
-                        : 'bg-error-container text-on-error-container border border-error/30'
-                    }`}>
-                      {resendStatusMsg}
-                    </div>
-                  )}
-                </div>
-              </>
+                )}
+              </div>
             )}
 
-            <div className="pt-space-xs flex justify-end gap-space-sm">
+            <div className="pt-2 flex justify-end">
               <Link
                 to="/login"
-                className="px-space-md py-2.5 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md hover:bg-primary transition-colors font-medium shadow-sm inline-block"
+                className="px-5 py-2.5 rounded-[980px] bg-[#0071e3] text-white text-[13px] font-medium shadow-[0_2px_8px_rgba(0,113,227,0.25)] hover:bg-[#0077ed] transition-colors"
               >
                 Proceed to Sign In
               </Link>
@@ -240,17 +223,17 @@ export default function Register() {
           <>
             {/* Error Alert Box */}
             {errorMsg && (
-              <div className="rounded-lg bg-error-container text-on-error-container p-space-sm border border-error/30 text-body-sm flex items-start gap-2">
-                <span className="material-symbols-outlined text-[18px] text-error flex-shrink-0 mt-0.5">error</span>
-                <div className="flex-1 text-xs leading-relaxed">{errorMsg}</div>
+              <div className="rounded-[16px] bg-[#dc2626]/10 text-[#dc2626] p-3.5 text-[12px] flex items-start gap-2">
+                <span className="material-symbols-outlined text-[16px] flex-shrink-0 mt-0.5">error</span>
+                <div className="flex-1 leading-relaxed font-medium">{errorMsg}</div>
               </div>
             )}
 
             {/* Registration Form */}
-            <form onSubmit={handleSubmit} className="space-y-space-sm">
-              <div className="space-y-space-xs">
-                <label className="font-body-sm text-body-sm font-semibold text-on-surface block" htmlFor="regFullName">
-                  Full Name &amp; Academic Title
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-1.5">
+                <label className="text-[12px] font-medium text-[#86868b] uppercase tracking-wider block" htmlFor="regFullName">
+                  Full Name &amp; Title
                 </label>
                 <input
                   id="regFullName"
@@ -261,13 +244,13 @@ export default function Register() {
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="e.g. Prof. / Dr. / Researcher Name"
-                  className="w-full bg-surface-container-low px-space-md py-2 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/30 disabled:opacity-60"
+                  className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all placeholder:text-[#86868b] disabled:opacity-60"
                 />
               </div>
 
-              <div className="space-y-space-xs">
-                <label className="font-body-sm text-body-sm font-semibold text-on-surface block" htmlFor="regEmail">
-                  Institutional / Research Email
+              <div className="space-y-1.5">
+                <label className="text-[12px] font-medium text-[#86868b] uppercase tracking-wider block" htmlFor="regEmail">
+                  Institutional Email
                 </label>
                 <input
                   id="regEmail"
@@ -278,13 +261,13 @@ export default function Register() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="researcher@mitvpu.ac.in"
-                  className="w-full bg-surface-container-low px-space-md py-2 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/30 disabled:opacity-60"
+                  className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all placeholder:text-[#86868b] disabled:opacity-60"
                 />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
-                <div className="space-y-space-xs">
-                  <label className="font-body-sm text-body-sm font-semibold text-on-surface block" htmlFor="regPassword">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="space-y-1.5">
+                  <label className="text-[12px] font-medium text-[#86868b] uppercase tracking-wider block" htmlFor="regPassword">
                     Password
                   </label>
                   <input
@@ -295,13 +278,13 @@ export default function Register() {
                     disabled={loading}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Min 8 characters"
-                    className="w-full bg-surface-container-low px-space-md py-2 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/30 disabled:opacity-60"
+                    placeholder="Min 8 chars"
+                    className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all placeholder:text-[#86868b] disabled:opacity-60"
                   />
                 </div>
 
-                <div className="space-y-space-xs">
-                  <label className="font-body-sm text-body-sm font-semibold text-on-surface block" htmlFor="regConfirmPassword">
+                <div className="space-y-1.5">
+                  <label className="text-[12px] font-medium text-[#86868b] uppercase tracking-wider block" htmlFor="regConfirmPassword">
                     Confirm Password
                   </label>
                   <input
@@ -313,24 +296,23 @@ export default function Register() {
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="Repeat password"
-                    className="w-full bg-surface-container-low px-space-md py-2 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/30 disabled:opacity-60"
+                    className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all placeholder:text-[#86868b] disabled:opacity-60"
                   />
                 </div>
               </div>
 
-              <p className="font-caption-caps text-caption-caps text-outline pt-1">
+              <p className="text-[11px] text-[#86868b] pt-1">
                 By registering, you acknowledge that in-situ field telemetry will be subject to peer-review validation.
               </p>
 
               <button
                 type="submit"
                 disabled={loading || !isConfigured}
-                aria-disabled={loading || !isConfigured}
-                className="w-full h-11 rounded-lg bg-primary-container text-on-primary font-headline-md text-body-md font-semibold hover:bg-primary transition-colors shadow-sm disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-space-sm"
+                className="w-full h-11 rounded-[980px] bg-[#0071e3] hover:bg-[#0077ed] text-white text-[14px] font-medium transition-all shadow-[0_2px_8px_rgba(0,113,227,0.25)] disabled:opacity-60 flex items-center justify-center gap-2 mt-2"
               >
                 {loading ? (
                   <>
-                    <span className="w-4 h-4 border-2 border-on-primary border-t-transparent rounded-full animate-spin"></span>
+                    <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
                     <span>Creating Profile...</span>
                   </>
                 ) : (
@@ -343,9 +325,9 @@ export default function Register() {
             </form>
 
             {/* Footer / Links */}
-            <div className="pt-space-xs border-t border-outline-variant/20 text-center font-body-sm text-xs text-on-surface-variant">
+            <div className="pt-3 border-t border-black/[0.04] text-center text-[13px] text-[#86868b]">
               <span>Already registered with HeatShield? </span>
-              <Link to="/login" className="text-secondary font-semibold hover:text-primary transition-colors underline">
+              <Link to="/login" className="text-[#0071e3] font-medium hover:underline">
                 Sign in here
               </Link>
             </div>

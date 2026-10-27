@@ -119,11 +119,6 @@ const STATIONS = {
   }
 };
 
-/**
- * Resolves full telemetry card data for any station id dynamically.
- * Preserves curated stations #014, #028, #073, #089, #052 while extending
- * to support all 100 Solapur stations and live Supabase in-situ records.
- */
 function getStationTelemetry(selectedId, features) {
   if (STATIONS[selectedId]) return STATIONS[selectedId];
 
@@ -175,16 +170,15 @@ function getStationTelemetry(selectedId, features) {
 }
 
 export default function IndiaHeatMap() {
-  const [domain, setDomain] = useState('solapur'); // 'solapur' | 'india'
-  const [activeLayer, setActiveLayer] = useState('lst'); // 'lst' | 'air' | 'ndvi' | 'hvi'
-  const [viewMode, setViewMode] = useState('map'); // 'map' (Leaflet GIS) | 'schematic' (SVG)
+  const [domain, setDomain] = useState('solapur');
+  const [activeLayer, setActiveLayer] = useState('lst');
+  const [viewMode, setViewMode] = useState('map');
   const [timeStep, setTimeStep] = useState(14);
   const [selectedStationId, setSelectedStationId] = useState(14);
   const [panelOpen, setPanelOpen] = useState(true);
   const [zoomLevel, setZoomLevel] = useState(1);
   const [cursorCoords, setCursorCoords] = useState("17.6715° N, 75.9104° E");
   
-  // Real data state
   const [geoData, setGeoData] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -209,8 +203,6 @@ export default function IndiaHeatMap() {
     const rect = e.currentTarget.getBoundingClientRect();
     const xPct = ((e.clientX - rect.left) / rect.width);
     const yPct = ((e.clientY - rect.top) / rect.height);
-    
-    // Convert to Solapur coordinate bounding box
     const lat = (17.7200 - yPct * 0.1100).toFixed(4);
     const lon = (75.8400 + xPct * 0.1400).toFixed(4);
     setCursorCoords(`${lat}° N, ${lon}° E`);
@@ -226,52 +218,52 @@ export default function IndiaHeatMap() {
   };
 
   return (
-    <div className="flex flex-col w-full relative">
+    <div className="flex flex-col w-full relative bg-white">
       {/* Interactive GIS Control Deck & Map Canvas Container */}
-      <div className="relative w-full h-[calc(100vh-76px)] min-h-[640px] overflow-hidden flex flex-col bg-surface-container-low select-none">
+      <div className="relative w-full h-[calc(100vh-52px)] min-h-[640px] overflow-hidden flex flex-col bg-[#f5f5f7] select-none">
         
-        {/* Top Floating GIS HUD Bar */}
-        <div className="absolute top-space-md left-space-md right-space-md z-30 pointer-events-none flex flex-col gap-space-xs">
-          <div className="flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-lowest/95 backdrop-blur-md p-space-sm rounded-xl shadow-md pointer-events-auto border border-outline-variant/30">
+        {/* Top Floating Apple Glass HUD Bar */}
+        <div className="absolute top-4 left-4 right-4 z-30 pointer-events-none flex flex-col gap-2">
+          <div className="flex flex-wrap items-center justify-between gap-3 bg-white/90 backdrop-blur-xl p-2.5 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] pointer-events-auto border border-black/[0.08]">
             
-            {/* Left: Territory Switcher */}
-            <div className="flex items-center gap-space-xs bg-surface-container-low p-1 rounded-lg">
+            {/* Territory Switcher (Pill Style) */}
+            <div className="flex items-center gap-1 bg-[#f5f5f7] p-1 rounded-full border border-black/[0.04]">
               <button 
                 onClick={() => setDomain('solapur')}
-                className={`px-space-sm py-1.5 rounded-DEFAULT font-label-code text-label-code transition-all shadow-sm flex items-center gap-1.5 ${
+                className={`px-3.5 py-1.5 rounded-full text-[12px] font-semibold transition-all flex items-center gap-1.5 ${
                   domain === 'solapur' 
-                    ? 'text-on-primary bg-primary-container font-semibold' 
-                    : 'text-on-surface-variant hover:text-on-surface'
+                    ? 'text-[#1d1d1f] bg-white shadow-sm' 
+                    : 'text-[#6e6e73] hover:text-[#1d1d1f]'
                 }`}
                 id="viewSolapurBtn"
               >
-                <span className={`w-2 h-2 rounded-full ${domain === 'solapur' ? 'bg-secondary-fixed' : 'bg-outline-variant'}`}></span>
+                <span className={`w-2 h-2 rounded-full ${domain === 'solapur' ? 'bg-[#0071e3]' : 'bg-[#86868b]'}`}></span>
                 <span>Solapur High-Res (100 Nodes)</span>
               </button>
               
               <button 
                 onClick={() => setDomain('india')}
-                className={`px-space-sm py-1.5 rounded-DEFAULT font-label-code text-label-code transition-all flex items-center gap-1.5 ${
+                className={`px-3.5 py-1.5 rounded-full text-[12px] font-semibold transition-all flex items-center gap-1.5 ${
                   domain === 'india' 
-                    ? 'text-on-primary bg-primary-container font-semibold' 
-                    : 'text-on-surface-variant hover:text-on-surface'
+                    ? 'text-[#1d1d1f] bg-white shadow-sm' 
+                    : 'text-[#6e6e73] hover:text-[#1d1d1f]'
                 }`}
                 id="viewIndiaBtn"
               >
-                <span className={`w-2 h-2 rounded-full ${domain === 'india' ? 'bg-secondary-fixed' : 'bg-outline-variant'}`}></span>
+                <span className={`w-2 h-2 rounded-full ${domain === 'india' ? 'bg-[#0071e3]' : 'bg-[#86868b]'}`}></span>
                 <span>Pan-India Reanalysis</span>
               </button>
             </div>
 
             {/* View Mode Switcher: Leaflet GIS vs Vector Schematic */}
-            <div className="flex items-center gap-space-xs bg-surface-container-low p-1 rounded-lg">
+            <div className="flex items-center gap-1 bg-[#f5f5f7] p-1 rounded-full border border-black/[0.04]">
               <button
                 type="button"
                 onClick={() => setViewMode('map')}
-                className={`px-space-sm py-1.5 rounded-DEFAULT font-label-code text-label-code transition-all flex items-center gap-1.5 ${
+                className={`px-3 py-1.5 rounded-full text-[12px] font-medium transition-all flex items-center gap-1.5 ${
                   viewMode === 'map'
-                    ? 'text-on-primary bg-primary font-semibold shadow-sm'
-                    : 'text-on-surface-variant hover:text-on-surface'
+                    ? 'text-[#1d1d1f] bg-white font-semibold shadow-sm'
+                    : 'text-[#6e6e73] hover:text-[#1d1d1f]'
                 }`}
                 title="Switch to Interactive Leaflet Map"
                 id="viewLeafletMapBtn"
@@ -283,10 +275,10 @@ export default function IndiaHeatMap() {
               <button
                 type="button"
                 onClick={() => setViewMode('schematic')}
-                className={`px-space-sm py-1.5 rounded-DEFAULT font-label-code text-label-code transition-all flex items-center gap-1.5 ${
+                className={`px-3 py-1.5 rounded-full text-[12px] font-medium transition-all flex items-center gap-1.5 ${
                   viewMode === 'schematic'
-                    ? 'text-on-primary bg-primary font-semibold shadow-sm'
-                    : 'text-on-surface-variant hover:text-on-surface'
+                    ? 'text-[#1d1d1f] bg-white font-semibold shadow-sm'
+                    : 'text-[#6e6e73] hover:text-[#1d1d1f]'
                 }`}
                 title="Switch to Vector Microclimate Model"
                 id="viewSchematicBtn"
@@ -297,61 +289,61 @@ export default function IndiaHeatMap() {
             </div>
 
             {/* Center: Layer Toggles */}
-            <div className="hidden xl:flex items-center gap-space-xs bg-surface-container-low p-1 rounded-lg">
+            <div className="hidden xl:flex items-center gap-1 bg-[#f5f5f7] p-1 rounded-full border border-black/[0.04]">
               <button 
                 onClick={() => setActiveLayer('lst')}
-                className={`layer-pill px-space-sm py-1 rounded-DEFAULT font-caption-caps text-caption-caps uppercase tracking-wider transition-colors ${
+                className={`px-3 py-1 rounded-full text-[11px] uppercase tracking-wider font-semibold transition-all ${
                   activeLayer === 'lst' 
-                    ? 'text-on-primary bg-primary font-bold shadow-sm' 
-                    : 'text-on-surface-variant hover:text-on-surface'
+                    ? 'text-white bg-[#0071e3] shadow-sm' 
+                    : 'text-[#6e6e73] hover:text-[#1d1d1f]'
                 }`}
               >
-                Surface Temp (LST)
+                LST Skin
               </button>
               <button 
                 onClick={() => setActiveLayer('air')}
-                className={`layer-pill px-space-sm py-1 rounded-DEFAULT font-caption-caps text-caption-caps uppercase tracking-wider transition-colors ${
+                className={`px-3 py-1 rounded-full text-[11px] uppercase tracking-wider font-semibold transition-all ${
                   activeLayer === 'air' 
-                    ? 'text-on-primary bg-primary font-bold shadow-sm' 
-                    : 'text-on-surface-variant hover:text-on-surface'
+                    ? 'text-white bg-[#0071e3] shadow-sm' 
+                    : 'text-[#6e6e73] hover:text-[#1d1d1f]'
                 }`}
               >
-                Air 2m Temp
+                Air 2m
               </button>
               <button 
                 onClick={() => setActiveLayer('ndvi')}
-                className={`layer-pill px-space-sm py-1 rounded-DEFAULT font-caption-caps text-caption-caps uppercase tracking-wider transition-colors ${
+                className={`px-3 py-1 rounded-full text-[11px] uppercase tracking-wider font-semibold transition-all ${
                   activeLayer === 'ndvi' 
-                    ? 'text-on-primary bg-primary font-bold shadow-sm' 
-                    : 'text-on-surface-variant hover:text-on-surface'
+                    ? 'text-white bg-[#059669] shadow-sm' 
+                    : 'text-[#6e6e73] hover:text-[#1d1d1f]'
                 }`}
               >
                 Canopy (NDVI)
               </button>
               <button 
                 onClick={() => setActiveLayer('hvi')}
-                className={`layer-pill px-space-sm py-1 rounded-DEFAULT font-caption-caps text-caption-caps uppercase tracking-wider transition-colors ${
+                className={`px-3 py-1 rounded-full text-[11px] uppercase tracking-wider font-semibold transition-all ${
                   activeLayer === 'hvi' 
-                    ? 'text-on-primary bg-primary font-bold shadow-sm' 
-                    : 'text-on-surface-variant hover:text-on-surface'
+                    ? 'text-white bg-[#ea580c] shadow-sm' 
+                    : 'text-[#6e6e73] hover:text-[#1d1d1f]'
                 }`}
               >
-                Vulnerability (HVI)
+                Risk (HVI)
               </button>
             </div>
 
-            {/* Center-Right: Temporal Control Scrub */}
-            <div className="flex items-center gap-space-sm px-space-sm py-1 bg-surface-container rounded-lg">
-              <span className="material-symbols-outlined text-secondary text-[18px]">schedule</span>
+            {/* Temporal Scrubber Control */}
+            <div className="flex items-center gap-3 px-3.5 py-1.5 bg-[#f5f5f7] rounded-full border border-black/[0.04]">
+              <span className="material-symbols-outlined text-[#0071e3] text-[18px]">schedule</span>
               <div className="flex flex-col">
-                <div className="flex items-center justify-between gap-space-sm">
-                  <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Temporal Step</span>
-                  <span className="font-label-code text-label-code text-primary font-semibold" id="timeLabel">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-[9px] uppercase tracking-wider text-[#86868b] font-semibold">Hour</span>
+                  <span className="font-mono text-[10px] text-[#1d1d1f] font-semibold" id="timeLabel">
                     {getTimeLabel(Number(timeStep))}
                   </span>
                 </div>
                 <input 
-                  className="w-36 sm:w-44 h-1 bg-surface-variant rounded-lg appearance-none cursor-pointer accent-secondary" 
+                  className="w-32 sm:w-40 h-1 bg-black/[0.1] rounded-full appearance-none cursor-pointer accent-[#0071e3]" 
                   id="timeScrubber" 
                   max="23" 
                   min="0" 
@@ -362,43 +354,43 @@ export default function IndiaHeatMap() {
               </div>
             </div>
 
-            {/* Right: Actions & Coords Locator */}
-            <div className="flex items-center gap-space-xs">
-              <div className="hidden md:flex items-center gap-space-xs px-space-sm py-1 bg-surface-container rounded-DEFAULT">
-                <span className="material-symbols-outlined text-outline text-[16px]">explore</span>
-                <span className="font-label-code text-label-code text-on-surface" id="cursorCoords">
-                  {cursorCoords}
-                </span>
+            {/* Right: Camera Reset & Panel Toggle */}
+            <div className="flex items-center gap-1.5">
+              <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-[#f5f5f7] rounded-full text-[11px] font-mono text-[#6e6e73]">
+                <span className="material-symbols-outlined text-[#86868b] text-[15px]">explore</span>
+                <span id="cursorCoords">{cursorCoords}</span>
               </div>
               <button 
                 onClick={() => { setZoomLevel(1); setSelectedStationId(14); }}
-                className="p-2 rounded-lg bg-surface-container hover:bg-surface-variant text-on-surface transition-colors flex items-center justify-center" 
+                className="w-8 h-8 rounded-full bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#1d1d1f] flex items-center justify-center transition-colors" 
                 title="Reset Camera View"
               >
-                <span className="material-symbols-outlined text-[18px]">restart_alt</span>
+                <span className="material-symbols-outlined text-[17px]">restart_alt</span>
               </button>
               <button 
                 onClick={() => setPanelOpen(!panelOpen)}
-                className="p-2 rounded-lg bg-surface-container hover:bg-surface-variant text-on-surface transition-colors flex items-center justify-center" 
-                title="Toggle Inspector"
+                className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
+                  panelOpen ? 'bg-[#0071e3] text-white' : 'bg-[#f5f5f7] text-[#1d1d1f] hover:bg-[#e8e8ed]'
+                }`}
+                title="Toggle Station Inspector"
               >
-                <span className="material-symbols-outlined text-[18px]">view_sidebar</span>
+                <span className="material-symbols-outlined text-[17px]">view_sidebar</span>
               </button>
             </div>
           </div>
 
-          {/* Provenance Micro-Banner Floating */}
-          <div className="self-start inline-flex items-center gap-space-xs px-space-sm py-1 rounded-DEFAULT bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface-variant shadow-sm pointer-events-auto border border-outline-variant/30">
-            <span className="w-2 h-2 rounded-full bg-secondary"></span>
-            <span className="font-label-code text-label-code uppercase tracking-tight text-on-surface">
-              Model Domain: WRF-Chem Urban Canopy Microscale • Sim. Grid Seed: 2024.05.18-IST
+          {/* Provenance Micro-Banner */}
+          <div className="self-start inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[#6e6e73] shadow-xs pointer-events-auto border border-black/[0.06]">
+            <span className="w-2 h-2 rounded-full bg-[#059669]"></span>
+            <span className="font-mono text-[10px] uppercase tracking-wider text-[#1d1d1f] font-medium">
+              Domain: WRF-Chem Urban Canopy Model • Grid Seed: 2024.05.18-IST
             </span>
           </div>
         </div>
 
-        {/* Main Dynamic GIS Cartographic Surface */}
+        {/* Main Map Cartographic Surface */}
         <div 
-          className="relative w-full h-full flex-1 overflow-hidden bg-surface-container-high" 
+          className="relative w-full h-full flex-1 overflow-hidden bg-[#f5f5f7]" 
           id="mapViewport"
           onMouseMove={handleMouseMove}
         >
@@ -455,372 +447,291 @@ export default function IndiaHeatMap() {
               style={{ transform: `scale(${zoomLevel})` }}
             >
               <defs>
-                {/* Thermal Heat Plume Gradients */}
                 <radialGradient cx="50%" cy="50%" id="heatCoreBhavani" r="50%">
-                  <stop offset="0%" stopColor="#ba1a1a" stopOpacity="0.75"></stop>
-                  <stop offset="35%" stopColor="#ff9770" stopOpacity="0.55"></stop>
+                  <stop offset="0%" stopColor="#dc2626" stopOpacity="0.75"></stop>
+                  <stop offset="35%" stopColor="#ea580c" stopOpacity="0.55"></stop>
                   <stop offset="70%" stopColor="#ffdbcf" stopOpacity="0.30"></stop>
-                  <stop offset="100%" stopColor="#ffdad6" stopOpacity="0"></stop>
+                  <stop offset="100%" stopColor="#ffffff" stopOpacity="0"></stop>
                 </radialGradient>
                 <radialGradient cx="45%" cy="45%" id="heatCoreOldCity" r="55%">
-                  <stop offset="0%" stopColor="#7d2800" stopOpacity="0.8"></stop>
-                  <stop offset="40%" stopColor="#ba1a1a" stopOpacity="0.5"></stop>
+                  <stop offset="0%" stopColor="#ea580c" stopOpacity="0.8"></stop>
+                  <stop offset="40%" stopColor="#dc2626" stopOpacity="0.5"></stop>
                   <stop offset="75%" stopColor="#ffb59b" stopOpacity="0.25"></stop>
-                  <stop offset="100%" stopColor="#f6faf7" stopOpacity="0"></stop>
+                  <stop offset="100%" stopColor="#ffffff" stopOpacity="0"></stop>
                 </radialGradient>
                 <radialGradient cx="50%" cy="50%" id="heatCoreMIDC" r="50%">
-                  <stop offset="0%" stopColor="#ba1a1a" stopOpacity="0.85"></stop>
-                  <stop offset="30%" stopColor="#ff9770" stopOpacity="0.6"></stop>
+                  <stop offset="0%" stopColor="#dc2626" stopOpacity="0.85"></stop>
+                  <stop offset="30%" stopColor="#ea580c" stopOpacity="0.6"></stop>
                   <stop offset="70%" stopColor="#f0f5f1" stopOpacity="0.2"></stop>
-                  <stop offset="100%" stopColor="#f6faf7" stopOpacity="0"></stop>
+                  <stop offset="100%" stopColor="#ffffff" stopOpacity="0"></stop>
                 </radialGradient>
-                
-                {/* Water Cooling Gradient */}
                 <radialGradient cx="50%" cy="50%" id="lakeCooling" r="50%">
-                  <stop offset="0%" stopColor="#9ff2e4" stopOpacity="0.85"></stop>
-                  <stop offset="50%" stopColor="#016a60" stopOpacity="0.45"></stop>
-                  <stop offset="100%" stopColor="#00362a" stopOpacity="0"></stop>
+                  <stop offset="0%" stopColor="#059669" stopOpacity="0.85"></stop>
+                  <stop offset="50%" stopColor="#10b981" stopOpacity="0.45"></stop>
+                  <stop offset="100%" stopColor="#ffffff" stopOpacity="0"></stop>
                 </radialGradient>
-                
                 <pattern height="40" id="urbanGridPattern" patternUnits="userSpaceOnUse" width="40">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#c0c8c4" strokeOpacity="0.4" strokeWidth="0.5"></path>
+                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#d2d2d7" strokeOpacity="0.4" strokeWidth="0.5"></path>
                 </pattern>
               </defs>
 
-              {/* Base GIS Coordinate Grid Mesh */}
               <rect fill="url(#urbanGridPattern)" height="100%" width="100%"></rect>
+              <path d="M 380,180 Q 580,120 840,160 T 1240,240 Q 1380,420 1310,640 T 1080,820 Q 820,890 540,780 T 320,560 Q 260,340 380,180 Z" fill="#ffffff" fillOpacity="0.8" stroke="#d2d2d7" strokeDasharray="4,4" strokeWidth="1.5"></path>
 
-              {/* Topographic / Zonal Contours (Solapur Municipality Outline) */}
-              <path d="M 380,180 Q 580,120 840,160 T 1240,240 Q 1380,420 1310,640 T 1080,820 Q 820,890 540,780 T 320,560 Q 260,340 380,180 Z" fill="#eaefeb" fillOpacity="0.6" stroke="#c0c8c4" strokeDasharray="4,4" strokeWidth="1.5"></path>
-
-              {/* Major Highway Corridors */}
-              {/* NH 65 Pune-Solapur-Hyderabad */}
+              {/* Highways */}
               <path d="M 120,410 C 450,430 750,470 1480,510" fill="none" opacity="0.9" stroke="#ffffff" strokeLinecap="round" strokeWidth="8"></path>
-              <path d="M 120,410 C 450,430 750,470 1480,510" fill="none" opacity="0.6" stroke="#707975" strokeLinecap="round" strokeWidth="3"></path>
+              <path d="M 120,410 C 450,430 750,470 1480,510" fill="none" opacity="0.4" stroke="#86868b" strokeLinecap="round" strokeWidth="2.5"></path>
 
-              {/* NH 52 Bijapur-Solapur Bypass */}
-              <path d="M 720,110 C 760,390 810,680 890,920" fill="none" opacity="0.9" stroke="#ffffff" strokeLinecap="round" strokeWidth="7"></path>
-              <path d="M 720,110 C 760,390 810,680 890,920" fill="none" opacity="0.6" stroke="#707975" strokeLinecap="round" strokeWidth="2.5"></path>
-
-              {/* Siddheshwar Lake & Water Bodies */}
+              {/* Water */}
               <g id="waterBodyGroup">
-                <path d="M 740,430 C 770,410 820,430 835,465 C 840,490 810,530 770,520 C 735,510 720,460 740,430 Z" fill="#84d5c8" stroke="#016a60" strokeWidth="1.5"></path>
+                <path d="M 740,430 C 770,410 820,430 835,465 C 840,490 810,530 770,520 C 735,510 720,460 740,430 Z" fill="#059669" stroke="#059669" strokeWidth="1.5"></path>
                 <ellipse cx="780" cy="470" fill="url(#lakeCooling)" rx="130" ry="110"></ellipse>
-                <text className="font-caption-caps text-[11px] fill-on-secondary-fixed tracking-wider font-semibold pointer-events-none" x="745" y="475">SIDDHESHWAR LAKE (27.4°C)</text>
+                <text className="text-[11px] fill-[#059669] font-semibold pointer-events-none" x="745" y="475">SIDDHESHWAR LAKE (27.4°C)</text>
               </g>
 
-              {/* Thermal Plumes / UHI Heat Pockets */}
+              {/* Thermal Islands */}
               <g className="transition-opacity duration-300" id="thermalIslands">
                 <circle cx="820" cy="510" fill="url(#heatCoreBhavani)" r="190"></circle>
                 <circle cx="710" cy="410" fill="url(#heatCoreOldCity)" r="160"></circle>
                 <circle cx="1120" cy="580" fill="url(#heatCoreMIDC)" r="230"></circle>
-                <circle cx="480" cy="380" fill="url(#heatCoreBhavani)" opacity="0.75" r="140"></circle>
               </g>
 
-              {/* Heat Contour Isotherms */}
-              <path d="M 640,320 C 760,310 930,360 980,480 C 1020,570 940,680 820,690 C 710,700 620,580 610,470 Z" fill="none" opacity="0.6" stroke="#ba1a1a" strokeDasharray="2,3" strokeWidth="1.5"></path>
-              <path d="M 580,260 C 780,240 1020,310 1070,490 C 1110,630 990,750 790,750 C 630,750 520,600 510,440 Z" fill="none" opacity="0.4" stroke="#7d2800" strokeWidth="1"></path>
-
-              {/* Sensor Station Markers (Interactive Nodes) */}
+              {/* Interactive Station Nodes */}
               <g id="stationNodes">
-                
-                {/* Station 014 - Bhavani Peth */}
                 <g 
                   className="cursor-pointer group" 
                   onClick={() => { setSelectedStationId(14); setPanelOpen(true); }}
                   transform="translate(820, 510)"
                 >
-                  <circle className="fill-error/20 animate-ping" r="22"></circle>
-                  <circle className="fill-surface-container-lowest stroke-error" r="12" strokeWidth="3"></circle>
-                  <circle className="fill-error" r="5"></circle>
-                  <rect className="fill-surface-container-lowest/95 shadow-sm stroke-outline-variant/40" height="28" rx="4" strokeWidth="1" width="138" x="18" y="-14"></rect>
-                  <text className="font-label-code text-[11px] fill-on-surface font-semibold" x="26" y="4">#014 Bhavani Peth</text>
-                  <text className="font-label-code text-[11px] fill-error font-bold" x="122" y="4">41.8°</text>
+                  <circle className="fill-[#dc2626]/20 animate-ping" r="22"></circle>
+                  <circle className="fill-white stroke-[#dc2626]" r="12" strokeWidth="3"></circle>
+                  <circle className="fill-[#dc2626]" r="5"></circle>
+                  <rect className="fill-white/95 shadow-md stroke-black/[0.08]" height="28" rx="14" strokeWidth="1" width="145" x="18" y="-14"></rect>
+                  <text className="font-mono text-[11px] fill-[#1d1d1f] font-semibold" x="28" y="4">#014 Bhavani Peth</text>
+                  <text className="font-mono text-[11px] fill-[#dc2626] font-bold" x="126" y="4">41.8°</text>
                 </g>
 
-                {/* Station 028 - Old Solapur */}
                 <g 
                   className="cursor-pointer group" 
                   onClick={() => { setSelectedStationId(28); setPanelOpen(true); }}
                   transform="translate(680, 430)"
                 >
-                  <circle className="fill-surface-container-lowest stroke-tertiary-container hover:scale-125 transition-transform" r="9" strokeWidth="2.5"></circle>
-                  <circle className="fill-tertiary-container" r="4"></circle>
-                  <rect className="fill-surface-container-lowest/90 stroke-outline-variant/30" height="24" rx="4" strokeWidth="1" width="124" x="14" y="-12"></rect>
-                  <text className="font-label-code text-[10px] fill-on-surface" x="20" y="4">#028 Old Solapur</text>
-                  <text className="font-label-code text-[10px] fill-tertiary font-bold" x="108" y="4">39.4°</text>
+                  <circle className="fill-white stroke-[#ea580c] hover:scale-125 transition-transform" r="9" strokeWidth="2.5"></circle>
+                  <circle className="fill-[#ea580c]" r="4"></circle>
+                  <rect className="fill-white/95 stroke-black/[0.08]" height="24" rx="12" strokeWidth="1" width="130" x="14" y="-12"></rect>
+                  <text className="font-mono text-[10px] fill-[#1d1d1f]" x="22" y="4">#028 Old Solapur</text>
+                  <text className="font-mono text-[10px] fill-[#ea580c] font-bold" x="112" y="4">39.4°</text>
                 </g>
 
-                {/* Station 073 - Kegaon Rural Boundary */}
                 <g 
                   className="cursor-pointer group" 
                   onClick={() => { setSelectedStationId(73); setPanelOpen(true); }}
                   transform="translate(430, 360)"
                 >
-                  <circle className="fill-surface-container-lowest stroke-secondary hover:scale-125 transition-transform" r="9" strokeWidth="2.5"></circle>
-                  <circle className="fill-secondary" r="4"></circle>
-                  <rect className="fill-surface-container-lowest/90 stroke-outline-variant/30" height="24" rx="4" strokeWidth="1" width="105" x="14" y="-12"></rect>
-                  <text className="font-label-code text-[10px] fill-on-surface" x="20" y="4">#073 Kegaon</text>
-                  <text className="font-label-code text-[10px] fill-secondary font-bold" x="90" y="4">33.2°</text>
+                  <circle className="fill-white stroke-[#059669] hover:scale-125 transition-transform" r="9" strokeWidth="2.5"></circle>
+                  <circle className="fill-[#059669]" r="4"></circle>
+                  <rect className="fill-white/95 stroke-black/[0.08]" height="24" rx="12" strokeWidth="1" width="112" x="14" y="-12"></rect>
+                  <text className="font-mono text-[10px] fill-[#1d1d1f]" x="22" y="4">#073 Kegaon</text>
+                  <text className="font-mono text-[10px] fill-[#059669] font-bold" x="95" y="4">33.2°</text>
                 </g>
 
-                {/* Station 089 - Chhattrapati Sambhaji MIDC */}
                 <g 
                   className="cursor-pointer group" 
                   onClick={() => { setSelectedStationId(89); setPanelOpen(true); }}
                   transform="translate(1120, 560)"
                 >
-                  <circle className="fill-surface-container-lowest stroke-error hover:scale-125 transition-transform" r="9" strokeWidth="2.5"></circle>
-                  <circle className="fill-error" r="4"></circle>
-                  <rect className="fill-surface-container-lowest/90 stroke-outline-variant/30" height="24" rx="4" strokeWidth="1" width="118" x="14" y="-12"></rect>
-                  <text className="font-label-code text-[10px] fill-on-surface" x="20" y="4">#089 MIDC Ind.</text>
-                  <text className="font-label-code text-[10px] fill-error font-bold" x="102" y="4">42.6°</text>
+                  <circle className="fill-white stroke-[#dc2626] hover:scale-125 transition-transform" r="9" strokeWidth="2.5"></circle>
+                  <circle className="fill-[#dc2626]" r="4"></circle>
+                  <rect className="fill-white/95 stroke-black/[0.08]" height="24" rx="12" strokeWidth="1" width="124" x="14" y="-12"></rect>
+                  <text className="font-mono text-[10px] fill-[#1d1d1f]" x="22" y="4">#089 MIDC Ind.</text>
+                  <text className="font-mono text-[10px] fill-[#dc2626] font-bold" x="108" y="4">42.6°</text>
                 </g>
 
-                {/* Station 052 - Solapur University Campus (Cool Island) */}
                 <g 
                   className="cursor-pointer group" 
                   onClick={() => { setSelectedStationId(52); setPanelOpen(true); }}
                   transform="translate(360, 520)"
                 >
-                  <circle className="fill-surface-container-lowest stroke-primary hover:scale-125 transition-transform" r="9" strokeWidth="2.5"></circle>
-                  <circle className="fill-primary" r="4"></circle>
-                  <rect className="fill-surface-container-lowest/90 stroke-outline-variant/30" height="24" rx="4" strokeWidth="1" width="132" x="14" y="-12"></rect>
-                  <text className="font-label-code text-[10px] fill-on-surface" x="20" y="4">#052 PAH Solapur Uni</text>
-                  <text className="font-label-code text-[10px] fill-primary font-bold" x="118" y="4">31.7°</text>
+                  <circle className="fill-white stroke-[#059669] hover:scale-125 transition-transform" r="9" strokeWidth="2.5"></circle>
+                  <circle className="fill-[#059669]" r="4"></circle>
+                  <rect className="fill-white/95 stroke-black/[0.08]" height="24" rx="12" strokeWidth="1" width="138" x="14" y="-12"></rect>
+                  <text className="font-mono text-[10px] fill-[#1d1d1f]" x="22" y="4">#052 PAH Solapur</text>
+                  <text className="font-mono text-[10px] fill-[#059669] font-bold" x="122" y="4">31.7°</text>
                 </g>
               </g>
             </svg>
           )}
-
-          {viewMode === 'schematic' && (
-            <>
-              {/* Cartographic Floating Map Tools (Zoom/Compass) */}
-              <div className="absolute bottom-space-lg right-space-md xl:right-[410px] z-20 flex flex-col gap-1.5 shadow-md rounded-lg overflow-hidden bg-surface-container-lowest border border-outline-variant/30">
-                <button 
-                  onClick={() => setZoomLevel(Math.min(zoomLevel * 1.2, 2.5))}
-                  className="p-2.5 hover:bg-surface-container transition-colors text-on-surface flex items-center justify-center"
-                  title="Zoom In"
-                >
-                  <span className="material-symbols-outlined text-[18px]">add</span>
-                </button>
-                <div className="h-[1px] w-full bg-outline-variant/30"></div>
-                <button 
-                  onClick={() => setZoomLevel(Math.max(zoomLevel * 0.8, 0.75))}
-                  className="p-2.5 hover:bg-surface-container transition-colors text-on-surface flex items-center justify-center"
-                  title="Zoom Out"
-                >
-                  <span className="material-symbols-outlined text-[18px]">remove</span>
-                </button>
-                <div className="h-[1px] w-full bg-outline-variant/30"></div>
-                <button 
-                  onClick={() => setZoomLevel(1)}
-                  className="p-2.5 hover:bg-surface-container transition-colors text-on-surface flex items-center justify-center" 
-                  title="Re-center Solapur"
-                >
-                  <span className="material-symbols-outlined text-[18px]">near_me</span>
-                </button>
-              </div>
-
-              {/* Bottom-Left: Sequential Thermal Scale / Scientific Color Ramp Legend */}
-              <div className="absolute bottom-space-md left-space-md z-20 max-w-sm w-full bg-surface-container-lowest/95 backdrop-blur-md p-space-md rounded-xl shadow-md border border-outline-variant/30">
-                <div className="flex items-center justify-between mb-space-xs">
-                  <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant font-semibold">
-                    Microclimate Thermal Scale (2m Air Temp)
-                  </span>
-                  <span className="font-label-code text-label-code text-primary font-bold">Unit: °C</span>
-                </div>
-                
-                {/* Multi-stop Continuous Color Bar */}
-                <div className="w-full h-3 rounded-DEFAULT overflow-hidden relative" style={{ background: 'linear-gradient(to right, #016a60 0%, #366759 20%, #9dd1c0 38%, #ffb59b 55%, #ff9770 70%, #ba1a1a 85%, #581900 100%)' }}>
-                  <div className="absolute top-0 bottom-0 w-1 bg-surface-container-lowest shadow-sm" id="legendThumb" style={{ left: '78%' }}></div>
-                </div>
-                
-                {/* Scale Numerical Markings */}
-                <div className="flex justify-between items-center mt-1.5 font-label-code text-label-code text-on-surface-variant">
-                  <span>&lt;28°</span>
-                  <span>30°</span>
-                  <span>34°</span>
-                  <span>38°</span>
-                  <span>41°</span>
-                  <span className="text-error font-semibold">44°C+</span>
-                </div>
-                
-                <div className="grid grid-cols-3 gap-space-xs pt-space-xs mt-space-xs text-[10px] text-on-surface-variant">
-                  <div className="flex items-center gap-1">
-                    <span className="w-2 h-2 rounded-full bg-secondary"></span>
-                    <span>Canopy Cool &lt;30°</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <span className="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
-                    <span>UHI Stress 34-38°</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <span className="w-2 h-2 rounded-full bg-error"></span>
-                    <span>Severe Peak &gt;41°</span>
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
         </div>
 
-        {/* Right-Hand Station Telemetry Inspector (380px Desktop Slide-in) */}
+        {/* Right-Hand Station Telemetry Inspector (Apple Frosted Sheet) */}
         <aside 
-          className={`absolute top-0 right-0 bottom-0 w-full sm:w-[380px] bg-surface-container-lowest/95 backdrop-blur-md z-30 shadow-xl flex flex-col transition-transform duration-300 border-l border-outline-variant/30 overflow-y-auto ${
+          className={`absolute top-0 right-0 bottom-0 w-full sm:w-[380px] bg-white/95 backdrop-blur-2xl z-30 shadow-2xl flex flex-col transition-transform duration-300 border-l border-black/[0.08] overflow-y-auto ${
             panelOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
           id="telemetryPanel"
         >
           {/* Panel Header */}
-          <div className="p-space-md bg-surface-container-low flex items-center justify-between border-b border-outline-variant/20">
-            <div className="flex items-center gap-space-xs">
-              <span className="w-2.5 h-2.5 rounded-full bg-error animate-pulse"></span>
-              <span className="font-label-code text-label-code uppercase tracking-wider text-error font-semibold" id="panelStationCode">
+          <div className="p-5 bg-[#fafafc] flex items-center justify-between border-b border-black/[0.06]">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#dc2626] animate-pulse"></span>
+              <span className="font-mono text-[12px] uppercase tracking-wider text-[#dc2626] font-semibold" id="panelStationCode">
                 {station.code}
               </span>
-              <span className="px-1.5 py-0.5 rounded-DEFAULT bg-surface-container text-on-surface-variant font-caption-caps text-caption-caps uppercase">
+              <span className="px-2 py-0.5 rounded-full bg-black/[0.04] text-[#6e6e73] text-[10px] uppercase font-mono font-medium">
                 Sim Node
               </span>
             </div>
             <button 
               onClick={() => setPanelOpen(false)}
-              className="p-1 rounded-DEFAULT hover:bg-surface-variant text-on-surface-variant hover:text-on-surface transition-colors" 
+              className="w-7 h-7 rounded-full flex items-center justify-center text-[#86868b] hover:text-[#1d1d1f] hover:bg-black/[0.04] transition-colors" 
               title="Close Panel"
             >
               <span className="material-symbols-outlined text-[18px]">close</span>
             </button>
           </div>
 
+          {/* Quick Select Stations Bar */}
+          <div className="px-5 py-3 bg-[#f5f5f7] border-b border-black/[0.04] flex items-center gap-1.5 overflow-x-auto">
+            <span className="text-[10px] uppercase text-[#86868b] font-semibold mr-1 shrink-0">Nodes:</span>
+            {[14, 28, 73, 89, 52].map(stId => (
+              <button
+                key={stId}
+                onClick={() => setSelectedStationId(stId)}
+                className={`px-2.5 py-0.5 rounded-full text-[11px] font-mono shrink-0 transition-all ${
+                  selectedStationId === stId 
+                    ? 'bg-[#0071e3] text-white font-semibold shadow-xs' 
+                    : 'bg-white text-[#6e6e73] hover:text-[#1d1d1f] border border-black/[0.06]'
+                }`}
+              >
+                #{stId}
+              </button>
+            ))}
+          </div>
+
           {/* Core Station Telemetry */}
-          <div className="p-space-md flex flex-col gap-space-md flex-1">
+          <div className="p-6 flex flex-col gap-6 flex-1">
             
             {/* Identity & Geographic Classification */}
             <div>
-              <h2 className="font-headline-md text-headline-md text-on-surface font-semibold mb-0.5" id="stationTitle">
+              <h2 className="text-xl font-semibold text-[#1d1d1f] tracking-tight mb-1" id="stationTitle">
                 {station.title}
               </h2>
-              <p className="font-body-sm text-body-sm text-on-surface-variant" id="stationSubtype">
+              <p className="text-[13px] text-[#6e6e73] leading-relaxed" id="stationSubtype">
                 {station.subtype}
               </p>
-              <div className="mt-space-xs flex items-center gap-space-sm font-label-code text-label-code text-on-surface-variant">
+              <div className="mt-2 flex items-center gap-3 font-mono text-[11px] text-[#86868b]">
                 <span id="stationCoords">{station.coords}</span>
                 <span>•</span>
                 <span id="stationElev">{station.elev}</span>
               </div>
             </div>
 
-            {/* Big Metric Callout */}
-            <div className="p-space-md rounded-xl bg-error-container/30 flex items-center justify-between border border-error-container/40">
+            {/* Big Metric Callout (Apple Card Treatment) */}
+            <div className="p-5 rounded-[22px] bg-[#f5f5f7] flex items-center justify-between border border-black/[0.04]">
               <div>
-                <span className="font-caption-caps text-caption-caps uppercase tracking-wider text-on-surface-variant block mb-1">
+                <span className="text-[11px] uppercase tracking-wider text-[#86868b] block mb-1 font-semibold">
                   Modeled 2m Air Temperature
                 </span>
-                <div className="flex items-baseline gap-space-xs">
-                  <span className="font-headline-xl text-headline-xl font-bold text-on-surface" id="stationTemp">
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-4xl font-semibold text-[#1d1d1f] tracking-tight tabular-nums" id="stationTemp">
                     {station.temp}
                   </span>
-                  <span className="font-headline-md text-headline-md text-on-surface">°C</span>
+                  <span className="text-lg font-normal text-[#6e6e73]">°C</span>
                 </div>
-                <div className="inline-flex items-center gap-1 mt-1 font-label-code text-label-code text-error font-medium">
+                <div className="inline-flex items-center gap-1 mt-1 font-mono text-[11px] text-[#ea580c] font-medium">
                   <span className="material-symbols-outlined text-[14px]">arrow_upward</span>
                   <span id="stationAnomaly">{station.anomaly}</span>
                 </div>
               </div>
-              <div className="w-14 h-14 rounded-full bg-surface-container-lowest flex items-center justify-center shadow-sm">
-                <span className="material-symbols-outlined text-error text-[28px]">local_fire_department</span>
+              <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-xs border border-black/[0.06]">
+                <span className="material-symbols-outlined text-[#ea580c] text-[24px]">local_fire_department</span>
               </div>
             </div>
 
-            {/* Microclimate Spatial Surface Indicators */}
-            <div className="space-y-space-xs">
-              <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant tracking-wider font-semibold">
+            {/* Morphological Surface Drivers */}
+            <div className="space-y-2">
+              <span className="text-[11px] uppercase text-[#86868b] tracking-wider font-semibold">
                 Morphological Surface Drivers
               </span>
-              <div className="grid grid-cols-3 gap-space-xs">
-                <div className="p-space-sm rounded-lg bg-surface-container-low flex flex-col">
-                  <span className="font-caption-caps text-caption-caps text-on-surface-variant">Canopy</span>
-                  <span className="font-label-metric text-label-metric text-on-surface font-semibold mt-1" id="stationCanopy">
+              <div className="grid grid-cols-3 gap-2.5">
+                <div className="p-3 rounded-xl bg-[#f5f5f7] flex flex-col border border-black/[0.03]">
+                  <span className="text-[10px] text-[#86868b] uppercase font-semibold">Canopy</span>
+                  <span className="text-[15px] font-semibold text-[#1d1d1f] tabular-nums mt-0.5" id="stationCanopy">
                     {station.canopy}
                   </span>
-                  <span className="font-caption-caps text-[9px] text-error font-medium">
+                  <span className="text-[10px] text-[#dc2626] font-medium mt-0.5">
                     {station.canopyStatus}
                   </span>
                 </div>
-                <div className="p-space-sm rounded-lg bg-surface-container-low flex flex-col">
-                  <span className="font-caption-caps text-caption-caps text-on-surface-variant">Impervious</span>
-                  <span className="font-label-metric text-label-metric text-on-surface font-semibold mt-1" id="stationImpervious">
+                <div className="p-3 rounded-xl bg-[#f5f5f7] flex flex-col border border-black/[0.03]">
+                  <span className="text-[10px] text-[#86868b] uppercase font-semibold">Impervious</span>
+                  <span className="text-[15px] font-semibold text-[#1d1d1f] tabular-nums mt-0.5" id="stationImpervious">
                     {station.impervious}
                   </span>
-                  <span className="font-caption-caps text-[9px] text-error font-medium">
+                  <span className="text-[10px] text-[#dc2626] font-medium mt-0.5">
                     {station.imperviousStatus}
                   </span>
                 </div>
-                <div className="p-space-sm rounded-lg bg-surface-container-low flex flex-col">
-                  <span className="font-caption-caps text-caption-caps text-on-surface-variant">Albedo</span>
-                  <span className="font-label-metric text-label-metric text-on-surface font-semibold mt-1" id="stationAlbedo">
+                <div className="p-3 rounded-xl bg-[#f5f5f7] flex flex-col border border-black/[0.03]">
+                  <span className="text-[10px] text-[#86868b] uppercase font-semibold">Albedo</span>
+                  <span className="text-[15px] font-semibold text-[#1d1d1f] tabular-nums mt-0.5" id="stationAlbedo">
                     {station.albedo}
                   </span>
-                  <span className="font-caption-caps text-[9px] text-on-surface-variant">
+                  <span className="text-[10px] text-[#86868b] mt-0.5 truncate">
                     {station.albedoType}
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* 24-Hour Diurnal Sparkline Visualization */}
-            <div className="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs">
+            {/* 24-Hour Diurnal Sparkline */}
+            <div className="p-5 rounded-[22px] bg-[#f5f5f7] flex flex-col gap-2 border border-black/[0.04]">
               <div className="flex items-center justify-between">
-                <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant font-semibold">
-                  24h Diurnal Heat Profile (IST)
+                <span className="text-[11px] uppercase text-[#86868b] font-semibold tracking-wider">
+                  24h Diurnal Heat Profile
                 </span>
-                <span className="font-label-code text-label-code text-primary">
+                <span className="font-mono text-[11px] text-[#0071e3] font-semibold">
                   {station.peak}
                 </span>
               </div>
               
-              {/* Inline SVG Diurnal Sparkline */}
               <div className="w-full h-24 pt-2">
                 <svg className="w-full h-full overflow-visible" viewBox="0 0 320 80">
                   <defs>
                     <linearGradient id="sparkGradient" x1="0" x2="0" y1="0" y2="1">
-                      <stop offset="0%" stopColor="#ba1a1a" stopOpacity="0.35"></stop>
-                      <stop offset="100%" stopColor="#ba1a1a" stopOpacity="0"></stop>
+                      <stop offset="0%" stopColor="#ea580c" stopOpacity="0.3"></stop>
+                      <stop offset="100%" stopColor="#ea580c" stopOpacity="0"></stop>
                     </linearGradient>
                   </defs>
-                  {/* Threshold guideline 35°C */}
-                  <line stroke="#c0c8c4" strokeDasharray="3,3" strokeWidth="1" x1="0" x2="320" y1="45" y2="45"></line>
-                  <text className="font-caption-caps text-[9px] fill-outline" x="5" y="42">35°C HEAT THRESHOLD</text>
+                  <line stroke="rgba(0,0,0,0.1)" strokeDasharray="3,3" strokeWidth="1" x1="0" x2="320" y1="45" y2="45"></line>
+                  <text className="text-[9px] fill-[#86868b] font-mono" x="5" y="42">35°C THRESHOLD</text>
                   
-                  {/* Filled curve */}
                   <path d={station.sparklineFill} fill="url(#sparkGradient)"></path>
-                  {/* Stroke curve */}
-                  <path d={station.sparklineD} fill="none" stroke="#ba1a1a" strokeLinecap="round" strokeWidth="2.5"></path>
-                  {/* Peak indicator point */}
-                  <circle cx={station.peakCx} cy={station.peakCy} fill="#ba1a1a" r="4" stroke="#ffffff" strokeWidth="2"></circle>
+                  <path d={station.sparklineD} fill="none" stroke="#ea580c" strokeLinecap="round" strokeWidth="2.5"></path>
+                  <circle cx={station.peakCx} cy={station.peakCy} fill="#ea580c" r="4" stroke="#ffffff" strokeWidth="2"></circle>
                 </svg>
               </div>
-              <div className="flex justify-between items-center font-label-code text-[10px] text-on-surface-variant pt-1">
+              <div className="flex justify-between items-center font-mono text-[10px] text-[#86868b] pt-1">
                 <span>00:00 (28.4°)</span>
                 <span>06:00 (26.9°)</span>
                 <span>12:00 (39.5°)</span>
-                <span className="text-error font-semibold">15:00 (41.8°)</span>
+                <span className="text-[#dc2626] font-semibold">15:00 (41.8°)</span>
                 <span>21:00 (34.2°)</span>
               </div>
             </div>
 
-            {/* Intervention Recommendations Based on Model */}
-            <div className="space-y-space-xs">
-              <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant tracking-wider font-semibold">
-                Engine Recommended Intervention
+            {/* Recommended Intervention */}
+            <div className="space-y-2">
+              <span className="text-[11px] uppercase text-[#86868b] tracking-wider font-semibold">
+                Targeted Mitigation Strategy
               </span>
-              <div className="p-space-sm rounded-lg bg-surface-container flex items-start gap-space-xs">
-                <span className="material-symbols-outlined text-secondary text-[20px] mt-0.5">park</span>
+              <div className="p-4 rounded-[20px] bg-[#0071e3]/5 border border-[#0071e3]/15 flex items-start gap-3">
+                <span className="material-symbols-outlined text-[#0071e3] text-[20px] mt-0.5 shrink-0">park</span>
                 <div>
-                  <p className="font-body-sm text-body-sm text-on-surface font-semibold">
+                  <p className="text-[13px] font-semibold text-[#1d1d1f]">
                     {station.interventionTitle}
                   </p>
-                  <p className="font-body-sm text-[11px] text-on-surface-variant leading-relaxed">
+                  <p className="text-[12px] text-[#6e6e73] leading-relaxed mt-1">
                     {station.interventionDesc}
                   </p>
                 </div>
@@ -828,38 +739,29 @@ export default function IndiaHeatMap() {
             </div>
 
             {/* Provenance Footer */}
-            <div className="mt-auto pt-space-sm bg-surface-container-low p-space-sm rounded-lg text-on-surface-variant">
-              <div className="flex items-center justify-between font-label-code text-[10px]">
-                <span>WRF DOMAIN: D03_SOLAPUR</span>
+            <div className="mt-auto pt-3 border-t border-black/[0.06] text-[#86868b]">
+              <div className="flex items-center justify-between font-mono text-[10px]">
+                <span>DOMAIN: D03_SOLAPUR</span>
                 <span>SEED: wrf-v2.4-2024</span>
               </div>
-              <p className="font-caption-caps text-[9px] text-outline mt-1 leading-normal">
-                Simulated synthetic telemetry generated for urban planning research. Peer-review release TF-141 / MIT Vishwaprayag University.
-              </p>
             </div>
           </div>
         </aside>
       </div>
 
-      {/* Bottom Informational Analytical Strip (Non-intrusive) */}
-      <div className="w-full bg-surface-container-low p-space-md flex flex-wrap items-center justify-between gap-space-md border-t border-outline-variant/30">
-        <div className="flex items-center gap-space-md">
-          <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant font-bold tracking-wider">
-            Cartographic Sources:
-          </span>
-          <span className="font-body-sm text-body-sm text-on-surface-variant">
-            Solapur Municipal Boundary (SMC GIS 2023) • NASA Landsat-8/9 OLI/TIRS Synthetic Calibrations • Solapur 100-Grid Academic WRF Simulation (2021–2025)
-          </span>
+      {/* Bottom Sources Bar */}
+      <div className="w-full bg-[#f5f5f7] px-6 py-4 flex flex-wrap items-center justify-between gap-4 border-t border-black/[0.06] text-xs text-[#6e6e73]">
+        <div className="flex items-center gap-2">
+          <span className="font-semibold text-[#1d1d1f]">Sources:</span>
+          <span>Solapur Municipal Boundary (SMC GIS) • NASA Landsat-8/9 OLI/TIRS • 100-Grid Solapur Simulation (2021–2025)</span>
         </div>
-        <div className="flex items-center gap-space-sm">
-          <Link 
-            to="/explore-data"
-            className="font-label-code text-label-code text-primary hover:underline flex items-center gap-1 font-medium" 
-          >
-            <span>Open Raw CSV Datasets</span>
-            <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
-          </Link>
-        </div>
+        <Link 
+          to="/explore-data"
+          className="text-[#0071e3] hover:underline flex items-center gap-1 font-medium" 
+        >
+          <span>Open Raw Dataset Records</span>
+          <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+        </Link>
       </div>
     </div>
   );

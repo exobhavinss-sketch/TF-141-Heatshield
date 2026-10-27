@@ -1,5 +1,5 @@
 import React from 'react';
-import { Database, FilterX } from 'lucide-react';
+import { FilterX } from 'lucide-react';
 
 export default function EmptyState({
   title = 'No Telemetry Records Found',
@@ -7,20 +7,20 @@ export default function EmptyState({
   onReset
 }) {
   return (
-    <div className="flex flex-col items-center justify-center p-8 w-full bg-surface-container/30 rounded-xl border border-outline-variant/30 text-center">
-      <div className="w-12 h-12 rounded-full bg-surface-container-high border border-outline-variant/40 flex items-center justify-center text-outline mb-3">
-        <FilterX size={22} />
+    <div className="flex flex-col items-center justify-center p-10 w-full bg-[#fafafc] rounded-[28px] border border-black/[0.06] text-center">
+      <div className="w-12 h-12 rounded-full bg-white border border-black/[0.08] flex items-center justify-center text-[#86868b] mb-4 shadow-sm">
+        <FilterX size={20} />
       </div>
-      <h3 className="font-headline text-base font-semibold text-on-surface">
+      <h3 className="text-[17px] font-semibold text-[#1d1d1f] tracking-tight">
         {title}
       </h3>
-      <p className="font-body text-xs text-on-surface-variant max-w-md mt-1 mb-4 leading-relaxed">
+      <p className="text-[13px] text-[#6e6e73] max-w-md mt-1.5 mb-5 leading-relaxed">
         {message}
       </p>
       {onReset && (
         <button
           onClick={onReset}
-          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-bright text-xs font-medium text-primary border border-primary/30 transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white hover:bg-[#f5f5f7] active:scale-[0.98] text-[13px] font-medium text-[#0071e3] border border-black/[0.08] shadow-sm transition-all"
         >
           <span>Reset All Filters</span>
         </button>

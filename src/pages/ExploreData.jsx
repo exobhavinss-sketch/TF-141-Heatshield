@@ -169,123 +169,126 @@ export default function ExploreData() {
 
   const getRiskTagClass = (risk) => {
     const r = risk?.toLowerCase() || '';
-    if (r.includes('extreme') || r.includes('high')) {
-      return "px-2 py-0.5 rounded font-caption-caps text-caption-caps uppercase tracking-wide bg-error-container text-on-error-container font-semibold";
+    if (r.includes('extreme')) {
+      return "bg-[#dc2626]/10 text-[#dc2626] font-medium text-[11px] px-2.5 py-0.5 rounded-[980px] inline-flex items-center gap-1";
+    }
+    if (r.includes('high')) {
+      return "bg-[#ea580c]/10 text-[#ea580c] font-medium text-[11px] px-2.5 py-0.5 rounded-[980px] inline-flex items-center gap-1";
     }
     if (r.includes('moderate')) {
-      return "px-2 py-0.5 rounded font-caption-caps text-caption-caps uppercase tracking-wide bg-surface-container-high text-on-surface-variant font-semibold";
+      return "bg-[#d97706]/10 text-[#d97706] font-medium text-[11px] px-2.5 py-0.5 rounded-[980px] inline-flex items-center gap-1";
     }
-    return "px-2 py-0.5 rounded font-caption-caps text-caption-caps uppercase tracking-wide bg-primary-fixed text-on-primary-fixed-variant font-semibold";
+    return "bg-[#059669]/10 text-[#059669] font-medium text-[11px] px-2.5 py-0.5 rounded-[980px] inline-flex items-center gap-1";
   };
 
+  const meanLst = (records.reduce((acc, r) => acc + (r.lstTemp || 35.8), 0) / (records.length || 1)).toFixed(1);
+
   return (
-    <div className="flex flex-col w-full pb-space-xl">
+    <div className="flex flex-col w-full pb-20 bg-[#fafafc]">
       
       {/* Top Academic Context Ribbon */}
-      <div className="w-full bg-surface-container-low py-space-sm px-margin border-b border-outline-variant/30">
-        <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row md:items-center justify-between gap-space-xs">
-          <div className="flex items-center gap-space-sm flex-wrap">
-            <span className="font-label-code text-label-code text-on-surface-variant uppercase tracking-wider">
-              CORPUS: SYNTH-SOLAPUR-150K
-            </span>
-            <span className="w-1 h-1 rounded-full bg-outline-variant"></span>
-            <span className="font-label-code text-label-code text-secondary font-medium">
-              INDEXED HIERARCHY v2.4
-            </span>
-            <span className="w-1 h-1 rounded-full bg-outline-variant"></span>
-            <span className="font-label-code text-label-code text-on-surface-variant">
-              SEED: 0x9AF41B8
-            </span>
+      <div className="w-full bg-[#f5f5f7]/80 backdrop-blur-md py-2.5 px-6 border-b border-black/[0.04]">
+        <div className="max-w-[1340px] mx-auto flex flex-col md:flex-row md:items-center justify-between gap-2 text-[12px] text-[#86868b]">
+          <div className="flex items-center gap-2.5 flex-wrap">
+            <span className="font-mono text-[#1d1d1f] font-medium tracking-wide">CORPUS: SYNTH-SOLAPUR-150K</span>
+            <span className="w-1 h-1 rounded-full bg-black/20"></span>
+            <span className="text-[#0071e3] font-medium">INDEXED HIERARCHY v2.4</span>
+            <span className="w-1 h-1 rounded-full bg-black/20"></span>
+            <span className="font-mono">SEED: 0x9AF41B8</span>
           </div>
-          <div className="flex items-center gap-space-md">
-            <span className="font-caption-caps text-caption-caps text-on-surface-variant uppercase">
-              SYNCHRONIZATION: COMPLIANT WITH ERA5-LAND INTERPOLATION
-            </span>
+          <div className="flex items-center gap-2 text-[11px] tracking-wider uppercase">
+            <span>ERA5-LAND COMPLIANT REANALYSIS</span>
           </div>
         </div>
       </div>
 
-      {/* Header & Executive Stats Strip */}
-      <section className="w-full bg-surface px-margin pt-space-lg pb-space-md">
-        <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row lg:items-end justify-between gap-space-lg">
-          <div className="space-y-space-xs max-w-2xl">
-            <div className="flex items-center gap-space-xs">
-              <span className="font-caption-caps text-caption-caps uppercase text-secondary font-semibold tracking-wider">Repository Ledger</span>
-              <span className="text-outline-variant">/</span>
-              <span className="font-label-code text-label-code text-on-surface-variant">TEL-150K-QUERY</span>
+      {/* Header & Executive Metrics */}
+      <section className="w-full px-6 pt-10 pb-8">
+        <div className="max-w-[1340px] mx-auto flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+          <div className="space-y-2 max-w-2xl">
+            <div className="flex items-center gap-2 text-[12px] text-[#86868b] font-medium uppercase tracking-wider">
+              <span className="text-[#0071e3]">Repository Ledger</span>
+              <span>/</span>
+              <span className="font-mono">TEL-150K-QUERY</span>
             </div>
-            <h1 className="font-headline-xl text-headline-xl text-primary font-semibold tracking-tight">Data Explorer</h1>
-            <p className="font-body-lg text-body-lg text-on-surface-variant">
-              Search, filter, inspect, and export the 150,000 environmental simulation records behind HeatShield.
+            <h1 className="text-[36px] md:text-[44px] font-semibold tracking-[-0.025em] text-[#1d1d1f]">
+              Data Explorer
+            </h1>
+            <p className="text-[16px] text-[#86868b] leading-relaxed">
+              Query, filter, inspect, and export microclimate observations across Solapur's 150,000 environmental simulation records.
             </p>
           </div>
 
-          {/* Quick Metrics Strip */}
-          <div className="flex flex-wrap items-center gap-space-sm">
-            <div className="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex flex-col min-w-[140px] border border-outline-variant/30">
-              <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Filtered Subset</span>
-              <span className="font-label-metric text-label-metric text-primary font-bold text-base mt-0.5" id="filtered-counter">
+          {/* Quick Metrics Cards */}
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="bg-white p-4 rounded-[20px] shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-black/[0.06] flex flex-col min-w-[150px]">
+              <span className="text-[11px] font-medium text-[#86868b] uppercase tracking-wider">Filtered Records</span>
+              <span className="text-[24px] font-semibold text-[#1d1d1f] tracking-tight tabular-nums mt-0.5">
                 {totalCount.toLocaleString()}
               </span>
-              <span className="font-label-code text-[10px] text-secondary">
-                {((totalCount / 150000) * 100).toFixed(2)}% of 150k corpus
+              <span className="text-[11px] text-[#0071e3] font-mono mt-0.5">
+                {((totalCount / 150000) * 100).toFixed(2)}% of corpus
               </span>
             </div>
-            <div className="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex flex-col min-w-[140px] border border-outline-variant/30">
-              <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Data Repository</span>
-              <span className="font-label-metric text-label-metric text-tertiary font-bold text-xs mt-1 flex items-center gap-1">
-                <span className={`w-2 h-2 rounded-full ${isLiveDb ? 'bg-secondary' : 'bg-primary'}`}></span>
-                {isLiveDb ? 'Supabase Live' : 'Verified Baseline'}
-              </span>
-              <span className="font-label-code text-[10px] text-on-surface-variant">
+
+            <div className="bg-white p-4 rounded-[20px] shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-black/[0.06] flex flex-col min-w-[150px]">
+              <span className="text-[11px] font-medium text-[#86868b] uppercase tracking-wider">Repository Source</span>
+              <div className="flex items-center gap-1.5 mt-2">
+                <span className={`w-2 h-2 rounded-full ${isLiveDb ? 'bg-[#059669]' : 'bg-[#0071e3]'}`}></span>
+                <span className="text-[14px] font-medium text-[#1d1d1f]">
+                  {isLiveDb ? 'Supabase Live' : 'Verified Baseline'}
+                </span>
+              </div>
+              <span className="text-[11px] text-[#86868b] font-mono mt-1">
                 {isLiveDb ? 'heatshield_master' : '100 Station Grid'}
               </span>
             </div>
-            <div className="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex flex-col min-w-[140px] border border-outline-variant/30">
-              <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Mean LST (Filtered)</span>
-              <span className="font-label-metric text-label-metric text-tertiary-container font-bold text-base mt-0.5">
-                {(records.reduce((acc, r) => acc + (r.lstTemp || 35.8), 0) / (records.length || 1)).toFixed(1)}°C
+
+            <div className="bg-white p-4 rounded-[20px] shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-black/[0.06] flex flex-col min-w-[150px]">
+              <span className="text-[11px] font-medium text-[#86868b] uppercase tracking-wider">Mean Surface LST</span>
+              <span className="text-[24px] font-semibold text-[#1d1d1f] tracking-tight tabular-nums mt-0.5">
+                {meanLst}°C
               </span>
-              <span className="font-label-code text-[10px] text-on-surface-variant">Solapur Microclimate</span>
+              <span className="text-[11px] text-[#86868b] mt-0.5">Solapur Microclimate</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Interactive Controls & Search Surface */}
-      <section className="w-full bg-surface px-margin pb-space-lg">
-        <div className="max-w-[1400px] mx-auto bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-outline-variant/30">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-md items-end">
+      {/* Interactive Controls & Filters */}
+      <section className="w-full px-6 pb-8">
+        <div className="max-w-[1340px] mx-auto bg-white rounded-[28px] p-6 shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-black/[0.06]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 items-end">
             
-            {/* Search Keyword Input */}
-            <div className="lg:col-span-4 space-y-1">
-              <label className="font-caption-caps text-caption-caps uppercase text-on-surface-variant flex items-center justify-between">
+            {/* Search Keyword */}
+            <div className="lg:col-span-4 space-y-1.5">
+              <label className="text-[12px] font-medium text-[#86868b] uppercase tracking-wider flex items-center justify-between">
                 <span>Query Parameter</span>
-                <span className="font-label-code text-on-surface-variant">STN / WARD / COORD</span>
+                <span className="font-mono text-[10px]">STN / WARD / COORD</span>
               </label>
               <div className="relative flex items-center">
-                <span className="material-symbols-outlined absolute left-3 text-on-surface-variant text-[18px]">search</span>
+                <span className="material-symbols-outlined absolute left-3.5 text-[#86868b] text-[18px]">search</span>
                 <input 
                   type="text"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Search by station ID, ward name, or coordinate..."
-                  className="w-full pl-9 pr-3 py-2 bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-container" 
+                  placeholder="Search station ID, ward name, coordinates..."
+                  className="w-full pl-10 pr-4 py-2.5 bg-[#f5f5f7] hover:bg-[#e8e8ed]/60 text-[#1d1d1f] text-[13px] rounded-[980px] border border-transparent focus:border-black/20 focus:bg-white focus:outline-none transition-all placeholder:text-[#86868b]" 
                   id="search-input"
                 />
               </div>
             </div>
 
-            {/* Zone Multi-Filter */}
-            <div className="lg:col-span-2 space-y-1">
-              <label className="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Urban Zone</label>
+            {/* Zone Filter */}
+            <div className="lg:col-span-2 space-y-1.5">
+              <label className="text-[12px] font-medium text-[#86868b] uppercase tracking-wider">Urban Zone</label>
               <div className="relative">
                 <select 
                   value={selectedZone}
                   onChange={(e) => setSelectedZone(e.target.value)}
-                  className="w-full py-2 pl-3 pr-8 bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-container appearance-none cursor-pointer"
+                  className="w-full py-2.5 pl-4 pr-9 bg-[#f5f5f7] hover:bg-[#e8e8ed]/60 text-[#1d1d1f] text-[13px] rounded-[980px] border border-transparent focus:border-black/20 focus:bg-white focus:outline-none appearance-none cursor-pointer transition-all"
                 >
-                  <option value="All">All Zones (9 categories)</option>
+                  <option value="All">All Zones (9)</option>
                   <option value="Commercial">Commercial Dense</option>
                   <option value="Industrial">Industrial Core</option>
                   <option value="Residential">Residential Moderate</option>
@@ -293,50 +296,50 @@ export default function ExploreData() {
                   <option value="Transit">Transit Corridor</option>
                   <option value="Riparian">Riparian / Lake Buffer</option>
                 </select>
-                <span className="material-symbols-outlined absolute right-2.5 top-2.5 pointer-events-none text-on-surface-variant text-[18px]">expand_more</span>
+                <span className="material-symbols-outlined absolute right-3 top-3 pointer-events-none text-[#86868b] text-[18px]">expand_more</span>
               </div>
             </div>
 
             {/* Heat Risk Filter */}
-            <div className="lg:col-span-2 space-y-1">
-              <label className="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Heat-Risk Tier</label>
+            <div className="lg:col-span-2 space-y-1.5">
+              <label className="text-[12px] font-medium text-[#86868b] uppercase tracking-wider">Risk Tier</label>
               <div className="relative">
                 <select 
                   value={selectedRisk}
                   onChange={(e) => setSelectedRisk(e.target.value)}
-                  className="w-full py-2 pl-3 pr-8 bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-container appearance-none cursor-pointer"
+                  className="w-full py-2.5 pl-4 pr-9 bg-[#f5f5f7] hover:bg-[#e8e8ed]/60 text-[#1d1d1f] text-[13px] rounded-[980px] border border-transparent focus:border-black/20 focus:bg-white focus:outline-none appearance-none cursor-pointer transition-all"
                 >
-                  <option value="All">All Risk Tiers (All)</option>
+                  <option value="All">All Tiers</option>
                   <option value="Mitigated">Mitigated (&lt; 34°C)</option>
                   <option value="Moderate">Moderate (34–38°C)</option>
                   <option value="High">High (39–43°C)</option>
                   <option value="Extreme">Extreme (&gt; 43°C)</option>
                 </select>
-                <span className="material-symbols-outlined absolute right-2.5 top-2.5 pointer-events-none text-on-surface-variant text-[18px]">expand_more</span>
+                <span className="material-symbols-outlined absolute right-3 top-3 pointer-events-none text-[#86868b] text-[18px]">expand_more</span>
               </div>
             </div>
 
-            {/* Date Range Slider / Date Selector */}
-            <div className="lg:col-span-2 space-y-1">
-              <label className="font-caption-caps text-caption-caps uppercase text-on-surface-variant flex items-center justify-between">
-                <span>Temporal Envelope</span>
-                <span className="font-label-code text-secondary font-medium">SIM-EPOCH</span>
+            {/* Temporal Envelope Display */}
+            <div className="lg:col-span-2 space-y-1.5">
+              <label className="text-[12px] font-medium text-[#86868b] uppercase tracking-wider flex items-center justify-between">
+                <span>Temporal Window</span>
+                <span className="font-mono text-[10px] text-[#0071e3]">EPOCH</span>
               </label>
-              <div className="flex items-center gap-1.5 py-1.5 px-2 bg-surface-container-low rounded-lg text-on-surface font-label-code text-label-code">
-                <span className="material-symbols-outlined text-[16px] text-on-surface-variant">calendar_today</span>
-                <span>2021-01-01</span>
-                <span className="text-outline-variant">→</span>
-                <span>2025-05-31</span>
+              <div className="flex items-center gap-1.5 py-2.5 px-3 bg-[#f5f5f7] rounded-[980px] text-[#1d1d1f] font-mono text-[11px] justify-center">
+                <span className="material-symbols-outlined text-[15px] text-[#86868b]">calendar_today</span>
+                <span>2021-01</span>
+                <span className="text-[#86868b]">→</span>
+                <span>2025-05</span>
               </div>
             </div>
 
-            {/* Export and Save Analysis Action CTAs */}
-            <div className="lg:col-span-2 flex flex-col sm:flex-row lg:flex-col gap-1.5 justify-end">
+            {/* Action CTAs */}
+            <div className="lg:col-span-2 flex flex-col sm:flex-row lg:flex-col gap-2 justify-end">
               <button 
                 type="button"
                 onClick={handleExportCSV}
                 disabled={isExporting}
-                className="w-full inline-flex items-center justify-center gap-space-xs py-2 px-space-sm rounded-lg bg-primary-container text-on-primary font-body-sm text-xs hover:bg-primary transition-all duration-150 shadow-sm disabled:opacity-70 font-semibold"
+                className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-[980px] bg-[#0071e3] hover:bg-[#0077ed] text-white text-[13px] font-medium shadow-[0_2px_8px_rgba(0,113,227,0.25)] transition-all disabled:opacity-70"
               >
                 <span className={`material-symbols-outlined text-[16px] ${isExporting ? 'animate-spin' : ''}`}>
                   {isExporting ? 'refresh' : 'download'}
@@ -350,29 +353,29 @@ export default function ExploreData() {
                 type="button"
                 onClick={handleSaveAnalysis}
                 disabled={isSavingAnalysis}
-                className="w-full inline-flex items-center justify-center gap-1 py-1.5 px-space-sm rounded-lg bg-surface-container hover:bg-surface-container-highest text-secondary font-body-sm text-xs transition-colors border border-outline-variant/30 font-medium"
+                className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-[980px] bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#1d1d1f] text-[12px] font-medium border border-black/[0.04] transition-all"
                 title="Bookmark current query to your Supabase profile"
               >
-                <span className="material-symbols-outlined text-[15px]">bookmark_add</span>
+                <span className="material-symbols-outlined text-[15px] text-[#0071e3]">bookmark_add</span>
                 <span className="whitespace-nowrap">{isSavingAnalysis ? 'Saving...' : 'Save Query'}</span>
               </button>
             </div>
           </div>
 
           {saveStatus && (
-            <div className="mt-2 p-2 rounded-lg bg-secondary-container text-on-secondary-container font-body-sm text-xs flex items-center gap-2">
-              <span className="material-symbols-outlined text-[16px]">check_circle</span>
-              <span>{saveStatus}</span>
+            <div className="mt-3 p-3 rounded-[16px] bg-[#059669]/10 text-[#059669] text-[13px] flex items-center gap-2">
+              <span className="material-symbols-outlined text-[18px]">check_circle</span>
+              <span className="font-medium">{saveStatus}</span>
             </div>
           )}
 
-          {/* Advanced Metric Range & Tag Sliders Row */}
-          <div className="mt-space-md pt-space-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md bg-surface-container-low/60 p-space-sm rounded-lg">
-            <div className="flex flex-wrap items-center gap-space-md">
-              <div className="flex items-center gap-space-sm">
-                <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Thermal Envelope:</span>
+          {/* Thermal Range Slider */}
+          <div className="mt-4 pt-3 flex flex-col md:flex-row md:items-center justify-between gap-3 border-t border-black/[0.04] text-[12px]">
+            <div className="flex flex-wrap items-center gap-4">
+              <div className="flex items-center gap-2">
+                <span className="font-medium text-[#86868b] uppercase tracking-wider text-[11px]">Thermal Envelope:</span>
                 <div className="flex items-center gap-2">
-                  <span className="font-label-code text-label-code text-on-surface bg-surface-container px-2 py-0.5 rounded">
+                  <span className="font-mono text-[#1d1d1f] bg-[#f5f5f7] px-2 py-0.5 rounded-[6px]">
                     {minTemp.toFixed(1)}°C
                   </span>
                   <input 
@@ -382,100 +385,92 @@ export default function ExploreData() {
                     step="0.5"
                     value={maxTemp}
                     onChange={(e) => setMaxTemp(parseFloat(e.target.value))}
-                    className="w-28 sm:w-36 h-1.5 accent-primary cursor-pointer"
+                    className="w-32 h-1.5 accent-[#0071e3] cursor-pointer"
                   />
-                  <span className="font-label-code text-label-code text-on-surface bg-surface-container px-2 py-0.5 rounded">
+                  <span className="font-mono text-[#1d1d1f] bg-[#f5f5f7] px-2 py-0.5 rounded-[6px]">
                     {maxTemp.toFixed(1)}°C
                   </span>
                 </div>
               </div>
-              <div className="hidden sm:flex items-center gap-space-xs">
-                <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Preserve Bounds:</span>
-                <span className="px-2 py-0.5 rounded bg-surface text-secondary font-label-code text-label-code">
-                  Diurnal Peak (12:00-16:00 IST)
+              <div className="hidden sm:flex items-center gap-1.5 text-[#86868b]">
+                <span>Bounds:</span>
+                <span className="px-2 py-0.5 rounded-[6px] bg-[#f5f5f7] text-[#1d1d1f] font-mono text-[11px]">
+                  Diurnal Peak (12:00–16:00 IST)
                 </span>
               </div>
             </div>
-            <div className="flex items-center gap-space-sm">
+
+            <div className="flex items-center gap-3">
               <button 
                 type="button"
                 onClick={handleResetFilters}
-                className="font-caption-caps text-caption-caps uppercase text-on-surface-variant hover:text-on-surface transition-colors flex items-center gap-1"
+                className="text-[#86868b] hover:text-[#1d1d1f] transition-colors flex items-center gap-1 text-[12px] font-medium"
               >
-                <span className="material-symbols-outlined text-[14px]">restart_alt</span>
-                <span>Reset Constraints</span>
+                <span className="material-symbols-outlined text-[15px]">restart_alt</span>
+                <span>Reset Filters</span>
               </button>
-              <span className="text-outline-variant">|</span>
-              <div className="flex items-center gap-1 text-on-surface-variant font-label-code text-label-code">
-                <span className="w-2 h-2 rounded-full bg-secondary"></span>
-                <span>Live Index Cache (12ms)</span>
+              <span className="text-black/10">|</span>
+              <div className="flex items-center gap-1.5 text-[#86868b] font-mono text-[11px]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#059669]"></span>
+                <span>Index Cache (12ms)</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Main Workspace: Data Ledger + Active Detail Drawer Preview */}
-      <section className="w-full px-margin pb-space-xl">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+      {/* Main Workspace: Table + Right Inspector */}
+      <section className="w-full px-6 pb-12">
+        <div className="max-w-[1340px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Primary Data Ledger (8 Columns on desktop) */}
-          <div className="lg:col-span-8 flex flex-col space-y-space-md">
-            
-            {/* Table Frame Card */}
-            <div className="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden border border-outline-variant/30">
+          {/* Table Container (8 Cols) */}
+          <div className="lg:col-span-8 flex flex-col space-y-6">
+            <div className="bg-white rounded-[28px] shadow-[0_2px_12px_rgba(0,0,0,0.04)] overflow-hidden border border-black/[0.06]">
               
               {/* Table Toolbar Header */}
-              <div className="p-space-md flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm bg-surface-container-lowest border-b border-outline-variant/20">
-                <div className="flex items-center gap-space-sm">
-                  <span className="font-headline-md text-headline-md text-on-surface font-semibold">Spatial Telemetry Stream</span>
-                  <span className="font-label-code text-label-code bg-surface-container px-2 py-0.5 rounded text-on-surface-variant">BATCH #091-B</span>
+              <div className="px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-black/[0.04]">
+                <div className="flex items-center gap-2.5">
+                  <span className="text-[16px] font-semibold text-[#1d1d1f]">Spatial Telemetry Stream</span>
+                  <span className="font-mono text-[11px] bg-[#f5f5f7] px-2 py-0.5 rounded-[6px] text-[#86868b]">BATCH #091-B</span>
                 </div>
-                <div className="flex items-center gap-space-xs">
-                  <button className="px-2.5 py-1 text-on-surface-variant hover:text-on-surface bg-surface-container-low hover:bg-surface-container rounded font-label-code text-label-code flex items-center gap-1 transition-colors">
-                    <span className="material-symbols-outlined text-[15px]">filter_list</span>
-                    <span>Column Projection</span>
-                  </button>
-                  <button className="px-2.5 py-1 text-on-surface-variant hover:text-on-surface bg-surface-container-low hover:bg-surface-container rounded font-label-code text-label-code flex items-center gap-1 transition-colors">
-                    <span className="material-symbols-outlined text-[15px]">view_column</span>
-                    <span>Density: Compact</span>
-                  </button>
+                <div className="flex items-center gap-2">
+                  <span className="text-[12px] text-[#86868b]">Showing {totalCount.toLocaleString()} observations</span>
                 </div>
               </div>
 
-              {/* High-Density Scientific Data Table */}
+              {/* High-Precision Scientific Data Table */}
               <div className="w-full overflow-x-auto">
-                <table className="w-full text-left font-body-md text-body-md border-collapse min-w-[760px]">
+                <table className="w-full text-left text-[13px] border-collapse min-w-[760px]">
                   <thead>
-                    <tr className="bg-surface-container-low text-on-surface-variant font-caption-caps text-caption-caps uppercase tracking-wider select-none">
-                      <th className="py-3 px-3 font-semibold">Station ID</th>
-                      <th className="py-3 px-3 font-semibold">Location / Ward</th>
-                      <th className="py-3 px-3 font-semibold">Zone Classification</th>
-                      <th className="py-3 px-3 font-semibold text-right">Air Temp</th>
-                      <th className="py-3 px-3 font-semibold text-right">Surface (LST)</th>
-                      <th className="py-3 px-3 font-semibold text-right">RH (%)</th>
-                      <th className="py-3 px-3 font-semibold text-center">Risk Tier</th>
-                      <th className="py-3 px-3 font-semibold">Sim Timestamp</th>
-                      <th className="py-3 px-3 font-semibold text-right">Action</th>
+                    <tr className="bg-[#fafafc] border-b border-black/[0.04] text-[11px] font-semibold text-[#86868b] tracking-wider uppercase select-none">
+                      <th className="py-3 px-4">Station ID</th>
+                      <th className="py-3 px-4">Location / Ward</th>
+                      <th className="py-3 px-4">Zone</th>
+                      <th className="py-3 px-4 text-right">Air Temp</th>
+                      <th className="py-3 px-4 text-right">LST</th>
+                      <th className="py-3 px-4 text-right">RH</th>
+                      <th className="py-3 px-4 text-center">Risk Tier</th>
+                      <th className="py-3 px-4">Sim Timestamp</th>
+                      <th className="py-3 px-4 text-right">Action</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-surface-container-low">
+                  <tbody className="divide-y divide-black/[0.03]">
                     {loading ? (
                       <tr>
-                        <td colSpan="9" className="py-12 text-center text-on-surface-variant font-body-md">
-                          <div className="flex flex-col items-center justify-center gap-2">
-                            <span className="material-symbols-outlined text-[28px] animate-spin text-primary">progress_activity</span>
-                            <span>Querying master microclimate telemetry records...</span>
+                        <td colSpan="9" className="py-16 text-center text-[#86868b]">
+                          <div className="flex flex-col items-center justify-center gap-3">
+                            <div className="w-7 h-7 border-2 border-black/10 border-t-[#0071e3] rounded-full animate-spin"></div>
+                            <span className="text-[13px]">Querying master microclimate telemetry records...</span>
                           </div>
                         </td>
                       </tr>
                     ) : records.length === 0 ? (
                       <tr>
-                        <td colSpan="9" className="py-12 text-center text-on-surface-variant font-body-md">
+                        <td colSpan="9" className="py-16 text-center text-[#86868b]">
                           <div className="flex flex-col items-center justify-center gap-2">
-                            <span className="material-symbols-outlined text-[32px] text-outline-variant">search_off</span>
-                            <span>No observations match the current filter criteria.</span>
-                            <button onClick={handleResetFilters} className="text-primary hover:underline font-semibold text-xs mt-1">
+                            <span className="material-symbols-outlined text-[32px] text-black/20">search_off</span>
+                            <span className="text-[14px]">No observations match the current filter criteria.</span>
+                            <button onClick={handleResetFilters} className="text-[#0071e3] hover:underline font-medium text-[13px] mt-1">
                               Reset Constraints
                             </button>
                           </div>
@@ -488,52 +483,49 @@ export default function ExploreData() {
                           <tr 
                             key={r.id}
                             onClick={() => setSelectedRecord(r)}
-                            className={`cursor-pointer transition-colors ${
+                            className={`h-[52px] transition-colors cursor-pointer ${
                               isSelected 
-                                ? 'bg-primary-fixed/20 hover:bg-primary-fixed/30' 
-                                : 'hover:bg-surface-container-low/70'
+                                ? 'bg-[#0071e3]/[0.05] border-l-2 border-l-[#0071e3]' 
+                                : 'hover:bg-black/[0.015]'
                             }`}
                           >
-                            <td className="py-2.5 px-3 whitespace-nowrap">
-                              <span className="font-label-code text-label-code bg-surface-container text-primary px-2 py-0.5 rounded font-semibold inline-flex items-center gap-1">
-                                <span className={`w-1.5 h-1.5 rounded-full ${r.risk === 'Extreme' ? 'bg-error' : r.risk === 'High' ? 'bg-on-tertiary-container' : 'bg-secondary'}`}></span>
+                            <td className="py-2.5 px-4 whitespace-nowrap">
+                              <span className="font-mono text-[12px] bg-[#f5f5f7] text-[#1d1d1f] px-2 py-0.5 rounded-[6px] font-medium inline-flex items-center gap-1.5">
+                                <span className={`w-1.5 h-1.5 rounded-full ${r.risk === 'Extreme' ? 'bg-[#dc2626]' : r.risk === 'High' ? 'bg-[#ea580c]' : 'bg-[#059669]'}`}></span>
                                 {r.id}
                               </span>
                             </td>
-                            <td className="py-2.5 px-3 whitespace-nowrap font-medium text-on-surface">
-                              {r.ward}
-                              <span className="block font-caption-caps text-caption-caps text-on-surface-variant">{r.wardSub}</span>
+                            <td className="py-2.5 px-4 whitespace-nowrap">
+                              <span className="font-medium text-[#1d1d1f] block">{r.ward}</span>
+                              <span className="text-[11px] text-[#86868b]">{r.wardSub}</span>
                             </td>
-                            <td className="py-2.5 px-3 whitespace-nowrap">
-                              <span className="font-caption-caps text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">
+                            <td className="py-2.5 px-4 whitespace-nowrap">
+                              <span className="text-[12px] px-2 py-0.5 rounded-[6px] bg-[#f5f5f7] text-[#86868b] font-medium">
                                 {r.zone}
                               </span>
                             </td>
-                            <td className="py-2.5 px-3 text-right whitespace-nowrap">
-                              <div className="inline-flex items-center justify-end gap-1.5">
-                                <span className={`w-2 h-2 rounded-full ${r.airTemp >= 42 ? 'bg-error' : r.airTemp >= 38 ? 'bg-on-tertiary-container' : 'bg-secondary'}`}></span>
-                                <span className="font-label-metric text-label-metric font-semibold text-tertiary">{Number(r.airTemp).toFixed(1)}°C</span>
-                              </div>
+                            <td className="py-2.5 px-4 text-right whitespace-nowrap">
+                              <span className="font-medium text-[#1d1d1f] tabular-nums">{Number(r.airTemp).toFixed(1)}°C</span>
                             </td>
-                            <td className="py-2.5 px-3 text-right whitespace-nowrap font-label-metric text-label-metric font-bold text-tertiary-container">
-                              {Number(r.lstTemp).toFixed(1)}°C
+                            <td className="py-2.5 px-4 text-right whitespace-nowrap">
+                              <span className="font-semibold text-[#dc2626] tabular-nums">{Number(r.lstTemp).toFixed(1)}°C</span>
                             </td>
-                            <td className="py-2.5 px-3 text-right whitespace-nowrap font-label-metric text-label-metric text-on-surface-variant">
+                            <td className="py-2.5 px-4 text-right whitespace-nowrap text-[#86868b] tabular-nums">
                               {r.rh}%
                             </td>
-                            <td className="py-2.5 px-3 text-center whitespace-nowrap">
+                            <td className="py-2.5 px-4 text-center whitespace-nowrap">
                               <span className={getRiskTagClass(r.risk)}>
                                 {r.risk}
                               </span>
                             </td>
-                            <td className="py-2.5 px-3 whitespace-nowrap font-label-code text-label-code text-on-surface-variant">
+                            <td className="py-2.5 px-4 whitespace-nowrap font-mono text-[11px] text-[#86868b]">
                               {r.timestamp}
                             </td>
-                            <td className="py-2.5 px-3 text-right whitespace-nowrap">
+                            <td className="py-2.5 px-4 text-right whitespace-nowrap">
                               <button 
                                 onClick={(e) => { e.stopPropagation(); setSelectedRecord(r); }}
-                                className={`px-2 py-1 font-caption-caps text-caption-caps uppercase rounded transition-colors inline-flex items-center gap-0.5 ${
-                                  isSelected ? 'bg-primary text-on-primary' : 'bg-surface-container text-on-surface hover:bg-surface-variant'
+                                className={`px-2.5 py-1 text-[12px] font-medium rounded-[980px] transition-colors inline-flex items-center gap-0.5 ${
+                                  isSelected ? 'bg-[#0071e3] text-white' : 'bg-[#f5f5f7] text-[#1d1d1f] hover:bg-[#e8e8ed]'
                                 }`}
                               >
                                 <span>Inspect</span>
@@ -548,29 +540,29 @@ export default function ExploreData() {
                 </table>
               </div>
 
-              {/* Bottom Table Pagination Bar */}
-              <div className="p-space-md bg-surface-container-lowest flex flex-col sm:flex-row sm:items-center justify-between gap-space-md border-t border-outline-variant/20">
-                <span className="font-body-sm text-body-sm text-on-surface-variant">
-                  Showing <span className="font-semibold text-on-surface">{totalCount === 0 ? 0 : (page - 1) * pageSize + 1}–{Math.min(page * pageSize, totalCount)}</span> of <span className="font-semibold text-on-surface">{totalCount.toLocaleString()}</span> matching records ({isLiveDb ? 'Supabase heatshield_master' : '150,000 corpus repository'})
+              {/* Bottom Pagination Bar */}
+              <div className="px-6 py-4 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-black/[0.04] text-[13px]">
+                <span className="text-[#86868b]">
+                  Showing <span className="font-medium text-[#1d1d1f]">{totalCount === 0 ? 0 : (page - 1) * pageSize + 1}–{Math.min(page * pageSize, totalCount)}</span> of <span className="font-medium text-[#1d1d1f]">{totalCount.toLocaleString()}</span> records
                 </span>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1.5">
                   <button 
                     onClick={() => setPage(p => Math.max(1, p - 1))}
                     disabled={page <= 1 || loading}
-                    className="p-1 rounded bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container disabled:opacity-40 transition-colors"
+                    className="w-8 h-8 rounded-[980px] bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#1d1d1f] disabled:opacity-30 transition-colors flex items-center justify-center"
                     title="Previous page"
                   >
                     <span className="material-symbols-outlined text-[18px]">chevron_left</span>
                   </button>
                   
-                  <span className="px-3 py-1 rounded bg-surface-container font-label-code text-label-code text-on-surface font-semibold">
-                    Page {page} of {Math.max(1, totalPages)}
+                  <span className="px-3 py-1 rounded-[980px] bg-[#f5f5f7] font-mono text-[12px] text-[#1d1d1f] font-medium">
+                    {page} / {Math.max(1, totalPages)}
                   </span>
 
                   <button 
                     onClick={() => setPage(p => Math.min(totalPages, p + 1))}
                     disabled={page >= totalPages || loading}
-                    className="p-1 rounded bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container disabled:opacity-40 transition-colors"
+                    className="w-8 h-8 rounded-[980px] bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#1d1d1f] disabled:opacity-30 transition-colors flex items-center justify-center"
                     title="Next page"
                   >
                     <span className="material-symbols-outlined text-[18px]">chevron_right</span>
@@ -579,49 +571,48 @@ export default function ExploreData() {
               </div>
             </div>
 
-            {/* Analytical Sparkline / Micro Distribution Card */}
-            <div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md border border-outline-variant/30">
+            {/* Distribution Card */}
+            <div className="bg-white p-6 rounded-[28px] shadow-[0_2px_12px_rgba(0,0,0,0.04)] flex flex-col md:flex-row md:items-center justify-between gap-4 border border-black/[0.06]">
               <div className="space-y-1">
-                <div className="flex items-center gap-space-xs">
-                  <span className="font-caption-caps text-caption-caps uppercase text-secondary font-semibold">Distribution Analysis</span>
-                  <span className="text-outline-variant">•</span>
-                  <span className="font-label-code text-label-code text-on-surface-variant">Solapur Urban Heat Islands (UHI)</span>
+                <div className="flex items-center gap-2 text-[12px] font-medium text-[#86868b] uppercase tracking-wider">
+                  <span className="text-[#0071e3]">Distribution Analysis</span>
+                  <span>•</span>
+                  <span className="font-mono">Solapur UHI</span>
                 </div>
-                <p className="font-body-sm text-body-sm text-on-surface-variant">
+                <p className="text-[13px] text-[#86868b] leading-relaxed">
                   Thermal clustering peaks at 14:30 IST along high albedo asphalt corridors with building height-to-street aspect ratios &lt; 0.6.
                 </p>
               </div>
               
-              {/* Micro Sparkline SVG */}
-              <div className="flex items-center gap-space-md shrink-0">
+              <div className="flex items-center gap-4 shrink-0">
                 <div className="flex flex-col items-end">
-                  <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Peak Gradient</span>
-                  <span className="font-label-metric text-label-metric text-tertiary-container font-semibold">+8.4°C vs Rural</span>
+                  <span className="text-[11px] font-medium text-[#86868b] uppercase tracking-wider">Peak Gradient</span>
+                  <span className="text-[14px] font-semibold text-[#dc2626] tabular-nums">+8.4°C vs Rural</span>
                 </div>
-                <svg className="w-32 h-10 text-primary-container" fill="none" viewBox="0 0 120 40">
+                <svg className="w-28 h-9 text-[#0071e3]" fill="none" viewBox="0 0 120 40">
                   <path d="M0 35 C20 33, 30 28, 45 22 C60 16, 75 4, 90 6 C105 8, 115 18, 120 20" stroke="currentColor" strokeLinecap="round" strokeWidth="2"></path>
                   <path d="M0 35 C20 33, 30 28, 45 22 C60 16, 75 4, 90 6 C105 8, 115 18, 120 20 L120 40 L0 40 Z" fill="currentColor" fillOpacity="0.08"></path>
-                  <circle className="fill-error" cx="90" cy="6" r="3"></circle>
+                  <circle className="fill-[#dc2626]" cx="90" cy="6" r="3"></circle>
                 </svg>
               </div>
             </div>
           </div>
 
-          {/* Detail Inspection Drawer (Active Preview State: 4 Columns) */}
-          <aside className="lg:col-span-4 flex flex-col space-y-space-md sticky top-[92px]">
-            <div className="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-md border border-outline-variant/30">
+          {/* Right Inspection Drawer (4 Cols) */}
+          <aside className="lg:col-span-4 flex flex-col space-y-6 sticky top-[72px]">
+            <div className="bg-white rounded-[28px] p-6 shadow-[0_2px_12px_rgba(0,0,0,0.04)] space-y-5 border border-black/[0.06]">
               
               {/* Drawer Header */}
-              <div className="flex items-start justify-between gap-space-sm pb-space-sm border-b border-outline-variant/20">
+              <div className="flex items-start justify-between gap-3 pb-4 border-b border-black/[0.04]">
                 <div>
-                  <div className="flex items-center gap-space-xs">
-                    <span className="font-caption-caps text-caption-caps uppercase text-secondary font-semibold">Active Inspector</span>
-                    <span className={`w-1.5 h-1.5 rounded-full ${activeRecord.risk === 'Extreme' ? 'bg-error' : 'bg-secondary'}`}></span>
+                  <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#0071e3] uppercase tracking-wider">
+                    <span>Active Inspector</span>
+                    <span className={`w-1.5 h-1.5 rounded-full ${activeRecord.risk === 'Extreme' ? 'bg-[#dc2626]' : 'bg-[#059669]'}`}></span>
                   </div>
-                  <h2 className="font-headline-md text-headline-md text-primary font-semibold mt-0.5" id="drawer-station-id">
+                  <h2 className="text-[24px] font-semibold text-[#1d1d1f] tracking-tight mt-1" id="drawer-station-id">
                     {activeRecord.id}
                   </h2>
-                  <p className="font-body-sm text-body-sm text-on-surface-variant" id="drawer-ward-name">
+                  <p className="text-[13px] text-[#86868b]" id="drawer-ward-name">
                     {activeRecord.ward} • {activeRecord.zone}
                   </p>
                 </div>
@@ -631,104 +622,102 @@ export default function ExploreData() {
               </div>
 
               {/* Spatial Mini-Map Tile */}
-              <div className="space-y-1">
-                <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant">Geo-Spatial Footprint</span>
-                <div className="w-full h-36 bg-surface-container-high rounded-lg shadow-sm relative overflow-hidden flex items-end p-space-sm">
-                  <div className="absolute inset-0 bg-primary/20 flex items-center justify-center">
-                    <span className="material-symbols-outlined text-primary text-[36px] opacity-70">location_city</span>
+              <div className="space-y-1.5">
+                <span className="text-[11px] font-semibold text-[#86868b] uppercase tracking-wider">Geo-Spatial Centroid</span>
+                <div className="w-full h-32 bg-[#f5f5f7] rounded-[20px] relative overflow-hidden flex items-end p-3 border border-black/[0.04]">
+                  <div className="absolute inset-0 bg-[#0071e3]/[0.03] flex items-center justify-center">
+                    <span className="material-symbols-outlined text-[#0071e3]/30 text-[40px]">location_city</span>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent flex items-end p-space-sm">
-                    <div className="flex items-center justify-between w-full">
-                      <span className="font-label-code text-[10px] text-surface font-medium">{activeRecord.coords}</span>
-                      <span className="font-caption-caps text-[9px] uppercase px-1.5 py-0.5 rounded bg-surface/90 text-primary font-semibold">Grid 0.25km²</span>
-                    </div>
+                  <div className="relative z-10 flex items-center justify-between w-full">
+                    <span className="font-mono text-[11px] text-[#1d1d1f] font-medium">{activeRecord.coords}</span>
+                    <span className="text-[10px] uppercase px-2 py-0.5 rounded-[980px] bg-white text-[#1d1d1f] font-semibold shadow-xs">0.25km² Grid</span>
                   </div>
                 </div>
               </div>
 
-              {/* Microclimate Telemetry Spec Ledger */}
-              <div className="space-y-space-xs">
-                <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant block">Radiative &amp; Flux Metrics</span>
-                <div className="grid grid-cols-2 gap-space-xs">
-                  <div className="bg-surface-container-low p-2 rounded">
-                    <span className="font-caption-caps text-caption-caps text-on-surface-variant uppercase block">Air Temp</span>
-                    <span className="font-label-metric text-label-metric font-bold text-tertiary" id="drawer-air-temp">
+              {/* Microclimate Telemetry Specs */}
+              <div className="space-y-2">
+                <span className="text-[11px] font-semibold text-[#86868b] uppercase tracking-wider block">Radiative & Flux Metrics</span>
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="bg-[#f5f5f7] p-3 rounded-[16px]">
+                    <span className="text-[11px] text-[#86868b] uppercase block">Air Temp</span>
+                    <span className="text-[18px] font-semibold text-[#1d1d1f] tabular-nums" id="drawer-air-temp">
                       {activeRecord.airTemp.toFixed(1)}°C
                     </span>
                   </div>
-                  <div className="bg-surface-container-low p-2 rounded">
-                    <span className="font-caption-caps text-caption-caps text-on-surface-variant uppercase block">Surface (LST)</span>
-                    <span className="font-label-metric text-label-metric font-bold text-tertiary-container" id="drawer-lst-temp">
+                  <div className="bg-[#f5f5f7] p-3 rounded-[16px]">
+                    <span className="text-[11px] text-[#86868b] uppercase block">Surface (LST)</span>
+                    <span className="text-[18px] font-semibold text-[#dc2626] tabular-nums" id="drawer-lst-temp">
                       {activeRecord.lstTemp.toFixed(1)}°C
                     </span>
                   </div>
-                  <div className="bg-surface-container-low p-2 rounded">
-                    <span className="font-caption-caps text-caption-caps text-on-surface-variant uppercase block">Solar Irradiance</span>
-                    <span className="font-label-metric text-label-metric font-medium text-on-surface">{activeRecord.solar}</span>
+                  <div className="bg-[#f5f5f7] p-3 rounded-[16px]">
+                    <span className="text-[11px] text-[#86868b] uppercase block">Solar Irradiance</span>
+                    <span className="text-[14px] font-medium text-[#1d1d1f]">{activeRecord.solar}</span>
                   </div>
-                  <div className="bg-surface-container-low p-2 rounded">
-                    <span className="font-caption-caps text-caption-caps text-on-surface-variant uppercase block">Wind Vector</span>
-                    <span className="font-label-metric text-label-metric font-medium text-on-surface">{activeRecord.wind}</span>
+                  <div className="bg-[#f5f5f7] p-3 rounded-[16px]">
+                    <span className="text-[11px] text-[#86868b] uppercase block">Wind Vector</span>
+                    <span className="text-[14px] font-medium text-[#1d1d1f]">{activeRecord.wind}</span>
                   </div>
-                  <div className="bg-surface-container-low p-2 rounded">
-                    <span className="font-caption-caps text-caption-caps text-on-surface-variant uppercase block">Surface Emissivity</span>
-                    <span className="font-label-metric text-label-metric font-medium text-on-surface">{activeRecord.emissivity}</span>
+                  <div className="bg-[#f5f5f7] p-3 rounded-[16px]">
+                    <span className="text-[11px] text-[#86868b] uppercase block">Emissivity</span>
+                    <span className="text-[14px] font-medium text-[#1d1d1f]">{activeRecord.emissivity}</span>
                   </div>
-                  <div className="bg-surface-container-low p-2 rounded">
-                    <span className="font-caption-caps text-caption-caps text-on-surface-variant uppercase block">Canopy Cover</span>
-                    <span className="font-label-metric text-label-metric font-medium text-error">{activeRecord.canopy}</span>
+                  <div className="bg-[#f5f5f7] p-3 rounded-[16px]">
+                    <span className="text-[11px] text-[#86868b] uppercase block">Canopy Cover</span>
+                    <span className="text-[14px] font-medium text-[#dc2626]">{activeRecord.canopy}</span>
                   </div>
                 </div>
               </div>
 
-              {/* Scientific Provenance & Run Metadata */}
-              <div className="space-y-space-xs pt-space-xs">
-                <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant block">Simulation Run Metadata</span>
-                <div className="p-space-sm bg-surface-container-low rounded font-label-code text-[11px] space-y-1 text-on-surface-variant">
+              {/* Simulation Metadata */}
+              <div className="space-y-2 pt-1">
+                <span className="text-[11px] font-semibold text-[#86868b] uppercase tracking-wider block">Simulation Provenance</span>
+                <div className="p-3.5 bg-[#f5f5f7] rounded-[16px] font-mono text-[11px] space-y-1.5 text-[#86868b]">
                   <div className="flex items-center justify-between">
-                    <span>Model Engine:</span>
-                    <span className="text-on-surface font-medium">{activeRecord.engine}</span>
+                    <span>Engine:</span>
+                    <span className="text-[#1d1d1f] font-medium">{activeRecord.engine}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span>Boundary Layer:</span>
-                    <span className="text-on-surface font-medium">ERA5-Land 0.1°</span>
+                    <span>Boundary:</span>
+                    <span className="text-[#1d1d1f] font-medium">ERA5-Land 0.1°</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span>Citation SHA:</span>
-                    <span className="text-primary font-medium hover:underline cursor-pointer">{activeRecord.sha}</span>
+                    <span className="text-[#0071e3] font-medium hover:underline cursor-pointer">{activeRecord.sha}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span>Run Timestamp:</span>
-                    <span className="text-on-surface font-medium">{activeRecord.timestamp} IST</span>
+                    <span>Timestamp:</span>
+                    <span className="text-[#1d1d1f] font-medium">{activeRecord.timestamp} IST</span>
                   </div>
                 </div>
               </div>
 
-              {/* Drawer Action Options */}
-              <div className="flex items-center gap-space-xs pt-space-xs">
+              {/* Actions */}
+              <div className="flex items-center gap-2 pt-1">
                 <button 
                   onClick={handleExportCSV}
-                  className="flex-1 py-2 px-space-sm rounded bg-surface-container-high hover:bg-surface-variant text-on-surface font-body-sm text-body-sm transition-colors text-center font-medium"
+                  className="flex-1 py-2.5 px-3 rounded-[980px] bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#1d1d1f] text-[12px] font-medium transition-colors text-center"
                 >
-                  Raw NetCDF Point
+                  Export Point
                 </button>
                 <button 
                   onClick={() => alert(`Station ${activeRecord.id} lineage: Calibrated via Solapur 100-station sensory grid, WRF-UCM canopy engine seed 2024.`)}
-                  className="flex-1 py-2 px-space-sm rounded bg-primary-container text-on-primary hover:bg-primary font-body-sm text-body-sm transition-colors text-center font-medium"
+                  className="flex-1 py-2.5 px-3 rounded-[980px] bg-[#0071e3] hover:bg-[#0077ed] text-white text-[12px] font-medium transition-colors text-center shadow-[0_2px_8px_rgba(0,113,227,0.25)]"
                 >
-                  Simulation Lineage
+                  Lineage Details
                 </button>
               </div>
             </div>
 
-            {/* Academic Provenance Info Card */}
-            <div className="p-space-md bg-surface-container-low rounded-xl text-on-surface-variant space-y-space-xs border border-outline-variant/30">
-              <div className="flex items-center gap-space-xs text-primary font-medium">
+            {/* Academic Notice Card */}
+            <div className="p-5 bg-white rounded-[24px] text-[#86868b] space-y-1.5 border border-black/[0.06] shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+              <div className="flex items-center gap-1.5 text-[#0071e3] font-medium text-[12px]">
                 <span className="material-symbols-outlined text-[16px]">school</span>
-                <span className="font-caption-caps text-caption-caps uppercase">TF-141 Research Notice</span>
+                <span className="uppercase tracking-wider">TF-141 Research Notice</span>
               </div>
-              <p className="font-body-sm text-body-sm">
-                All coordinates correspond to synthetic grid centroids calibrated against historical IMD Solapur meteorological observations (1990–2020) for spatial heat resilience evaluation.
+              <p className="text-[12px] leading-relaxed">
+                All coordinates correspond to synthetic grid centroids calibrated against historical IMD Solapur meteorological observations (1990–2020) for urban microclimate simulation.
               </p>
             </div>
           </aside>

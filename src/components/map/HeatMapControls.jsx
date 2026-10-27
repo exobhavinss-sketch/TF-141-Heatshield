@@ -36,25 +36,25 @@ export default function HeatMapControls({
 
   return (
     <div className="flex flex-col gap-2 pointer-events-none select-none">
-      {/* Top HUD Controls Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-2 bg-surface-container-low/95 backdrop-blur-md p-1.5 rounded-xl border border-outline-variant/40 shadow-md pointer-events-auto">
+      {/* Top Floating Glass HUD Bar */}
+      <div className="flex flex-wrap items-center justify-between gap-2.5 bg-white/90 dark:bg-[#161617]/90 backdrop-blur-xl p-2 rounded-2xl border border-black/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.06)] pointer-events-auto">
         
-        {/* Territory / Domain Switcher */}
+        {/* Territory Switcher (Pill Style) */}
         {onDomainChange && (
-          <div className="flex items-center gap-1 bg-surface-container-high/60 p-1 rounded-lg">
+          <div className="flex items-center gap-1 bg-[#f5f5f7] dark:bg-black/30 p-1 rounded-full border border-black/[0.04]">
             <button
               type="button"
               onClick={() => onDomainChange('solapur')}
-              className={`px-3 py-1.5 rounded text-xs font-semibold flex items-center gap-1.5 transition-all ${
+              className={`px-3 py-1.5 rounded-full text-[12px] font-semibold flex items-center gap-1.5 transition-all ${
                 isSolapur
-                  ? 'bg-primary-container text-on-primary-container shadow-sm'
-                  : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'
+                  ? 'bg-white text-[#1d1d1f] shadow-sm'
+                  : 'text-[#6e6e73] hover:text-[#1d1d1f]'
               }`}
             >
-              <Focus size={13} className={isSolapur ? 'text-secondary-fixed' : 'text-outline'} />
-              <span>Solapur High-Res</span>
+              <Focus size={13} className={isSolapur ? 'text-[#0071e3]' : 'text-[#86868b]'} />
+              <span>Solapur Grid</span>
               {isSolapur && locationsCount > 0 && (
-                <span className="text-[10px] px-1 py-0.2 rounded bg-primary text-on-primary">
+                <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-[#0071e3] text-white font-mono">
                   {locationsCount}
                 </span>
               )}
@@ -63,28 +63,28 @@ export default function HeatMapControls({
             <button
               type="button"
               onClick={() => onDomainChange('india')}
-              className={`px-3 py-1.5 rounded text-xs font-semibold flex items-center gap-1.5 transition-all ${
+              className={`px-3 py-1.5 rounded-full text-[12px] font-semibold flex items-center gap-1.5 transition-all ${
                 !isSolapur
-                  ? 'bg-primary-container text-on-primary-container shadow-sm'
-                  : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'
+                  ? 'bg-white text-[#1d1d1f] shadow-sm'
+                  : 'text-[#6e6e73] hover:text-[#1d1d1f]'
               }`}
             >
-              <Compass size={13} className={!isSolapur ? 'text-secondary-fixed' : 'text-outline'} />
-              <span>Pan-India Grid</span>
+              <Compass size={13} className={!isSolapur ? 'text-[#0071e3]' : 'text-[#86868b]'} />
+              <span>Pan-India</span>
             </button>
           </div>
         )}
 
         {/* Layer Selector */}
         {onLayerChange && (
-          <div className="hidden sm:flex items-center gap-1 bg-surface-container-high/60 p-1 rounded-lg">
+          <div className="hidden sm:flex items-center gap-1 bg-[#f5f5f7] p-1 rounded-full border border-black/[0.04]">
             <button
               type="button"
               onClick={() => onLayerChange('air_temp')}
-              className={`px-2.5 py-1 rounded text-xs font-medium transition-colors ${
+              className={`px-3 py-1 rounded-full text-[12px] font-medium transition-all ${
                 selectedLayer === 'air_temp'
-                  ? 'bg-surface-container-lowest text-primary font-semibold shadow-sm'
-                  : 'text-on-surface-variant hover:text-on-surface'
+                  ? 'bg-white text-[#1d1d1f] font-semibold shadow-sm'
+                  : 'text-[#6e6e73] hover:text-[#1d1d1f]'
               }`}
             >
               Air Temp
@@ -93,85 +93,63 @@ export default function HeatMapControls({
             <button
               type="button"
               onClick={() => onLayerChange('surface_lst')}
-              className={`px-2.5 py-1 rounded text-xs font-medium transition-colors ${
+              className={`px-3 py-1 rounded-full text-[12px] font-medium transition-all ${
                 selectedLayer === 'surface_lst'
-                  ? 'bg-surface-container-lowest text-tertiary font-semibold shadow-sm'
-                  : 'text-on-surface-variant hover:text-on-surface'
+                  ? 'bg-white text-[#1d1d1f] font-semibold shadow-sm'
+                  : 'text-[#6e6e73] hover:text-[#1d1d1f]'
               }`}
             >
               Surface LST
             </button>
 
-            {isSolapur && (
-              <button
-                type="button"
-                onClick={() => onLayerChange('cooling_score')}
-                className={`px-2.5 py-1 rounded text-xs font-medium transition-colors ${
-                  selectedLayer === 'cooling_score'
-                    ? 'bg-surface-container-lowest text-secondary font-semibold shadow-sm'
-                    : 'text-on-surface-variant hover:text-on-surface'
-                }`}
-              >
-                Cooling Priority
-              </button>
-            )}
-
             <button
               type="button"
               onClick={() => onLayerChange('risk')}
-              className={`px-2.5 py-1 rounded text-xs font-medium transition-colors ${
+              className={`px-3 py-1 rounded-full text-[12px] font-medium transition-all ${
                 selectedLayer === 'risk'
-                  ? 'bg-surface-container-lowest text-error font-semibold shadow-sm'
-                  : 'text-on-surface-variant hover:text-on-surface'
+                  ? 'bg-white text-[#1d1d1f] font-semibold shadow-sm'
+                  : 'text-[#6e6e73] hover:text-[#1d1d1f]'
               }`}
             >
               Risk Tiers
             </button>
+
+            <button
+              type="button"
+              onClick={() => onLayerChange('cooling_score')}
+              className={`px-3 py-1 rounded-full text-[12px] font-medium transition-all ${
+                selectedLayer === 'cooling_score'
+                  ? 'bg-white text-[#1d1d1f] font-semibold shadow-sm'
+                  : 'text-[#6e6e73] hover:text-[#1d1d1f]'
+              }`}
+            >
+              Cooling Priority
+            </button>
           </div>
         )}
 
-        {/* Filter and Search Section */}
-        <div className="flex items-center gap-1.5">
-          {/* Risk Filter Dropdown */}
-          {showRiskFilter && onRiskFilterChange && (
-            <div className="flex items-center gap-1 bg-surface-container-high/60 px-2 py-1 rounded-lg text-xs">
-              <Filter size={12} className="text-outline" />
-              <select
-                value={riskFilter}
-                onChange={(e) => onRiskFilterChange(e.target.value)}
-                className="bg-transparent text-xs text-on-surface font-medium focus:outline-none cursor-pointer"
-                aria-label="Filter markers by heat-risk category"
-              >
-                <option value="all">All Risk Levels</option>
-                <option value="low">Low Risk (&lt;30°)</option>
-                <option value="moderate">Moderate (30-35°)</option>
-                <option value="high">High (35-40°)</option>
-                <option value="very high">Very High (≥40°)</option>
-              </select>
-            </div>
-          )}
-
-          {/* Quick Location Search */}
+        {/* Search & Actions */}
+        <div className="flex items-center gap-1.5 ml-auto">
           {showSearch && onSearchChange && (
             <div className="relative flex items-center">
               {isSearchOpen ? (
-                <div className="flex items-center bg-surface-container-lowest border border-outline-variant/40 rounded-lg px-2 py-1 shadow-sm">
-                  <Search size={12} className="text-outline mr-1.5 shrink-0" />
+                <div className="flex items-center bg-[#f5f5f7] rounded-full px-2.5 py-1 border border-black/[0.08] animate-in fade-in duration-150">
+                  <Search size={13} className="text-[#86868b] mr-1.5" />
                   <input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => onSearchChange(e.target.value)}
-                    placeholder="Search station or ward..."
-                    className="w-32 sm:w-44 text-xs bg-transparent focus:outline-none text-on-surface"
+                    placeholder="Search ward or station..."
+                    className="bg-transparent text-xs text-[#1d1d1f] placeholder:text-[#86868b] outline-none w-32 sm:w-44"
                     autoFocus
                   />
                   <button
                     type="button"
                     onClick={() => {
-                      onSearchChange('');
                       setIsSearchOpen(false);
+                      onSearchChange('');
                     }}
-                    className="text-outline hover:text-on-surface text-xs ml-1"
+                    className="text-[#86868b] hover:text-[#1d1d1f] text-xs ml-1"
                   >
                     ×
                   </button>
@@ -180,8 +158,9 @@ export default function HeatMapControls({
                 <button
                   type="button"
                   onClick={() => setIsSearchOpen(true)}
-                  className="p-1.5 rounded-lg bg-surface-container-high/60 hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors"
-                  title="Search Stations"
+                  className="w-8 h-8 rounded-full bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#6e6e73] hover:text-[#1d1d1f] flex items-center justify-center transition-colors"
+                  title="Search stations"
+                  aria-label="Search stations"
                 >
                   <Search size={14} />
                 </button>
@@ -189,59 +168,58 @@ export default function HeatMapControls({
             </div>
           )}
 
-          {/* Reset Camera View */}
-          {onResetView && (
-            <button
-              type="button"
-              onClick={onResetView}
-              title="Reset Map View"
-              className="p-1.5 rounded-lg bg-surface-container-high/60 hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors"
-            >
-              <RotateCcw size={14} />
-            </button>
-          )}
+          {/* Zoom & View Controls */}
+          <div className="flex items-center gap-1 bg-[#f5f5f7] p-1 rounded-full border border-black/[0.04]">
+            {onZoomIn && (
+              <button
+                type="button"
+                onClick={onZoomIn}
+                className="w-7 h-7 rounded-full bg-white hover:bg-[#fafafc] text-[#1d1d1f] flex items-center justify-center shadow-xs transition-colors"
+                title="Zoom in"
+                aria-label="Zoom in"
+              >
+                <Plus size={14} />
+              </button>
+            )}
 
-          {/* Fullscreen Toggle */}
-          {onToggleFullscreen && (
-            <button
-              type="button"
-              onClick={onToggleFullscreen}
-              title={isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
-              className="p-1.5 rounded-lg bg-surface-container-high/60 hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors"
-            >
-              {isFullscreen ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
-            </button>
-          )}
+            {onZoomOut && (
+              <button
+                type="button"
+                onClick={onZoomOut}
+                className="w-7 h-7 rounded-full bg-white hover:bg-[#fafafc] text-[#1d1d1f] flex items-center justify-center shadow-xs transition-colors"
+                title="Zoom out"
+                aria-label="Zoom out"
+              >
+                <Minus size={14} />
+              </button>
+            )}
+
+            {onResetView && (
+              <button
+                type="button"
+                onClick={onResetView}
+                className="w-7 h-7 rounded-full bg-white hover:bg-[#fafafc] text-[#1d1d1f] flex items-center justify-center shadow-xs transition-colors"
+                title="Reset map view"
+                aria-label="Reset map view"
+              >
+                <RotateCcw size={13} />
+              </button>
+            )}
+
+            {onToggleFullscreen && (
+              <button
+                type="button"
+                onClick={onToggleFullscreen}
+                className="w-7 h-7 rounded-full bg-white hover:bg-[#fafafc] text-[#1d1d1f] flex items-center justify-center shadow-xs transition-colors"
+                title={isFullscreen ? "Exit fullscreen" : "Fullscreen map"}
+                aria-label={isFullscreen ? "Exit fullscreen" : "Fullscreen map"}
+              >
+                {isFullscreen ? <Minimize2 size={13} /> : <Maximize2 size={13} />}
+              </button>
+            )}
+          </div>
         </div>
       </div>
-
-      {/* Floating Zoom Buttons (Bottom or side) */}
-      {(onZoomIn || onZoomOut) && (
-        <div className="self-end flex flex-col gap-1 bg-surface-container-low/95 backdrop-blur-md p-1 rounded-lg border border-outline-variant/40 shadow-md pointer-events-auto">
-          {onZoomIn && (
-            <button
-              type="button"
-              onClick={onZoomIn}
-              className="p-1.5 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors"
-              title="Zoom In"
-              aria-label="Zoom In"
-            >
-              <Plus size={15} />
-            </button>
-          )}
-          {onZoomOut && (
-            <button
-              type="button"
-              onClick={onZoomOut}
-              className="p-1.5 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors"
-              title="Zoom Out"
-              aria-label="Zoom Out"
-            >
-              <Minus size={15} />
-            </button>
-          )}
-        </div>
-      )}
     </div>
   );
 }

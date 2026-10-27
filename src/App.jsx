@@ -23,11 +23,11 @@ const SubmitReading = lazy(() => import('./pages/SubmitReading'));
 
 function PageFallback() {
   return (
-    <div className="min-h-[55vh] w-full flex flex-col items-center justify-center p-space-xl">
-      <div className="w-9 h-9 border-3 border-primary border-t-secondary rounded-full animate-spin mb-space-sm"></div>
-      <div className="flex items-center gap-space-xs text-on-surface-variant font-label-code text-label-code">
-        <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-        <span className="uppercase tracking-wider">Loading Spatial View...</span>
+    <div className="min-h-[60vh] w-full flex flex-col items-center justify-center p-8 bg-[#fafafc]">
+      <div className="w-8 h-8 border-2 border-black/10 border-t-[#0071e3] rounded-full animate-spin mb-3"></div>
+      <div className="flex items-center gap-2 text-[#86868b] text-[12px] font-medium">
+        <span className="w-1.5 h-1.5 rounded-full bg-[#0071e3] animate-pulse"></span>
+        <span className="uppercase tracking-wider font-mono">Loading View...</span>
       </div>
     </div>
   );

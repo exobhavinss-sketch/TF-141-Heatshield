@@ -1,4 +1,11 @@
+# ============================================================================
+# HeatShield Platform — Git Ignore Specification
+# TF-141 Academic Research Initiative • MIT Vishwaprayag University, Solapur
+# ============================================================================
+
+# ----------------------------------------------------------------------------
 # Dependencies
+# ----------------------------------------------------------------------------
 node_modules/
 .pnp
 .pnp.js
@@ -6,65 +13,126 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+lerna-debug.log*
 
-# Production build outputs
+# ----------------------------------------------------------------------------
+# Production Build Outputs & Caches
+# ----------------------------------------------------------------------------
 dist/
+dist-ssr/
 build/
 .next/
 out/
 coverage/
+.cache/
+.parcel-cache/
+.vite/
+.eslintcache
+.stylelintcache
 
-# Local environment files
+# ----------------------------------------------------------------------------
+# Environment Variables & Secrets (CRITICAL SECURITY)
+# ----------------------------------------------------------------------------
+# Ignore all local environment and secret configuration files
 .env
 .env.*
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Explicitly track the public sanitized environment template
 !.env.example
-.env
-# Python (backend not yet committed, but prepare for when it is)
+
+# ----------------------------------------------------------------------------
+# Python / Data Science Artifacts
+# ----------------------------------------------------------------------------
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
 .pytest_cache/
+.coverage
+htmlcov/
 .venv/
 venv/
 env/
+ENV/
+*.egg-info/
+.eggs/
 
-# Logs and caches
+# ----------------------------------------------------------------------------
+# Logs, Diagnostics & MCP Artifacts
+# ----------------------------------------------------------------------------
 *.log
 logs/
-.cache/
-.parcel-cache/
+.playwright-mcp/
+import_rejections_*.log
 
-# IDE and OS files
+# ----------------------------------------------------------------------------
+# Operating System & IDE Metadata
+# ----------------------------------------------------------------------------
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
 Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux / Vim
 *.swp
 *.swo
+*~
+
+# IDEs
 .vscode/
 .idea/
 *.code-workspace
+*.sublime-project
+*.sublime-workspace
 
-# Temporary files
+# ----------------------------------------------------------------------------
+# Temporary & Backup Files
+# ----------------------------------------------------------------------------
 tmp/
 temp/
 *.tmp
 *.bak
+*.orig
+*.local
 
-# Local DB / data artifacts
+# ----------------------------------------------------------------------------
+# Local Database Artifacts
+# ----------------------------------------------------------------------------
 *.sqlite3
 *.db
 *.sqlite
 *.sql.gz
 
-# Generated data or built assets that should not be committed accidentally
-*.local
-*.orig
-
-# Master datasets and batch import logs
+# ----------------------------------------------------------------------------
+# Master High-Volume Datasets (60MB+ Raw Simulation Data)
+# ----------------------------------------------------------------------------
+# Raw multi-gigabyte or 60MB+ simulation CSV dumps are excluded from Git history.
+# Tabular schemas, dictionaries, small spatial coordinate CSVs, and analytical
+# charts in Datasets/ remain tracked.
 Heat Shield Master Dataset*.csv
-Datasets/datasets/*.csv
+Datasets/datasets/Heat Shield Master Dataset*.csv
+Datasets/datasets/HeatShield DataSet Solapur.csv
 *.csv.gz
-import_rejections_*.log
-.playwright-mcp/
 
-
+# ----------------------------------------------------------------------------
+# TRACKED ASSETS NOTICE (Do NOT ignore):
+# The following directories and asset types MUST remain tracked:
+# - Banner & Logo/          (Vector and raster branding assets)
+# - Website Design Files/   (Research design wireframes, screens, and specs)
+# - Datasets/charts/        (High-resolution analytical figures)
+# - public/                 (Favicons, branding, and manifest assets)
+# - docs/design-research/   (Apple-inspired design system documentation)
+# - supabase/migrations/    (PostgreSQL DDL migrations and seed files)
+# ----------------------------------------------------------------------------

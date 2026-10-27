@@ -1,4 +1,4 @@
-import React, { useState, useId } from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { supabase, isSupabaseConfigured } from '../services/supabaseClient';
 
@@ -146,7 +146,6 @@ export default function SubmitReading() {
     e.preventDefault();
     if (isSubmitting) return;
 
-    // Numerical range validation
     if (tempInC < -10 || tempInC > 75) {
       setToastIsError(true);
       setToastTitle('Invalid Temperature Reading');
@@ -167,7 +166,6 @@ export default function SubmitReading() {
 
     try {
       if (isConfigured && supabase && user) {
-        // Authenticated live insertion into Supabase PostgreSQL
         const readingRecord = {
           user_id: user.id,
           temperature_c: parseFloat(tempInC.toFixed(1)),
@@ -196,7 +194,6 @@ export default function SubmitReading() {
         setToastMessage(`Record ID ${data.id.slice(0, 8)}... successfully registered under ${selectedStation.shortName} (Status: pending peer-review validation).`);
         setToastVisible(true);
       } else {
-        // Offline or Guest simulation fallback
         const summary = `Reading for ${selectedStation.id} (${tempInC.toFixed(1)}°C) buffered in local research sandbox memory for ${selectedStation.shortName}. Sign in to save permanently to your Supabase ledger.`;
         setToastTitle('Telemetry Observation Buffered in Sandbox');
         setToastMessage(summary);
@@ -248,552 +245,537 @@ export default function SubmitReading() {
   };
 
   return (
-    <div className="flex flex-col w-full pb-space-xl">
+    <div className="flex flex-col w-full pb-24 bg-[#fafafc]">
       
-      {/* Top Atmospheric Scrim Gradient Container */}
-      <div className="relative w-full overflow-hidden bg-surface-container-low/60 pb-space-xl border-b border-outline-variant/30">
-        <div className="max-w-[1400px] mx-auto px-margin pt-space-lg">
-          
-          {/* Overline & Breadcrumb Metadata */}
-          <div className="flex flex-wrap items-center justify-between gap-space-sm mb-space-xs">
-            <div className="flex items-center gap-space-xs font-label-code text-label-code text-on-surface-variant">
-              <span className="text-primary font-semibold tracking-wider uppercase">TF-141</span>
-              <span>/</span>
-              <span>FIELD-TELEMETRY</span>
-              <span>/</span>
-              <span className="text-on-surface">SYNTHETIC INGESTION PIPELINE</span>
+      {/* Top Breadcrumb & Metadata Header */}
+      <section className="w-full px-6 pt-12 pb-8 border-b border-black/[0.04]">
+        <div className="max-w-[1340px] mx-auto space-y-6">
+          <div className="flex flex-wrap items-center justify-between gap-3 text-[12px]">
+            <div className="flex items-center gap-2">
+              <span className="font-mono text-[#0071e3] font-semibold uppercase tracking-wider">TF-141</span>
+              <span className="text-[#86868b]">/</span>
+              <span className="text-[#86868b]">FIELD-TELEMETRY</span>
+              <span className="text-[#86868b]">/</span>
+              <span className="font-mono text-[#1d1d1f]">SYNTHETIC INGESTION PIPELINE</span>
             </div>
-            <div className="inline-flex items-center gap-space-xs px-space-sm py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-code text-label-code">
-              <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[980px] bg-[#f5f5f7] text-[#1d1d1f] font-mono text-[11px] font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#059669]"></span>
               <span>BUFFER: LOCAL CLIENT MEMORY</span>
             </div>
           </div>
 
-          {/* Page Heading Section */}
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md mb-space-lg">
-            <div className="space-y-space-xs max-w-3xl">
-              <span className="font-caption-caps text-caption-caps uppercase tracking-wider text-secondary font-bold">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+            <div className="space-y-3 max-w-3xl">
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-[#0071e3] block">
                 Spatial Climatology • Node Entry
               </span>
-              <h1 className="font-headline-xl text-headline-xl text-primary font-semibold tracking-tight">
+              <h1 className="text-[38px] md:text-[50px] font-semibold tracking-[-0.03em] text-[#1d1d1f] leading-[1.1]">
                 Submit a Temperature Reading
               </h1>
-              <p className="font-body-lg text-body-lg text-on-surface-variant">
+              <p className="text-[17px] text-[#86868b] leading-relaxed">
                 Contribute ground-level microclimate observations or compute hypothetical urban cooling scenarios across Solapur's synthetic research grid.
               </p>
             </div>
-            <div className="flex items-center gap-space-sm">
-              <div className="hidden md:flex flex-col text-right font-label-code text-label-code text-on-surface-variant">
-                <span>GRID SYSTEM: EPSG:4326</span>
-                <span className="text-secondary font-semibold">100 SIMULATED ACTIVE NODES</span>
-              </div>
+            <div className="hidden md:flex flex-col text-right font-mono text-[11px] text-[#86868b]">
+              <span>GRID SYSTEM: EPSG:4326</span>
+              <span className="text-[#0071e3] font-medium">100 SIMULATED ACTIVE NODES</span>
             </div>
           </div>
 
           {/* Academic Transparency Notice Banner */}
-          <div className="relative overflow-hidden rounded-xl bg-surface-container-highest/80 backdrop-blur-sm p-space-md shadow-sm mb-space-lg border border-outline-variant/30">
-            <div className="flex items-start gap-space-md">
-              <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-primary-container text-on-primary flex items-center justify-center">
-                <span className="material-symbols-outlined text-[20px]">science</span>
+          <div className="rounded-[24px] bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-black/[0.06] flex items-start gap-4">
+            <div className="w-10 h-10 rounded-[12px] bg-[#0071e3]/10 text-[#0071e3] flex items-center justify-center shrink-0">
+              <span className="material-symbols-outlined text-[22px]">science</span>
+            </div>
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="text-[14px] font-semibold text-[#1d1d1f]">Academic Sandbox &amp; Calibration Mode</span>
+                <span className="px-2 py-0.5 rounded-[980px] bg-[#0071e3]/10 text-[#0071e3] font-mono text-[10px] font-semibold uppercase">
+                  Research Preview
+                </span>
               </div>
-              <div className="space-y-1 pr-space-md">
-                <div className="flex items-center gap-space-xs">
-                  <span className="font-headline-md text-headline-md text-primary font-semibold">Academic Sandbox &amp; Calibration Mode</span>
-                  <span className="px-space-xs py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-code text-[10px] uppercase font-bold tracking-wider">
-                    Research Preview
-                  </span>
-                </div>
-                <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                  Submissions are parsed and preserved in transient client-side memory for spatial validation, real-time microclimate anomaly calculations, and scenario simulation. Records are not committed to official municipal meteorological telemetry nodes or external production databases.
-                </p>
-              </div>
+              <p className="text-[13px] text-[#86868b] leading-relaxed">
+                Submissions are parsed and preserved in transient client-side memory for spatial validation, real-time microclimate anomaly calculations, and scenario simulation. Records are not committed to official municipal meteorological telemetry nodes.
+              </p>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* 2-Column Split Architecture: 65% Interactive Form / 35% Live Observer Panel */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
-            
-            {/* Left Column: Scientific Telemetry Form */}
-            <div className="lg:col-span-7 xl:col-span-8 space-y-space-md">
-              <form onSubmit={handleFormSubmit} className="space-y-space-md" id="readingForm">
-                
-                {/* SECTION 1: Atmospheric Metrics */}
-                <div className="rounded-xl bg-surface-container-lowest p-space-lg shadow-sm space-y-space-md transition-all border border-outline-variant/30">
-                  <div className="flex items-center justify-between pb-space-xs border-b border-outline-variant/20">
-                    <div className="flex items-center gap-space-sm">
-                      <span className="font-label-code text-label-code text-primary font-bold px-2 py-0.5 rounded bg-primary-fixed-dim/30">01</span>
-                      <h2 className="font-headline-md text-headline-md text-primary font-semibold">Atmospheric &amp; Thermal Metrics</h2>
-                    </div>
-                    <span className="font-caption-caps text-caption-caps text-outline uppercase tracking-wider font-semibold">Required Parameters</span>
+      {/* 2-Column Split: Form (Left) & Live Observer Panel (Right) */}
+      <div className="max-w-[1340px] mx-auto px-6 pt-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          
+          {/* Form (8 Cols) */}
+          <div className="lg:col-span-8 space-y-6">
+            <form onSubmit={handleFormSubmit} className="space-y-6" id="readingForm">
+              
+              {/* SECTION 1: Atmospheric Metrics */}
+              <div className="rounded-[28px] bg-white p-8 shadow-[0_2px_16px_rgba(0,0,0,0.04)] space-y-6 border border-black/[0.06]">
+                <div className="flex items-center justify-between pb-3 border-b border-black/[0.04]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="font-mono text-[11px] font-semibold px-2 py-0.5 rounded-[6px] bg-[#f5f5f7] text-[#0071e3]">01</span>
+                    <h2 className="text-[18px] font-semibold text-[#1d1d1f]">Atmospheric &amp; Thermal Metrics</h2>
                   </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-space-md">
-                    {/* Air Temp */}
-                    <div className="space-y-space-xs">
-                      <div className="flex items-center justify-between">
-                        <label className="font-body-sm text-body-sm font-semibold text-on-surface" htmlFor="airTempInput">
-                          Ambient Air Temperature
-                        </label>
-                        <span className="font-label-code text-label-code text-secondary font-medium">UNIT: °{tempUnit}</span>
-                      </div>
-                      <div className="relative flex rounded-lg bg-surface-container-low shadow-inner border border-outline-variant/20">
-                        <input 
-                          id="airTempInput"
-                          type="number"
-                          step="0.1"
-                          required
-                          value={airTemp}
-                          onChange={(e) => setAirTemp(e.target.value)}
-                          className="w-full bg-transparent px-space-md py-2.5 font-label-metric text-label-metric text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container rounded-lg"
-                        />
-                        <div className="flex items-center pr-space-sm">
-                          <button 
-                            type="button"
-                            onClick={toggleTempUnit}
-                            className="px-2 py-1 rounded bg-surface text-on-surface font-label-code text-label-code hover:bg-surface-container-highest transition-colors shadow-sm font-semibold"
-                          >
-                            °{tempUnit}
-                          </button>
-                        </div>
-                      </div>
-                      <span className="font-caption-caps text-caption-caps text-outline block">Calibrated sensor dry-bulb reading at 1.5m height</span>
-                    </div>
-
-                    {/* Relative Humidity */}
-                    <div className="space-y-space-xs">
-                      <div className="flex items-center justify-between">
-                        <label className="font-body-sm text-body-sm font-semibold text-on-surface" htmlFor="humiditySlider">
-                          Relative Humidity (%)
-                        </label>
-                        <span className="font-label-metric text-label-metric text-primary font-semibold">{humidity}%</span>
-                      </div>
-                      <div className="flex items-center gap-space-sm pt-2">
-                        <input 
-                          id="humiditySlider"
-                          type="range"
-                          min="10"
-                          max="100"
-                          value={humidity}
-                          onChange={(e) => setHumidity(Number(e.target.value))}
-                          className="w-full accent-primary-container cursor-pointer bg-surface-container h-2 rounded"
-                        />
-                      </div>
-                      <span className="font-caption-caps text-caption-caps text-outline block">Hygrometric boundary vapor saturation</span>
-                    </div>
-
-                    {/* Surface Temp */}
-                    <div className="space-y-space-xs">
-                      <div className="flex items-center justify-between">
-                        <label className="font-body-sm text-body-sm font-semibold text-on-surface" htmlFor="surfaceTempInput">
-                          Surface Skin Temperature (Optional)
-                        </label>
-                        <span className="font-label-code text-label-code text-on-surface-variant font-medium">INFRARED / °C</span>
-                      </div>
-                      <div className="relative flex rounded-lg bg-surface-container-low border border-outline-variant/20">
-                        <input 
-                          id="surfaceTempInput"
-                          type="number"
-                          step="0.1"
-                          value={surfaceTemp}
-                          onChange={(e) => setSurfaceTemp(e.target.value)}
-                          className="w-full bg-transparent px-space-md py-2.5 font-label-metric text-label-metric text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container rounded-lg"
-                        />
-                      </div>
-                      <span className="font-caption-caps text-caption-caps text-outline block">Direct pyrometer contact or calibrated 8-14μm radiometer</span>
-                    </div>
-
-                    {/* Solar Exposure Index */}
-                    <div className="space-y-space-xs">
-                      <label className="font-body-sm text-body-sm font-semibold text-on-surface" htmlFor="solarIrradiance">
-                        Solar Irradiance Flux
-                      </label>
-                      <select 
-                        id="solarIrradiance"
-                        value={solarFlux}
-                        onChange={(e) => setSolarFlux(e.target.value)}
-                        className="w-full bg-surface-container-low px-space-md py-2.5 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/20"
-                      >
-                        <option value="direct_peak">Direct Peak Solar Zenith (800 - 1050 W/m²)</option>
-                        <option value="diffuse_cloud">Partial Cloud Obscuration (400 - 650 W/m²)</option>
-                        <option value="canopy_shaded">Understory Forest Canopy (120 - 250 W/m²)</option>
-                        <option value="crepuscular">Crepuscular / Twilight (&lt; 50 W/m²)</option>
-                        <option value="nocturnal">Nocturnal Cooling Cycle (0 W/m²)</option>
-                      </select>
-                      <span className="font-caption-caps text-caption-caps text-outline block">Global horizontal irradiance weighting tier</span>
-                    </div>
-                  </div>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#86868b]">Required</span>
                 </div>
 
-                {/* SECTION 2: Spatial & Temporal Anchor */}
-                <div className="rounded-xl bg-surface-container-lowest p-space-lg shadow-sm space-y-space-md border border-outline-variant/30">
-                  <div className="flex items-center justify-between pb-space-xs border-b border-outline-variant/20">
-                    <div className="flex items-center gap-space-sm">
-                      <span className="font-label-code text-label-code text-primary font-bold px-2 py-0.5 rounded bg-primary-fixed-dim/30">02</span>
-                      <h2 className="font-headline-md text-headline-md text-primary font-semibold">Temporal &amp; Spatial Anchor</h2>
-                    </div>
-                    <span className="font-caption-caps text-caption-caps text-outline uppercase tracking-wider font-semibold">Solapur Spatial Mesh</span>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-space-md">
-                    {/* Datetime Picker */}
-                    <div className="space-y-space-xs">
-                      <label className="font-body-sm text-body-sm font-semibold text-on-surface" htmlFor="timestampInput">
-                        Observation Timestamp (IST)
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  {/* Air Temp */}
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between text-[12px]">
+                      <label className="font-medium text-[#1d1d1f]" htmlFor="airTempInput">
+                        Ambient Air Temperature
                       </label>
+                      <span className="font-mono text-[#0071e3]">UNIT: °{tempUnit}</span>
+                    </div>
+                    <div className="relative flex rounded-[12px] bg-[#f5f5f7] border border-transparent focus-within:border-black/20 focus-within:bg-white transition-all">
                       <input 
-                        id="timestampInput"
-                        type="datetime-local"
-                        value={timestamp}
-                        onChange={(e) => setTimestamp(e.target.value)}
-                        className="w-full bg-surface-container-low px-space-md py-2.5 rounded-lg font-label-code text-label-code text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/20"
-                      />
-                      <span className="font-caption-caps text-caption-caps text-outline block">Defaults to synchronous local research epoch</span>
-                    </div>
-
-                    {/* Geographic Grid Node */}
-                    <div className="space-y-space-xs">
-                      <label className="font-body-sm text-body-sm font-semibold text-on-surface" htmlFor="stationSelect">
-                        Geographic Simulation Station / Ward
-                      </label>
-                      <select 
-                        id="stationSelect"
-                        value={selectedStation.id}
-                        onChange={handleStationChange}
-                        className="w-full bg-surface-container-low px-space-md py-2.5 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/20"
-                      >
-                        {STATIONS.map(s => (
-                          <option key={s.id} value={s.id}>{s.name} ({s.id})</option>
-                        ))}
-                      </select>
-                      <span className="font-caption-caps text-caption-caps text-outline block">Indexed against 100 Solapur GIS sensor stations</span>
-                    </div>
-
-                    {/* Latitude / Longitude */}
-                    <div className="space-y-space-xs">
-                      <label className="font-body-sm text-body-sm font-semibold text-on-surface" htmlFor="latitudeInput">
-                        Latitude (°N)
-                      </label>
-                      <input 
-                        id="latitudeInput"
+                        id="airTempInput"
                         type="number"
-                        step="0.0001"
-                        value={latitude}
-                        onChange={(e) => setLatitude(parseFloat(e.target.value))}
-                        className="w-full bg-surface-container-low px-space-md py-2.5 rounded-lg font-label-metric text-label-metric text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/20"
+                        step="0.1"
+                        required
+                        value={airTemp}
+                        onChange={(e) => setAirTemp(e.target.value)}
+                        className="w-full bg-transparent px-4 py-2.5 text-[15px] font-semibold text-[#1d1d1f] focus:outline-none tabular-nums"
+                      />
+                      <div className="flex items-center pr-2">
+                        <button 
+                          type="button"
+                          onClick={toggleTempUnit}
+                          className="px-2.5 py-1 rounded-[8px] bg-white text-[#1d1d1f] font-mono text-[12px] hover:bg-[#f5f5f7] transition-colors shadow-xs font-semibold"
+                        >
+                          °{tempUnit}
+                        </button>
+                      </div>
+                    </div>
+                    <span className="text-[11px] text-[#86868b] block">Calibrated sensor dry-bulb reading at 1.5m</span>
+                  </div>
+
+                  {/* Relative Humidity */}
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between text-[12px]">
+                      <label className="font-medium text-[#1d1d1f]" htmlFor="humiditySlider">
+                        Relative Humidity (%)
+                      </label>
+                      <span className="font-semibold text-[#1d1d1f] tabular-nums">{humidity}%</span>
+                    </div>
+                    <div className="flex items-center pt-2">
+                      <input 
+                        id="humiditySlider"
+                        type="range"
+                        min="10"
+                        max="100"
+                        value={humidity}
+                        onChange={(e) => setHumidity(Number(e.target.value))}
+                        className="w-full accent-[#0071e3] cursor-pointer bg-[#f5f5f7] h-2 rounded-[980px]"
                       />
                     </div>
-                    <div className="space-y-space-xs">
-                      <label className="font-body-sm text-body-sm font-semibold text-on-surface" htmlFor="longitudeInput">
-                        Longitude (°E)
+                    <span className="text-[11px] text-[#86868b] block">Hygrometric boundary vapor saturation</span>
+                  </div>
+
+                  {/* Surface Temp */}
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between text-[12px]">
+                      <label className="font-medium text-[#1d1d1f]" htmlFor="surfaceTempInput">
+                        Surface Skin Temperature (Optional)
                       </label>
+                      <span className="font-mono text-[11px] text-[#86868b]">INFRARED / °C</span>
+                    </div>
+                    <div className="relative flex rounded-[12px] bg-[#f5f5f7] border border-transparent focus-within:border-black/20 focus-within:bg-white transition-all">
                       <input 
-                        id="longitudeInput"
+                        id="surfaceTempInput"
                         type="number"
-                        step="0.0001"
-                        value={longitude}
-                        onChange={(e) => setLongitude(parseFloat(e.target.value))}
-                        className="w-full bg-surface-container-low px-space-md py-2.5 rounded-lg font-label-metric text-label-metric text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/20"
+                        step="0.1"
+                        value={surfaceTemp}
+                        onChange={(e) => setSurfaceTemp(e.target.value)}
+                        className="w-full bg-transparent px-4 py-2.5 text-[15px] font-semibold text-[#1d1d1f] focus:outline-none tabular-nums"
                       />
                     </div>
+                    <span className="text-[11px] text-[#86868b] block">Direct pyrometer contact or 8-14μm radiometer</span>
                   </div>
 
-                  {/* Auto-detected Urban Zone Ribbon */}
-                  <div className="mt-space-sm p-space-sm rounded-lg bg-surface-container flex flex-wrap items-center justify-between gap-space-xs">
-                    <div className="flex items-center gap-space-xs">
-                      <span className="material-symbols-outlined text-[18px] text-secondary">domain</span>
-                      <span className="font-caption-caps text-caption-caps uppercase text-on-surface-variant font-bold">Inferred Urban Topology:</span>
-                      <span className="font-label-code text-label-code text-primary font-bold px-2 py-0.5 rounded bg-surface-container-lowest">
-                        {selectedStation.zone}
-                      </span>
-                    </div>
-                    <div className="font-label-code text-label-code text-on-surface-variant">
-                      <span>SEASONAL BASELINE: </span>
-                      <span className="font-semibold text-on-surface">{selectedStation.baseline}°C</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* SECTION 3: Measurement Source & Instrumentation */}
-                <div className="rounded-xl bg-surface-container-lowest p-space-lg shadow-sm space-y-space-md border border-outline-variant/30">
-                  <div className="flex items-center justify-between pb-space-xs border-b border-outline-variant/20">
-                    <div className="flex items-center gap-space-sm">
-                      <span className="font-label-code text-label-code text-primary font-bold px-2 py-0.5 rounded bg-primary-fixed-dim/30">03</span>
-                      <h2 className="font-headline-md text-headline-md text-primary font-semibold">Measurement Source &amp; Instrumentation</h2>
-                    </div>
-                    <span className="font-caption-caps text-caption-caps text-outline uppercase tracking-wider font-semibold">Provenance Tier</span>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-space-md">
-                    <div className="space-y-space-xs">
-                      <label className="font-body-sm text-body-sm font-semibold text-on-surface" htmlFor="sourceType">
-                        Telemetry Source Category
-                      </label>
-                      <select 
-                        id="sourceType"
-                        value={sourceType}
-                        onChange={(e) => setSourceType(e.target.value)}
-                        className="w-full bg-surface-container-low px-space-md py-2.5 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/20"
-                      >
-                        <option value="calibrated_thermistor">Calibrated Field Thermistor (±0.15°C)</option>
-                        <option value="ir_pyrometer">Handheld IR Surface Pyrometer (±0.5°C)</option>
-                        <option value="weather_station">Automatic Weather Station (AWS Tier 2)</option>
-                        <option value="hypothetical_sim">Hypothetical Scenario Simulation (TF-141 Model)</option>
-                        <option value="crowd_in situ">Citizen Science Handheld Probe</option>
-                      </select>
-                      <span className="font-caption-caps text-caption-caps text-outline block">Determines uncertainty confidence weighting (σ)</span>
-                    </div>
-
-                    <div className="space-y-space-xs">
-                      <label className="font-body-sm text-body-sm font-semibold text-on-surface" htmlFor="instrumentSpec">
-                        Instrument Specification / Model
-                      </label>
-                      <input 
-                        id="instrumentSpec"
-                        type="text"
-                        value={instrumentSpec}
-                        onChange={(e) => setInstrumentSpec(e.target.value)}
-                        className="w-full bg-surface-container-low px-space-md py-2.5 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container border border-outline-variant/20"
-                      />
-                      <span className="font-caption-caps text-caption-caps text-outline block">Serial / Calibration certificate or model algorithm revision</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* SECTION 4: Urban Micro-Environment Context & Notes */}
-                <div className="rounded-xl bg-surface-container-lowest p-space-lg shadow-sm space-y-space-md border border-outline-variant/30">
-                  <div className="flex items-center justify-between pb-space-xs border-b border-outline-variant/20">
-                    <div className="flex items-center gap-space-sm">
-                      <span className="font-label-code text-label-code text-primary font-bold px-2 py-0.5 rounded bg-primary-fixed-dim/30">04</span>
-                      <h2 className="font-headline-md text-headline-md text-primary font-semibold">Urban Surface Context &amp; Field Notes</h2>
-                    </div>
-                    <span className="font-caption-caps text-caption-caps text-outline uppercase tracking-wider font-semibold">Albedo &amp; Morphology</span>
-                  </div>
-
-                  <div className="space-y-space-xs">
-                    <label className="font-body-sm text-body-sm font-semibold text-on-surface block mb-1">Ground Substrate Albedo Group</label>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-space-xs" id="surfaceButtonGroup">
-                      {SUBSTRATES.map((sub) => {
-                        const isSelected = selectedSubstrate.name === sub.name;
-                        return (
-                          <button
-                            key={sub.name}
-                            type="button"
-                            onClick={() => setSelectedSubstrate(sub)}
-                            className={`p-space-sm text-left rounded-lg transition-colors flex flex-col justify-between border ${
-                              isSelected 
-                                ? 'bg-primary-container text-on-primary font-semibold border-primary' 
-                                : 'bg-surface-container-low text-on-surface hover:bg-surface-container-highest border-outline-variant/20'
-                            }`}
-                          >
-                            <span className="font-body-sm text-body-sm">{sub.name}</span>
-                            <span className={`font-label-code text-[10px] ${isSelected ? 'text-primary-fixed' : 'text-on-surface-variant'}`}>
-                              α ≈ {sub.albedo.toFixed(2)}
-                            </span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  <div className="space-y-space-xs">
-                    <label className="font-body-sm text-body-sm font-semibold text-on-surface" htmlFor="fieldNotes">
-                      Field Microclimate Observations &amp; Mitigation Notes
+                  {/* Solar Flux */}
+                  <div className="space-y-1.5">
+                    <label className="text-[12px] font-medium text-[#1d1d1f]" htmlFor="solarIrradiance">
+                      Solar Irradiance Flux
                     </label>
-                    <textarea 
-                      id="fieldNotes"
-                      rows={3}
-                      value={fieldNotes}
-                      onChange={(e) => setFieldNotes(e.target.value)}
-                      className="w-full bg-surface-container-low px-space-md py-space-sm rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container resize-y border border-outline-variant/20"
+                    <select 
+                      id="solarIrradiance"
+                      value={solarFlux}
+                      onChange={(e) => setSolarFlux(e.target.value)}
+                      className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[13px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all cursor-pointer"
+                    >
+                      <option value="direct_peak">Direct Peak Solar Zenith (800 - 1050 W/m²)</option>
+                      <option value="diffuse_cloud">Partial Cloud Obscuration (400 - 650 W/m²)</option>
+                      <option value="canopy_shaded">Understory Forest Canopy (120 - 250 W/m²)</option>
+                      <option value="crepuscular">Crepuscular / Twilight (&lt; 50 W/m²)</option>
+                      <option value="nocturnal">Nocturnal Cooling Cycle (0 W/m²)</option>
+                    </select>
+                    <span className="text-[11px] text-[#86868b] block">Global horizontal irradiance weighting tier</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* SECTION 2: Spatial & Temporal Anchor */}
+              <div className="rounded-[28px] bg-white p-8 shadow-[0_2px_16px_rgba(0,0,0,0.04)] space-y-6 border border-black/[0.06]">
+                <div className="flex items-center justify-between pb-3 border-b border-black/[0.04]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="font-mono text-[11px] font-semibold px-2 py-0.5 rounded-[6px] bg-[#f5f5f7] text-[#0071e3]">02</span>
+                    <h2 className="text-[18px] font-semibold text-[#1d1d1f]">Temporal &amp; Spatial Anchor</h2>
+                  </div>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#86868b]">Solapur Mesh</span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="space-y-1.5">
+                    <label className="text-[12px] font-medium text-[#1d1d1f]" htmlFor="timestampInput">
+                      Observation Timestamp (IST)
+                    </label>
+                    <input 
+                      id="timestampInput"
+                      type="datetime-local"
+                      value={timestamp}
+                      onChange={(e) => setTimestamp(e.target.value)}
+                      className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] font-mono text-[13px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all"
                     />
-                    <span className="font-caption-caps text-caption-caps text-outline block">Qualitative evidentiary text parsed into natural-language anomaly records</span>
+                    <span className="text-[11px] text-[#86868b] block">Synchronous local research epoch</span>
                   </div>
-                </div>
 
-                {/* Submission CTA Actions Strip */}
-                <div className="flex flex-wrap items-center justify-between gap-space-md pt-space-xs">
-                  <div className="flex items-center gap-space-sm">
-                    <button 
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="inline-flex items-center gap-space-xs px-space-xl py-3 rounded-lg bg-primary-container text-on-primary font-headline-md text-headline-md hover:bg-primary transition-all shadow-md active:scale-[0.98] font-semibold disabled:opacity-60"
+                  <div className="space-y-1.5">
+                    <label className="text-[12px] font-medium text-[#1d1d1f]" htmlFor="stationSelect">
+                      Simulation Station / Ward
+                    </label>
+                    <select 
+                      id="stationSelect"
+                      value={selectedStation.id}
+                      onChange={handleStationChange}
+                      className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[13px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all cursor-pointer"
                     >
-                      {isSubmitting ? (
-                        <>
-                          <span className="w-5 h-5 border-2 border-on-primary border-t-transparent rounded-full animate-spin"></span>
-                          <span>Recording Telemetry...</span>
-                        </>
-                      ) : (
-                        <>
-                          <span className="material-symbols-outlined text-[20px]">send_time_extension</span>
-                          <span>
-                            {user && isConfigured ? 'Record Reading to Supabase' : 'Record Reading (Sandbox Demo)'}
-                          </span>
-                        </>
-                      )}
-                    </button>
-                    <button 
-                      type="button"
-                      onClick={handleReset}
-                      className="inline-flex items-center gap-space-xs px-space-md py-3 rounded-lg bg-surface-container hover:bg-surface-container-highest text-on-surface font-body-md text-body-md transition-colors"
-                    >
-                      <span className="material-symbols-outlined text-[18px]">restart_alt</span>
-                      <span>Reset Form</span>
-                    </button>
+                      {STATIONS.map(s => (
+                        <option key={s.id} value={s.id}>{s.name} ({s.id})</option>
+                      ))}
+                    </select>
+                    <span className="text-[11px] text-[#86868b] block">Indexed against 100 Solapur GIS sensor stations</span>
                   </div>
-                  <div className="font-caption-caps text-caption-caps text-outline flex items-center gap-1">
-                    <span className="material-symbols-outlined text-[14px]">lock_clock</span>
-                    <span>{user && isConfigured ? 'SUPABASE RLS POSTGRESQL' : 'RESEARCH SANDBOX BUFFER'}</span>
+
+                  <div className="space-y-1.5">
+                    <label className="text-[12px] font-medium text-[#1d1d1f]" htmlFor="latitudeInput">
+                      Latitude (°N)
+                    </label>
+                    <input 
+                      id="latitudeInput"
+                      type="number"
+                      step="0.0001"
+                      value={latitude}
+                      onChange={(e) => setLatitude(parseFloat(e.target.value))}
+                      className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] font-mono text-[13px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-[12px] font-medium text-[#1d1d1f]" htmlFor="longitudeInput">
+                      Longitude (°E)
+                    </label>
+                    <input 
+                      id="longitudeInput"
+                      type="number"
+                      step="0.0001"
+                      value={longitude}
+                      onChange={(e) => setLongitude(parseFloat(e.target.value))}
+                      className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] font-mono text-[13px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all"
+                    />
                   </div>
                 </div>
 
-                {/* Dynamic Feedback Notification Toast */}
-                {toastVisible && (
-                  <div className={`rounded-xl p-space-md shadow-xl transition-all duration-300 ${
-                    toastIsError ? 'bg-error text-on-error' : 'bg-primary text-on-primary'
-                  }`}>
-                    <div className="flex items-start justify-between gap-space-md">
-                      <div className="flex items-center gap-space-sm">
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold ${
-                          toastIsError ? 'bg-error-container text-on-error-container' : 'bg-primary-fixed text-on-primary-fixed'
-                        }`}>
-                          {toastIsError ? '!' : '✓'}
-                        </div>
-                        <div>
-                          <h4 className="font-headline-md text-headline-md font-semibold">{toastTitle}</h4>
-                          <p className="font-body-sm text-body-sm mt-0.5 opacity-90">{toastMessage}</p>
-                        </div>
-                      </div>
-                      <button onClick={() => setToastVisible(false)} type="button" className="opacity-80 hover:opacity-100">
-                        <span className="material-symbols-outlined text-[20px]">close</span>
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </form>
-            </div>
-
-            {/* Right Column: Live Dynamic Observation Preview Card */}
-            <div className="lg:col-span-5 xl:col-span-4 sticky top-[96px] space-y-space-md">
-              <div className="rounded-xl bg-surface-container-lowest p-space-lg shadow-md space-y-space-md relative overflow-hidden border border-outline-variant/30">
-                
-                {/* Dynamic Thermal Accent Bar on top of card */}
-                <div 
-                  className={`absolute top-0 left-0 right-0 h-1.5 transition-all duration-300 ${
-                    isExtreme ? 'bg-error' : isHigh ? 'bg-tertiary-container' : 'bg-secondary'
-                  }`}
-                ></div>
-
-                {/* Card Header */}
-                <div className="flex items-center justify-between pb-space-xs border-b border-outline-variant/20">
-                  <div className="flex items-center gap-space-xs">
-                    <span className="material-symbols-outlined text-secondary text-[20px]">insights</span>
-                    <span className="font-caption-caps text-caption-caps uppercase tracking-wider text-on-surface font-bold">Simulated Reading Preview</span>
-                  </div>
-                  <span className="font-label-code text-label-code text-on-surface-variant bg-surface-container px-2 py-0.5 rounded">
-                    ID: HS-9281-SIM
-                  </span>
-                </div>
-
-                {/* Dynamic Thermal Risk Tier Pill */}
-                <div className={`p-space-md rounded-xl transition-colors duration-300 ${
-                  isExtreme ? 'bg-error-container text-on-error-container' : isHigh ? 'bg-tertiary-fixed text-on-tertiary-fixed' : 'bg-secondary-container text-on-secondary-container'
-                }`}>
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="font-caption-caps text-caption-caps uppercase font-bold tracking-wider">{riskTitle}</span>
-                    <span className="font-label-code text-label-code font-bold">HI: {heatIndex}°C</span>
-                  </div>
-                  <div className="font-headline-md text-headline-md font-bold">{tempInC.toFixed(1)}°C at {humidity}% RH</div>
-                  <p className="font-body-sm text-body-sm opacity-90 mt-1">{riskGuidance}</p>
-                </div>
-
-                {/* Real-Time Anomaly Computation vs Solapur Baseline */}
-                <div className="rounded-lg bg-surface-container-low p-space-md space-y-space-xs">
-                  <div className="flex items-center justify-between">
-                    <span className="font-body-sm text-body-sm text-on-surface-variant">Solapur Ward Seasonal Baseline</span>
-                    <span className="font-label-metric text-label-metric text-on-surface font-semibold">{baseline}°C</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="font-body-sm text-body-sm text-on-surface-variant">Observed Thermal Anomaly</span>
-                    <span className={`font-label-metric text-label-metric font-bold ${anomalyNum > 0 ? 'text-tertiary' : 'text-secondary'}`}>
-                      {anomalyNum > 0 ? `+${anomaly}` : anomaly}°C
+                {/* Urban Topology Badge */}
+                <div className="p-4 rounded-[18px] bg-[#f5f5f7] flex flex-wrap items-center justify-between gap-3 text-[12px]">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[#86868b] uppercase tracking-wider font-semibold text-[11px]">Inferred Topology:</span>
+                    <span className="font-semibold text-[#1d1d1f]">
+                      {selectedStation.zone}
                     </span>
                   </div>
-                  <div className="pt-2">
-                    <div className="h-2 w-full rounded-full bg-surface-container-highest overflow-hidden relative">
-                      <div 
-                        className={`h-full transition-all duration-300 ${isExtreme ? 'bg-error' : isHigh ? 'bg-tertiary-container' : 'bg-secondary'}`}
-                        style={{ width: `${Math.min(Math.max((anomalyNum + 2) / 7 * 100, 10), 98)}%` }}
-                      ></div>
-                    </div>
-                    <div className="flex justify-between font-label-code text-[10px] text-outline mt-1">
-                      <span>-2.0°C (Cool Sink)</span>
-                      <span>Baseline (0)</span>
-                      <span>+5.0°C (Extreme Island)</span>
-                    </div>
+                  <div className="font-mono text-[#86868b]">
+                    <span>BASELINE: </span>
+                    <span className="font-semibold text-[#1d1d1f]">{selectedStation.baseline}°C</span>
                   </div>
-                </div>
-
-                {/* Spatial Pin Context Mini-Card */}
-                <div className="rounded-lg bg-surface-container-low p-space-md space-y-space-xs">
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <span className="font-caption-caps text-caption-caps uppercase text-secondary font-bold block">Target Microclimate Cell</span>
-                      <div className="font-headline-md text-headline-md text-primary font-semibold">{selectedStation.shortName}</div>
-                      <div className="font-body-sm text-body-sm text-on-surface-variant">{selectedStation.zone}</div>
-                    </div>
-                    <span className="material-symbols-outlined text-primary text-[24px]">location_on</span>
-                  </div>
-                  <div className="pt-space-xs font-label-code text-label-code text-on-surface bg-surface-container-lowest p-2 rounded flex items-center justify-between">
-                    <span>{latitude.toFixed(4)}° N, {longitude.toFixed(4)}° E</span>
-                    <span className="text-secondary font-bold">{selectedStation.wardCode}</span>
-                  </div>
-                </div>
-
-                {/* Sensor & Substrate Metadata Chips */}
-                <div className="grid grid-cols-2 gap-space-xs">
-                  <div className="p-space-xs px-space-sm rounded bg-surface-container">
-                    <span className="font-caption-caps text-[9px] uppercase text-outline block">Substrate Albedo</span>
-                    <span className="font-label-code text-label-code text-on-surface font-semibold">{selectedSubstrate.name} (α={selectedSubstrate.albedo})</span>
-                  </div>
-                  <div className="p-space-xs px-space-sm rounded bg-surface-container">
-                    <span className="font-caption-caps text-[9px] uppercase text-outline block">Surface Thermal</span>
-                    <span className="font-label-code text-label-code text-on-surface font-semibold">{surfaceTemp}°C IR</span>
-                  </div>
-                </div>
-
-                {/* Integrity Checksum & JSON Payload Inspector */}
-                <div className="pt-space-xs space-y-space-xs">
-                  <div className="flex items-center justify-between">
-                    <span className="font-caption-caps text-caption-caps uppercase text-outline font-semibold">Telemetry Schema Payload</span>
-                    <button 
-                      type="button"
-                      onClick={handleCopyJson}
-                      className="font-label-code text-[11px] text-secondary hover:text-primary transition-colors flex items-center gap-1 font-medium"
-                    >
-                      <span className="material-symbols-outlined text-[13px]">content_copy</span>
-                      <span>{copyStatus}</span>
-                    </button>
-                  </div>
-                  <pre className="w-full rounded-lg bg-surface-container-highest p-space-sm font-label-code text-[11px] leading-relaxed text-on-surface overflow-x-auto max-h-40 whitespace-pre border border-outline-variant/20">
-                    {jsonPayload}
-                  </pre>
                 </div>
               </div>
 
-              {/* Research Sandbox Guidelines Mini-Panel */}
-              <div className="rounded-xl bg-surface-container p-space-md space-y-space-xs border border-outline-variant/30">
-                <div className="flex items-center gap-space-xs text-primary font-semibold">
-                  <span className="material-symbols-outlined text-[18px]">verified</span>
-                  <span className="font-caption-caps text-caption-caps uppercase font-bold">Quality Assurance Validation</span>
+              {/* SECTION 3: Measurement Source */}
+              <div className="rounded-[28px] bg-white p-8 shadow-[0_2px_16px_rgba(0,0,0,0.04)] space-y-6 border border-black/[0.06]">
+                <div className="flex items-center justify-between pb-3 border-b border-black/[0.04]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="font-mono text-[11px] font-semibold px-2 py-0.5 rounded-[6px] bg-[#f5f5f7] text-[#0071e3]">03</span>
+                    <h2 className="text-[18px] font-semibold text-[#1d1d1f]">Measurement Source &amp; Instrumentation</h2>
+                  </div>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#86868b]">Provenance</span>
                 </div>
-                <p className="font-body-sm text-body-sm text-on-surface-variant">
-                  Readings exceeding 3.5σ of ward baselines are automatically flagged with experimental weights to prevent synthetic grid skew.
-                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="space-y-1.5">
+                    <label className="text-[12px] font-medium text-[#1d1d1f]" htmlFor="sourceType">
+                      Telemetry Source Category
+                    </label>
+                    <select 
+                      id="sourceType"
+                      value={sourceType}
+                      onChange={(e) => setSourceType(e.target.value)}
+                      className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[13px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all cursor-pointer"
+                    >
+                      <option value="calibrated_thermistor">Calibrated Field Thermistor (±0.15°C)</option>
+                      <option value="ir_pyrometer">Handheld IR Surface Pyrometer (±0.5°C)</option>
+                      <option value="weather_station">Automatic Weather Station (AWS Tier 2)</option>
+                      <option value="hypothetical_sim">Hypothetical Scenario Simulation (TF-141 Model)</option>
+                      <option value="crowd_in situ">Citizen Science Handheld Probe</option>
+                    </select>
+                    <span className="text-[11px] text-[#86868b] block">Determines uncertainty confidence weighting (σ)</span>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-[12px] font-medium text-[#1d1d1f]" htmlFor="instrumentSpec">
+                      Instrument Specification / Model
+                    </label>
+                    <input 
+                      id="instrumentSpec"
+                      type="text"
+                      value={instrumentSpec}
+                      onChange={(e) => setInstrumentSpec(e.target.value)}
+                      className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[13px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all"
+                    />
+                    <span className="text-[11px] text-[#86868b] block">Model revision or calibration certificate</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* SECTION 4: Substrate & Field Notes */}
+              <div className="rounded-[28px] bg-white p-8 shadow-[0_2px_16px_rgba(0,0,0,0.04)] space-y-6 border border-black/[0.06]">
+                <div className="flex items-center justify-between pb-3 border-b border-black/[0.04]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="font-mono text-[11px] font-semibold px-2 py-0.5 rounded-[6px] bg-[#f5f5f7] text-[#0071e3]">04</span>
+                    <h2 className="text-[18px] font-semibold text-[#1d1d1f]">Surface Context &amp; Field Notes</h2>
+                  </div>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#86868b]">Albedo</span>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-[12px] font-medium text-[#1d1d1f] block">Ground Substrate Albedo Group</label>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2" id="surfaceButtonGroup">
+                    {SUBSTRATES.map((sub) => {
+                      const isSelected = selectedSubstrate.name === sub.name;
+                      return (
+                        <button
+                          key={sub.name}
+                          type="button"
+                          onClick={() => setSelectedSubstrate(sub)}
+                          className={`p-3 text-left rounded-[14px] transition-all flex flex-col justify-between border ${
+                            isSelected 
+                              ? 'bg-[#0071e3] text-white font-semibold border-[#0071e3] shadow-xs' 
+                              : 'bg-[#f5f5f7] text-[#1d1d1f] hover:bg-[#e8e8ed] border-transparent'
+                          }`}
+                        >
+                          <span className="text-[13px]">{sub.name}</span>
+                          <span className={`font-mono text-[10px] mt-1 ${isSelected ? 'text-white/80' : 'text-[#86868b]'}`}>
+                            α ≈ {sub.albedo.toFixed(2)}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-[12px] font-medium text-[#1d1d1f]" htmlFor="fieldNotes">
+                    Field Microclimate Observations &amp; Mitigation Notes
+                  </label>
+                  <textarea 
+                    id="fieldNotes"
+                    rows={3}
+                    value={fieldNotes}
+                    onChange={(e) => setFieldNotes(e.target.value)}
+                    className="w-full bg-[#f5f5f7] p-4 rounded-[16px] text-[13px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all resize-y placeholder:text-[#86868b]"
+                  />
+                  <span className="text-[11px] text-[#86868b] block">Qualitative observations parsed into anomaly records</span>
+                </div>
+              </div>
+
+              {/* Action Buttons Strip */}
+              <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
+                <div className="flex items-center gap-3">
+                  <button 
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="inline-flex items-center gap-2 px-8 h-12 rounded-[980px] bg-[#0071e3] hover:bg-[#0077ed] text-white text-[14px] font-medium transition-all shadow-[0_2px_8px_rgba(0,113,227,0.25)] active:scale-[0.98] disabled:opacity-60"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
+                        <span>Recording Telemetry...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="material-symbols-outlined text-[18px]">send_time_extension</span>
+                        <span>
+                          {user && isConfigured ? 'Record Reading to Supabase' : 'Record Reading (Sandbox Demo)'}
+                        </span>
+                      </>
+                    )}
+                  </button>
+                  <button 
+                    type="button"
+                    onClick={handleReset}
+                    className="inline-flex items-center gap-1.5 px-5 h-12 rounded-[980px] bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#1d1d1f] text-[13px] font-medium transition-colors"
+                  >
+                    <span className="material-symbols-outlined text-[16px]">restart_alt</span>
+                    <span>Reset</span>
+                  </button>
+                </div>
+                <div className="font-mono text-[11px] text-[#86868b] flex items-center gap-1">
+                  <span className="material-symbols-outlined text-[14px]">lock</span>
+                  <span>{user && isConfigured ? 'SUPABASE POSTGRESQL' : 'RESEARCH SANDBOX'}</span>
+                </div>
+              </div>
+
+              {/* Feedback Toast */}
+              {toastVisible && (
+                <div className={`rounded-[20px] p-5 shadow-lg transition-all duration-300 ${
+                  toastIsError ? 'bg-[#dc2626] text-white' : 'bg-[#1d1d1f] text-white'
+                }`}>
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className={`w-8 h-8 rounded-[980px] flex items-center justify-center font-bold text-[14px] ${
+                        toastIsError ? 'bg-white text-[#dc2626]' : 'bg-[#059669] text-white'
+                      }`}>
+                        {toastIsError ? '!' : '✓'}
+                      </div>
+                      <div>
+                        <h4 className="text-[14px] font-semibold">{toastTitle}</h4>
+                        <p className="text-[12px] opacity-90 mt-0.5 leading-relaxed">{toastMessage}</p>
+                      </div>
+                    </div>
+                    <button onClick={() => setToastVisible(false)} type="button" className="opacity-70 hover:opacity-100">
+                      <span className="material-symbols-outlined text-[18px]">close</span>
+                    </button>
+                  </div>
+                </div>
+              )}
+            </form>
+          </div>
+
+          {/* Right Observer Panel (4 Cols) */}
+          <div className="lg:col-span-4 sticky top-[72px] space-y-6">
+            <div className="rounded-[28px] bg-white p-6 shadow-[0_2px_16px_rgba(0,0,0,0.04)] space-y-5 border border-black/[0.06]">
+              
+              {/* Header */}
+              <div className="flex items-center justify-between pb-3 border-b border-black/[0.04]">
+                <div className="flex items-center gap-1.5">
+                  <span className="material-symbols-outlined text-[#0071e3] text-[18px]">insights</span>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#1d1d1f]">Live Telemetry Preview</span>
+                </div>
+                <span className="font-mono text-[10px] text-[#86868b] bg-[#f5f5f7] px-2 py-0.5 rounded-[980px]">
+                  HS-9281-SIM
+                </span>
+              </div>
+
+              {/* Risk Tier Badge */}
+              <div className={`p-5 rounded-[20px] transition-colors duration-300 ${
+                isExtreme ? 'bg-[#dc2626]/10 text-[#dc2626]' : isHigh ? 'bg-[#ea580c]/10 text-[#ea580c]' : 'bg-[#059669]/10 text-[#059669]'
+              }`}>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider">{riskTitle}</span>
+                  <span className="font-mono text-[11px] font-bold">HI: {heatIndex}°C</span>
+                </div>
+                <div className="text-[20px] font-semibold tracking-tight">{tempInC.toFixed(1)}°C at {humidity}% RH</div>
+                <p className="text-[12px] opacity-90 mt-1 leading-relaxed">{riskGuidance}</p>
+              </div>
+
+              {/* Real-Time Anomaly vs Solapur Baseline */}
+              <div className="rounded-[20px] bg-[#f5f5f7] p-5 space-y-2 border border-black/[0.04]">
+                <div className="flex items-center justify-between text-[13px]">
+                  <span className="text-[#86868b]">Ward Baseline</span>
+                  <span className="font-semibold text-[#1d1d1f] tabular-nums">{baseline}°C</span>
+                </div>
+                <div className="flex items-center justify-between text-[13px]">
+                  <span className="text-[#86868b]">Observed Anomaly</span>
+                  <span className={`font-bold tabular-nums ${anomalyNum > 0 ? 'text-[#dc2626]' : 'text-[#059669]'}`}>
+                    {anomalyNum > 0 ? `+${anomaly}` : anomaly}°C
+                  </span>
+                </div>
+                <div className="pt-2">
+                  <div className="h-2 w-full rounded-[980px] bg-black/10 overflow-hidden relative">
+                    <div 
+                      className={`h-full transition-all duration-300 ${isExtreme ? 'bg-[#dc2626]' : isHigh ? 'bg-[#ea580c]' : 'bg-[#059669]'}`}
+                      style={{ width: `${Math.min(Math.max((anomalyNum + 2) / 7 * 100, 10), 98)}%` }}
+                    ></div>
+                  </div>
+                  <div className="flex justify-between font-mono text-[10px] text-[#86868b] mt-1.5">
+                    <span>-2.0°C</span>
+                    <span>Baseline (0)</span>
+                    <span>+5.0°C</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Target Cell Details */}
+              <div className="rounded-[20px] bg-[#f5f5f7] p-5 space-y-2 border border-black/[0.04]">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-[#0071e3] block">Target Microclimate Cell</span>
+                    <div className="text-[15px] font-semibold text-[#1d1d1f] mt-0.5">{selectedStation.shortName}</div>
+                    <div className="text-[12px] text-[#86868b]">{selectedStation.zone}</div>
+                  </div>
+                  <span className="material-symbols-outlined text-[#0071e3] text-[22px]">location_on</span>
+                </div>
+                <div className="pt-1 font-mono text-[11px] text-[#1d1d1f] bg-white p-2.5 rounded-[12px] flex items-center justify-between border border-black/[0.04]">
+                  <span>{latitude.toFixed(4)}° N, {longitude.toFixed(4)}° E</span>
+                  <span className="text-[#0071e3] font-semibold">{selectedStation.wardCode}</span>
+                </div>
+              </div>
+
+              {/* Substrate Albedo & Thermal Chips */}
+              <div className="grid grid-cols-2 gap-2">
+                <div className="p-3 rounded-[16px] bg-[#f5f5f7]">
+                  <span className="text-[10px] uppercase font-semibold text-[#86868b] block">Substrate</span>
+                  <span className="font-mono text-[11px] text-[#1d1d1f] font-medium">{selectedSubstrate.name} (α={selectedSubstrate.albedo})</span>
+                </div>
+                <div className="p-3 rounded-[16px] bg-[#f5f5f7]">
+                  <span className="text-[10px] uppercase font-semibold text-[#86868b] block">Surface Skin</span>
+                  <span className="font-mono text-[11px] text-[#1d1d1f] font-medium">{surfaceTemp}°C IR</span>
+                </div>
+              </div>
+
+              {/* JSON Payload Inspector */}
+              <div className="space-y-2 pt-1">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#86868b]">Telemetry Payload</span>
+                  <button 
+                    type="button"
+                    onClick={handleCopyJson}
+                    className="font-mono text-[11px] text-[#0071e3] hover:underline flex items-center gap-1 font-medium"
+                  >
+                    <span className="material-symbols-outlined text-[13px]">content_copy</span>
+                    <span>{copyStatus}</span>
+                  </button>
+                </div>
+                <pre className="w-full rounded-[16px] bg-[#1d1d1f] p-4 font-mono text-[11px] leading-relaxed text-[#f5f5f7] overflow-x-auto max-h-36 whitespace-pre shadow-inner">
+                  {jsonPayload}
+                </pre>
               </div>
             </div>
 
+            {/* QA Validation Note */}
+            <div className="p-5 bg-white rounded-[24px] border border-black/[0.06] shadow-[0_2px_8px_rgba(0,0,0,0.02)] space-y-1">
+              <div className="flex items-center gap-1.5 text-[#0071e3] font-medium text-[12px]">
+                <span className="material-symbols-outlined text-[16px]">verified</span>
+                <span className="uppercase tracking-wider font-semibold">QA Validation</span>
+              </div>
+              <p className="text-[12px] text-[#86868b] leading-relaxed">
+                Readings exceeding 3.5σ of ward baselines are automatically flagged with experimental weights to prevent synthetic grid skew.
+              </p>
+            </div>
           </div>
+
         </div>
       </div>
     </div>
