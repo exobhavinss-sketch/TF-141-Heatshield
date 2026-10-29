@@ -1,6 +1,6 @@
 # HeatShield Project: Comprehensive Dataset & File Analysis Report
 
-**Workspace Directory**: `S:\Datasets Imporvements`  
+**Workspace Directory**: Repository Root (Relative: `Datasets/`)<br/>
 **Study Domain**: Geospatial Urban Heat Exposure, Microclimate Dynamics & Cooling Prioritization  
 **Target Geography**: Solapur Urban Agglomeration, Maharashtra, India (17.6120°N–17.7220°N, 75.8360°E–75.9620°E)  
 **Observation Window**: 2021-01-01 to 2025-12-31 (5-Year Longitudinal Simulation)  
@@ -26,16 +26,16 @@ The folder contains **18 files** (8 root data/documentation/code files and 10 hi
 
 | File / Directory Name | Category | File Size | Format | Primary Role / Description |
 |---|---|---|---|---|
-| [`Heat Shield Master Dataset.csv`](file:///S:/Datasets%20Imporvements/Heat%20Shield%20Master%20Dataset.csv) | Primary Dataset | 62.95 MB | CSV (UTF-8) | Denormalized flat master table containing 150,000 observations × 57 columns. |
-| [`Heat Shield Locations.csv`](file:///S:/Datasets%20Imporvements/Heat%20Shield%20Locations.csv) | Dimension Data | 13.1 KB | CSV (UTF-8) | Normalized geospatial dimension table for 100 unique monitoring stations across 9 zones. |
-| [`Heat Shield Weather Data.csv`](file:///S:/Datasets%20Imporvements/Heat%20Shield%20Weather%20Data.csv) | Fact Data | 19.06 MB | CSV (UTF-8) | Meteorological fact table with 150,000 rows × 18 atmospheric columns. |
-| [`Heat Shield Surface Observations.csv`](file:///S:/Datasets%20Imporvements/Heat%20Shield%20Surface%20Observations.csv) | Fact Data | 16.10 MB | CSV (UTF-8) | Remote sensing / land surface temperature fact table with 150,000 rows × 15 columns. |
-| [`Heat Shield Interventions.csv`](file:///S:/Datasets%20Imporvements/Heat%20Shield%20Interventions.csv) | Fact Data | 19.23 MB | CSV (UTF-8) | Planning, exposure risk, and intervention prioritization fact table with 150,000 rows × 11 columns. |
-| [`Heat Shield Dictionary.xlsx`](file:///S:/Datasets%20Imporvements/Heat%20Shield%20Dictionary.xlsx) | Metadata | 13.0 KB | XLSX | Dual-sheet workbook detailing column definitions, formulas, and 3NF target schemas. |
-| [`Heat Shield Database Schema.sql`](file:///S:/Datasets%20Imporvements/Heat%20Shield%20Database%20Schema.sql) | DDL / SQL | 18.0 KB | SQL Script | MySQL 8.0+ and PostgreSQL 14+ DDL, B-tree indexes, ETL insert scripts, and analytical queries. |
-| [`Heat Shield Vadilation Report.txt`](file:///S:/Datasets%20Imporvements/Heat%20Shield%20Vadilation%20Report.txt) | QA / Audit Log | 8.5 KB | Plain Text | Automated 12-section validation report confirming range checks and statistical distributions. |
-| [`Heat Shield Project ReadMe File.md`](file:///S:/Datasets%20Imporvements/Heat%20Shield%20Project%20ReadMe%20File.md) | Documentation | 15.4 KB | Markdown | Comprehensive technical documentation, project overview, and reproduction guide. |
-| [`charts/`](file:///S:/Datasets%20Imporvements/charts) | Visualizations | 6.4 MB | Directory | Directory containing 10 high-resolution analytical figures (PNG format). |
+| [`Heat Shield Master Dataset.csv`](../datasets/Heat%20Shield%20Master%20Dataset.csv) | Primary Dataset | 62.95 MB | CSV (UTF-8) | Denormalized flat master table containing 150,000 observations × 57 columns. |
+| [`Heat Shield Locations.csv`](../datasets/Heat%20Shield%20Locations.csv) | Dimension Data | 13.1 KB | CSV (UTF-8) | Normalized geospatial dimension table for 100 unique monitoring stations across 9 zones. |
+| [`Heat Shield Weather Data.csv`](../datasets/Heat%20Shield%20Weather%20Data.csv) | Fact Data | 19.06 MB | CSV (UTF-8) | Meteorological fact table with 150,000 rows × 18 atmospheric columns. |
+| [`Heat Shield Surface Observations.csv`](../datasets/Heat%20Shield%20Surface%20Observations.csv) | Fact Data | 16.10 MB | CSV (UTF-8) | Remote sensing / land surface temperature fact table with 150,000 rows × 15 columns. |
+| [`Heat Shield Interventions.csv`](../datasets/Heat%20Shield%20Interventions.csv) | Fact Data | 19.23 MB | CSV (UTF-8) | Planning, exposure risk, and intervention prioritization fact table with 150,000 rows × 11 columns. |
+| [`Heat Shield Dictionary.xlsx`](../datasets/Heat%20Shield%20Dictionary.xlsx) | Metadata | 13.0 KB | XLSX | Dual-sheet workbook detailing column definitions, formulas, and 3NF target schemas. |
+| [`Heat Shield Database Schema.sql`](../database/Heat%20Shield%20Database%20Schema.sql) | DDL / SQL | 18.0 KB | SQL Script | MySQL 8.0+ and PostgreSQL 14+ DDL, B-tree indexes, ETL insert scripts, and analytical queries. |
+| [`Heat Shield Validation Report.txt`](Heat%20Shield%20Validation%20Report.txt) | QA / Audit Log | 8.5 KB | Plain Text | Automated 12-section validation report confirming range checks and statistical distributions. |
+| [`Heat Shield Project ReadMe File.md`](../database/README.md) | Documentation | 15.4 KB | Markdown | Comprehensive technical documentation, project overview, and reproduction guide. |
+| [`charts/`](../charts/) | Visualizations | 6.4 MB | Directory | Directory containing 10 high-resolution analytical figures (PNG format). |
 
 ---
 
@@ -115,16 +115,16 @@ All 10 charts are rendered at high resolution (3000 to 4200 px wide, 300 DPI) in
 
 | Chart File | Resolution | Key Analytical Visual Insight |
 |---|---|---|
-| [`01_temperature_distribution.png`](file:///S:/Datasets%20Imporvements/charts/01_temperature_distribution.png) | 3000 × 1800 | Bimodal distributions comparing ambient air temperature ($\mu = 34.28^\circ\text{C}$) vs. land surface temperature ($\mu = 35.89^\circ\text{C}$, peak $55.35^\circ\text{C}$). |
-| [`02_monthly_seasonal_trends.png`](file:///S:/Datasets%20Imporvements/charts/02_monthly_seasonal_trends.png) | 3300 × 1800 | Monthly climatological progression showing extreme pre-monsoon heat spike in April–May and drop during Monsoon (July–August). |
-| [`03_correlation_heatmap.png`](file:///S:/Datasets%20Imporvements/charts/03_correlation_heatmap.png) | 3300 × 2700 | Pearson correlation matrix highlighting the negative cooling relationship of NDVI/vegetation and positive heating relationship of NDBI/impervious surface. |
-| [`04_ndvi_vs_lst_scatter.png`](file:///S:/Datasets%20Imporvements/charts/04_ndvi_vs_lst_scatter.png) | 3000 × 1800 | Hexbin/scatter plot demonstrating strong thermal suppression ($r = -0.31$) as vegetative density increases. |
-| [`05_builtup_intensity_vs_lst.png`](file:///S:/Datasets%20Imporvements/charts/05_builtup_intensity_vs_lst.png) | 3000 × 1800 | Relationship showing built-up intensity index driving surface heating up to $55^\circ\text{C}$. |
-| [`06_heat_risk_distribution.png`](file:///S:/Datasets%20Imporvements/charts/06_heat_risk_distribution.png) | 3600 × 1650 | Categorical breakdown across zones: High & Very High risks concentrated in Industrial, Commercial, and Road corridors. |
-| [`07_geographic_hotspot_map.png`](file:///S:/Datasets%20Imporvements/charts/07_geographic_hotspot_map.png) | 3000 × 2400 | Latitude/Longitude scatter plot of Solapur monitoring stations color-coded by mean LST and scaled by cooling priority. |
-| [`08_cooling_priority_ranking.png`](file:///S:/Datasets%20Imporvements/charts/08_cooling_priority_ranking.png) | 3300 × 2100 | Horizontal ranking of top 25 priority locations requiring immediate municipal cooling intervention. |
-| [`09_location_zone_comparison.png`](file:///S:/Datasets%20Imporvements/charts/09_location_zone_comparison.png) | 3300 × 1800 | Box plots comparing LST, shade gap, and UHI intensity across all 9 urban zones. |
-| [`10_executive_summary_dashboard.png`](file:///S:/Datasets%20Imporvements/charts/10_executive_summary_dashboard.png) | 4200 × 2700 | Comprehensive multi-panel executive dashboard summarizing high-level KPIs, spatial hotspots, and policy metrics. |
+| [`01_temperature_distribution.png`](../charts/01_temperature_distribution.png) | 3000 × 1800 | Bimodal distributions comparing ambient air temperature ($\mu = 34.28^\circ\text{C}$) vs. land surface temperature ($\mu = 35.89^\circ\text{C}$, peak $55.35^\circ\text{C}$). |
+| [`02_monthly_seasonal_trends.png`](../charts/02_monthly_seasonal_trends.png) | 3300 × 1800 | Monthly climatological progression showing extreme pre-monsoon heat spike in April–May and drop during Monsoon (July–August). |
+| [`03_correlation_heatmap.png`](../charts/03_correlation_heatmap.png) | 3300 × 2700 | Pearson correlation matrix highlighting the negative cooling relationship of NDVI/vegetation and positive heating relationship of NDBI/impervious surface. |
+| [`04_ndvi_vs_lst_scatter.png`](../charts/04_ndvi_vs_lst_scatter.png) | 3000 × 1800 | Hexbin/scatter plot demonstrating strong thermal suppression ($r = -0.31$) as vegetative density increases. |
+| [`05_builtup_intensity_vs_lst.png`](../charts/05_builtup_intensity_vs_lst.png) | 3000 × 1800 | Relationship showing built-up intensity index driving surface heating up to $55^\circ\text{C}$. |
+| [`06_heat_risk_distribution.png`](../charts/06_heat_risk_distribution.png) | 3600 × 1650 | Categorical breakdown across zones: High & Very High risks concentrated in Industrial, Commercial, and Road corridors. |
+| [`07_geographic_hotspot_map.png`](../charts/07_geographic_hotspot_map.png) | 3000 × 2400 | Latitude/Longitude scatter plot of Solapur monitoring stations color-coded by mean LST and scaled by cooling priority. |
+| [`08_cooling_priority_ranking.png`](../charts/08_cooling_priority_ranking.png) | 3300 × 2100 | Horizontal ranking of top 25 priority locations requiring immediate municipal cooling intervention. |
+| [`09_location_zone_comparison.png`](../charts/09_location_zone_comparison.png) | 3300 × 1800 | Box plots comparing LST, shade gap, and UHI intensity across all 9 urban zones. |
+| [`10_executive_summary_dashboard.png`](../charts/10_executive_summary_dashboard.png) | 4200 × 2700 | Comprehensive multi-panel executive dashboard summarizing high-level KPIs, spatial hotspots, and policy metrics. |
 
 ---
 
@@ -135,7 +135,7 @@ During the deep-dive analysis, several actionable defects and opportunities for 
 ### 1. SQL Syntax & Schema Error in `Heat Shield Database Schema.sql`
 > [!WARNING]
 > **Query 3 Syntax Error & Missing Column**:
-> In line 416 of [`Heat Shield Database Schema.sql`](file:///S:/Datasets%20Imporvements/Heat%20Shield%20Database%20Schema.sql#L407-L418):
+> In line 416 of [`Heat Shield Database Schema.sql`](../database/Heat%20Shield%20Database%20Schema.sql):
 > ```sql
 > -- Existing Buggy Code:
 > SELECT 

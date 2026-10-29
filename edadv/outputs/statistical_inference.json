@@ -1,0 +1,1095 @@
+{
+  "metadata": {
+    "timestamp_utc": "2026-10-29T06:47:33.431270+00:00",
+    "source_dataset": "Heat Shield Master Dataset(2).csv",
+    "source_sha256": "b9e73ed10d0dc7c824063e7f1b868a95b11a435758f2ed940d63aa30f45e1b83",
+    "total_records": 150000,
+    "zones_analyzed": [
+      "Residential",
+      "Commercial",
+      "Road",
+      "Industrial",
+      "Park",
+      "Educational",
+      "Transport",
+      "Waterbody",
+      "Open Land"
+    ],
+    "lead_analyst": "Aman Shaikh (SCFU425013)",
+    "academic_track": "EDADV"
+  },
+  "lst_zone_hypothesis_tests": {
+    "variable": "land_surface_temperature_c",
+    "label": "Land Surface Temperature (\u00b0C)",
+    "group_statistics": {
+      "Residential": {
+        "n": 42000,
+        "mean": 35.746862,
+        "std": 6.395634,
+        "median": 35.33,
+        "q25": 31.14,
+        "q75": 40.47,
+        "iqr": 9.33,
+        "min": 19.48,
+        "max": 52.02
+      },
+      "Commercial": {
+        "n": 21000,
+        "mean": 37.737709,
+        "std": 6.886882,
+        "median": 37.26,
+        "q25": 33.0,
+        "q75": 42.61,
+        "iqr": 9.61,
+        "min": 20.71,
+        "max": 54.5
+      },
+      "Road": {
+        "n": 21000,
+        "mean": 38.21834,
+        "std": 7.086276,
+        "median": 37.65,
+        "q25": 33.35,
+        "q75": 43.1025,
+        "iqr": 9.7525,
+        "min": 20.74,
+        "max": 55.23
+      },
+      "Industrial": {
+        "n": 18000,
+        "mean": 38.467897,
+        "std": 7.008899,
+        "median": 37.96,
+        "q25": 33.66,
+        "q75": 43.3325,
+        "iqr": 9.6725,
+        "min": 21.82,
+        "max": 55.35
+      },
+      "Park": {
+        "n": 15000,
+        "mean": 30.930627,
+        "std": 5.439465,
+        "median": 30.89,
+        "q25": 26.53,
+        "q75": 35.49,
+        "iqr": 8.96,
+        "min": 17.06,
+        "max": 43.42
+      },
+      "Educational": {
+        "n": 12000,
+        "mean": 34.442608,
+        "std": 5.947473,
+        "median": 34.18,
+        "q25": 29.94,
+        "q75": 39.02,
+        "iqr": 9.08,
+        "min": 19.73,
+        "max": 48.47
+      },
+      "Transport": {
+        "n": 9000,
+        "mean": 37.129519,
+        "std": 6.984282,
+        "median": 36.55,
+        "q25": 32.32,
+        "q75": 42.06,
+        "iqr": 9.74,
+        "min": 19.86,
+        "max": 54.45
+      },
+      "Waterbody": {
+        "n": 6000,
+        "mean": 29.483875,
+        "std": 4.950929,
+        "median": 29.82,
+        "q25": 25.28,
+        "q75": 33.49,
+        "iqr": 8.21,
+        "min": 18.56,
+        "max": 41.24
+      },
+      "Open Land": {
+        "n": 6000,
+        "mean": 34.439727,
+        "std": 5.663601,
+        "median": 34.285,
+        "q25": 30.09,
+        "q75": 39.01,
+        "iqr": 8.92,
+        "min": 20.81,
+        "max": 46.75
+      }
+    },
+    "levene_test": {
+      "statistic": 214.247923,
+      "p_value": 0.0,
+      "equal_variance_assumed": 0,
+      "note": "Levene test (center=median) tests null hypothesis that all zones have equal variance."
+    },
+    "one_way_anova": {
+      "f_statistic": 2895.319874,
+      "df_between": 8,
+      "df_within": 149991,
+      "p_value": 0.0,
+      "ss_between": 972766.780235,
+      "ss_within": 6299228.949862,
+      "ss_total": 7271995.730097,
+      "eta_squared": 0.133769,
+      "omega_squared": 0.133722,
+      "interpretation": "Omnibus ANOVA tests H0: All 9 zone means are equal."
+    },
+    "welch_anova": {
+      "f_statistic": 3628.578397,
+      "df_between": 8.0,
+      "df_within": 41229.758481,
+      "p_value": 0.0,
+      "note": "Welch ANOVA robust to heteroscedastic group variances."
+    },
+    "kruskal_wallis": {
+      "h_statistic": 18866.464029,
+      "df": 8,
+      "p_value": 0.0,
+      "epsilon_squared": 0.125731,
+      "interpretation": "Non-parametric rank test H0: Identical medians/distributions across zones."
+    },
+    "residual_normality": {
+      "jarque_bera_stat": 2088.269849,
+      "jarque_bera_p": 0.0,
+      "normal_at_05": 0
+    },
+    "pairwise_tukey_hsd": [
+      {
+        "group1": "Residential",
+        "group2": "Commercial",
+        "mean_diff": -1.990846,
+        "p_adj": 0.0,
+        "ci_95_low": -2.16073,
+        "ci_95_high": -1.820963,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Residential",
+        "group2": "Road",
+        "mean_diff": -2.471478,
+        "p_adj": 0.0,
+        "ci_95_low": -2.641362,
+        "ci_95_high": -2.301595,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Residential",
+        "group2": "Industrial",
+        "mean_diff": -2.721035,
+        "p_adj": 0.0,
+        "ci_95_low": -2.900107,
+        "ci_95_high": -2.541962,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Residential",
+        "group2": "Park",
+        "mean_diff": 4.816235,
+        "p_adj": 0.0,
+        "ci_95_low": 4.625037,
+        "ci_95_high": 5.007432,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Residential",
+        "group2": "Educational",
+        "mean_diff": 1.304254,
+        "p_adj": 0.0,
+        "ci_95_low": 1.09619,
+        "ci_95_high": 1.512318,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Residential",
+        "group2": "Transport",
+        "mean_diff": -1.382657,
+        "p_adj": 0.0,
+        "ci_95_low": -1.616139,
+        "ci_95_high": -1.149174,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Residential",
+        "group2": "Waterbody",
+        "mean_diff": 6.262987,
+        "p_adj": 0.0,
+        "ci_95_low": 5.985569,
+        "ci_95_high": 6.540406,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Residential",
+        "group2": "Open Land",
+        "mean_diff": 1.307135,
+        "p_adj": 0.0,
+        "ci_95_low": 1.029717,
+        "ci_95_high": 1.584554,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Commercial",
+        "group2": "Road",
+        "mean_diff": -0.480632,
+        "p_adj": 0.0,
+        "ci_95_low": -0.676796,
+        "ci_95_high": -0.284467,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Commercial",
+        "group2": "Industrial",
+        "mean_diff": -0.730188,
+        "p_adj": 0.0,
+        "ci_95_low": -0.934363,
+        "ci_95_high": -0.526014,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Commercial",
+        "group2": "Park",
+        "mean_diff": 6.807081,
+        "p_adj": 0.0,
+        "ci_95_low": 6.592194,
+        "ci_95_high": 7.021969,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Commercial",
+        "group2": "Educational",
+        "mean_diff": 3.2951,
+        "p_adj": 0.0,
+        "ci_95_low": 3.065077,
+        "ci_95_high": 3.525124,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Commercial",
+        "group2": "Transport",
+        "mean_diff": 0.60819,
+        "p_adj": 0.0,
+        "ci_95_low": 0.354942,
+        "ci_95_high": 0.861437,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Commercial",
+        "group2": "Waterbody",
+        "mean_diff": 8.253834,
+        "p_adj": 0.0,
+        "ci_95_low": 7.959587,
+        "ci_95_high": 8.54808,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Commercial",
+        "group2": "Open Land",
+        "mean_diff": 3.297982,
+        "p_adj": 0.0,
+        "ci_95_low": 3.003735,
+        "ci_95_high": 3.592229,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Road",
+        "group2": "Industrial",
+        "mean_diff": -0.249556,
+        "p_adj": 0.004735,
+        "ci_95_low": -0.453731,
+        "ci_95_high": -0.045382,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Road",
+        "group2": "Park",
+        "mean_diff": 7.287713,
+        "p_adj": 0.0,
+        "ci_95_low": 7.072826,
+        "ci_95_high": 7.502601,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Road",
+        "group2": "Educational",
+        "mean_diff": 3.775732,
+        "p_adj": 0.0,
+        "ci_95_low": 3.545709,
+        "ci_95_high": 4.005755,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Road",
+        "group2": "Transport",
+        "mean_diff": 1.088822,
+        "p_adj": 0.0,
+        "ci_95_low": 0.835574,
+        "ci_95_high": 1.342069,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Road",
+        "group2": "Waterbody",
+        "mean_diff": 8.734465,
+        "p_adj": 0.0,
+        "ci_95_low": 8.440219,
+        "ci_95_high": 9.028712,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Road",
+        "group2": "Open Land",
+        "mean_diff": 3.778614,
+        "p_adj": 0.0,
+        "ci_95_low": 3.484367,
+        "ci_95_high": 4.072861,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Industrial",
+        "group2": "Park",
+        "mean_diff": 7.537269,
+        "p_adj": 0.0,
+        "ci_95_low": 7.315046,
+        "ci_95_high": 7.759493,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Industrial",
+        "group2": "Educational",
+        "mean_diff": 4.025288,
+        "p_adj": 0.0,
+        "ci_95_low": 3.788397,
+        "ci_95_high": 4.26218,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Industrial",
+        "group2": "Transport",
+        "mean_diff": 1.338378,
+        "p_adj": 0.0,
+        "ci_95_low": 1.078876,
+        "ci_95_high": 1.597879,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Industrial",
+        "group2": "Waterbody",
+        "mean_diff": 8.984022,
+        "p_adj": 0.0,
+        "ci_95_low": 8.684375,
+        "ci_95_high": 9.283668,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Industrial",
+        "group2": "Open Land",
+        "mean_diff": 4.02817,
+        "p_adj": 0.0,
+        "ci_95_low": 3.728524,
+        "ci_95_high": 4.327816,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Park",
+        "group2": "Educational",
+        "mean_diff": -3.511981,
+        "p_adj": 0.0,
+        "ci_95_low": -3.758166,
+        "ci_95_high": -3.265796,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Park",
+        "group2": "Transport",
+        "mean_diff": -6.198892,
+        "p_adj": 0.0,
+        "ci_95_low": -6.466903,
+        "ci_95_high": -5.93088,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Park",
+        "group2": "Waterbody",
+        "mean_diff": 1.446752,
+        "p_adj": 0.0,
+        "ci_95_low": 1.139706,
+        "ci_95_high": 1.753798,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Park",
+        "group2": "Open Land",
+        "mean_diff": -3.509099,
+        "p_adj": 0.0,
+        "ci_95_low": -3.816145,
+        "ci_95_high": -3.202053,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Educational",
+        "group2": "Transport",
+        "mean_diff": -2.686911,
+        "p_adj": 0.0,
+        "ci_95_low": -2.967204,
+        "ci_95_high": -2.406617,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Educational",
+        "group2": "Waterbody",
+        "mean_diff": 4.958733,
+        "p_adj": 0.0,
+        "ci_95_low": 4.64091,
+        "ci_95_high": 5.276556,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Educational",
+        "group2": "Open Land",
+        "mean_diff": 0.002882,
+        "p_adj": 1.0,
+        "ci_95_low": -0.314941,
+        "ci_95_high": 0.320705,
+        "significant_at_05": 0
+      },
+      {
+        "group1": "Transport",
+        "group2": "Waterbody",
+        "mean_diff": 7.645644,
+        "p_adj": 0.0,
+        "ci_95_low": 7.310629,
+        "ci_95_high": 7.980659,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Transport",
+        "group2": "Open Land",
+        "mean_diff": 2.689792,
+        "p_adj": 0.0,
+        "ci_95_low": 2.354778,
+        "ci_95_high": 3.024807,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Waterbody",
+        "group2": "Open Land",
+        "mean_diff": -4.955852,
+        "p_adj": 0.0,
+        "ci_95_low": -5.322842,
+        "ci_95_high": -4.588861,
+        "significant_at_05": 1
+      }
+    ]
+  },
+  "air_temp_zone_hypothesis_tests": {
+    "variable": "air_temperature_c",
+    "label": "Ambient Air Temperature (\u00b0C)",
+    "group_statistics": {
+      "Residential": {
+        "n": 42000,
+        "mean": 34.077041,
+        "std": 5.566868,
+        "median": 33.92,
+        "q25": 29.74,
+        "q75": 38.65,
+        "iqr": 8.91,
+        "min": 20.59,
+        "max": 45.75
+      },
+      "Commercial": {
+        "n": 21000,
+        "mean": 34.99791,
+        "std": 5.566974,
+        "median": 34.84,
+        "q25": 30.66,
+        "q75": 39.56,
+        "iqr": 8.9,
+        "min": 21.52,
+        "max": 46.65
+      },
+      "Road": {
+        "n": 21000,
+        "mean": 34.884087,
+        "std": 5.566801,
+        "median": 34.74,
+        "q25": 30.55,
+        "q75": 39.45,
+        "iqr": 8.9,
+        "min": 21.42,
+        "max": 46.52
+      },
+      "Industrial": {
+        "n": 18000,
+        "mean": 35.192353,
+        "std": 5.566914,
+        "median": 35.055,
+        "q25": 30.85,
+        "q75": 39.71,
+        "iqr": 8.86,
+        "min": 21.68,
+        "max": 46.81
+      },
+      "Park": {
+        "n": 15000,
+        "mean": 32.881104,
+        "std": 5.567128,
+        "median": 32.7,
+        "q25": 28.54,
+        "q75": 37.4725,
+        "iqr": 8.9325,
+        "min": 19.41,
+        "max": 44.53
+      },
+      "Educational": {
+        "n": 12000,
+        "mean": 34.078277,
+        "std": 5.566846,
+        "median": 33.95,
+        "q25": 29.73,
+        "q75": 38.57,
+        "iqr": 8.84,
+        "min": 20.65,
+        "max": 45.68
+      },
+      "Transport": {
+        "n": 9000,
+        "mean": 34.103554,
+        "std": 5.567546,
+        "median": 33.92,
+        "q25": 29.7675,
+        "q75": 38.71,
+        "iqr": 8.9425,
+        "min": 20.64,
+        "max": 45.74
+      },
+      "Waterbody": {
+        "n": 6000,
+        "mean": 32.599513,
+        "std": 5.56644,
+        "median": 32.49,
+        "q25": 28.2775,
+        "q75": 37.1725,
+        "iqr": 8.895,
+        "min": 19.35,
+        "max": 44.12
+      },
+      "Open Land": {
+        "n": 6000,
+        "mean": 34.305353,
+        "std": 5.566707,
+        "median": 34.21,
+        "q25": 29.96,
+        "q75": 38.78,
+        "iqr": 8.82,
+        "min": 21.0,
+        "max": 45.9
+      }
+    },
+    "levene_test": {
+      "statistic": 0.000321,
+      "p_value": 1.0,
+      "equal_variance_assumed": 1,
+      "note": "Levene test (center=median) tests null hypothesis that all zones have equal variance."
+    },
+    "one_way_anova": {
+      "f_statistic": 331.819638,
+      "df_between": 8,
+      "df_within": 149991,
+      "p_value": 0.0,
+      "ss_between": 82266.328438,
+      "ss_within": 4648311.703652,
+      "ss_total": 4730578.032091,
+      "eta_squared": 0.01739,
+      "omega_squared": 0.017338,
+      "interpretation": "Omnibus ANOVA tests H0: All 9 zone means are equal."
+    },
+    "welch_anova": {
+      "f_statistic": 331.785063,
+      "df_between": 8.0,
+      "df_within": 40663.322281,
+      "p_value": 0.0,
+      "note": "Welch ANOVA robust to heteroscedastic group variances."
+    },
+    "kruskal_wallis": {
+      "h_statistic": 2302.541916,
+      "df": 8,
+      "p_value": 0.0,
+      "epsilon_squared": 0.015298,
+      "interpretation": "Non-parametric rank test H0: Identical medians/distributions across zones."
+    },
+    "residual_normality": {
+      "jarque_bera_stat": 4861.677746,
+      "jarque_bera_p": 0.0,
+      "normal_at_05": 0
+    },
+    "pairwise_tukey_hsd": [
+      {
+        "group1": "Residential",
+        "group2": "Commercial",
+        "mean_diff": -0.92087,
+        "p_adj": 0.0,
+        "ci_95_low": -1.066803,
+        "ci_95_high": -0.774936,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Residential",
+        "group2": "Road",
+        "mean_diff": -0.807046,
+        "p_adj": 0.0,
+        "ci_95_low": -0.95298,
+        "ci_95_high": -0.661113,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Residential",
+        "group2": "Industrial",
+        "mean_diff": -1.115313,
+        "p_adj": 0.0,
+        "ci_95_low": -1.26914,
+        "ci_95_high": -0.961485,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Residential",
+        "group2": "Park",
+        "mean_diff": 1.195937,
+        "p_adj": 0.0,
+        "ci_95_low": 1.031694,
+        "ci_95_high": 1.360179,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Residential",
+        "group2": "Educational",
+        "mean_diff": -0.001237,
+        "p_adj": 1.0,
+        "ci_95_low": -0.179968,
+        "ci_95_high": 0.177495,
+        "significant_at_05": 0
+      },
+      {
+        "group1": "Residential",
+        "group2": "Transport",
+        "mean_diff": -0.026514,
+        "p_adj": 0.999979,
+        "ci_95_low": -0.22708,
+        "ci_95_high": 0.174053,
+        "significant_at_05": 0
+      },
+      {
+        "group1": "Residential",
+        "group2": "Waterbody",
+        "mean_diff": 1.477527,
+        "p_adj": 0.0,
+        "ci_95_low": 1.239219,
+        "ci_95_high": 1.715836,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Residential",
+        "group2": "Open Land",
+        "mean_diff": -0.228313,
+        "p_adj": 0.072787,
+        "ci_95_low": -0.466621,
+        "ci_95_high": 0.009996,
+        "significant_at_05": 0
+      },
+      {
+        "group1": "Commercial",
+        "group2": "Road",
+        "mean_diff": 0.113823,
+        "p_adj": 0.476583,
+        "ci_95_low": -0.054686,
+        "ci_95_high": 0.282333,
+        "significant_at_05": 0
+      },
+      {
+        "group1": "Commercial",
+        "group2": "Industrial",
+        "mean_diff": -0.194443,
+        "p_adj": 0.017025,
+        "ci_95_low": -0.369833,
+        "ci_95_high": -0.019053,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Commercial",
+        "group2": "Park",
+        "mean_diff": 2.116806,
+        "p_adj": 0.0,
+        "ci_95_low": 1.932214,
+        "ci_95_high": 2.301399,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Commercial",
+        "group2": "Educational",
+        "mean_diff": 0.919633,
+        "p_adj": 0.0,
+        "ci_95_low": 0.722038,
+        "ci_95_high": 1.117228,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Commercial",
+        "group2": "Transport",
+        "mean_diff": 0.894356,
+        "p_adj": 0.0,
+        "ci_95_low": 0.676811,
+        "ci_95_high": 1.111901,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Commercial",
+        "group2": "Waterbody",
+        "mean_diff": 2.398397,
+        "p_adj": 0.0,
+        "ci_95_low": 2.145633,
+        "ci_95_high": 2.651161,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Commercial",
+        "group2": "Open Land",
+        "mean_diff": 0.692557,
+        "p_adj": 0.0,
+        "ci_95_low": 0.439793,
+        "ci_95_high": 0.945321,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Road",
+        "group2": "Industrial",
+        "mean_diff": -0.308266,
+        "p_adj": 2e-06,
+        "ci_95_low": -0.483656,
+        "ci_95_high": -0.132876,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Road",
+        "group2": "Park",
+        "mean_diff": 2.002983,
+        "p_adj": 0.0,
+        "ci_95_low": 1.81839,
+        "ci_95_high": 2.187576,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Road",
+        "group2": "Educational",
+        "mean_diff": 0.80581,
+        "p_adj": 0.0,
+        "ci_95_low": 0.608215,
+        "ci_95_high": 1.003405,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Road",
+        "group2": "Transport",
+        "mean_diff": 0.780533,
+        "p_adj": 0.0,
+        "ci_95_low": 0.562988,
+        "ci_95_high": 0.998078,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Road",
+        "group2": "Waterbody",
+        "mean_diff": 2.284574,
+        "p_adj": 0.0,
+        "ci_95_low": 2.03181,
+        "ci_95_high": 2.537338,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Road",
+        "group2": "Open Land",
+        "mean_diff": 0.578734,
+        "p_adj": 0.0,
+        "ci_95_low": 0.32597,
+        "ci_95_high": 0.831498,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Industrial",
+        "group2": "Park",
+        "mean_diff": 2.311249,
+        "p_adj": 0.0,
+        "ci_95_low": 2.120355,
+        "ci_95_high": 2.502144,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Industrial",
+        "group2": "Educational",
+        "mean_diff": 1.114076,
+        "p_adj": 0.0,
+        "ci_95_low": 0.910581,
+        "ci_95_high": 1.31757,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Industrial",
+        "group2": "Transport",
+        "mean_diff": 1.088799,
+        "p_adj": 0.0,
+        "ci_95_low": 0.865882,
+        "ci_95_high": 1.311716,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Industrial",
+        "group2": "Waterbody",
+        "mean_diff": 2.59284,
+        "p_adj": 0.0,
+        "ci_95_low": 2.335437,
+        "ci_95_high": 2.850243,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Industrial",
+        "group2": "Open Land",
+        "mean_diff": 0.887,
+        "p_adj": 0.0,
+        "ci_95_low": 0.629597,
+        "ci_95_high": 1.144403,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Park",
+        "group2": "Educational",
+        "mean_diff": -1.197173,
+        "p_adj": 0.0,
+        "ci_95_low": -1.408651,
+        "ci_95_high": -0.985696,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Park",
+        "group2": "Transport",
+        "mean_diff": -1.22245,
+        "p_adj": 0.0,
+        "ci_95_low": -1.452678,
+        "ci_95_high": -0.992223,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Park",
+        "group2": "Waterbody",
+        "mean_diff": 0.281591,
+        "p_adj": 0.02602,
+        "ci_95_low": 0.017832,
+        "ci_95_high": 0.54535,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Park",
+        "group2": "Open Land",
+        "mean_diff": -1.424249,
+        "p_adj": 0.0,
+        "ci_95_low": -1.688008,
+        "ci_95_high": -1.16049,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Educational",
+        "group2": "Transport",
+        "mean_diff": -0.025277,
+        "p_adj": 0.999996,
+        "ci_95_low": -0.266055,
+        "ci_95_high": 0.215501,
+        "significant_at_05": 0
+      },
+      {
+        "group1": "Educational",
+        "group2": "Waterbody",
+        "mean_diff": 1.478764,
+        "p_adj": 0.0,
+        "ci_95_low": 1.205748,
+        "ci_95_high": 1.751781,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Educational",
+        "group2": "Open Land",
+        "mean_diff": -0.227076,
+        "p_adj": 0.194989,
+        "ci_95_low": -0.500092,
+        "ci_95_high": 0.045941,
+        "significant_at_05": 0
+      },
+      {
+        "group1": "Transport",
+        "group2": "Waterbody",
+        "mean_diff": 1.504041,
+        "p_adj": 0.0,
+        "ci_95_low": 1.216256,
+        "ci_95_high": 1.791826,
+        "significant_at_05": 1
+      },
+      {
+        "group1": "Transport",
+        "group2": "Open Land",
+        "mean_diff": -0.201799,
+        "p_adj": 0.422123,
+        "ci_95_low": -0.489584,
+        "ci_95_high": 0.085986,
+        "significant_at_05": 0
+      },
+      {
+        "group1": "Waterbody",
+        "group2": "Open Land",
+        "mean_diff": -1.70584,
+        "p_adj": 0.0,
+        "ci_95_low": -2.021092,
+        "ci_95_high": -1.390588,
+        "significant_at_05": 1
+      }
+    ]
+  },
+  "lst_multivariate_ols": {
+    "model_name": "Multivariate Biophysical OLS Model for LST",
+    "dependent_variable": "land_surface_temperature_c",
+    "n_observations": 150000,
+    "df_model": 7,
+    "df_residuals": 149992,
+    "r_squared": 0.961841,
+    "adj_r_squared": 0.961839,
+    "f_statistic": 540097.892089,
+    "f_pvalue": 0.0,
+    "rmse": 1.360133,
+    "mae": 0.965363,
+    "durbin_watson": 0.475045,
+    "residual_jarque_bera_stat": 112447.257205,
+    "residual_jarque_bera_p": 0.0,
+    "vif": {
+      "air_temperature_c": 1.641825,
+      "relative_humidity_pct": 1.912264,
+      "solar_radiation_w_m2": 1.791233,
+      "wind_speed_mps": 1.854886,
+      "ndvi": 3.802609,
+      "ndbi": 3.44377,
+      "surface_albedo": 1.869516
+    },
+    "parameters": [
+      {
+        "term": "const",
+        "unit": "\u2014",
+        "coefficient": -3.67119,
+        "std_error_ols": 0.032375,
+        "std_error_hc3": 0.044256,
+        "t_statistic_hc3": -82.953956,
+        "p_value_hc3": 0.0,
+        "ci_95_low_hc3": -3.757931,
+        "ci_95_high_hc3": -3.58445,
+        "significant_at_05": 1
+      },
+      {
+        "term": "air_temperature_c",
+        "unit": "\u00b0C",
+        "coefficient": 0.99807,
+        "std_error_ols": 0.000801,
+        "std_error_hc3": 0.000753,
+        "t_statistic_hc3": 1325.877649,
+        "p_value_hc3": 0.0,
+        "ci_95_low_hc3": 0.996594,
+        "ci_95_high_hc3": 0.999545,
+        "significant_at_05": 1
+      },
+      {
+        "term": "relative_humidity_pct",
+        "unit": "%",
+        "coefficient": -0.004941,
+        "std_error_ols": 0.000228,
+        "std_error_hc3": 0.00022,
+        "t_statistic_hc3": -22.431698,
+        "p_value_hc3": 0.0,
+        "ci_95_low_hc3": -0.005373,
+        "ci_95_high_hc3": -0.004509,
+        "significant_at_05": 1
+      },
+      {
+        "term": "solar_radiation_w_m2",
+        "unit": "W/m\u00b2",
+        "coefficient": 0.005864,
+        "std_error_ols": 2.2e-05,
+        "std_error_hc3": 2.8e-05,
+        "t_statistic_hc3": 208.708936,
+        "p_value_hc3": 0.0,
+        "ci_95_low_hc3": 0.005809,
+        "ci_95_high_hc3": 0.005919,
+        "significant_at_05": 1
+      },
+      {
+        "term": "wind_speed_mps",
+        "unit": "m/s",
+        "coefficient": 0.116797,
+        "std_error_ols": 0.003934,
+        "std_error_hc3": 0.004517,
+        "t_statistic_hc3": 25.857478,
+        "p_value_hc3": 0.0,
+        "ci_95_low_hc3": 0.107944,
+        "ci_95_high_hc3": 0.125651,
+        "significant_at_05": 1
+      },
+      {
+        "term": "ndvi",
+        "unit": "unitless (-1 to 1)",
+        "coefficient": 2.313515,
+        "std_error_ols": 0.033493,
+        "std_error_hc3": 0.057108,
+        "t_statistic_hc3": 40.510916,
+        "p_value_hc3": 0.0,
+        "ci_95_low_hc3": 2.201584,
+        "ci_95_high_hc3": 2.425446,
+        "significant_at_05": 1
+      },
+      {
+        "term": "ndbi",
+        "unit": "unitless (-1 to 1)",
+        "coefficient": 7.373753,
+        "std_error_ols": 0.021425,
+        "std_error_hc3": 0.045056,
+        "t_statistic_hc3": 163.656208,
+        "p_value_hc3": 0.0,
+        "ci_95_low_hc3": 7.285444,
+        "ci_95_high_hc3": 7.462063,
+        "significant_at_05": 1
+      },
+      {
+        "term": "surface_albedo",
+        "unit": "unitless (0 to 1)",
+        "coefficient": 1.098734,
+        "std_error_ols": 0.102204,
+        "std_error_hc3": 0.137732,
+        "t_statistic_hc3": 7.97734,
+        "p_value_hc3": 0.0,
+        "ci_95_low_hc3": 0.828782,
+        "ci_95_high_hc3": 1.368686,
+        "significant_at_05": 1
+      }
+    ],
+    "station_aggregated_sensitivity": {
+      "n_stations": 100,
+      "r_squared": 0.983038,
+      "coefficients": {
+        "const": 459.306531,
+        "air_temperature_c": 1.184307,
+        "relative_humidity_pct": -0.1035,
+        "solar_radiation_w_m2": -1.491944,
+        "wind_speed_mps": 1.756005,
+        "ndvi": 2.862438,
+        "ndbi": 9.145567,
+        "surface_albedo": -0.79665
+      },
+      "note": "Station-aggregated OLS removes within-site temporal correlation; N=100 sites."
+    }
+  }
+}
