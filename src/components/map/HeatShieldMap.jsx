@@ -130,10 +130,10 @@ export default function HeatShieldMap({
   return (
     <div
       ref={containerRef}
-      className={`relative w-full overflow-hidden border border-black/[0.08] bg-[#f5f5f7] transition-all ${
+      className={`relative w-full overflow-hidden border border-black/[0.08] dark:border-white/[0.08] bg-[#f5f5f7] dark:bg-[#101114] transition-all ${
         isFullscreen
           ? 'fixed inset-0 z-[2000] rounded-none border-none h-screen'
-          : `rounded-[28px] shadow-[0_4px_24px_rgba(0,0,0,0.04)] ${className}`
+          : `rounded-[28px] shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.3)] ${className}`
       }`}
       style={!isFullscreen ? { height, minHeight: '480px' } : undefined}
     >
@@ -166,14 +166,14 @@ export default function HeatShieldMap({
             className={`px-3 py-1.5 rounded-full text-[12px] font-semibold flex items-center gap-1.5 backdrop-blur-xl border shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-all ${
               showIntensity
                 ? 'bg-[#ea580c] text-white border-transparent'
-                : 'bg-white/90 text-[#6e6e73] border-black/[0.08] hover:text-[#1d1d1f]'
+                : 'bg-white/90 dark:bg-[#191b20]/90 text-[#6e6e73] dark:text-[#a5a9b4] border-black/[0.08] dark:border-white/[0.1] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7]'
             }`}
             title="Toggle Interpolated Thermal Diffusion Plumes"
           >
-            <Flame size={13} className={showIntensity ? 'text-white animate-pulse' : 'text-[#86868b]'} />
+            <Flame size={13} className={showIntensity ? 'text-white animate-pulse' : 'text-[#86868b] dark:text-[#a5a9b4]'} />
             <span className="hidden sm:inline">Thermal Intensity</span>
             <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
-              showIntensity ? 'bg-white/20 text-white' : 'bg-black/[0.04] text-[#1d1d1f]'
+              showIntensity ? 'bg-white/20 text-white' : 'bg-black/[0.04] dark:bg-white/[0.08] text-[#1d1d1f] dark:text-[#f5f5f7]'
             }`}>
               {showIntensity ? 'ON' : 'OFF'}
             </span>
@@ -242,12 +242,12 @@ export default function HeatShieldMap({
       )}
 
       {/* Bottom Provenance and Context Bar (Apple Frosted Pill) */}
-      <div className="absolute bottom-4 right-4 z-[1000] hidden md:flex items-center gap-2.5 bg-white/90 backdrop-blur-xl px-3.5 py-1.5 rounded-full border border-black/[0.08] text-[11px] text-[#6e6e73] pointer-events-auto shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
+      <div className="absolute bottom-4 right-4 z-[1000] hidden md:flex items-center gap-2.5 bg-white/90 dark:bg-[#191b20]/90 backdrop-blur-xl px-3.5 py-1.5 rounded-full border border-black/[0.08] dark:border-white/[0.1] text-[11px] text-[#6e6e73] dark:text-[#a5a9b4] pointer-events-auto shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
         <span className="w-2 h-2 rounded-full bg-[#059669] animate-pulse" />
-        <span className="font-medium text-[#1d1d1f]">
+        <span className="font-medium text-[#1d1d1f] dark:text-[#f5f5f7]">
           {provenanceLabel || (isSolapur ? 'Solapur 100 Stationary Sites (TF-141)' : 'NASA POWER / 0.5° Grid Reanalysis')}
         </span>
-        <span className="text-[#86868b] font-mono">
+        <span className="text-[#86868b] dark:text-[#7a7f8d] font-mono">
           {activeDate || '2024-04-15'}
         </span>
       </div>
@@ -255,7 +255,7 @@ export default function HeatShieldMap({
       {/* Thermal Diffusion Layer Disclaimer Banner */}
       {showIntensity && (
         <div className="absolute top-16 left-3 z-[1000] pointer-events-none">
-          <div className="bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-black/[0.08] text-[11px] text-[#6e6e73] shadow-sm">
+          <div className="bg-white/90 dark:bg-[#191b20]/90 backdrop-blur-md px-3 py-1 rounded-full border border-black/[0.08] dark:border-white/[0.1] text-[11px] text-[#6e6e73] dark:text-[#a5a9b4] shadow-sm">
             <span className="font-semibold text-[#ea580c]">Note:</span> Interpolated thermal plume decay around stations; discrete point observations.
           </div>
         </div>
@@ -263,14 +263,14 @@ export default function HeatShieldMap({
 
       {/* Empty State Warning */}
       {!isLoading && !error && filteredMarkers.length === 0 && (
-        <div className="absolute inset-0 z-[1050] flex flex-col items-center justify-center p-6 bg-white/90 backdrop-blur-md pointer-events-auto text-center">
-          <div className="w-12 h-12 rounded-full bg-[#f5f5f7] border border-black/[0.06] flex items-center justify-center mb-3 text-[#86868b]">
+        <div className="absolute inset-0 z-[1050] flex flex-col items-center justify-center p-6 bg-white/90 dark:bg-[#191b20]/90 backdrop-blur-md pointer-events-auto text-center">
+          <div className="w-12 h-12 rounded-full bg-[#f5f5f7] dark:bg-[#22252b] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-center mb-3 text-[#86868b] dark:text-[#a5a9b4]">
             <Flame size={20} />
           </div>
-          <h4 className="font-semibold text-[15px] text-[#1d1d1f]">
+          <h4 className="font-semibold text-[15px] text-[#1d1d1f] dark:text-[#f5f5f7]">
             No Matching Telemetry Sites Found
           </h4>
-          <p className="text-[13px] text-[#6e6e73] mt-1 max-w-xs leading-relaxed">
+          <p className="text-[13px] text-[#6e6e73] dark:text-[#a5a9b4] mt-1 max-w-xs leading-relaxed">
             {searchQuery 
               ? `No stations match "${searchQuery}". Clear your search query to view all stations.`
               : 'No observation records match the selected risk category filter.'}
@@ -281,7 +281,7 @@ export default function HeatShieldMap({
               setSearchQuery('');
               setRiskFilter('all');
             }}
-            className="mt-4 px-4 py-2 rounded-full bg-[#0071e3] text-white text-[13px] font-medium hover:bg-[#0076df] transition-colors shadow-sm"
+            className="mt-4 px-4 py-2 rounded-full bg-[#0071e3] dark:bg-[#2997ff] text-white text-[13px] font-medium hover:bg-[#0076df] dark:hover:bg-[#58a6ff] transition-colors shadow-sm"
           >
             Clear Filters
           </button>

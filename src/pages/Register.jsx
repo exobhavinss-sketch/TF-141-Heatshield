@@ -113,31 +113,31 @@ export default function Register() {
   };
 
   return (
-    <div className="w-full flex-1 flex items-center justify-center py-16 px-6 bg-[#fafafc]">
-      <div className="w-full max-w-[460px] bg-white rounded-[28px] p-8 md:p-10 shadow-[0_2px_16px_rgba(0,0,0,0.04)] border border-black/[0.06] space-y-6">
+    <div className="w-full flex-1 flex items-center justify-center py-16 px-6 bg-[#fafafc] dark:bg-[#101114] text-[#1d1d1f] dark:text-[#f5f5f7]">
+      <div className="w-full max-w-[460px] bg-white dark:bg-[#191b20] rounded-[28px] p-8 md:p-10 shadow-[0_2px_16px_rgba(0,0,0,0.04)] dark:shadow-none border border-black/[0.06] dark:border-white/10 space-y-6">
         
         {/* Header */}
         <div className="space-y-2 text-center pb-2">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[980px] bg-black/[0.04] text-[#1d1d1f] text-[11px] font-mono tracking-wider uppercase font-medium">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[980px] bg-black/[0.04] dark:bg-white/10 text-[#1d1d1f] dark:text-[#f5f5f7] text-[11px] font-mono tracking-wider uppercase font-medium">
             <span className="w-1.5 h-1.5 rounded-full bg-[#0071e3]"></span>
             <span>RESEARCHER REGISTRATION · TF-141</span>
           </div>
-          <h1 className="text-[28px] font-semibold tracking-[-0.02em] text-[#1d1d1f]">
+          <h1 className="text-[28px] font-semibold tracking-[-0.02em] text-[#1d1d1f] dark:text-[#f5f5f7]">
             Create Research Account
           </h1>
-          <p className="text-[13px] text-[#86868b]">
+          <p className="text-[13px] text-[#86868b] dark:text-[#a5a9b4]">
             Join the HeatShield microclimate telemetry network
           </p>
         </div>
 
         {/* Connection Status */}
         {!isConfigured ? (
-          <div className="rounded-[16px] bg-[#f5f5f7] p-3.5 border border-black/[0.04] text-[12px] text-[#86868b] leading-relaxed">
+          <div className="rounded-[16px] bg-[#f5f5f7] dark:bg-[#22252b] p-3.5 border border-black/[0.04] dark:border-white/10 text-[12px] text-[#86868b] dark:text-[#a5a9b4] leading-relaxed">
             <div className="flex items-center gap-1.5 text-[#ea580c] font-medium mb-1">
               <span className="material-symbols-outlined text-[16px]">info</span>
               <span>Backend Connection Pending</span>
             </div>
-            Configure Supabase in <code className="font-mono text-[#1d1d1f]">.env</code> to connect live authentication.
+            Configure Supabase in <code className="font-mono text-[#1d1d1f] dark:text-[#f5f5f7]">.env</code> to connect live authentication.
           </div>
         ) : (
           <div className="rounded-[16px] bg-[#059669]/10 p-3 text-[12px] text-[#059669] flex items-center justify-between">
@@ -151,24 +151,24 @@ export default function Register() {
 
         {/* Success Message / Instructions */}
         {successInfo ? (
-          <div className="rounded-[20px] bg-[#f5f5f7] p-6 space-y-4 border border-black/[0.04]">
+          <div className="rounded-[20px] bg-[#f5f5f7] dark:bg-[#22252b] p-6 space-y-4 border border-black/[0.04] dark:border-white/10">
             <div className="flex items-start gap-3">
               <div className="w-10 h-10 rounded-[980px] bg-[#059669]/10 text-[#059669] flex items-center justify-center shrink-0">
                 <span className="material-symbols-outlined text-[20px]">mark_email_read</span>
               </div>
               <div className="space-y-1">
-                <h3 className="text-[16px] font-semibold text-[#1d1d1f]">
+                <h3 className="text-[16px] font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
                   {successInfo.requiresConfirmation ? 'Verify Your Email Address' : 'Account Ready'}
                 </h3>
-                <p className="text-[13px] text-[#86868b] leading-relaxed">
+                <p className="text-[13px] text-[#86868b] dark:text-[#a5a9b4] leading-relaxed">
                   {successInfo.requiresConfirmation ? (
                     <>
-                      We have dispatched a verification link to <strong className="text-[#1d1d1f]">{successInfo.email}</strong>. 
+                      We have dispatched a verification link to <strong className="text-[#1d1d1f] dark:text-[#f5f5f7]">{successInfo.email}</strong>.
                       Please check your inbox and click the link to verify your research credentials before signing in.
                     </>
                   ) : (
                     <>
-                      Your account for <strong className="text-[#1d1d1f]">{successInfo.email}</strong> has been initialized successfully.
+                      Your account for <strong className="text-[#1d1d1f] dark:text-[#f5f5f7]">{successInfo.email}</strong> has been initialized successfully.
                     </>
                   )}
                 </p>
@@ -176,8 +176,8 @@ export default function Register() {
             </div>
 
             {successInfo.requiresConfirmation && (
-              <div className="pt-2 border-t border-black/[0.04] space-y-2">
-                <div className="flex items-center justify-between text-[12px] text-[#86868b]">
+              <div className="pt-2 border-t border-black/[0.04] dark:border-white/10 space-y-2">
+                <div className="flex items-center justify-between text-[12px] text-[#86868b] dark:text-[#a5a9b4]">
                   <span>Didn't receive the email?</span>
                   <button
                     type="button"
@@ -232,7 +232,7 @@ export default function Register() {
             {/* Registration Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-1.5">
-                <label className="text-[12px] font-medium text-[#86868b] uppercase tracking-wider block" htmlFor="regFullName">
+                <label className="text-[12px] font-medium text-[#86868b] dark:text-[#a5a9b4] uppercase tracking-wider block" htmlFor="regFullName">
                   Full Name &amp; Title
                 </label>
                 <input
@@ -244,12 +244,12 @@ export default function Register() {
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="e.g. Prof. / Dr. / Researcher Name"
-                  className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all placeholder:text-[#86868b] disabled:opacity-60"
+                  className="w-full h-11 bg-[#f5f5f7] dark:bg-[#22252b] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] dark:text-[#f5f5f7] focus:outline-none focus:bg-white dark:focus:bg-[#22252b] focus:border-black/20 dark:focus:border-[#2997ff] border border-transparent dark:border-white/10 transition-all placeholder:text-[#86868b] dark:placeholder:text-[#6e6e73] disabled:opacity-60"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-[12px] font-medium text-[#86868b] uppercase tracking-wider block" htmlFor="regEmail">
+                <label className="text-[12px] font-medium text-[#86868b] dark:text-[#a5a9b4] uppercase tracking-wider block" htmlFor="regEmail">
                   Institutional Email
                 </label>
                 <input
@@ -261,13 +261,13 @@ export default function Register() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="researcher@mitvpu.ac.in"
-                  className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all placeholder:text-[#86868b] disabled:opacity-60"
+                  className="w-full h-11 bg-[#f5f5f7] dark:bg-[#22252b] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] dark:text-[#f5f5f7] focus:outline-none focus:bg-white dark:focus:bg-[#22252b] focus:border-black/20 dark:focus:border-[#2997ff] border border-transparent dark:border-white/10 transition-all placeholder:text-[#86868b] dark:placeholder:text-[#6e6e73] disabled:opacity-60"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1.5">
-                  <label className="text-[12px] font-medium text-[#86868b] uppercase tracking-wider block" htmlFor="regPassword">
+                  <label className="text-[12px] font-medium text-[#86868b] dark:text-[#a5a9b4] uppercase tracking-wider block" htmlFor="regPassword">
                     Password
                   </label>
                   <input
@@ -279,12 +279,12 @@ export default function Register() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Min 8 chars"
-                    className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all placeholder:text-[#86868b] disabled:opacity-60"
+                    className="w-full h-11 bg-[#f5f5f7] dark:bg-[#22252b] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] dark:text-[#f5f5f7] focus:outline-none focus:bg-white dark:focus:bg-[#22252b] focus:border-black/20 dark:focus:border-[#2997ff] border border-transparent dark:border-white/10 transition-all placeholder:text-[#86868b] dark:placeholder:text-[#6e6e73] disabled:opacity-60"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-[12px] font-medium text-[#86868b] uppercase tracking-wider block" htmlFor="regConfirmPassword">
+                  <label className="text-[12px] font-medium text-[#86868b] dark:text-[#a5a9b4] uppercase tracking-wider block" htmlFor="regConfirmPassword">
                     Confirm Password
                   </label>
                   <input
@@ -296,12 +296,12 @@ export default function Register() {
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="Repeat password"
-                    className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all placeholder:text-[#86868b] disabled:opacity-60"
+                    className="w-full h-11 bg-[#f5f5f7] dark:bg-[#22252b] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] dark:text-[#f5f5f7] focus:outline-none focus:bg-white dark:focus:bg-[#22252b] focus:border-black/20 dark:focus:border-[#2997ff] border border-transparent dark:border-white/10 transition-all placeholder:text-[#86868b] dark:placeholder:text-[#6e6e73] disabled:opacity-60"
                   />
                 </div>
               </div>
 
-              <p className="text-[11px] text-[#86868b] pt-1">
+              <p className="text-[11px] text-[#86868b] dark:text-[#a5a9b4] pt-1">
                 By registering, you acknowledge that in-situ field telemetry will be subject to peer-review validation.
               </p>
 
@@ -325,7 +325,7 @@ export default function Register() {
             </form>
 
             {/* Footer / Links */}
-            <div className="pt-3 border-t border-black/[0.04] text-center text-[13px] text-[#86868b]">
+            <div className="pt-3 border-t border-black/[0.04] dark:border-white/10 text-center text-[13px] text-[#86868b] dark:text-[#a5a9b4]">
               <span>Already registered with HeatShield? </span>
               <Link to="/login" className="text-[#0071e3] font-medium hover:underline">
                 Sign in here

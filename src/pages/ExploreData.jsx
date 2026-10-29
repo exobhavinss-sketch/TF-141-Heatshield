@@ -162,41 +162,41 @@ export default function ExploreData() {
   const pageCount = totalPages === null ? null : Math.max(1, totalPages);
 
   return (
-    <main className="w-full bg-[#fafafc] min-h-screen pb-20">
+    <main className="w-full bg-[#fafafc] dark:bg-[#101114] text-[#1d1d1f] dark:text-[#f5f5f7] min-h-screen pb-20 transition-colors duration-200">
       <header className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <p className="text-xs uppercase tracking-wider text-[#6e6e73]">HeatShield · TF-141 · EDADV</p>
-        <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight mt-2">Explore the analysis</h1>
-        <p className="text-sm text-[#6e6e73] mt-2">Precomputed results below summarize 150,000 synthetic academic simulation records. They are not verified real-world Solapur observations.</p>
+        <p className="text-xs uppercase tracking-wider text-[#6e6e73] dark:text-[#a5a9b4]">HeatShield · TF-141 · EDADV</p>
+        <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#1d1d1f] dark:text-[#f5f5f7] mt-2">Explore the analysis</h1>
+        <p className="text-sm text-[#6e6e73] dark:text-[#a5a9b4] mt-2">Precomputed results below summarize 150,000 synthetic academic simulation records. They are not verified real-world Solapur observations.</p>
       </header>
 
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
         <EDADVResearchSection />
 
-        <section className="rounded-[24px] border border-black/[0.07] bg-white p-5 sm:p-6" aria-labelledby="master-records-heading">
-          <h2 id="master-records-heading" className="text-lg font-semibold">Master records</h2>
-          <p className="text-xs text-[#6e6e73] mt-1">Paginated query of the existing Supabase master table. These synthetic source records are separate from precomputed summaries and user-submitted heat readings.</p>
+        <section className="rounded-[24px] border border-black/[0.07] dark:border-white/[0.08] bg-white dark:bg-[#191b20] p-5 sm:p-6 shadow-[0_4px_24px_rgba(0,0,0,0.025)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.3)] transition-colors duration-200" aria-labelledby="master-records-heading">
+          <h2 id="master-records-heading" className="text-lg font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">Master records</h2>
+          <p className="text-xs text-[#6e6e73] dark:text-[#a5a9b4] mt-1">Paginated query of the existing Supabase master table. These synthetic source records are separate from precomputed summaries and user-submitted heat readings.</p>
 
           <div className="flex flex-wrap gap-2 mt-3">
-            <button onClick={exportVisibleRows} disabled={loading || records.length === 0} className="rounded-full bg-[#0071e3] text-white px-4 py-2 text-xs disabled:opacity-40">Export visible rows</button>
-            <button onClick={saveQuery} disabled={saving} className="rounded-full border border-black/10 px-4 py-2 text-xs disabled:opacity-50">{saving ? 'Saving…' : 'Save query'}</button>
-            {saveStatus && <span role="status" className="self-center text-xs text-[#6e6e73]">{saveStatus}</span>}
+            <button onClick={exportVisibleRows} disabled={loading || records.length === 0} className="rounded-full bg-[#0071e3] hover:bg-[#0076df] dark:bg-[#2997ff] dark:hover:bg-[#58a6ff] text-white px-4 py-2 text-xs font-medium disabled:opacity-40 transition-colors shadow-sm">Export visible rows</button>
+            <button onClick={saveQuery} disabled={saving} className="rounded-full border border-black/10 dark:border-white/10 bg-white dark:bg-[#22252b] text-[#1d1d1f] dark:text-[#f5f5f7] hover:bg-[#f5f5f7] dark:hover:bg-[#2e323b] px-4 py-2 text-xs font-medium disabled:opacity-50 transition-colors">{saving ? 'Saving…' : 'Save query'}</button>
+            {saveStatus && <span role="status" className="self-center text-xs text-[#6e6e73] dark:text-[#a5a9b4]">{saveStatus}</span>}
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 mt-4">
             <label className="sr-only" htmlFor="master-search">Search master records</label>
-            <input id="master-search" value={query} onChange={event => { setQuery(event.target.value); setPage(1); }} placeholder="Search station ID or record ID prefix" className="border border-black/10 rounded-xl px-3 py-2 text-sm flex-1" />
+            <input id="master-search" value={query} onChange={event => { setQuery(event.target.value); setPage(1); }} placeholder="Search station ID or record ID prefix" className="border border-black/10 dark:border-white/10 bg-white dark:bg-[#22252b] text-[#1d1d1f] dark:text-[#f5f5f7] placeholder-[#86868b] dark:placeholder-[#7a7f8d] rounded-xl px-3 py-2 text-sm flex-1 focus:outline-none focus:ring-2 focus:ring-[#0071e3]" />
             <label className="sr-only" htmlFor="zone-filter">Zone</label>
-            <select id="zone-filter" value={zone} onChange={event => { setZone(event.target.value); setPage(1); }} className="border border-black/10 rounded-xl px-3 py-2 text-sm">
+            <select id="zone-filter" value={zone} onChange={event => { setZone(event.target.value); setPage(1); }} className="border border-black/10 dark:border-white/10 bg-white dark:bg-[#22252b] text-[#1d1d1f] dark:text-[#f5f5f7] rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0071e3]">
               <option>All</option>{ZONES.map(value => <option key={value}>{value}</option>)}
             </select>
             <label className="sr-only" htmlFor="risk-filter">Source risk label</label>
-            <select id="risk-filter" value={risk} onChange={event => { setRisk(event.target.value); setPage(1); }} className="border border-black/10 rounded-xl px-3 py-2 text-sm">
+            <select id="risk-filter" value={risk} onChange={event => { setRisk(event.target.value); setPage(1); }} className="border border-black/10 dark:border-white/10 bg-white dark:bg-[#22252b] text-[#1d1d1f] dark:text-[#f5f5f7] rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0071e3]">
               <option>All</option>{RISK_LABELS.map(value => <option key={value}>{value}</option>)}
             </select>
           </div>
-          <p className="text-xs text-[#6e6e73] mt-2">Search uses station and record ID prefixes for indexed lookup. Risk options are source-encoded labels, not independently validated health-risk classes.</p>
+          <p className="text-xs text-[#6e6e73] dark:text-[#a5a9b4] mt-2">Search uses station and record ID prefixes for indexed lookup. Risk options are source-encoded labels, not independently validated health-risk classes.</p>
 
-          <p className="text-xs text-[#6e6e73] mt-3" aria-live="polite">
+          <p className="text-xs text-[#6e6e73] dark:text-[#a5a9b4] mt-3" aria-live="polite">
             {loading
               ? 'Loading master records…'
               : total === null
@@ -205,23 +205,23 @@ export default function ExploreData() {
           </p>
 
           {error && (
-            <div className="mt-3 rounded-xl bg-amber-50 p-3 text-sm text-amber-900" role="alert">
+            <div className="mt-3 rounded-xl bg-amber-50 dark:bg-amber-950/30 p-3 text-sm text-amber-900 dark:text-amber-200 border border-amber-900/20 dark:border-amber-500/30" role="alert">
               <p>{error.message}{error.code ? ` (${error.code})` : ''} Validated summary charts remain available above.</p>
-              <button type="button" onClick={() => setRetry(value => value + 1)} className="mt-2 rounded-lg border border-amber-900/20 px-3 py-1.5 text-xs font-medium">Retry master query</button>
+              <button type="button" onClick={() => setRetry(value => value + 1)} className="mt-2 rounded-lg border border-amber-900/20 dark:border-amber-400/30 px-3 py-1.5 text-xs font-medium">Retry master query</button>
             </div>
           )}
 
           {!loading && !error && records.length === 0 && (
-            <p className="py-8 text-sm text-[#6e6e73]" role="status">No master records match these filters.</p>
+            <p className="py-8 text-sm text-[#6e6e73] dark:text-[#a5a9b4]" role="status">No master records match these filters.</p>
           )}
 
           {!loading && records.length > 0 && (
             <div className="overflow-x-auto mt-3">
               <table className="min-w-[900px] w-full text-xs text-left">
-                <thead><tr>{RECORD_FIELDS.map(field => <th key={field} scope="col" className="p-2 border-b font-semibold">{RECORD_LABELS[field]}</th>)}</tr></thead>
+                <thead><tr className="border-b border-black/[0.08] dark:border-white/[0.08] text-[#1d1d1f] dark:text-[#f5f5f7]">{RECORD_FIELDS.map(field => <th key={field} scope="col" className="p-2 font-semibold">{RECORD_LABELS[field]}</th>)}</tr></thead>
                 <tbody>{records.map(row => (
-                  <tr key={row.record_id} className="border-b border-black/[0.05]">
-                    {RECORD_FIELDS.map(field => <td key={field} className="p-2">{row[field] ?? '—'}</td>)}
+                  <tr key={row.record_id} className="border-b border-black/[0.05] dark:border-white/[0.06] hover:bg-black/[0.02] dark:hover:bg-white/[0.03] transition-colors">
+                    {RECORD_FIELDS.map(field => <td key={field} className="p-2 text-[#1d1d1f] dark:text-[#f5f5f7]">{row[field] ?? '—'}</td>)}
                   </tr>
                 ))}</tbody>
               </table>
@@ -229,9 +229,9 @@ export default function ExploreData() {
           )}
 
           <div className="flex justify-end gap-2 mt-4">
-            <button disabled={page <= 1 || loading} onClick={() => setPage(value => Math.max(1, value - 1))} className="px-3 py-2 rounded-lg border disabled:opacity-40">Previous</button>
-            <span className="self-center text-xs" aria-live="polite">{pageCount === null ? `Page ${page} · identifier search` : `Page ${page} of ${pageCount}`}</span>
-            <button disabled={loading || (pageCount !== null ? page >= pageCount : !hasMore)} onClick={() => setPage(value => pageCount === null ? value + 1 : Math.min(pageCount, value + 1))} className="px-3 py-2 rounded-lg border disabled:opacity-40">Next</button>
+            <button disabled={page <= 1 || loading} onClick={() => setPage(value => Math.max(1, value - 1))} className="px-3 py-2 rounded-lg border border-black/10 dark:border-white/10 bg-white dark:bg-[#22252b] text-[#1d1d1f] dark:text-[#f5f5f7] disabled:opacity-40 transition-colors">Previous</button>
+            <span className="self-center text-xs text-[#6e6e73] dark:text-[#a5a9b4]" aria-live="polite">{pageCount === null ? `Page ${page} · identifier search` : `Page ${page} of ${pageCount}`}</span>
+            <button disabled={loading || (pageCount !== null ? page >= pageCount : !hasMore)} onClick={() => setPage(value => pageCount === null ? value + 1 : Math.min(pageCount, value + 1))} className="px-3 py-2 rounded-lg border border-black/10 dark:border-white/10 bg-white dark:bg-[#22252b] text-[#1d1d1f] dark:text-[#f5f5f7] disabled:opacity-40 transition-colors">Next</button>
           </div>
         </section>
       </div>

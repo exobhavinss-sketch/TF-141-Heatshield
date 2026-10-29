@@ -48,31 +48,31 @@ export default function Login() {
   };
 
   return (
-    <div className="w-full flex-1 flex items-center justify-center py-16 px-6 bg-[#fafafc]">
-      <div className="w-full max-w-[440px] bg-white rounded-[28px] p-8 md:p-10 shadow-[0_2px_16px_rgba(0,0,0,0.04)] border border-black/[0.06] space-y-6">
+    <div className="w-full flex-1 flex items-center justify-center py-16 px-6 bg-[#fafafc] dark:bg-[#101114] text-[#1d1d1f] dark:text-[#f5f5f7]">
+      <div className="w-full max-w-[440px] bg-white dark:bg-[#191b20] rounded-[28px] p-8 md:p-10 shadow-[0_2px_16px_rgba(0,0,0,0.04)] dark:shadow-none border border-black/[0.06] dark:border-white/10 space-y-6">
         
         {/* Header */}
         <div className="space-y-2 text-center pb-2">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[980px] bg-black/[0.04] text-[#1d1d1f] text-[11px] font-mono tracking-wider uppercase font-medium">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[980px] bg-black/[0.04] dark:bg-white/10 text-[#1d1d1f] dark:text-[#f5f5f7] text-[11px] font-mono tracking-wider uppercase font-medium">
             <span className="w-1.5 h-1.5 rounded-full bg-[#0071e3]"></span>
             <span>RESEARCHER PORTAL · TF-141</span>
           </div>
-          <h1 className="text-[28px] font-semibold tracking-[-0.02em] text-[#1d1d1f]">
+          <h1 className="text-[28px] font-semibold tracking-[-0.02em] text-[#1d1d1f] dark:text-[#f5f5f7]">
             Sign In to HeatShield
           </h1>
-          <p className="text-[13px] text-[#86868b]">
+          <p className="text-[13px] text-[#86868b] dark:text-[#a5a9b4]">
             MIT Vishwaprayag University Microclimate Intelligence
           </p>
         </div>
 
         {/* Connection Status */}
         {!isConfigured ? (
-          <div className="rounded-[16px] bg-[#f5f5f7] p-3.5 border border-black/[0.04] text-[12px] text-[#86868b] leading-relaxed">
+          <div className="rounded-[16px] bg-[#f5f5f7] dark:bg-[#22252b] p-3.5 border border-black/[0.04] dark:border-white/10 text-[12px] text-[#86868b] dark:text-[#a5a9b4] leading-relaxed">
             <div className="flex items-center gap-1.5 text-[#ea580c] font-medium mb-1">
               <span className="material-symbols-outlined text-[16px]">info</span>
               <span>Backend Connection Pending</span>
             </div>
-            Configure <code className="text-[#1d1d1f] font-mono font-medium">VITE_SUPABASE_URL</code> and <code className="text-[#1d1d1f] font-mono font-medium">VITE_SUPABASE_PUBLISHABLE_KEY</code> in <code className="font-mono">.env</code> to connect live authentication.
+            Configure <code className="text-[#1d1d1f] dark:text-[#f5f5f7] font-mono font-medium">VITE_SUPABASE_URL</code> and <code className="text-[#1d1d1f] dark:text-[#f5f5f7] font-mono font-medium">VITE_SUPABASE_PUBLISHABLE_KEY</code> in <code className="font-mono">.env</code> to connect live authentication.
           </div>
         ) : (
           <div className="rounded-[16px] bg-[#059669]/10 p-3 text-[12px] text-[#059669] flex items-center justify-between">
@@ -95,7 +95,7 @@ export default function Login() {
         {/* Login Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-1.5">
-            <label className="text-[12px] font-medium text-[#86868b] uppercase tracking-wider block" htmlFor="loginEmail">
+            <label className="text-[12px] font-medium text-[#86868b] dark:text-[#a5a9b4] uppercase tracking-wider block" htmlFor="loginEmail">
               Institutional Email
             </label>
             <input
@@ -106,13 +106,13 @@ export default function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="researcher@mitvpu.ac.in"
-              className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all placeholder:text-[#86868b]"
+              className="w-full h-11 bg-[#f5f5f7] dark:bg-[#22252b] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] dark:text-[#f5f5f7] focus:outline-none focus:bg-white dark:focus:bg-[#22252b] focus:border-black/20 dark:focus:border-[#2997ff] border border-transparent dark:border-white/10 transition-all placeholder:text-[#86868b] dark:placeholder:text-[#6e6e73]"
             />
           </div>
 
           <div className="space-y-1.5">
             <div className="flex items-center justify-between text-[12px]">
-              <label className="font-medium text-[#86868b] uppercase tracking-wider block" htmlFor="loginPassword">
+              <label className="font-medium text-[#86868b] dark:text-[#a5a9b4] uppercase tracking-wider block" htmlFor="loginPassword">
                 Password
               </label>
               <Link
@@ -130,7 +130,7 @@ export default function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••••••"
-              className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all placeholder:text-[#86868b]"
+              className="w-full h-11 bg-[#f5f5f7] dark:bg-[#22252b] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] dark:text-[#f5f5f7] focus:outline-none focus:bg-white dark:focus:bg-[#22252b] focus:border-black/20 dark:focus:border-[#2997ff] border border-transparent dark:border-white/10 transition-all placeholder:text-[#86868b] dark:placeholder:text-[#6e6e73]"
             />
           </div>
 
@@ -154,7 +154,7 @@ export default function Login() {
         </form>
 
         {/* Footer / Links */}
-        <div className="pt-3 border-t border-black/[0.04] text-center text-[13px] text-[#86868b]">
+        <div className="pt-3 border-t border-black/[0.04] dark:border-white/10 text-center text-[13px] text-[#86868b] dark:text-[#a5a9b4]">
           <span>Don't have a research account? </span>
           <Link to="/register" className="text-[#0071e3] font-medium hover:underline">
             Register here

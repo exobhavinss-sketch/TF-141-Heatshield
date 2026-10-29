@@ -149,17 +149,17 @@ export default function AuthCallback() {
   }, [status, navigate]);
 
   return (
-    <div className="w-full flex-1 flex items-center justify-center py-16 px-6 bg-[#fafafc]">
-      <div className="w-full max-w-[460px] bg-white rounded-[28px] p-8 md:p-10 shadow-[0_2px_16px_rgba(0,0,0,0.04)] border border-black/[0.06] text-center space-y-6">
+    <div className="w-full flex-1 flex items-center justify-center py-16 px-6 bg-[#fafafc] dark:bg-[#101114] text-[#1d1d1f] dark:text-[#f5f5f7]">
+      <div className="w-full max-w-[460px] bg-white dark:bg-[#191b20] rounded-[28px] p-8 md:p-10 shadow-[0_2px_16px_rgba(0,0,0,0.04)] dark:shadow-none border border-black/[0.06] dark:border-white/10 text-center space-y-6">
         
         {status === 'processing' && (
           <div className="space-y-4 py-6">
-            <div className="w-10 h-10 border-2 border-black/10 border-t-[#0071e3] rounded-full animate-spin mx-auto"></div>
+            <div className="w-10 h-10 border-2 border-black/10 dark:border-white/10 border-t-[#0071e3] rounded-full animate-spin mx-auto"></div>
             <div className="space-y-1">
-              <h2 className="text-[20px] font-semibold text-[#1d1d1f]">
+              <h2 className="text-[20px] font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
                 Verifying Credentials
               </h2>
-              <p className="text-[13px] text-[#86868b]">
+              <p className="text-[13px] text-[#86868b] dark:text-[#a5a9b4]">
                 Confirming your security token with the HeatShield authentication service...
               </p>
             </div>
@@ -172,15 +172,15 @@ export default function AuthCallback() {
               <span className="material-symbols-outlined text-[24px]">check_circle</span>
             </div>
             <div className="space-y-1">
-              <h2 className="text-[22px] font-semibold text-[#1d1d1f]">
+              <h2 className="text-[22px] font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
                 Email Verified Successfully
               </h2>
-              <p className="text-[13px] text-[#86868b] leading-relaxed">
+              <p className="text-[13px] text-[#86868b] dark:text-[#a5a9b4] leading-relaxed">
                 Your HeatShield research account is now active and verified.
               </p>
             </div>
-            <p className="text-[12px] text-[#86868b]">
-              Redirecting to your research profile in <span className="font-semibold text-[#1d1d1f] tabular-nums">{redirectCountdown}s</span>...
+            <p className="text-[12px] text-[#86868b] dark:text-[#a5a9b4]">
+              Redirecting to your research profile in <span className="font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] tabular-nums">{redirectCountdown}s</span>...
             </p>
             <div className="pt-2 flex justify-center gap-2">
               <Link
@@ -191,7 +191,7 @@ export default function AuthCallback() {
               </Link>
               <Link
                 to="/submit-reading"
-                className="px-5 py-2.5 rounded-[980px] bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#1d1d1f] text-[13px] font-medium transition-colors"
+                className="px-5 py-2.5 rounded-[980px] bg-[#f5f5f7] dark:bg-[#22252b] hover:bg-[#e8e8ed] dark:hover:bg-[#2e323b] text-[#1d1d1f] dark:text-[#f5f5f7] text-[13px] font-medium transition-colors border border-black/5 dark:border-white/10"
               >
                 Submit Reading
               </Link>
@@ -205,10 +205,10 @@ export default function AuthCallback() {
               <span className="material-symbols-outlined text-[24px]">error</span>
             </div>
             <div className="space-y-1">
-              <h2 className="text-[22px] font-semibold text-[#1d1d1f]">
+              <h2 className="text-[22px] font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
                 Verification Problem
               </h2>
-              <p className="text-[13px] text-[#86868b] leading-relaxed">
+              <p className="text-[13px] text-[#86868b] dark:text-[#a5a9b4] leading-relaxed">
                 {errorMessage || 'The verification link may have expired or is malformed.'}
               </p>
             </div>
@@ -221,7 +221,7 @@ export default function AuthCallback() {
               </Link>
               <Link
                 to="/register"
-                className="px-5 py-2.5 rounded-[980px] bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#1d1d1f] text-[13px] font-medium transition-colors"
+                className="px-5 py-2.5 rounded-[980px] bg-[#f5f5f7] dark:bg-[#22252b] hover:bg-[#e8e8ed] dark:hover:bg-[#2e323b] text-[#1d1d1f] dark:text-[#f5f5f7] text-[13px] font-medium transition-colors border border-black/5 dark:border-white/10"
               >
                 Create Account
               </Link>

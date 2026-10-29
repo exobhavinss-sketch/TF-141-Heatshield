@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* ==========================================================================
-   HeatShield Design System — Apple Minimalist Scientific Foundations
+   HeatShield Design System — Semantic Tokens (Light & Dark)
    ========================================================================== */
 
 :root {
@@ -26,30 +26,51 @@
   --hs-leading-normal: 1.47;
   --hs-leading-relaxed: 1.6;
 
-  /* --- Neutral Canvas & Surfaces --- */
+  /* --- Semantic Palette (Light Default) --- */
+  --background: #fafafc;
+  --foreground: #1d1d1f;
+  --surface: #ffffff;
+  --surface-secondary: #f5f5f7;
+  --surface-elevated: #ffffff;
+  --muted: #f5f5f7;
+  --muted-foreground: #6e6e73;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-subtle: rgba(0, 0, 0, 0.04);
+  --primary: #1d1d1f;
+  --primary-foreground: #ffffff;
+  --accent: #0071e3;
+  --accent-hover: #0076df;
+  --accent-foreground: #ffffff;
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+
+  /* --- Chart Semantic Tokens --- */
+  --chart-grid: #e8e8ed;
+  --chart-text: #6e6e73;
+  --chart-tooltip-bg: #ffffff;
+  --chart-tooltip-border: rgba(0, 0, 0, 0.08);
+
+  /* --- HeatShield Brand Tokens (Light) --- */
   --hs-bg-canvas: #ffffff;
   --hs-bg-surface-secondary: #fafafc;
   --hs-bg-surface-tertiary: #f5f5f7;
   --hs-bg-glass: rgba(255, 255, 255, 0.82);
 
-  /* --- Text & Content Grays --- */
   --hs-text-primary: #1d1d1f;
   --hs-text-secondary: #6e6e73;
   --hs-text-tertiary: #86868b;
   --hs-text-quaternary: #aeaeb2;
 
-  /* --- Boundaries & Separators --- */
   --hs-border-subtle: rgba(0, 0, 0, 0.06);
   --hs-border-medium: rgba(0, 0, 0, 0.12);
   --hs-border-strong: #d2d2d7;
 
-  /* --- Interactive Controls (Apple Action Blue / Solapur Indigo) --- */
   --hs-color-action: #0071e3;
   --hs-color-action-hover: #0076df;
   --hs-color-action-active: #0062c4;
   --hs-color-action-tint: rgba(0, 113, 227, 0.08);
 
-  /* --- Scientifically Calibrated Heat Risk Palette --- */
   --hs-heat-safe: #059669;
   --hs-heat-safe-bg: #ecfdf5;
   --hs-heat-moderate: #d97706;
@@ -80,16 +101,84 @@
   --hs-transition-smooth: 350ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ==========================================================================
+   Dark Theme Token Overrides (.dark)
+   ========================================================================== */
+
+.dark {
+  /* --- Semantic Palette (Dark Mode) --- */
+  --background: #101114;
+  --foreground: #f5f5f7;
+  --surface: #191b20;
+  --surface-secondary: #22252b;
+  --surface-elevated: #22252b;
+  --muted: #22252b;
+  --muted-foreground: #a5a9b4;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --primary: #f5f5f7;
+  --primary-foreground: #101114;
+  --accent: #2997ff;
+  --accent-hover: #58a6ff;
+  --accent-foreground: #ffffff;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+
+  /* --- Chart Semantic Tokens --- */
+  --chart-grid: #2e323b;
+  --chart-text: #a5a9b4;
+  --chart-tooltip-bg: #191b20;
+  --chart-tooltip-border: rgba(255, 255, 255, 0.12);
+
+  /* --- HeatShield Brand Tokens (Dark) --- */
+  --hs-bg-canvas: #101114;
+  --hs-bg-surface-secondary: #191b20;
+  --hs-bg-surface-tertiary: #22252b;
+  --hs-bg-glass: rgba(25, 27, 32, 0.85);
+
+  --hs-text-primary: #f5f5f7;
+  --hs-text-secondary: #a5a9b4;
+  --hs-text-tertiary: #7a7f8d;
+  --hs-text-quaternary: #545863;
+
+  --hs-border-subtle: rgba(255, 255, 255, 0.06);
+  --hs-border-medium: rgba(255, 255, 255, 0.12);
+  --hs-border-strong: #2e323b;
+
+  --hs-color-action: #2997ff;
+  --hs-color-action-hover: #58a6ff;
+  --hs-color-action-active: #0071e3;
+  --hs-color-action-tint: rgba(41, 151, 255, 0.15);
+
+  --hs-heat-safe: #10b981;
+  --hs-heat-safe-bg: rgba(16, 185, 129, 0.15);
+  --hs-heat-moderate: #f59e0b;
+  --hs-heat-moderate-bg: rgba(245, 158, 11, 0.15);
+  --hs-heat-severe: #f97316;
+  --hs-heat-severe-bg: rgba(249, 115, 22, 0.15);
+  --hs-heat-critical: #ef4444;
+  --hs-heat-critical-bg: rgba(239, 68, 68, 0.18);
+  --hs-heat-indigo: #3b82f6;
+  --hs-heat-indigo-bg: rgba(59, 130, 246, 0.15);
+
+  --hs-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --hs-shadow-card: 0 4px 24px rgba(0, 0, 0, 0.35);
+  --hs-shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.45);
+  --hs-shadow-modal: 0 24px 64px rgba(0, 0, 0, 0.6);
+}
+
 @layer base {
   html, body {
     margin: 0;
     padding: 0;
-    background-color: #ffffff;
-    color: #1d1d1f;
+    background-color: var(--hs-bg-canvas);
+    color: var(--hs-text-primary);
     font-family: var(--hs-font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -105,7 +194,6 @@
     border-radius: inherit;
   }
 
-  /* Suppress default browser outline when clicking with mouse */
   :focus:not(:focus-visible) {
     outline: none;
   }
@@ -117,37 +205,40 @@
 
 /* Frosted Glassmorphic Navigation & Overlays */
 .apple-glass {
-  background: rgba(255, 255, 255, 0.82);
+  background: var(--hs-bg-glass);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
 }
 
 .apple-glass-dark {
-  background: rgba(22, 22, 23, 0.85);
+  background: rgba(25, 27, 32, 0.85);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
 }
 
 /* Apple Flagship Card Treatment (28px Radius) */
 .apple-card {
-  background-color: #ffffff;
+  background-color: var(--surface);
   border-radius: 28px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--border);
+  box-shadow: var(--hs-shadow-card);
   transition: transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
-              box-shadow 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+              box-shadow 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
+              background-color 0.2s ease,
+              border-color 0.2s ease;
 }
 
 .apple-card-hover:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.07);
+  box-shadow: var(--hs-shadow-hover);
 }
 
 /* Secondary Subtle Card */
 .apple-card-secondary {
-  background-color: #f5f5f7;
+  background-color: var(--surface-secondary);
   border-radius: 28px;
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border-subtle);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 /* Apple Primary Pill Button */
@@ -170,9 +261,17 @@
               transform 0.15s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
+.dark .apple-btn-primary {
+  background-color: #2997ff;
+}
+
 .apple-btn-primary:hover {
   background-color: #0076df;
   text-decoration: none;
+}
+
+.dark .apple-btn-primary:hover {
+  background-color: #58a6ff;
 }
 
 .apple-btn-primary:active {
@@ -198,10 +297,22 @@
   transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
+.dark .apple-btn-secondary {
+  color: #58a6ff;
+  background-color: rgba(41, 151, 255, 0.1);
+  border-color: rgba(41, 151, 255, 0.25);
+}
+
 .apple-btn-secondary:hover {
   background-color: #0071e3;
   color: #ffffff;
   border-color: #0071e3;
+}
+
+.dark .apple-btn-secondary:hover {
+  background-color: #2997ff;
+  color: #ffffff;
+  border-color: #2997ff;
 }
 
 /* Apple Subdued Text / Chevron Link */
@@ -216,9 +327,17 @@
   transition: color 0.15s ease;
 }
 
+.dark .apple-link {
+  color: #58a6ff;
+}
+
 .apple-link:hover {
   text-decoration: underline;
   color: #0076df;
+}
+
+.dark .apple-link:hover {
+  color: #79b8ff;
 }
 
 /* Scientific Tabular Numerals */
@@ -248,13 +367,25 @@
   background: rgba(0, 0, 0, 0.35);
 }
 
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
 /* ==========================================================================
-   Leaflet Map Refinements (Apple Minimalist GIS)
+   Leaflet Map Refinements (Apple Minimalist GIS in Light & Dark)
    ========================================================================== */
 
 .leaflet-container {
   background-color: #f5f5f7 !important;
   font-family: var(--hs-font-sans) !important;
+}
+
+.dark .leaflet-container {
+  background-color: #101114 !important;
 }
 
 /* Clean Popups Without Clumsy Arrows */
@@ -269,6 +400,13 @@
   padding: 0 !important;
 }
 
+.dark .leaflet-popup-content-wrapper {
+  background: rgba(25, 27, 32, 0.96) !important;
+  color: #f5f5f7 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5) !important;
+}
+
 .leaflet-popup-content {
   margin: 0 !important;
   line-height: 1.4 !important;
@@ -277,6 +415,11 @@
 .leaflet-popup-tip {
   background: rgba(255, 255, 255, 0.94) !important;
   border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.dark .leaflet-popup-tip {
+  background: rgba(25, 27, 32, 0.96) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
 }
 
 .leaflet-container a.leaflet-popup-close-button {
@@ -290,12 +433,25 @@
   color: #1d1d1f !important;
 }
 
+.dark .leaflet-container a.leaflet-popup-close-button {
+  color: #a5a9b4 !important;
+}
+
+.dark .leaflet-container a.leaflet-popup-close-button:hover {
+  color: #f5f5f7 !important;
+}
+
 /* Apple-style floating zoom & layer controls */
 .leaflet-bar {
   border: 1px solid rgba(0, 0, 0, 0.08) !important;
   border-radius: 12px !important;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
   overflow: hidden !important;
+}
+
+.dark .leaflet-bar {
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
 }
 
 .leaflet-bar a {
@@ -306,9 +462,20 @@
   transition: background-color 0.15s ease;
 }
 
+.dark .leaflet-bar a {
+  background-color: rgba(25, 27, 32, 0.92) !important;
+  color: #f5f5f7 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
 .leaflet-bar a:hover {
   background-color: #f5f5f7 !important;
   color: #0071e3 !important;
+}
+
+.dark .leaflet-bar a:hover {
+  background-color: #22252b !important;
+  color: #2997ff !important;
 }
 
 .leaflet-control-attribution {
@@ -321,9 +488,18 @@
   margin: 8px !important;
 }
 
+.dark .leaflet-control-attribution {
+  background: rgba(25, 27, 32, 0.85) !important;
+  color: #a5a9b4 !important;
+}
+
 .leaflet-control-attribution a {
   color: #0071e3 !important;
   text-decoration: none;
+}
+
+.dark .leaflet-control-attribution a {
+  color: #2997ff !important;
 }
 
 .leaflet-control-attribution a:hover {

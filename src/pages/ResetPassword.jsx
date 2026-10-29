@@ -59,9 +59,9 @@ export default function ResetPassword() {
 
   if (authLoading || checkingSession) {
     return (
-      <div className="min-h-[50vh] flex flex-col items-center justify-center py-16">
-        <div className="w-8 h-8 border-2 border-black/10 border-t-[#0071e3] rounded-full animate-spin mb-3"></div>
-        <span className="font-mono text-[11px] text-[#86868b] uppercase tracking-wider">
+      <div className="min-h-[50vh] flex flex-col items-center justify-center py-16 bg-[#fafafc] dark:bg-[#101114]">
+        <div className="w-8 h-8 border-2 border-black/10 dark:border-white/10 border-t-[#0071e3] rounded-full animate-spin mb-3"></div>
+        <span className="font-mono text-[11px] text-[#86868b] dark:text-[#a5a9b4] uppercase tracking-wider">
           Validating Password Recovery Token...
         </span>
       </div>
@@ -69,33 +69,33 @@ export default function ResetPassword() {
   }
 
   return (
-    <div className="w-full flex-1 flex items-center justify-center py-16 px-6 bg-[#fafafc]">
-      <div className="w-full max-w-[440px] bg-white rounded-[28px] p-8 md:p-10 shadow-[0_2px_16px_rgba(0,0,0,0.04)] border border-black/[0.06] space-y-6">
+    <div className="w-full flex-1 flex items-center justify-center py-16 px-6 bg-[#fafafc] dark:bg-[#101114] text-[#1d1d1f] dark:text-[#f5f5f7]">
+      <div className="w-full max-w-[440px] bg-white dark:bg-[#191b20] rounded-[28px] p-8 md:p-10 shadow-[0_2px_16px_rgba(0,0,0,0.04)] dark:shadow-none border border-black/[0.06] dark:border-white/10 space-y-6">
         
         {/* Header */}
         <div className="space-y-2 text-center pb-2">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[980px] bg-black/[0.04] text-[#1d1d1f] text-[11px] font-mono tracking-wider uppercase font-medium">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[980px] bg-black/[0.04] dark:bg-white/10 text-[#1d1d1f] dark:text-[#f5f5f7] text-[11px] font-mono tracking-wider uppercase font-medium">
             <span className="w-1.5 h-1.5 rounded-full bg-[#0071e3]"></span>
             <span>CREDENTIAL RECOVERY · TF-141</span>
           </div>
-          <h1 className="text-[28px] font-semibold tracking-[-0.02em] text-[#1d1d1f]">
+          <h1 className="text-[28px] font-semibold tracking-[-0.02em] text-[#1d1d1f] dark:text-[#f5f5f7]">
             Set New Password
           </h1>
-          <p className="text-[13px] text-[#86868b]">
+          <p className="text-[13px] text-[#86868b] dark:text-[#a5a9b4]">
             Create a secure new password for your HeatShield account
           </p>
         </div>
 
         {success ? (
-          <div className="rounded-[20px] bg-[#f5f5f7] p-6 space-y-4 text-center border border-black/[0.04]">
+          <div className="rounded-[20px] bg-[#f5f5f7] dark:bg-[#22252b] p-6 space-y-4 text-center border border-black/[0.04] dark:border-white/10">
             <div className="w-12 h-12 rounded-[980px] bg-[#059669]/10 text-[#059669] flex items-center justify-center mx-auto">
               <span className="material-symbols-outlined text-[24px]">task_alt</span>
             </div>
             <div className="space-y-1">
-              <h3 className="text-[16px] font-semibold text-[#1d1d1f]">
+              <h3 className="text-[16px] font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
                 Password Updated Successfully
               </h3>
-              <p className="text-[13px] text-[#86868b] leading-relaxed">
+              <p className="text-[13px] text-[#86868b] dark:text-[#a5a9b4] leading-relaxed">
                 Your credentials have been securely updated. Redirecting to sign in...
               </p>
             </div>
@@ -109,15 +109,15 @@ export default function ResetPassword() {
             </div>
           </div>
         ) : !hasValidSession ? (
-          <div className="rounded-[20px] bg-[#f5f5f7] p-6 space-y-4 text-center border border-black/[0.04]">
+          <div className="rounded-[20px] bg-[#f5f5f7] dark:bg-[#22252b] p-6 space-y-4 text-center border border-black/[0.04] dark:border-white/10">
             <div className="w-12 h-12 rounded-[980px] bg-[#dc2626]/10 text-[#dc2626] flex items-center justify-center mx-auto">
               <span className="material-symbols-outlined text-[24px]">link_off</span>
             </div>
             <div className="space-y-1">
-              <h3 className="text-[16px] font-semibold text-[#1d1d1f]">
+              <h3 className="text-[16px] font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
                 Invalid or Expired Link
               </h3>
-              <p className="text-[13px] text-[#86868b] leading-relaxed">
+              <p className="text-[13px] text-[#86868b] dark:text-[#a5a9b4] leading-relaxed">
                 This password recovery link has either expired or already been utilized. Please request a new recovery link.
               </p>
             </div>
@@ -141,7 +141,7 @@ export default function ResetPassword() {
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-1.5">
-                <label className="text-[12px] font-medium text-[#86868b] uppercase tracking-wider block" htmlFor="newPassword">
+                <label className="text-[12px] font-medium text-[#86868b] dark:text-[#a5a9b4] uppercase tracking-wider block" htmlFor="newPassword">
                   New Password
                 </label>
                 <input
@@ -152,12 +152,12 @@ export default function ResetPassword() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Min 8 characters"
-                  className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all placeholder:text-[#86868b]"
+                  className="w-full h-11 bg-[#f5f5f7] dark:bg-[#22252b] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] dark:text-[#f5f5f7] focus:outline-none focus:bg-white dark:focus:bg-[#22252b] focus:border-black/20 dark:focus:border-[#2997ff] border border-transparent dark:border-white/10 transition-all placeholder:text-[#86868b] dark:placeholder:text-[#6e6e73]"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-[12px] font-medium text-[#86868b] uppercase tracking-wider block" htmlFor="confirmNewPassword">
+                <label className="text-[12px] font-medium text-[#86868b] dark:text-[#a5a9b4] uppercase tracking-wider block" htmlFor="confirmNewPassword">
                   Confirm New Password
                 </label>
                 <input
@@ -168,7 +168,7 @@ export default function ResetPassword() {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="Repeat new password"
-                  className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all placeholder:text-[#86868b]"
+                  className="w-full h-11 bg-[#f5f5f7] dark:bg-[#22252b] px-4 rounded-[12px] text-[14px] text-[#1d1d1f] dark:text-[#f5f5f7] focus:outline-none focus:bg-white dark:focus:bg-[#22252b] focus:border-black/20 dark:focus:border-[#2997ff] border border-transparent dark:border-white/10 transition-all placeholder:text-[#86868b] dark:placeholder:text-[#6e6e73]"
                 />
               </div>
 

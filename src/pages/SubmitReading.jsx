@@ -245,20 +245,20 @@ export default function SubmitReading() {
   };
 
   return (
-    <div className="flex flex-col w-full pb-24 bg-[#fafafc]">
+    <div className="flex flex-col w-full pb-24 bg-[#fafafc] dark:bg-[#101114] text-[#1d1d1f] dark:text-[#f5f5f7]">
       
       {/* Top Breadcrumb & Metadata Header */}
-      <section className="w-full px-6 pt-12 pb-8 border-b border-black/[0.04]">
+      <section className="w-full px-6 pt-12 pb-8 border-b border-black/[0.04] dark:border-white/10">
         <div className="max-w-[1340px] mx-auto space-y-6">
           <div className="flex flex-wrap items-center justify-between gap-3 text-[12px]">
             <div className="flex items-center gap-2">
               <span className="font-mono text-[#0071e3] font-semibold uppercase tracking-wider">TF-141</span>
-              <span className="text-[#86868b]">/</span>
-              <span className="text-[#86868b]">FIELD-TELEMETRY</span>
-              <span className="text-[#86868b]">/</span>
-              <span className="font-mono text-[#1d1d1f]">SYNTHETIC INGESTION PIPELINE</span>
+              <span className="text-[#86868b] dark:text-[#a5a9b4]">/</span>
+              <span className="text-[#86868b] dark:text-[#a5a9b4]">FIELD-TELEMETRY</span>
+              <span className="text-[#86868b] dark:text-[#a5a9b4]">/</span>
+              <span className="font-mono text-[#1d1d1f] dark:text-[#f5f5f7]">SYNTHETIC INGESTION PIPELINE</span>
             </div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[980px] bg-[#f5f5f7] text-[#1d1d1f] font-mono text-[11px] font-medium">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[980px] bg-[#f5f5f7] dark:bg-[#191b20] text-[#1d1d1f] dark:text-[#f5f5f7] border border-black/5 dark:border-white/10 font-mono text-[11px] font-medium">
               <span className="w-1.5 h-1.5 rounded-full bg-[#059669]"></span>
               <span>BUFFER: LOCAL CLIENT MEMORY</span>
             </div>
@@ -269,32 +269,32 @@ export default function SubmitReading() {
               <span className="text-[11px] font-semibold uppercase tracking-wider text-[#0071e3] block">
                 Spatial Climatology • Node Entry
               </span>
-              <h1 className="text-[38px] md:text-[50px] font-semibold tracking-[-0.03em] text-[#1d1d1f] leading-[1.1]">
+              <h1 className="text-[38px] md:text-[50px] font-semibold tracking-[-0.03em] text-[#1d1d1f] dark:text-[#f5f5f7] leading-[1.1]">
                 Submit a Temperature Reading
               </h1>
-              <p className="text-[17px] text-[#86868b] leading-relaxed">
+              <p className="text-[17px] text-[#86868b] dark:text-[#a5a9b4] leading-relaxed">
                 Contribute ground-level microclimate observations or compute hypothetical urban cooling scenarios across Solapur's synthetic research grid.
               </p>
             </div>
-            <div className="hidden md:flex flex-col text-right font-mono text-[11px] text-[#86868b]">
+            <div className="hidden md:flex flex-col text-right font-mono text-[11px] text-[#86868b] dark:text-[#a5a9b4]">
               <span>GRID SYSTEM: EPSG:4326</span>
               <span className="text-[#0071e3] font-medium">100 SIMULATED ACTIVE NODES</span>
             </div>
           </div>
 
           {/* Academic Transparency Notice Banner */}
-          <div className="rounded-[24px] bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-black/[0.06] flex items-start gap-4">
+          <div className="rounded-[24px] bg-white dark:bg-[#191b20] p-6 shadow-[0_2px_12px_rgba(0,0,0,0.03)] dark:shadow-none border border-black/[0.06] dark:border-white/10 flex items-start gap-4">
             <div className="w-10 h-10 rounded-[12px] bg-[#0071e3]/10 text-[#0071e3] flex items-center justify-center shrink-0">
               <span className="material-symbols-outlined text-[22px]">science</span>
             </div>
             <div className="space-y-1">
               <div className="flex items-center gap-2">
-                <span className="text-[14px] font-semibold text-[#1d1d1f]">Academic Sandbox &amp; Calibration Mode</span>
+                <span className="text-[14px] font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">Academic Sandbox &amp; Calibration Mode</span>
                 <span className="px-2 py-0.5 rounded-[980px] bg-[#0071e3]/10 text-[#0071e3] font-mono text-[10px] font-semibold uppercase">
                   Research Preview
                 </span>
               </div>
-              <p className="text-[13px] text-[#86868b] leading-relaxed">
+              <p className="text-[13px] text-[#86868b] dark:text-[#a5a9b4] leading-relaxed">
                 Submissions are parsed and preserved in transient client-side memory for spatial validation, real-time microclimate anomaly calculations, and scenario simulation. Records are not committed to official municipal meteorological telemetry nodes.
               </p>
             </div>
@@ -311,25 +311,25 @@ export default function SubmitReading() {
             <form onSubmit={handleFormSubmit} className="space-y-6" id="readingForm">
               
               {/* SECTION 1: Atmospheric Metrics */}
-              <div className="rounded-[28px] bg-white p-8 shadow-[0_2px_16px_rgba(0,0,0,0.04)] space-y-6 border border-black/[0.06]">
-                <div className="flex items-center justify-between pb-3 border-b border-black/[0.04]">
+              <div className="rounded-[28px] bg-white dark:bg-[#191b20] p-8 shadow-[0_2px_16px_rgba(0,0,0,0.04)] dark:shadow-none space-y-6 border border-black/[0.06] dark:border-white/10">
+                <div className="flex items-center justify-between pb-3 border-b border-black/[0.04] dark:border-white/10">
                   <div className="flex items-center gap-2.5">
-                    <span className="font-mono text-[11px] font-semibold px-2 py-0.5 rounded-[6px] bg-[#f5f5f7] text-[#0071e3]">01</span>
-                    <h2 className="text-[18px] font-semibold text-[#1d1d1f]">Atmospheric &amp; Thermal Metrics</h2>
+                    <span className="font-mono text-[11px] font-semibold px-2 py-0.5 rounded-[6px] bg-[#f5f5f7] dark:bg-[#22252b] text-[#0071e3]">01</span>
+                    <h2 className="text-[18px] font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">Atmospheric &amp; Thermal Metrics</h2>
                   </div>
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#86868b]">Required</span>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#86868b] dark:text-[#a5a9b4]">Required</span>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   {/* Air Temp */}
                   <div className="space-y-1.5">
                     <div className="flex items-center justify-between text-[12px]">
-                      <label className="font-medium text-[#1d1d1f]" htmlFor="airTempInput">
+                      <label className="font-medium text-[#1d1d1f] dark:text-[#f5f5f7]" htmlFor="airTempInput">
                         Ambient Air Temperature
                       </label>
                       <span className="font-mono text-[#0071e3]">UNIT: °{tempUnit}</span>
                     </div>
-                    <div className="relative flex rounded-[12px] bg-[#f5f5f7] border border-transparent focus-within:border-black/20 focus-within:bg-white transition-all">
+                    <div className="relative flex rounded-[12px] bg-[#f5f5f7] dark:bg-[#22252b] border border-transparent dark:border-white/10 focus-within:border-black/20 dark:focus-within:border-[#2997ff] focus-within:bg-white dark:focus-within:bg-[#22252b] transition-all">
                       <input 
                         id="airTempInput"
                         type="number"
@@ -337,28 +337,28 @@ export default function SubmitReading() {
                         required
                         value={airTemp}
                         onChange={(e) => setAirTemp(e.target.value)}
-                        className="w-full bg-transparent px-4 py-2.5 text-[15px] font-semibold text-[#1d1d1f] focus:outline-none tabular-nums"
+                        className="w-full bg-transparent px-4 py-2.5 text-[15px] font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] focus:outline-none tabular-nums"
                       />
                       <div className="flex items-center pr-2">
                         <button 
                           type="button"
                           onClick={toggleTempUnit}
-                          className="px-2.5 py-1 rounded-[8px] bg-white text-[#1d1d1f] font-mono text-[12px] hover:bg-[#f5f5f7] transition-colors shadow-xs font-semibold"
+                          className="px-2.5 py-1 rounded-[8px] bg-white dark:bg-[#191b20] text-[#1d1d1f] dark:text-[#f5f5f7] font-mono text-[12px] hover:bg-[#f5f5f7] dark:hover:bg-[#2e323b] transition-colors shadow-xs font-semibold border border-black/5 dark:border-white/10"
                         >
                           °{tempUnit}
                         </button>
                       </div>
                     </div>
-                    <span className="text-[11px] text-[#86868b] block">Calibrated sensor dry-bulb reading at 1.5m</span>
+                    <span className="text-[11px] text-[#86868b] dark:text-[#a5a9b4] block">Calibrated sensor dry-bulb reading at 1.5m</span>
                   </div>
 
                   {/* Relative Humidity */}
                   <div className="space-y-1.5">
                     <div className="flex items-center justify-between text-[12px]">
-                      <label className="font-medium text-[#1d1d1f]" htmlFor="humiditySlider">
+                      <label className="font-medium text-[#1d1d1f] dark:text-[#f5f5f7]" htmlFor="humiditySlider">
                         Relative Humidity (%)
                       </label>
-                      <span className="font-semibold text-[#1d1d1f] tabular-nums">{humidity}%</span>
+                      <span className="font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] tabular-nums">{humidity}%</span>
                     </div>
                     <div className="flex items-center pt-2">
                       <input 
@@ -368,68 +368,68 @@ export default function SubmitReading() {
                         max="100"
                         value={humidity}
                         onChange={(e) => setHumidity(Number(e.target.value))}
-                        className="w-full accent-[#0071e3] cursor-pointer bg-[#f5f5f7] h-2 rounded-[980px]"
+                        className="w-full accent-[#0071e3] cursor-pointer bg-[#f5f5f7] dark:bg-[#22252b] h-2 rounded-[980px]"
                       />
                     </div>
-                    <span className="text-[11px] text-[#86868b] block">Hygrometric boundary vapor saturation</span>
+                    <span className="text-[11px] text-[#86868b] dark:text-[#a5a9b4] block">Hygrometric boundary vapor saturation</span>
                   </div>
 
                   {/* Surface Temp */}
                   <div className="space-y-1.5">
                     <div className="flex items-center justify-between text-[12px]">
-                      <label className="font-medium text-[#1d1d1f]" htmlFor="surfaceTempInput">
+                      <label className="font-medium text-[#1d1d1f] dark:text-[#f5f5f7]" htmlFor="surfaceTempInput">
                         Surface Skin Temperature (Optional)
                       </label>
-                      <span className="font-mono text-[11px] text-[#86868b]">INFRARED / °C</span>
+                      <span className="font-mono text-[11px] text-[#86868b] dark:text-[#a5a9b4]">INFRARED / °C</span>
                     </div>
-                    <div className="relative flex rounded-[12px] bg-[#f5f5f7] border border-transparent focus-within:border-black/20 focus-within:bg-white transition-all">
+                    <div className="relative flex rounded-[12px] bg-[#f5f5f7] dark:bg-[#22252b] border border-transparent dark:border-white/10 focus-within:border-black/20 dark:focus-within:border-[#2997ff] focus-within:bg-white dark:focus-within:bg-[#22252b] transition-all">
                       <input 
                         id="surfaceTempInput"
                         type="number"
                         step="0.1"
                         value={surfaceTemp}
                         onChange={(e) => setSurfaceTemp(e.target.value)}
-                        className="w-full bg-transparent px-4 py-2.5 text-[15px] font-semibold text-[#1d1d1f] focus:outline-none tabular-nums"
+                        className="w-full bg-transparent px-4 py-2.5 text-[15px] font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] focus:outline-none tabular-nums"
                       />
                     </div>
-                    <span className="text-[11px] text-[#86868b] block">Direct pyrometer contact or 8-14μm radiometer</span>
+                    <span className="text-[11px] text-[#86868b] dark:text-[#a5a9b4] block">Direct pyrometer contact or 8-14μm radiometer</span>
                   </div>
 
                   {/* Solar Flux */}
                   <div className="space-y-1.5">
-                    <label className="text-[12px] font-medium text-[#1d1d1f]" htmlFor="solarIrradiance">
+                    <label className="text-[12px] font-medium text-[#1d1d1f] dark:text-[#f5f5f7]" htmlFor="solarIrradiance">
                       Solar Irradiance Flux
                     </label>
                     <select 
                       id="solarIrradiance"
                       value={solarFlux}
                       onChange={(e) => setSolarFlux(e.target.value)}
-                      className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[13px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all cursor-pointer"
+                      className="w-full h-11 bg-[#f5f5f7] dark:bg-[#22252b] px-4 rounded-[12px] text-[13px] text-[#1d1d1f] dark:text-[#f5f5f7] focus:outline-none focus:bg-white dark:focus:bg-[#22252b] focus:border-black/20 dark:focus:border-[#2997ff] border border-transparent dark:border-white/10 transition-all cursor-pointer"
                     >
-                      <option value="direct_peak">Direct Peak Solar Zenith (800 - 1050 W/m²)</option>
-                      <option value="diffuse_cloud">Partial Cloud Obscuration (400 - 650 W/m²)</option>
-                      <option value="canopy_shaded">Understory Forest Canopy (120 - 250 W/m²)</option>
-                      <option value="crepuscular">Crepuscular / Twilight (&lt; 50 W/m²)</option>
-                      <option value="nocturnal">Nocturnal Cooling Cycle (0 W/m²)</option>
+                      <option value="direct_peak" className="dark:bg-[#191b20]">Direct Peak Solar Zenith (800 - 1050 W/m²)</option>
+                      <option value="diffuse_cloud" className="dark:bg-[#191b20]">Partial Cloud Obscuration (400 - 650 W/m²)</option>
+                      <option value="canopy_shaded" className="dark:bg-[#191b20]">Understory Forest Canopy (120 - 250 W/m²)</option>
+                      <option value="crepuscular" className="dark:bg-[#191b20]">Crepuscular / Twilight (&lt; 50 W/m²)</option>
+                      <option value="nocturnal" className="dark:bg-[#191b20]">Nocturnal Cooling Cycle (0 W/m²)</option>
                     </select>
-                    <span className="text-[11px] text-[#86868b] block">Global horizontal irradiance weighting tier</span>
+                    <span className="text-[11px] text-[#86868b] dark:text-[#a5a9b4] block">Global horizontal irradiance weighting tier</span>
                   </div>
                 </div>
               </div>
 
               {/* SECTION 2: Spatial & Temporal Anchor */}
-              <div className="rounded-[28px] bg-white p-8 shadow-[0_2px_16px_rgba(0,0,0,0.04)] space-y-6 border border-black/[0.06]">
-                <div className="flex items-center justify-between pb-3 border-b border-black/[0.04]">
+              <div className="rounded-[28px] bg-white dark:bg-[#191b20] p-8 shadow-[0_2px_16px_rgba(0,0,0,0.04)] dark:shadow-none space-y-6 border border-black/[0.06] dark:border-white/10">
+                <div className="flex items-center justify-between pb-3 border-b border-black/[0.04] dark:border-white/10">
                   <div className="flex items-center gap-2.5">
-                    <span className="font-mono text-[11px] font-semibold px-2 py-0.5 rounded-[6px] bg-[#f5f5f7] text-[#0071e3]">02</span>
-                    <h2 className="text-[18px] font-semibold text-[#1d1d1f]">Temporal &amp; Spatial Anchor</h2>
+                    <span className="font-mono text-[11px] font-semibold px-2 py-0.5 rounded-[6px] bg-[#f5f5f7] dark:bg-[#22252b] text-[#0071e3]">02</span>
+                    <h2 className="text-[18px] font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">Temporal &amp; Spatial Anchor</h2>
                   </div>
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#86868b]">Solapur Mesh</span>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#86868b] dark:text-[#a5a9b4]">Solapur Mesh</span>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="space-y-1.5">
-                    <label className="text-[12px] font-medium text-[#1d1d1f]" htmlFor="timestampInput">
+                    <label className="text-[12px] font-medium text-[#1d1d1f] dark:text-[#f5f5f7]" htmlFor="timestampInput">
                       Observation Timestamp (IST)
                     </label>
                     <input 
@@ -437,30 +437,30 @@ export default function SubmitReading() {
                       type="datetime-local"
                       value={timestamp}
                       onChange={(e) => setTimestamp(e.target.value)}
-                      className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] font-mono text-[13px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all"
+                      className="w-full h-11 bg-[#f5f5f7] dark:bg-[#22252b] px-4 rounded-[12px] font-mono text-[13px] text-[#1d1d1f] dark:text-[#f5f5f7] focus:outline-none focus:bg-white dark:focus:bg-[#22252b] focus:border-black/20 dark:focus:border-[#2997ff] border border-transparent dark:border-white/10 transition-all"
                     />
-                    <span className="text-[11px] text-[#86868b] block">Synchronous local research epoch</span>
+                    <span className="text-[11px] text-[#86868b] dark:text-[#a5a9b4] block">Synchronous local research epoch</span>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-[12px] font-medium text-[#1d1d1f]" htmlFor="stationSelect">
+                    <label className="text-[12px] font-medium text-[#1d1d1f] dark:text-[#f5f5f7]" htmlFor="stationSelect">
                       Simulation Station / Ward
                     </label>
                     <select 
                       id="stationSelect"
                       value={selectedStation.id}
                       onChange={handleStationChange}
-                      className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[13px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all cursor-pointer"
+                      className="w-full h-11 bg-[#f5f5f7] dark:bg-[#22252b] px-4 rounded-[12px] text-[13px] text-[#1d1d1f] dark:text-[#f5f5f7] focus:outline-none focus:bg-white dark:focus:bg-[#22252b] focus:border-black/20 dark:focus:border-[#2997ff] border border-transparent dark:border-white/10 transition-all cursor-pointer"
                     >
                       {STATIONS.map(s => (
-                        <option key={s.id} value={s.id}>{s.name} ({s.id})</option>
+                        <option key={s.id} value={s.id} className="dark:bg-[#191b20]">{s.name} ({s.id})</option>
                       ))}
                     </select>
-                    <span className="text-[11px] text-[#86868b] block">Indexed against 100 Solapur GIS sensor stations</span>
+                    <span className="text-[11px] text-[#86868b] dark:text-[#a5a9b4] block">Indexed against 100 Solapur GIS sensor stations</span>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-[12px] font-medium text-[#1d1d1f]" htmlFor="latitudeInput">
+                    <label className="text-[12px] font-medium text-[#1d1d1f] dark:text-[#f5f5f7]" htmlFor="latitudeInput">
                       Latitude (°N)
                     </label>
                     <input 
@@ -469,12 +469,12 @@ export default function SubmitReading() {
                       step="0.0001"
                       value={latitude}
                       onChange={(e) => setLatitude(parseFloat(e.target.value))}
-                      className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] font-mono text-[13px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all"
+                      className="w-full h-11 bg-[#f5f5f7] dark:bg-[#22252b] px-4 rounded-[12px] font-mono text-[13px] text-[#1d1d1f] dark:text-[#f5f5f7] focus:outline-none focus:bg-white dark:focus:bg-[#22252b] focus:border-black/20 dark:focus:border-[#2997ff] border border-transparent dark:border-white/10 transition-all"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-[12px] font-medium text-[#1d1d1f]" htmlFor="longitudeInput">
+                    <label className="text-[12px] font-medium text-[#1d1d1f] dark:text-[#f5f5f7]" htmlFor="longitudeInput">
                       Longitude (°E)
                     </label>
                     <input 
@@ -483,58 +483,58 @@ export default function SubmitReading() {
                       step="0.0001"
                       value={longitude}
                       onChange={(e) => setLongitude(parseFloat(e.target.value))}
-                      className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] font-mono text-[13px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all"
+                      className="w-full h-11 bg-[#f5f5f7] dark:bg-[#22252b] px-4 rounded-[12px] font-mono text-[13px] text-[#1d1d1f] dark:text-[#f5f5f7] focus:outline-none focus:bg-white dark:focus:bg-[#22252b] focus:border-black/20 dark:focus:border-[#2997ff] border border-transparent dark:border-white/10 transition-all"
                     />
                   </div>
                 </div>
 
                 {/* Urban Topology Badge */}
-                <div className="p-4 rounded-[18px] bg-[#f5f5f7] flex flex-wrap items-center justify-between gap-3 text-[12px]">
+                <div className="p-4 rounded-[18px] bg-[#f5f5f7] dark:bg-[#22252b] border border-black/[0.04] dark:border-white/10 flex flex-wrap items-center justify-between gap-3 text-[12px]">
                   <div className="flex items-center gap-2">
-                    <span className="text-[#86868b] uppercase tracking-wider font-semibold text-[11px]">Inferred Topology:</span>
-                    <span className="font-semibold text-[#1d1d1f]">
+                    <span className="text-[#86868b] dark:text-[#a5a9b4] uppercase tracking-wider font-semibold text-[11px]">Inferred Topology:</span>
+                    <span className="font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
                       {selectedStation.zone}
                     </span>
                   </div>
-                  <div className="font-mono text-[#86868b]">
+                  <div className="font-mono text-[#86868b] dark:text-[#a5a9b4]">
                     <span>BASELINE: </span>
-                    <span className="font-semibold text-[#1d1d1f]">{selectedStation.baseline}°C</span>
+                    <span className="font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">{selectedStation.baseline}°C</span>
                   </div>
                 </div>
               </div>
 
               {/* SECTION 3: Measurement Source */}
-              <div className="rounded-[28px] bg-white p-8 shadow-[0_2px_16px_rgba(0,0,0,0.04)] space-y-6 border border-black/[0.06]">
-                <div className="flex items-center justify-between pb-3 border-b border-black/[0.04]">
+              <div className="rounded-[28px] bg-white dark:bg-[#191b20] p-8 shadow-[0_2px_16px_rgba(0,0,0,0.04)] dark:shadow-none space-y-6 border border-black/[0.06] dark:border-white/10">
+                <div className="flex items-center justify-between pb-3 border-b border-black/[0.04] dark:border-white/10">
                   <div className="flex items-center gap-2.5">
-                    <span className="font-mono text-[11px] font-semibold px-2 py-0.5 rounded-[6px] bg-[#f5f5f7] text-[#0071e3]">03</span>
-                    <h2 className="text-[18px] font-semibold text-[#1d1d1f]">Measurement Source &amp; Instrumentation</h2>
+                    <span className="font-mono text-[11px] font-semibold px-2 py-0.5 rounded-[6px] bg-[#f5f5f7] dark:bg-[#22252b] text-[#0071e3]">03</span>
+                    <h2 className="text-[18px] font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">Measurement Source &amp; Instrumentation</h2>
                   </div>
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#86868b]">Provenance</span>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#86868b] dark:text-[#a5a9b4]">Provenance</span>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="space-y-1.5">
-                    <label className="text-[12px] font-medium text-[#1d1d1f]" htmlFor="sourceType">
+                    <label className="text-[12px] font-medium text-[#1d1d1f] dark:text-[#f5f5f7]" htmlFor="sourceType">
                       Telemetry Source Category
                     </label>
                     <select 
                       id="sourceType"
                       value={sourceType}
                       onChange={(e) => setSourceType(e.target.value)}
-                      className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[13px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all cursor-pointer"
+                      className="w-full h-11 bg-[#f5f5f7] dark:bg-[#22252b] px-4 rounded-[12px] text-[13px] text-[#1d1d1f] dark:text-[#f5f5f7] focus:outline-none focus:bg-white dark:focus:bg-[#22252b] focus:border-black/20 dark:focus:border-[#2997ff] border border-transparent dark:border-white/10 transition-all cursor-pointer"
                     >
-                      <option value="calibrated_thermistor">Calibrated Field Thermistor (±0.15°C)</option>
-                      <option value="ir_pyrometer">Handheld IR Surface Pyrometer (±0.5°C)</option>
-                      <option value="weather_station">Automatic Weather Station (AWS Tier 2)</option>
-                      <option value="hypothetical_sim">Hypothetical Scenario Simulation (TF-141 Model)</option>
-                      <option value="crowd_in situ">Citizen Science Handheld Probe</option>
+                      <option value="calibrated_thermistor" className="dark:bg-[#191b20]">Calibrated Field Thermistor (±0.15°C)</option>
+                      <option value="ir_pyrometer" className="dark:bg-[#191b20]">Handheld IR Surface Pyrometer (±0.5°C)</option>
+                      <option value="weather_station" className="dark:bg-[#191b20]">Automatic Weather Station (AWS Tier 2)</option>
+                      <option value="hypothetical_sim" className="dark:bg-[#191b20]">Hypothetical Scenario Simulation (TF-141 Model)</option>
+                      <option value="crowd_in situ" className="dark:bg-[#191b20]">Citizen Science Handheld Probe</option>
                     </select>
-                    <span className="text-[11px] text-[#86868b] block">Determines uncertainty confidence weighting (σ)</span>
+                    <span className="text-[11px] text-[#86868b] dark:text-[#a5a9b4] block">Determines uncertainty confidence weighting (σ)</span>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-[12px] font-medium text-[#1d1d1f]" htmlFor="instrumentSpec">
+                    <label className="text-[12px] font-medium text-[#1d1d1f] dark:text-[#f5f5f7]" htmlFor="instrumentSpec">
                       Instrument Specification / Model
                     </label>
                     <input 
@@ -542,25 +542,25 @@ export default function SubmitReading() {
                       type="text"
                       value={instrumentSpec}
                       onChange={(e) => setInstrumentSpec(e.target.value)}
-                      className="w-full h-11 bg-[#f5f5f7] px-4 rounded-[12px] text-[13px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all"
+                      className="w-full h-11 bg-[#f5f5f7] dark:bg-[#22252b] px-4 rounded-[12px] text-[13px] text-[#1d1d1f] dark:text-[#f5f5f7] focus:outline-none focus:bg-white dark:focus:bg-[#22252b] focus:border-black/20 dark:focus:border-[#2997ff] border border-transparent dark:border-white/10 transition-all"
                     />
-                    <span className="text-[11px] text-[#86868b] block">Model revision or calibration certificate</span>
+                    <span className="text-[11px] text-[#86868b] dark:text-[#a5a9b4] block">Model revision or calibration certificate</span>
                   </div>
                 </div>
               </div>
 
               {/* SECTION 4: Substrate & Field Notes */}
-              <div className="rounded-[28px] bg-white p-8 shadow-[0_2px_16px_rgba(0,0,0,0.04)] space-y-6 border border-black/[0.06]">
-                <div className="flex items-center justify-between pb-3 border-b border-black/[0.04]">
+              <div className="rounded-[28px] bg-white dark:bg-[#191b20] p-8 shadow-[0_2px_16px_rgba(0,0,0,0.04)] dark:shadow-none space-y-6 border border-black/[0.06] dark:border-white/10">
+                <div className="flex items-center justify-between pb-3 border-b border-black/[0.04] dark:border-white/10">
                   <div className="flex items-center gap-2.5">
-                    <span className="font-mono text-[11px] font-semibold px-2 py-0.5 rounded-[6px] bg-[#f5f5f7] text-[#0071e3]">04</span>
-                    <h2 className="text-[18px] font-semibold text-[#1d1d1f]">Surface Context &amp; Field Notes</h2>
+                    <span className="font-mono text-[11px] font-semibold px-2 py-0.5 rounded-[6px] bg-[#f5f5f7] dark:bg-[#22252b] text-[#0071e3]">04</span>
+                    <h2 className="text-[18px] font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">Surface Context &amp; Field Notes</h2>
                   </div>
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#86868b]">Albedo</span>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#86868b] dark:text-[#a5a9b4]">Albedo</span>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-[12px] font-medium text-[#1d1d1f] block">Ground Substrate Albedo Group</label>
+                  <label className="text-[12px] font-medium text-[#1d1d1f] dark:text-[#f5f5f7] block">Ground Substrate Albedo Group</label>
                   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2" id="surfaceButtonGroup">
                     {SUBSTRATES.map((sub) => {
                       const isSelected = selectedSubstrate.name === sub.name;
@@ -572,11 +572,11 @@ export default function SubmitReading() {
                           className={`p-3 text-left rounded-[14px] transition-all flex flex-col justify-between border ${
                             isSelected 
                               ? 'bg-[#0071e3] text-white font-semibold border-[#0071e3] shadow-xs' 
-                              : 'bg-[#f5f5f7] text-[#1d1d1f] hover:bg-[#e8e8ed] border-transparent'
+                              : 'bg-[#f5f5f7] dark:bg-[#22252b] text-[#1d1d1f] dark:text-[#f5f5f7] hover:bg-[#e8e8ed] dark:hover:bg-[#2e323b] border-transparent dark:border-white/10'
                           }`}
                         >
                           <span className="text-[13px]">{sub.name}</span>
-                          <span className={`font-mono text-[10px] mt-1 ${isSelected ? 'text-white/80' : 'text-[#86868b]'}`}>
+                          <span className={`font-mono text-[10px] mt-1 ${isSelected ? 'text-white/80' : 'text-[#86868b] dark:text-[#a5a9b4]'}`}>
                             α ≈ {sub.albedo.toFixed(2)}
                           </span>
                         </button>
@@ -586,7 +586,7 @@ export default function SubmitReading() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-[12px] font-medium text-[#1d1d1f]" htmlFor="fieldNotes">
+                  <label className="text-[12px] font-medium text-[#1d1d1f] dark:text-[#f5f5f7]" htmlFor="fieldNotes">
                     Field Microclimate Observations &amp; Mitigation Notes
                   </label>
                   <textarea 
@@ -594,9 +594,9 @@ export default function SubmitReading() {
                     rows={3}
                     value={fieldNotes}
                     onChange={(e) => setFieldNotes(e.target.value)}
-                    className="w-full bg-[#f5f5f7] p-4 rounded-[16px] text-[13px] text-[#1d1d1f] focus:outline-none focus:bg-white focus:border-black/20 border border-transparent transition-all resize-y placeholder:text-[#86868b]"
+                    className="w-full bg-[#f5f5f7] dark:bg-[#22252b] p-4 rounded-[16px] text-[13px] text-[#1d1d1f] dark:text-[#f5f5f7] focus:outline-none focus:bg-white dark:focus:bg-[#22252b] focus:border-black/20 dark:focus:border-[#2997ff] border border-transparent dark:border-white/10 transition-all resize-y placeholder:text-[#86868b] dark:placeholder:text-[#6e6e73]"
                   />
-                  <span className="text-[11px] text-[#86868b] block">Qualitative observations parsed into anomaly records</span>
+                  <span className="text-[11px] text-[#86868b] dark:text-[#a5a9b4] block">Qualitative observations parsed into anomaly records</span>
                 </div>
               </div>
 
@@ -625,13 +625,13 @@ export default function SubmitReading() {
                   <button 
                     type="button"
                     onClick={handleReset}
-                    className="inline-flex items-center gap-1.5 px-5 h-12 rounded-[980px] bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#1d1d1f] text-[13px] font-medium transition-colors"
+                    className="inline-flex items-center gap-1.5 px-5 h-12 rounded-[980px] bg-[#f5f5f7] dark:bg-[#22252b] hover:bg-[#e8e8ed] dark:hover:bg-[#2e323b] text-[#1d1d1f] dark:text-[#f5f5f7] border border-black/5 dark:border-white/10 text-[13px] font-medium transition-colors"
                   >
                     <span className="material-symbols-outlined text-[16px]">restart_alt</span>
                     <span>Reset</span>
                   </button>
                 </div>
-                <div className="font-mono text-[11px] text-[#86868b] flex items-center gap-1">
+                <div className="font-mono text-[11px] text-[#86868b] dark:text-[#a5a9b4] flex items-center gap-1">
                   <span className="material-symbols-outlined text-[14px]">lock</span>
                   <span>{user && isConfigured ? 'SUPABASE POSTGRESQL' : 'RESEARCH SANDBOX'}</span>
                 </div>
@@ -665,15 +665,15 @@ export default function SubmitReading() {
 
           {/* Right Observer Panel (4 Cols) */}
           <div className="lg:col-span-4 sticky top-[72px] space-y-6">
-            <div className="rounded-[28px] bg-white p-6 shadow-[0_2px_16px_rgba(0,0,0,0.04)] space-y-5 border border-black/[0.06]">
+            <div className="rounded-[28px] bg-white dark:bg-[#191b20] p-6 shadow-[0_2px_16px_rgba(0,0,0,0.04)] dark:shadow-none space-y-5 border border-black/[0.06] dark:border-white/10">
               
               {/* Header */}
-              <div className="flex items-center justify-between pb-3 border-b border-black/[0.04]">
+              <div className="flex items-center justify-between pb-3 border-b border-black/[0.04] dark:border-white/10">
                 <div className="flex items-center gap-1.5">
                   <span className="material-symbols-outlined text-[#0071e3] text-[18px]">insights</span>
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#1d1d1f]">Live Telemetry Preview</span>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#1d1d1f] dark:text-[#f5f5f7]">Live Telemetry Preview</span>
                 </div>
-                <span className="font-mono text-[10px] text-[#86868b] bg-[#f5f5f7] px-2 py-0.5 rounded-[980px]">
+                <span className="font-mono text-[10px] text-[#86868b] dark:text-[#a5a9b4] bg-[#f5f5f7] dark:bg-[#22252b] px-2 py-0.5 rounded-[980px] border border-black/5 dark:border-white/10">
                   HS-9281-SIM
                 </span>
               </div>
@@ -691,25 +691,25 @@ export default function SubmitReading() {
               </div>
 
               {/* Real-Time Anomaly vs Solapur Baseline */}
-              <div className="rounded-[20px] bg-[#f5f5f7] p-5 space-y-2 border border-black/[0.04]">
+              <div className="rounded-[20px] bg-[#f5f5f7] dark:bg-[#22252b] p-5 space-y-2 border border-black/[0.04] dark:border-white/10">
                 <div className="flex items-center justify-between text-[13px]">
-                  <span className="text-[#86868b]">Ward Baseline</span>
-                  <span className="font-semibold text-[#1d1d1f] tabular-nums">{baseline}°C</span>
+                  <span className="text-[#86868b] dark:text-[#a5a9b4]">Ward Baseline</span>
+                  <span className="font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] tabular-nums">{baseline}°C</span>
                 </div>
                 <div className="flex items-center justify-between text-[13px]">
-                  <span className="text-[#86868b]">Observed Anomaly</span>
+                  <span className="text-[#86868b] dark:text-[#a5a9b4]">Observed Anomaly</span>
                   <span className={`font-bold tabular-nums ${anomalyNum > 0 ? 'text-[#dc2626]' : 'text-[#059669]'}`}>
                     {anomalyNum > 0 ? `+${anomaly}` : anomaly}°C
                   </span>
                 </div>
                 <div className="pt-2">
-                  <div className="h-2 w-full rounded-[980px] bg-black/10 overflow-hidden relative">
+                  <div className="h-2 w-full rounded-[980px] bg-black/10 dark:bg-white/10 overflow-hidden relative">
                     <div 
                       className={`h-full transition-all duration-300 ${isExtreme ? 'bg-[#dc2626]' : isHigh ? 'bg-[#ea580c]' : 'bg-[#059669]'}`}
                       style={{ width: `${Math.min(Math.max((anomalyNum + 2) / 7 * 100, 10), 98)}%` }}
                     ></div>
                   </div>
-                  <div className="flex justify-between font-mono text-[10px] text-[#86868b] mt-1.5">
+                  <div className="flex justify-between font-mono text-[10px] text-[#86868b] dark:text-[#a5a9b4] mt-1.5">
                     <span>-2.0°C</span>
                     <span>Baseline (0)</span>
                     <span>+5.0°C</span>
@@ -718,16 +718,16 @@ export default function SubmitReading() {
               </div>
 
               {/* Target Cell Details */}
-              <div className="rounded-[20px] bg-[#f5f5f7] p-5 space-y-2 border border-black/[0.04]">
+              <div className="rounded-[20px] bg-[#f5f5f7] dark:bg-[#22252b] p-5 space-y-2 border border-black/[0.04] dark:border-white/10">
                 <div className="flex items-start justify-between">
                   <div>
                     <span className="text-[10px] font-semibold uppercase tracking-wider text-[#0071e3] block">Target Microclimate Cell</span>
-                    <div className="text-[15px] font-semibold text-[#1d1d1f] mt-0.5">{selectedStation.shortName}</div>
-                    <div className="text-[12px] text-[#86868b]">{selectedStation.zone}</div>
+                    <div className="text-[15px] font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] mt-0.5">{selectedStation.shortName}</div>
+                    <div className="text-[12px] text-[#86868b] dark:text-[#a5a9b4]">{selectedStation.zone}</div>
                   </div>
                   <span className="material-symbols-outlined text-[#0071e3] text-[22px]">location_on</span>
                 </div>
-                <div className="pt-1 font-mono text-[11px] text-[#1d1d1f] bg-white p-2.5 rounded-[12px] flex items-center justify-between border border-black/[0.04]">
+                <div className="pt-1 font-mono text-[11px] text-[#1d1d1f] dark:text-[#f5f5f7] bg-white dark:bg-[#191b20] p-2.5 rounded-[12px] flex items-center justify-between border border-black/[0.04] dark:border-white/10">
                   <span>{latitude.toFixed(4)}° N, {longitude.toFixed(4)}° E</span>
                   <span className="text-[#0071e3] font-semibold">{selectedStation.wardCode}</span>
                 </div>
@@ -735,20 +735,20 @@ export default function SubmitReading() {
 
               {/* Substrate Albedo & Thermal Chips */}
               <div className="grid grid-cols-2 gap-2">
-                <div className="p-3 rounded-[16px] bg-[#f5f5f7]">
-                  <span className="text-[10px] uppercase font-semibold text-[#86868b] block">Substrate</span>
-                  <span className="font-mono text-[11px] text-[#1d1d1f] font-medium">{selectedSubstrate.name} (α={selectedSubstrate.albedo})</span>
+                <div className="p-3 rounded-[16px] bg-[#f5f5f7] dark:bg-[#22252b] border border-black/[0.03] dark:border-white/5">
+                  <span className="text-[10px] uppercase font-semibold text-[#86868b] dark:text-[#a5a9b4] block">Substrate</span>
+                  <span className="font-mono text-[11px] text-[#1d1d1f] dark:text-[#f5f5f7] font-medium">{selectedSubstrate.name} (α={selectedSubstrate.albedo})</span>
                 </div>
-                <div className="p-3 rounded-[16px] bg-[#f5f5f7]">
-                  <span className="text-[10px] uppercase font-semibold text-[#86868b] block">Surface Skin</span>
-                  <span className="font-mono text-[11px] text-[#1d1d1f] font-medium">{surfaceTemp}°C IR</span>
+                <div className="p-3 rounded-[16px] bg-[#f5f5f7] dark:bg-[#22252b] border border-black/[0.03] dark:border-white/5">
+                  <span className="text-[10px] uppercase font-semibold text-[#86868b] dark:text-[#a5a9b4] block">Surface Skin</span>
+                  <span className="font-mono text-[11px] text-[#1d1d1f] dark:text-[#f5f5f7] font-medium">{surfaceTemp}°C IR</span>
                 </div>
               </div>
 
               {/* JSON Payload Inspector */}
               <div className="space-y-2 pt-1">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#86868b]">Telemetry Payload</span>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#86868b] dark:text-[#a5a9b4]">Telemetry Payload</span>
                   <button 
                     type="button"
                     onClick={handleCopyJson}
@@ -758,19 +758,19 @@ export default function SubmitReading() {
                     <span>{copyStatus}</span>
                   </button>
                 </div>
-                <pre className="w-full rounded-[16px] bg-[#1d1d1f] p-4 font-mono text-[11px] leading-relaxed text-[#f5f5f7] overflow-x-auto max-h-36 whitespace-pre shadow-inner">
+                <pre className="w-full rounded-[16px] bg-[#1d1d1f] p-4 font-mono text-[11px] leading-relaxed text-[#f5f5f7] overflow-x-auto max-h-36 whitespace-pre shadow-inner border border-black/10 dark:border-white/10">
                   {jsonPayload}
                 </pre>
               </div>
             </div>
 
             {/* QA Validation Note */}
-            <div className="p-5 bg-white rounded-[24px] border border-black/[0.06] shadow-[0_2px_8px_rgba(0,0,0,0.02)] space-y-1">
+            <div className="p-5 bg-white dark:bg-[#191b20] rounded-[24px] border border-black/[0.06] dark:border-white/10 shadow-[0_2px_8px_rgba(0,0,0,0.02)] dark:shadow-none space-y-1">
               <div className="flex items-center gap-1.5 text-[#0071e3] font-medium text-[12px]">
                 <span className="material-symbols-outlined text-[16px]">verified</span>
                 <span className="uppercase tracking-wider font-semibold">QA Validation</span>
               </div>
-              <p className="text-[12px] text-[#86868b] leading-relaxed">
+              <p className="text-[12px] text-[#86868b] dark:text-[#a5a9b4] leading-relaxed">
                 Readings exceeding 3.5σ of ward baselines are automatically flagged with experimental weights to prevent synthetic grid skew.
               </p>
             </div>
