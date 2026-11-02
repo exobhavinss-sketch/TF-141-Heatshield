@@ -66,12 +66,13 @@ The project combines an **Apple-inspired minimalist scientific design system** w
 6. [Design System & UI/UX Architecture](#design-system-and-uiux-architecture)
 7. [Database Design & Supabase Cloud Architecture](#database-design--supabase-cloud-architecture)
 8. [Master Dataset Integration & Ingestion Pipelines](#master-dataset-integration--ingestion-pipelines)
-9. [Data Visualizations & Analytical Findings](#data-visualizations--analytical-findings)
-10. [Technology Stack](#technology-stack)
-11. [Setup and Local Development Guide](#setup-and-local-development-guide)
-12. [Deployment Guide (Netlify, Vercel and Render)](#deployment-guide-netlify-vercel-and-render)
-13. [Project Roadmap & Status](#project-roadmap--status)
-14. [Credits and Academic Attribution](#credits-and-academic-attribution)
+9. [Phase 1: EDADV Exploratory Data Analysis & Presentation](#phase-1-edadv-exploratory-data-analysis--presentation)
+10. [Data Visualizations & Analytical Findings](#data-visualizations--analytical-findings)
+11. [Technology Stack](#technology-stack)
+12. [Setup and Local Development Guide](#setup-and-local-development-guide)
+13. [Deployment Guide (Netlify, Vercel and Render)](#deployment-guide-netlify-vercel-and-render)
+14. [Project Roadmap & Status](#project-roadmap--status)
+15. [Credits and Academic Attribution](#credits-and-academic-attribution)
 
 ---
 
@@ -176,6 +177,14 @@ TF-141-Heatshield/
 │   └── heatshield-website-banner.png                  # Dashboard header banner
 │
 ├── Website Design Files/                              # Research wireframes and reference screenshots (Git tracked)
+│
+├── Phase 1 - EDADV Presentation/                      # EDADV Phase 1 exploratory data analysis & presentation artifacts
+│   ├── EDADV Assignment 3.ipynb                       # Jupyter notebook reproducing EDADV Assignment 3 (Questions 1–25)
+│   ├── EDADV.py                                       # Python script: dataset exploration, cleaning, statistics & EDA insights
+│   ├── Heat Shield Master Dataset.csv                 # Raw synthetic master dataset input to the EDADV analysis
+│   ├── heatshield_clean.csv                           # Cleaned dataset exported by EDADV.py
+│   ├── HeatShield_EDADV_Assignment3_Final.csv         # Final processed dataset with derived analytical columns
+│   └── HeatShield - EDADV Presentation.pptx           # Slide deck presenting EDADV findings for academic submission
 │
 ├── src/                                               # Frontend application source code
 │   ├── main.jsx                                       # React DOM application mount point
@@ -407,6 +416,47 @@ node scripts/importMasterDataset.js --batch-size 500
 > - **The `SUPABASE_SERVICE_ROLE_KEY` and raw CSV files are strictly excluded from frontend code, Vite bundles, and Git tracking via `.gitignore`.**
 >
 > For full schema mapping and troubleshooting, see the [Master Dataset Import Guide](docs/MASTER_DATASET_IMPORT_GUIDE.md).
+
+---
+
+## Phase 1: EDADV Exploratory Data Analysis & Presentation
+
+Phase 1 of the project covers the **Exploratory Data Analysis & Data Visualization (EDADV)** academic track, owned by Aman Shaikh (`SCFU425013`). All Phase 1 artifacts are tracked in [`Phase 1 - EDADV Presentation/`](Phase%201%20-%20EDADV%20Presentation).
+
+### Contents
+
+| File | Description |
+|---|---|
+| [`EDADV Assignment 3.ipynb`](Phase%201%20-%20EDADV%20Presentation/EDADV%20Assignment%203.ipynb) | Jupyter notebook reproducing the full EDADV Assignment 3 analysis (Questions 1–25). |
+| [`EDADV.py`](Phase%201%20-%20EDADV%20Presentation/EDADV.py) | Standalone Python script performing dataset exploration, data-quality assessment, cleaning, statistical analysis, and EDA insights on the Solapur master dataset. |
+| [`Heat Shield Master Dataset.csv`](Phase%201%20-%20EDADV%20Presentation/Heat%20Shield%20Master%20Dataset.csv) | Raw synthetic master dataset used as input to the EDADV analysis. |
+| [`heatshield_clean.csv`](Phase%201%20-%20EDADV%20Presentation/heatshield_clean.csv) | Cleaned dataset exported by `EDADV.py` after duplicate removal and missing-value imputation. |
+| [`HeatShield_EDADV_Assignment3_Final.csv`](Phase%201%20-%20EDADV%20Presentation/HeatShield_EDADV_Assignment3_Final.csv) | Final processed dataset with derived analytical columns exported by `EDADV.py`. |
+| [`HeatShield - EDADV Presentation.pptx`](Phase%201%20-%20EDADV%20Presentation/HeatShield%20-%20EDADV%20Presentation.pptx) | Slide deck presenting the EDADV findings for the academic submission. |
+
+### Analysis Scope
+
+`EDADV.py` implements 25 questions across seven sections:
+
+- **Section A — Dataset Exploration**: shape, columns, data types, descriptive statistics, random sampling.
+- **Section B — Data Quality Assessment**: missing-value counts, categorical consistency, duplicate detection.
+- **Section C — Data Cleaning & Preprocessing**: column standardization, duplicate removal, missing-value imputation, placeholder-category inspection, cleaned-data export.
+- **Section D — Core Pandas Operations**: `loc`/`iloc` indexing, filtering (high temperature/humidity), sorting, derived columns (temperature band, vegetation band, high surface temperature flag).
+- **Section E — Statistical Analysis**: descriptive statistics, mode, relative spread, IQR outlier detection.
+- **Section F — Exploratory Data Analysis & Insights**: frequency distributions (zone, season, risk category), zone/season comparisons, NDVI–surface-temperature correlation, vegetation-group boxplots.
+- **Section G — Interpretation & Conclusion**: zone rankings by surface temperature, NDVI/NDBI–LST correlation, risk-category temperature means, final summary outputs for city planners.
+
+### Key Analytical Findings
+
+The EDADV Phase 1 analysis confirms the relationships modeled throughout the HeatShield platform:
+
+- **Vegetation cooling**: NDVI correlates negatively with land surface temperature (vegetated zones run cooler).
+- **Built-up heating**: NDBI correlates positively with land surface temperature (higher built-up density drives surface heat).
+- **Zone contrast**: Industrial and Commercial corridors concentrate High and Very High heat-risk records; Residential and Waterbody zones trend cooler.
+- **Data integrity**: The source simulation contains 0 missing values and 0 duplicate `record_id` entries.
+
+> [!NOTE]
+> The EDADV Phase 1 analysis operates on the **synthetic academic simulation dataset** described in the [Dataset and Data Integrity Disclosure](#dataset-and-data-integrity-disclosure). Findings are descriptive associations, not verified real-world Solapur measurements.
 
 ---
 
