@@ -1,46 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import TeamMemberCards from '../components/team/TeamMemberCards';
 
 export default function Team() {
-  const teamMembers = [
-    {
-      initials: 'FB',
-      name: 'Furqan Bagwan',
-      studentId: 'SCFU425004',
-      role: 'Frontend Development',
-      roleCategory: 'FSD-1',
-      avatarBg: 'bg-[#0071e3] text-white',
-      accentColor: 'text-[#0071e3] dark:text-[#2997ff]',
-      description:
-        "Responsible for building the user interface, page layouts, reusable components, and navigation that make HeatShield's analytical capabilities accessible.",
-      competencies: 'UI Architecture · Reusable Components · Responsive Views',
-    },
-    {
-      initials: 'AS',
-      name: 'Aman Shaikh',
-      studentId: 'SCFU425013',
-      role: 'EDA & Data Visualization',
-      roleCategory: 'EDA & DV',
-      avatarBg: 'bg-[#ea580c] text-white',
-      accentColor: 'text-[#ea580c] dark:text-[#f97316]',
-      description:
-        'Responsible for exploring the dataset, conducting analytical investigations, developing visualizations, and communicating patterns found in the simulated data.',
-      competencies: 'Statistical EDA · Thermal Correlation · Interactive Charts',
-    },
-    {
-      initials: 'BS',
-      name: 'Bhavin Shankur',
-      studentId: 'SCFU425014',
-      role: 'Backend Development & Database',
-      roleCategory: 'DBMS',
-      avatarBg: 'bg-[#059669] text-white',
-      accentColor: 'text-[#059669] dark:text-[#10b981]',
-      description:
-        'Responsible for backend functionality, database architecture, data management, API integration, and the underlying application logic.',
-      competencies: 'Relational Schema · REST APIs · Simulation Pipeline',
-    },
-  ];
-
   const workstreams = [
     {
       id: '01 / FRONTEND',
@@ -339,63 +301,8 @@ export default function Team() {
         </div>
       </section>
 
-      {/* Team Cards Section */}
-      <section className="w-full px-6 py-16">
-        <div className="max-w-[1340px] mx-auto space-y-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <div className="space-y-1">
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-[#0071e3] dark:text-[#2997ff] block">
-                Contributors &amp; Engineering Roles
-              </span>
-              <h2 className="text-[28px] md:text-[34px] font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] tracking-[-0.02em]">
-                The People Behind the Project
-              </h2>
-            </div>
-            <p className="text-[14px] text-[#86868b] dark:text-[#a5a9b4] max-w-md leading-relaxed">
-              Three contributors. Three complementary responsibilities. One integrated platform for computational thermal resilience.
-            </p>
-          </div>
-
-          {/* 3 Members Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {teamMembers.map((member) => (
-              <div
-                key={member.studentId}
-                className="bg-white dark:bg-[#191b20] rounded-[28px] p-8 flex flex-col justify-between shadow-[0_2px_16px_rgba(0,0,0,0.04)] dark:shadow-[0_2px_16px_rgba(0,0,0,0.3)] border border-black/[0.06] dark:border-white/[0.08] hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_8px_24px_rgba(0,0,0,0.4)] transition-all duration-300"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-6">
-                    <div className={`w-14 h-14 rounded-[980px] ${member.avatarBg} flex items-center justify-center text-[18px] font-semibold shadow-xs`}>
-                      {member.initials}
-                    </div>
-                    <span className="px-3 py-1 rounded-[980px] bg-[#f5f5f7] dark:bg-[#22252b] font-mono text-[11px] text-[#1d1d1f] dark:text-[#f5f5f7] font-medium">
-                      {member.studentId}
-                    </span>
-                  </div>
-                  <div className="mb-3">
-                    <span className={`text-[11px] uppercase tracking-wider font-semibold ${member.accentColor} block mb-1`}>
-                      {member.roleCategory} • {member.role}
-                    </span>
-                    <h3 className="text-[22px] font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] tracking-tight">
-                      {member.name}
-                    </h3>
-                  </div>
-                  <p className="text-[14px] text-[#86868b] dark:text-[#a5a9b4] leading-relaxed mb-6">
-                    {member.description}
-                  </p>
-                </div>
-                
-                <div className="pt-4 bg-[#f5f5f7] dark:bg-[#22252b] -mx-8 -mb-8 p-6 rounded-b-[28px] flex flex-col gap-1 border-t border-black/[0.04] dark:border-white/[0.06] transition-colors">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-[#86868b] dark:text-[#a5a9b4]">Core Competencies</span>
-                  <span className={`font-mono text-[11px] ${member.accentColor} font-medium`}>
-                    {member.competencies}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Team Cards Section — reusable interactive component */}
+      <TeamMemberCards />
 
       {/* Work Distribution Section */}
       <section className="w-full px-6 py-16 bg-white dark:bg-[#161617] border-y border-black/[0.04] dark:border-white/[0.08] transition-colors">
