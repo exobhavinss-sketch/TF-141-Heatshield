@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import IndianFlag from '../branding/IndianFlag';
 import { useAuth } from '../../context/AuthContext';
 import ThemeToggle from '../common/ThemeToggle';
+import { MagneticNav, MagneticNavLink } from './MagneticNav';
 
 const NAV_LINKS = [
   { path: '/', label: 'Overview' },
@@ -36,10 +37,13 @@ export default function Navbar({ onOpenMobileMenu }) {
           </div>
         </Link>
 
-        {/* Center: Apple-style Minimal Navigation */}
-        <nav className="hidden xl:flex items-center gap-6 h-full shrink-0" aria-label="Main Navigation">
+        {/* Center: Apple-style Minimal Navigation (magnetic interaction) */}
+        <MagneticNav
+          className="hidden xl:flex items-center gap-6 h-full shrink-0"
+          aria-label="Main Navigation"
+        >
           {NAV_LINKS.map((item) => (
-            <NavLink
+            <MagneticNavLink
               key={item.path}
               to={item.path}
               end={item.path === '/'}
@@ -52,9 +56,9 @@ export default function Navbar({ onOpenMobileMenu }) {
               }
             >
               {item.label}
-            </NavLink>
+            </MagneticNavLink>
           ))}
-        </nav>
+        </MagneticNav>
 
         {/* Right: Academic Simulation Pill, Flag, Action Button, Theme Toggle & Avatar */}
         <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
