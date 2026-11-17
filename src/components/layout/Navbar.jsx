@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { path: '/heat-map', label: 'Heat Map' },
   { path: '/explore-data', label: 'Explore Data' },
   { path: '/methodology', label: 'Methodology' },
+  { path: '/system-architecture', label: 'Architecture' },
   { path: '/team', label: 'Team & Project' },
 ];
 

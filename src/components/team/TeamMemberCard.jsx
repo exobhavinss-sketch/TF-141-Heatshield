@@ -16,14 +16,14 @@ import { cn } from '../../lib/utils';
  */
 export default function TeamMemberCard({ member }) {
   const defaultView = (
-    <div className="relative flex h-full flex-col justify-center p-8">
+    <div className="relative flex h-full flex-col items-center justify-center p-8 text-center">
       <h3 className="text-[24px] font-semibold tracking-tight text-[#1d1d1f] dark:text-[#f5f5f7]">
         {member.name}
       </h3>
       <span className="mt-4 inline-flex w-fit rounded-[980px] bg-[#f5f5f7] px-4 py-1.5 font-mono text-[12px] font-medium text-[#1d1d1f] dark:bg-[#22252b] dark:text-[#f5f5f7]">
         {member.prn}
       </span>
-      <p className="absolute bottom-7 left-8 text-[10px] font-medium uppercase tracking-[0.14em] text-[#aeaeb2] dark:text-[#6e6e73]">
+      <p className="absolute bottom-7 left-0 right-0 text-center text-[10px] font-medium uppercase tracking-[0.14em] text-[#aeaeb2] dark:text-[#6e6e73]">
         Hover or tap — view contributions
       </p>
     </div>

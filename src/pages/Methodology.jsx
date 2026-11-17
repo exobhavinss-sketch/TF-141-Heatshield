@@ -1,4 +1,44 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import NewsletterBookshelf from '../components/sections/NewsletterBookshelf';
+import { archiveBooks } from '../components/sections/bookshelfItems';
+
+/* Deferred mount: three.js + WebGL only initialize when the visitor actually
+   scrolls near the archive. Placeholder reserves the exact height so there
+   is no layout shift. */
+function AnalysisArchiveShelf() {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return undefined;
+    if (typeof IntersectionObserver === 'undefined') {
+      setVisible(true);
+      return undefined;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '400px' },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref}>
+      {visible ? (
+        <NewsletterBookshelf items={archiveBooks} height={560} />
+      ) : (
+        <div className="h-[560px] bg-[#f5f5f7] dark:bg-[#22252b] transition-colors" aria-hidden="true" />
+      )}
+    </div>
+  );
+}
 
 export default function Methodology() {
   const [copied, setCopied] = useState(false);
@@ -85,7 +125,7 @@ export default function Methodology() {
                 <span className="text-[11px] font-semibold text-[#86868b] dark:text-[#a5a9b4] uppercase tracking-wider">
                   Specifications Index
                 </span>
-                <span className="font-mono text-[10px] text-[#0071e3] dark:text-[#2997ff] bg-[#0071e3]/10 dark:bg-[#2997ff]/15 px-2 py-0.5 rounded-[980px]">6 SECTIONS</span>
+                <span className="font-mono text-[10px] text-[#0071e3] dark:text-[#2997ff] bg-[#0071e3]/10 dark:bg-[#2997ff]/15 px-2 py-0.5 rounded-[980px]">7 SECTIONS</span>
               </div>
               <nav className="flex flex-col space-y-1 text-[13px]">
                 <a className="px-3 py-2 rounded-[12px] text-[#86868b] dark:text-[#a5a9b4] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] hover:bg-[#f5f5f7] dark:hover:bg-[#22252b] transition-all flex items-center justify-between" href="#overview">
@@ -111,6 +151,10 @@ export default function Methodology() {
                 <a className="px-3 py-2 rounded-[12px] text-[#86868b] dark:text-[#a5a9b4] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] hover:bg-[#f5f5f7] dark:hover:bg-[#22252b] transition-all flex items-center justify-between" href="#provenance">
                   <span>06. Citation &amp; Authors</span>
                   <span className="font-mono text-[11px] text-[#86868b] dark:text-[#7a7f8d]">BibTeX</span>
+                </a>
+                <a className="px-3 py-2 rounded-[12px] text-[#86868b] dark:text-[#a5a9b4] hover:text-[#1d1d1f] dark:hover:text-[#f5f5f7] hover:bg-[#f5f5f7] dark:hover:bg-[#22252b] transition-all flex items-center justify-between" href="#archive">
+                  <span>07. Research Archive</span>
+                  <span className="font-mono text-[11px] text-[#86868b] dark:text-[#7a7f8d]">Shelf</span>
                 </a>
               </nav>
 
@@ -547,6 +591,25 @@ export default function Methodology() {
                     </pre>
                   </div>
                 </div>
+              </div>
+            </section>
+
+            {/* SECTION 7: Research Archive — Componentry Newsletter Bookshelf */}
+            <section className="space-y-4" id="archive">
+              <div className="flex items-center gap-2 text-[12px] font-semibold text-[#0071e3] dark:text-[#2997ff] uppercase tracking-wider">
+                <span>07</span>
+                <span>/</span>
+                <span>Research Archive</span>
+              </div>
+              <h2 className="text-[28px] md:text-[34px] font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] tracking-[-0.02em]">
+                Analysis Figure Archive
+              </h2>
+              <p className="text-[14px] text-[#86868b] dark:text-[#a5a9b4] leading-relaxed max-w-[720px]">
+                The exploratory data analysis volumes produced for HeatShield, arranged as a browsable shelf — from distribution and correlation studies to the platform's live exploration tools. Drag or scroll sideways to browse, activate a volume to focus it, then activate it again to open.
+              </p>
+
+              <div className="rounded-[28px] overflow-hidden shadow-[0_2px_16px_rgba(0,0,0,0.04)] dark:shadow-[0_2px_16px_rgba(0,0,0,0.3)] border border-black/[0.06] dark:border-white/[0.08] transition-colors">
+                <AnalysisArchiveShelf />
               </div>
             </section>
 

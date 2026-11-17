@@ -14,6 +14,7 @@ export default function Sidebar({ isOpen, onClose }) {
     { path: '/heat-map', label: 'India Heat Map', icon: 'map' },
     { path: '/explore-data', label: 'Data Explorer', icon: 'dataset' },
     { path: '/methodology', label: 'Methodology & Science', icon: 'science' },
+    { path: '/system-architecture', label: 'System Architecture', icon: 'account_tree' },
     { path: '/team', label: 'Team & Project', icon: 'groups' },
     { path: '/submit-reading', label: 'Submit Reading', icon: 'edit_calendar' },
     { path: '/contact', label: 'Contact & Inquiries', icon: 'mail' },

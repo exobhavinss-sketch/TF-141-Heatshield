@@ -33,6 +33,9 @@ export default defineConfig({
             if (id.includes('recharts') || id.includes('d3-')) {
               return 'vendor-charts';
             }
+            if (id.includes('/three/') || id.includes('@react-three')) {
+              return 'vendor-three';
+            }
             if (id.includes('leaflet') || id.includes('react-leaflet')) {
               return 'vendor-maps';
             }

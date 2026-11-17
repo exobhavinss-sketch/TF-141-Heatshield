@@ -21,6 +21,7 @@ const ResetPassword = lazy(() => import('./pages/ResetPassword'));
 const AuthCallback = lazy(() => import('./pages/AuthCallback'));
 const Profile = lazy(() => import('./pages/Profile'));
 const SubmitReading = lazy(() => import('./pages/SubmitReading'));
+const SystemArchitecture = lazy(() => import('./pages/SystemArchitecture'));
 
 function PageFallback() {
   return (
@@ -49,6 +50,7 @@ export default function App() {
                   <Route path="/heat-map" element={<IndiaHeatMap />} />
                   <Route path="/explore-data" element={<ExploreData />} />
                   <Route path="/methodology" element={<Methodology />} />
+                  <Route path="/system-architecture" element={<SystemArchitecture />} />
                   <Route path="/team" element={<Team />} />
                   <Route path="/contact" element={<Contact />} />
 
