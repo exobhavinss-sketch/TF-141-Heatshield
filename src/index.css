@@ -183,7 +183,10 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--hs-font-sans);
-    letter-spacing: -0.02em;
+    /* Softened from -0.02em: -0.02em caused adjacent letters to touch at
+       display sizes with Inter. -0.012em preserves the tight editorial
+       look with healthy letter spacing. */
+    letter-spacing: -0.012em;
     font-weight: 600;
   }
 

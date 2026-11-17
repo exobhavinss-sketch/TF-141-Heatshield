@@ -159,6 +159,13 @@ export default {
         "apple-hover": "0 12px 32px rgba(0, 0, 0, 0.08)",
         "apple-modal": "0 24px 64px rgba(0, 0, 0, 0.12)",
         "apple-glow": "0 0 20px rgba(0, 113, 227, 0.25)"
+      },
+      letterSpacing: {
+        // Softened sitewide: the default -0.025em made adjacent letters
+        // touch/collide at display sizes with Inter (e.g. the Home hero
+        // headline). -0.012em keeps the Apple-style tight display look
+        // while guaranteeing clear letter separation.
+        tight: "-0.012em"
       }
     },
   },
