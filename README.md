@@ -1,15 +1,15 @@
 <p align="center">
-  <img src="Banner%20%26%20Logo/India's%20Flag.png" alt="India's Flag" width="32" valign="middle">
-  &nbsp;&nbsp;<b>Made For Indians — Made By Indians</b>&nbsp;&nbsp;
-  <img src="Banner%20%26%20Logo/India's%20Flag.png" alt="India's Flag" width="32" valign="middle">
-</p>
-
-<p align="center">
   <img src="Banner%20%26%20Logo/heatshield-logo-primary.svg" alt="HeatShield Logo" width="220">
 </p>
 
 <p align="center">
   <img src="Banner%20%26%20Logo/heatshield-github-banner.png" alt="HeatShield GitHub Banner" width="100%">
+</p>
+
+<p align="center">
+  <img src="Banner%20%26%20Logo/India's%20Flag.png" alt="India's Flag" width="32" valign="middle">
+  &nbsp;&nbsp;<b>Made For Indians — Made By Indians</b>&nbsp;&nbsp;
+  <img src="Banner%20%26%20Logo/India's%20Flag.png" alt="India's Flag" width="32" valign="middle">
 </p>
 
 # HeatShield — Urban Heat Exposure Analysis and Cooling Intelligence Platform
